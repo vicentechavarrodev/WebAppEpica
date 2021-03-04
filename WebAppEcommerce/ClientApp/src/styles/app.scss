@@ -1,0 +1,557 @@
+﻿
+@import "./googlefonts.css";
+
+/* ---------------------------------------------------
+    CONTROLES SYNCFUSION   
+----------------------------------------------------- */
+@import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-react-grids/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-react-dropdowns/styles/material.css";
+@import '../../node_modules/@syncfusion/ej2-react-calendars/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+/*@import "../../node_modules/@syncfusion/ej2-react-pdfviewer/styles/material.css";*/
+@import "../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+/* ---------------------------------------------------
+    VARIABLES GLOBALES 
+----------------------------------------------------- */
+$primary-color: #b3191f;
+$secondary-color: rgba(42, 39, 39,.8 );
+
+
+
+/* ---------------------------------------------------
+    ESTILOS GLOBALES DE LA PLATAFORMA
+----------------------------------------------------- */
+body {
+    font-family: 'Poppins', sans-serif !important;
+    background: #fafafa !important;
+    padding-top: 38px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.hidde-element{
+    display:block;
+}
+
+
+
+
+.pz-input {
+    width: 100%;
+    box-sizing: border-box !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 3px !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    background-color: white !important;
+    min-height: 38px !important;
+    padding: .375rem .75rem !important;
+    color: #495057 !important;
+}
+
+
+.e-input-group .e-input-group-icon, .e-input-group .e-control-wrapper .e-input-group-icon {
+    position: absolute !important;
+    right: 15px;
+    top: 25%;
+    border-color: transparent !important;
+    font-size: 16px !important;
+}
+
+
+.e-datetime-wrapper .e-time-icon {
+    margin-right: 30px !important;
+}
+
+
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after {
+    background: transparent !important;
+    border-color: transparent !important;
+    color: transparent !important;
+}
+
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.6em;
+    font-weight: 300;
+    line-height: 1.7em;
+    margin-bottom: 0rem;
+}
+
+h1 {
+    font-size: 3vw;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.shadow-box-page-items {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important;
+    }
+  /* ---------------------------------------------------
+    LOADER STYLE
+----------------------------------------------------- */
+
+.loader-spinner {
+    position: absolute;
+    top: calc(50% - 4em);
+    left: calc(50% - 4em);
+    width: 6em;
+    height: 6em;
+    border: 1.1em solid rgba(0, 0, 0, 0.2);
+    border-left: 1.1em solid #EA4333;
+    border-radius: 50%;
+    animation: load8 1.1s infinite linear;
+    transition: opacity 0.3s;
+}
+
+.loader--hide {
+    display: none;
+}
+
+.loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 10;
+}
+
+@keyframes load8 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------------------------------------------------
+    NAVBAR STYLE
+----------------------------------------------------- */
+
+
+.nav-form {
+    height: auto;
+    box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.nav-form ul {
+    list-style: none;
+    display: inline-block;
+    float: right;
+}
+
+.nav-form ul li {
+    float: left;
+    margin: 3px;
+}
+
+
+.e-grid td.e-active {
+    background-color: $primary-color;
+    color: #fff !important;
+}
+
+/*.e-pdfviewer .e-pv-page-canvas, .e-pdfviewer .e-pv-viewer-container, .e-pdfviewer .e-pv-page-container, .e-pdfviewer .e-pv-page-div {
+    width: 95% !important;
+}*/
+
+.e-pv-sidebar-toolbar, .e-pv-text-select-tool-container, .e-pv-pan-tool-container, .e-pv-sidebar-toolbar-splitter.e-left, .e-pv-open-document-container, .e-pv-text-search-container, .e-pv-undo-container, .e-pv-redo-container, .e-pv-annotation-container, .e-pv-comment-container {
+    display: none !important;
+}
+
+
+.e-pdfviewer .e-popup-open {
+    max-height: 80px !important;
+    left: 0px !important;
+    right: 0px !important;
+    top: 50px !important;
+    height: 80px !important;
+}
+
+.e-pv-print-document-container, .e-pv-download-document-container {
+    padding-top: 0 !important;
+}
+
+.e-grid .e-toolbar-items .e-search, .e-grid .e-search-wrapper {
+    padding-top: 3px !important;
+    padding: 0 3px;
+}
+
+.e-grid .e-toolbar-items .e-toolbar-item.e-search-wrapper .e-search {
+    width: 100% !important;
+}
+
+.e-grid .e-toolbar-items .e-search {
+    background-image: url('../imagenes/generales/search_icon_24.png');
+    /*width: 100% !important;*/
+    box-sizing: border-box !important;
+    border: 2px solid #ccc !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    background-color: white !important;
+    background-position: 10px 10px !important;
+    background-repeat: no-repeat !important;
+    padding: 5px 5px 5px 40px !important;
+    max-width: 100% !important;
+}
+
+.e-grid .e-toolbar-items .e-search{
+
+}
+
+.e-grid .e-toolbar-right {
+    position: absolute;
+    left: 0 !important;
+    width: 100% !important;
+}
+
+
+.e-grid .e-toolbar-items .e-toolbar-item.e-search-wrapper .e-search .e-search-icon {
+    display: none !important;
+}
+
+
+.e-grid .e-gridheader {
+    margin-top: 50px;
+}
+
+
+#text2::-webkit-input-placeholder::before {
+    color: #666;
+    content: "Line 1\A Line 2\A Line 3\A";
+}
+/* ---------------------------------------------------
+    CONTENT & WRAPER STYLE
+----------------------------------------------------- */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.wrap-form {
+    min-height: 100vh;
+    transition: all 0.3s;
+    padding: 20px;
+    background: #fafafa;
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.border-5 {
+    border-radius: 5px;
+    
+}
+.visible {
+    display: block;
+}
+
+.invisible {
+    display: none;
+}
+
+.center-vertical {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* ---------------------------------------------------
+    BUTTON STYLE
+----------------------------------------------------- */
+
+.btn-default-pz, e-grid {
+    background: $primary-color !important;
+    color: #fff !important;
+    border-radius: 0 !important;
+}
+
+.btn-metro-style-pz {
+    background: $primary-color !important;
+    color: #fff;
+    border-radius: 0 !important;
+    width: 5em;
+    height: 5em;
+    padding: 0px;
+}
+
+.btn-3d-style {
+    box-shadow: 0 1px #555;
+}
+
+.btn-3d-style:hover, .e-grid .e-toolbar-items button[type=button]:hover {
+    background-color:  $secondary-color !important;
+    color:#fff;
+}
+
+.btn-3d-style:active, .e-grid .e-toolbar-items button[type=button]:active {
+    background-color: $secondary-color;
+    box-shadow: 0 1px #555;
+    transform: translateY(2px);
+}
+
+
+.btn-session {
+    position: relative;
+    background-color: #000000;
+}
+
+/* ---------------------------------------------------
+    BUTTONS  GRID
+----------------------------------------------------- */
+.e-grid .e-toolbar-items button[type=button] {
+    background: $primary-color !important;
+    border: none !important;
+    padding: 10px 15px !important;
+    margin: 2px !important;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 1.1vw !important;
+    color: #fff !important;
+    text-transform: capitalize !important;
+}
+
+.e-grid .e-toolbar-item .e-create::before {
+    font: normal normal normal 14px/1 FontAwesome !important;
+    content: "\f067" !important;
+    color: #fff !important;
+}
+
+.e-grid .e-toolbar-item .e-edit::before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f040";
+    color: #fff;
+}
+
+.e-grid .e-toolbar-item .e-open::before {
+    font: normal normal normal 14px/1 FontAwesome;
+    content: "\f08e";
+    color: #fff;
+}
+
+
+
+.e-grid .e-hscroll-content, .e-grid .e-detailrow .e-toolbar-items {
+    display: inline-flex !important;
+}
+/* ---------------------------------------------------
+    CHECKBOX  STYLE
+----------------------------------------------------- */
+.e-checkbox-wrapper .e-frame.e-check, .e-css.e-checkbox-wrapper .e-frame.e-check {
+    background-color: $primary-color !important;
+    border-color: transparent;
+    color: #fff
+}
+/* ---------------------------------------------------
+    SCROLLBARS  STYLE
+----------------------------------------------------- */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+
+
+/* ---------------------------------------------------
+     Customize Handle and Bar Switch 
+----------------------------------------------------- */
+
+
+.custom-switch {
+    width: 50px;
+    height: 24px;
+}
+
+.custom-switch .e-switch-handle {
+    width: 20px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.custom-switch .e-switch-inner,
+.custom-switch .e-switch-handle {
+    border-radius: 0;
+}
+
+
+.e-switch-wrapper.handle-text {
+    width: 58px;
+    height: 24px;
+}
+
+.e-switch-wrapper.handle-text .e-switch-handle {
+    width: 26px;
+    height: 20px;
+    left: 2px;
+    background-color: #fff;
+}
+
+.e-switch-wrapper.handle-text .e-switch-inner,
+.e-switch-wrapper.handle-text .e-switch-handle {
+    border-radius: 0;
+}
+
+.e-switch-wrapper.handle-text .e-switch-handle.e-switch-active {
+    left: 46px;
+}
+
+.handle-text .e-switch-inner.e-switch-active,
+.handle-text:hover .e-switch-inner.e-switch-active .e-switch-on {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.handle-text .e-switch-inner,
+.handle-text .e-switch-off {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.custom-switch .e-switch-handle .e-switch-active {
+    left: 42px;
+}
+
+.e-switch-wrapper:hover .e-switch-handle.e-switch-active {
+    background-color: $primary-color !important;
+}
+
+.e-switch-wrapper .e-switch-handle.e-switch-active {
+    background-color: $primary-color !important;
+    left: 100%;
+    margin-left: -24px;
+}
+
+.e-switch-wrapper .e-switch-on {
+    background-color: $primary-color !important;
+}
+
+.switch-control > label {
+    padding-right: 10px;
+}
+
+
+/* ---------------------------------------------------
+     show/hide elements
+----------------------------------------------------- */
+
+.element-show{
+    display:block;
+}
+
+
+.element-hide {
+    display: none;
+}
+
+@media (max-width: 760px) {
+    #content {
+        margin-left: 0;
+    }
+
+    #content.active {
+        margin-left: 0;
+    }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+
+    .btn-metro-style-pz {
+        width: 3em;
+        height: 3em;
+    }
+
+    .hidde-element{
+        display:none;
+    }
+
+    .center-element {
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 960px) {
+
+
+    .btn-metro-style-pz {
+        width: 3em;
+        height: 3em;
+    }
+}
