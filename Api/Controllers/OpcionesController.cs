@@ -23,7 +23,25 @@ namespace Api.Controllers
         {
             db = context;
         }
+        [HttpGet]
+        [Route("ProductoOpciones/{Id}")]
+        public async Task<Response> ProductoOpciones(int Id)
+        {
+            try
+            {
+             
+                var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+                var opciones = new HashSet<int>(productosOpciones.Select(x => x.IdOpcion));
+                var opcionesFiltradas = await db.Opciones.Where(x => !opciones.Contains(x.IdOpcion)).ToListAsync();
+                return new Response { IsSuccess = true, Message = " ", Result = opcionesFiltradas };
+            }
+            catch (Exception ex)
+            {
 
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+        }
         [HttpGet]
         [Route("Index")]
         public async Task<Response> Index()
@@ -57,8 +75,6 @@ namespace Api.Controllers
             }
 
         }
-
-
 
         [HttpPost]
         [Route("Crear")]
@@ -134,7 +150,6 @@ namespace Api.Controllers
             }
 
         }
-
 
 
         [HttpPost, ActionName("Eliminar")]

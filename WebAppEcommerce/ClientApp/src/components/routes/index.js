@@ -1,6 +1,8 @@
 ﻿import Usuarios from '../usuario/index';
 import Categorias from '../categorias/index';
+import Productos from '../productos/index';
 import Opciones from '../opciones/index';
+import Details from '../productos/details';
 import App from '../../App';
 import React from 'react';
 import Login from '../usuario/login';
@@ -22,6 +24,8 @@ const AppRoutes = () =>
                     <PrivateRoute component={Usuarios} path="/usuarios" exact />
                     <PrivateRoute component={Categorias} path="/categorias" exact />
                     <PrivateRoute component={Opciones} path="/opciones" exact />
+                    <PrivateRoute component={Productos} path="/productos" exact />
+                    <PrivateRoute component={Details} path="/details" exact />
                 </Ventana>
 
            

@@ -13,8 +13,10 @@ using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AuthorizeController : ControllerBase
     {
         private readonly IConfiguration configuration;

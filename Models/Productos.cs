@@ -11,6 +11,7 @@ namespace Models
     {
             [Key]
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+            [JsonProperty(PropertyName = "IdProducto")]
             public int IdProducto { get; set; }
             [Required(ErrorMessage = "El dato {0} es necesario")]
             [MaxLength(100, ErrorMessage = "El tamaño maximo de el {0} is {1} caracteres")]

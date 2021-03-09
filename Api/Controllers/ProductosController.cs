@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Helpers;
+using Api.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,135 +18,328 @@ namespace Api.Controllers
     [ApiController]
     public class ProductosController : Controller
     {
-        private readonly DataContext db;
 
-        public ProductosController(DataContext context)
+        private readonly DataContext db;
+        private readonly IWebHostEnvironment _env;
+
+        public ProductosController(IWebHostEnvironment env, DataContext dataContext)
         {
-            db = context;
+            db = dataContext;
+            _env = env;
         }
 
         [HttpGet]
-        [Route("ProductosPorCategoria/{Id}")]
-        public IEnumerable<Productos> Index(int Id)
+        [Route("ProductoOpciones/{Id}")]
+        public async Task<Response> ProductoOpciones(int Id)
         {
-            return db.Productos.Where(p => p.IdCategoria == Id).ToList();
+            try
+            {
+                var producto = await db.Productos.FindAsync(Id);
+                var vista = ToVistaProducto(producto);
+                var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+                vista.VistaProductoOpciones = productosOpciones;
+
+                return new Response { IsSuccess = true, Message = " ", Result = vista };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+         }
+
+        [HttpGet]
+        [Route("ProductosPorCategoria/{Id}")]
+        public async Task<Response> Index(int Id)
+        {
+            try
+            {
+                var productos = await db.Productos.Where(p => p.IdCategoria == Id).ToListAsync();
+
+
+                return new Response { IsSuccess = true, Message = " ", Result = productos };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+         
         }
 
         [HttpGet]
         [Route("Index")]
-        public IEnumerable<Productos> Index()
+        public async Task<Response> Index()
         {
-            return  db.Productos.ToList();
+            try
+            {
+                var productos = await db.Productos.ToListAsync();
+
+
+                return new Response { IsSuccess = true, Message = " ", Result = productos };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
         }
 
         [HttpGet]
         [Route("ProductosOpciones/{Id}")]
-        public IEnumerable<ProductoOpciones> GetProductosOpcion(int Id)
+        public async Task<Response> GetProductosOpcion(int Id)
         {
-            return db.ProductoOpciones.Where(p => p.IdProducto == Id).ToList();
+            try
+            {
+                var productos = await db.ProductoOpciones.Where(p => p.IdProducto == Id).ToListAsync();
+                return new Response { IsSuccess = true, Message = " ", Result = productos };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+           
         }
 
         [HttpPost]
-        [Route("CreateProductoOpcion")]
-        public async Task<IActionResult> CreateProductoOpcion([Bind("IdProductoOpciones,IdOpcion,IdProducto")] ProductoOpciones productOpcion)
+        [Route("CrearProductoOpcion")]
+        public async Task<Response> CrearProductoOpcion([Bind("IdProductoOpciones,IdOpcion,IdProducto")] ProductoOpciones productOpcion)
         {
-            if (ModelState.IsValid)
+
+            try
             {
                 db.Add(productOpcion);
                 await db.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return new Response { IsSuccess = true, Message = "Producto creado correctamente", Result = productOpcion };
             }
-            return View(productOpcion);
-        }
-
-
-
-        [HttpPost]
-        [Route("Create")]
-        public async Task<IActionResult> Create([Bind("IdProducto,Nombre,UrlImagen,Precio,IdCategoria")] Productos productos)
-        {
-            if (ModelState.IsValid)
+            catch (Exception ex)
             {
-                db.Add(productos);
-                await db.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
             }
-            return View(productos);
+           
         }
 
         [HttpGet]
-        [Route("Edit")]
-        public async Task<IActionResult> Edit(int? id)
+        [Route("Crear")]
+        public async Task<Response> Crear()
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+                var categorias = await db.Categorias.OrderBy(u => u.Nombre).ToListAsync();
+
+                return new Response { IsSuccess = true, Message = string.Empty, Result = new VistaProductos { Categorias  = categorias } };
+            }
+            catch (Exception ex)
+            {
+                return new Response { IsSuccess = false, Message = ex.InnerException.Message, Result = new VistaProductos { Categorias = null } };
             }
 
-            var productos = await db.Productos.FindAsync(id);
-            if (productos == null)
-            {
-                return NotFound();
-            }
-            return View(productos);
         }
 
-        [HttpPost]
-        [Route("Edit/{id}")]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProducto,Nombre,UrlImagen,Precio,IdCategoria")] Productos productos)
-        {
-            if (id != productos.IdProducto)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
+
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("Crear")]
+        public async Task<Response> Create()
+        {
+
+            var files = HttpContext.Request.Form.Files;
+
+            var postedFile = Request.Form.Files[0];
+
+            var ruta = Path.Combine(_env.ContentRootPath, "images/productos");
+            var form = Request.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+            var n = form["Nombre"];
+
+            using (var transacction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    db.Update(productos);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductosExists(productos.IdProducto))
+                    string FileName = Guid.NewGuid().ToString() + ".png";
+                    var imagenGuardada = await FilesHelper.UploadPhotoAsync(ruta, files, FileName);
+                    if (imagenGuardada)
                     {
-                        return NotFound();
+                        var producto = new Productos
+                        {
+                            Nombre = form["Nombre"],
+                            UrlImagen = "productos/" + FileName,
+                            Precio = decimal.Parse(form["Precio"]),
+                            IdCategoria = int.Parse(form["IdCategoria"])
+
+                        };
+
+                        db.Productos.Add(producto);
+                        await db.SaveChangesAsync();
+                        transacction.Commit();
+                        return new Response { IsSuccess = true, Message = "Producto creado correctamente", Result = producto };
                     }
                     else
                     {
-                        throw;
+
+                        return new Response { IsSuccess = false, Message = "No se logro guardar la imagen " + postedFile.Length, Result = null };
                     }
+               
+
                 }
-                return RedirectToAction(nameof(Index));
+                catch (Exception ex)
+                {
+                    transacction.Rollback();
+                    return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+                }
+
             }
-            return View(productos);
+
+
+
+            
+           
+
+
+           
+        }
+
+        [HttpGet]
+        [Route("Editar/{id}")]
+        public async Task<Response> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new Response { IsSuccess = false, Message = "Debes enviar un id", Result = null };
+            }
+
+            try
+            {
+                var producto = await db.Productos.FindAsync(id);
+                var elemento = ToVistaProducto(producto);
+                var categorias = await db.Categorias.OrderBy(u => u.Nombre).ToListAsync();
+                elemento.Categorias = categorias;
+                return new Response { IsSuccess = true, Message = string.Empty, Result = elemento };
+            }
+            catch (Exception ex)
+            {
+                return new Response { IsSuccess = false, Message = ex.InnerException.Message, Result = new VistaProductos { Categorias = null } };
+            }
+            
+        }
+
+        [HttpPost]
+        [Route("Editar")]
+        public async Task<Response> Edit()
+        {
+
+
+
+            var files = HttpContext.Request.Form.Files;
+            if(files.Count != 0)
+            {
+                var postedFile = Request.Form.Files[0];
+            }
+
+            var ruta = Path.Combine(_env.ContentRootPath, "images/productos");
+
+            var form = Request.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+            var n = form["Nombre"];
+
+            using (var transacction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    string FileName = Guid.NewGuid().ToString() + ".png";
+
+                    var imagenGuardada = await FilesHelper.UploadPhotoAsync(ruta, files, FileName);
+                    var IdProducto = int.Parse(form["IdProducto"]);
+                    var producto = await db.Productos.FindAsync(IdProducto);
+                    if (imagenGuardada)
+                    {
+                        producto.Nombre = form["Nombre"];
+                        producto.Precio = decimal.Parse(form["Precio"]);
+                        producto.IdCategoria = int.Parse(form["IdCategoria"]);
+                        producto.UrlImagen = form["UrlImagen"];
+
+                        if (files.Count > 0)
+                        {
+                            producto.UrlImagen = "productos/" + FileName;
+                        }
+                     
+                        db.Update(producto);
+                        await db.SaveChangesAsync();
+                        transacction.Commit();
+                        return new Response { IsSuccess = true, Message = "Producto actualizado correctamente", Result = producto };
+                    }
+                    else
+                    {
+
+                        return new Response { IsSuccess = false, Message = "No se logro actualizar la imagen " , Result = null };
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    transacction.Rollback();
+                    return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+                }
+
+            }
         }
 
 
-        [HttpPost, ActionName("Delete")]
-        [Route("Delete/{id}")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpPost, ActionName("Eliminar")]
+        [Route("Eliminar/{id}")]
+        public async Task<Response> Eliminar(int id)
         {
-            var productos = await db.Productos.FindAsync(id);
-            db.Productos.Remove(productos);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var producto = await db.Productos.FindAsync(id);
+                db.Productos.Remove(producto);
+                await db.SaveChangesAsync();
+                return new Response { IsSuccess = true, Message = "Producto eliminado correctamente", Result = null };
+            }
+            catch (Exception ex)
+            {
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+
+            }
         }
 
-        [HttpPost, ActionName("DeleteProductoOpcion")]
-        [Route("DeleteProductoOpcion/{id}")]
-        public async Task<IActionResult> DeleteProductoOpcion(int id)
+        [HttpPost, ActionName("EliminarProductoOpcion")]
+        [Route("EliminarProductoOpcion/{id}")]
+        public async Task<Response> EliminarProductoOpcion(int id)
         {
-            var productoOpcion = await db.ProductoOpciones.FindAsync(id);
-            db.ProductoOpciones.Remove(productoOpcion);
-            await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var productoOpcion = await db.ProductoOpciones.FindAsync(id);
+                db.ProductoOpciones.Remove(productoOpcion);
+                await db.SaveChangesAsync();
+                return new Response { IsSuccess = true, Message = "Producto eliminado correctamente de la opción", Result = null };
+            }
+            catch (Exception ex)
+            {
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+
+            }
         }
 
         private bool ProductosExists(int id)
         {
             return db.Productos.Any(e => e.IdProducto == id);
+        }
+
+        private VistaProductos ToVistaProducto(Productos producto)
+        {
+            return new VistaProductos
+            {
+                IdProducto = producto.IdProducto,
+                Nombre = producto.Nombre,
+                UrlImagen = producto.UrlImagen,
+                IdCategoria = producto.IdCategoria,
+                Precio = producto.Precio
+            };
         }
     }
 }
