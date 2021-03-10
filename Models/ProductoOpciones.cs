@@ -20,11 +20,13 @@ namespace Models
         [Display(Name = "TipoOpcion")]
         [JsonProperty(PropertyName = "IdOpcion")]
         public int IdOpcion { get; set; }
-        [JsonIgnore]
+      
         [ForeignKey("IdOpcion")]
+        [JsonProperty(PropertyName = "Opcion")]
         public virtual Opciones Opcion { get; set; }
         [JsonIgnore]
         [ForeignKey("IdProducto")]
+        [JsonProperty(PropertyName = "Producto")]
         public virtual Productos Producto { get; set; }
 
     }

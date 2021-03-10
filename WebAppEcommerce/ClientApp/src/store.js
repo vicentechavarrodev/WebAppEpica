@@ -2,6 +2,7 @@
 import { lateralBarReducer } from './components/lateral_bar/reducers';
 import { opcionesReducer } from './components/opciones/reducers';
 import { authentication } from './components/usuario/reducers';
+import { productoReducer } from './components/productos/reducers';
 import { categoriaReducer } from './components/categorias/reducers';
 import { ventanaPrincipalReducer } from './components/ventana_principal/reducers';
 import { alerts } from './components/alerts_message/reducers';
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     categoriaReducer,
     alerts,
     ventanaPrincipalReducer,
-    opcionesReducer
+    opcionesReducer,
+    productoReducer
 });
 
 

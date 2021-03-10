@@ -34,8 +34,9 @@ namespace Models
         public int IdTipoOpcion { get; set; }
      
         [ForeignKey("IdTipoOpcion")]
+        [JsonProperty(PropertyName = "TipoOpcion")]
         public virtual TipoOpciones TipoOpcion { get; set; }
-
+        [JsonIgnore]
         [JsonProperty(PropertyName = "ProductoOpciones")]
         public virtual ICollection<ProductoOpciones> ProductoOpciones { get; set; }
 
