@@ -8,6 +8,7 @@ import { usuarioActions } from '../usuario/actions';
 import { withRouter } from 'react-router-dom';
 import { loader } from '../helpers/loader';
 import { VentanaPrincipalActions } from '../ventana_principal/actions';
+import { CategoriasActions, categoriaActions } from '../categorias/actions';
 import { Row, Col } from 'react-bootstrap';
 
  class MenuLateral extends Component {
@@ -32,6 +33,7 @@ import { Row, Col } from 'react-bootstrap';
 
      componentDidMount() {
          loader.hide();
+         this.props.obtener_categorias();
        
     }
 
@@ -138,7 +140,7 @@ import { Row, Col } from 'react-bootstrap';
                         </li>
                         <li onClick={this.ItemClick} id='itemMenu2' >
                             <Link to="/categorias" id='itemMenu2' >
-                                <Row>
+                                <Div>
                                     <Col xs={3} md={3} id='itemMenu2' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu2' aria-hidden="true"></i></Col>
                                     <Col xs={9} md={9} className="text-left" id='itemMenu2'>Categorias</Col>
                                 </Row>
@@ -188,12 +190,13 @@ const mapStateToProps = (state) => {
     const { esPrincipal } = state.ventanaPrincipalReducer;
     const { loggingIn, user } = state.authentication;
     const { menuLateralVisible, formularios } = state.lateralBarReducer;
-   
+    const { categorias } = state.categoriaReducer;
     return {
         menuLateralVisible,
         formularios,
         esPrincipal,
-        user
+        user,
+        categorias
     };
 
 
@@ -204,7 +207,9 @@ const mapDispatchToProps = {
     lateral_bar_visible: LateralBarActions.lateral_bar_visible,
     obtener_formularios: LateralBarActions.obtener_formularios,
     logout: usuarioActions.logout,
-    es_paginaprincipal: VentanaPrincipalActions.es_paginaprincipal
+    es_paginaprincipal: VentanaPrincipalActions.es_paginaprincipal,
+    obtener_categorias: categoriaActions.obtener_categorias
+    
     
 };
 
