@@ -18,16 +18,21 @@
 ----------------------------------------------------- */
 $primary-color: #b3191f;
 $secondary-color: rgba(42, 39, 39,.8 );
+$brown-color: #5a361f;
+$black-color: #211F1F;
 
+@font-face {
+    font-family: 'fuenteEpica';
+    src: url('./hand/Fontscafe_HandShopTypography-C30_demo.ttf');
+}
 
 
 /* ---------------------------------------------------
     ESTILOS GLOBALES DE LA PLATAFORMA
 ----------------------------------------------------- */
 body {
-    font-family: 'Poppins', sans-serif !important;
-    background: #fafafa !important;
-    padding-top: 38px;
+    font-family: 'fuenteEpica';
+    font-size:21px;
 }
 
 .body-content {
@@ -99,13 +104,7 @@ label:focus,
 }
 
 
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.6em;
-    font-weight: 300;
-    line-height: 1.7em;
-    margin-bottom: 0rem;
-}
+
 
 h1 {
     font-size: 3vw;
@@ -192,6 +191,13 @@ a:focus {
     margin: 3px;
 }
 
+.navbar-light {
+    background-color: $primary-color;
+}
+.navbar-color {
+    background-color: $primary-color;
+}
+
 
 .e-grid td.e-active {
     background-color: $primary-color;
@@ -270,11 +276,7 @@ a:focus {
 /* ---------------------------------------------------
     CONTENT & WRAPER STYLE
 ----------------------------------------------------- */
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
+
 
 
 #content {
@@ -545,6 +547,10 @@ a:focus {
         justify-content: center;
     }
 }
+#footer {
+    background-color:$black-color;
+    color: white;
+}
 
 
 @media (max-width: 960px) {
@@ -555,3 +561,9 @@ a:focus {
         height: 3em;
     }
 }
+@media (max-width:571px) {
+    body {
+        font-size: 20px;
+    }
+}
+

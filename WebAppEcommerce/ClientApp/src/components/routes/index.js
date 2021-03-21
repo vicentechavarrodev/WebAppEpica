@@ -11,6 +11,10 @@ import { Switch } from 'react-router-dom';
 import PrivateRoute from '../helpers/private_route';
 import { MemoryRouter } from 'react-router';
 import PublicRoute from '../helpers/public_route';
+import Pagina from '../pagina/index';
+import PideLinea from '../pagina/pideLinea';
+import Novedades from '../pagina/novedades';
+import Compania from '../pagina/compania';
 
 
 
@@ -20,15 +24,21 @@ const AppRoutes = () =>
             <App>
             <Switch>
                 <PublicRoute restricted={true} component={Login} path="/login" exact />
+                <PublicRoute component={Pagina} path="/pagina" exact />
+                <PublicRoute component={Novedades} path="/novedades" exact />
+                <PublicRoute component={Compania} path="/compania" exact />
+                <PublicRoute component={PideLinea} path="/pideLinea" exact />
+
                 <Ventana>
                     <PrivateRoute component={Usuarios} path="/usuarios" exact />
                     <PrivateRoute component={Categorias} path="/categorias" exact />
                     <PrivateRoute component={Opciones} path="/opciones" exact />
                     <PrivateRoute component={Productos} path="/productos" exact />
                     <PrivateRoute component={Details} path="/details" exact />
+                   
                 </Ventana>
 
-           
+                       
                </Switch>
           </App>
     </MemoryRouter>;

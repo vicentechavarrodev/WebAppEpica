@@ -5,7 +5,9 @@ import { LateralBarActions } from '.././lateral_bar/actions';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 import { withRouter } from "react-router-dom";
-import Logo from '../../imagenes/pagina/logo.png';
+import Logo from '../../imagenes/pagina/logoEpica.png';
+import { Link } from "react-router-dom";
+
 
 class Header extends Component {
 
@@ -40,37 +42,51 @@ class Header extends Component {
     //---------------------------------------------------------------
     render() {
         let user = JSON.parse(localStorage.getItem('usuario'));
-       
+     
         return (
-            <nav className="navbar-header navbar-expand-sm navbar-dark fixed-top ">
-                <div className="row">
-                   <div className="col-4 col-sm-4 ">
+            <nav id="header" className="navbar navbar-color navbar-expand-lg fixed-top navbar-expand-sm navbar-light">
+                <div className="container-fluid container-nav">
 
-                        {this.props.iconMenuVisible === "hidden" ?
-
-                            <p ><img src={Logo} alt="logo" />  Pazzi Orders</p>
+                    {
+                        this.props.visiblePagina === "true" ?
+                            <>
+                                <a className="navbar-brand" href="./index.html">
+                                    <img src={Logo} alt="Epica Logo" width="80px"/>
+                            </a>
+                                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span className="navbar-toggler-icon"></span>
+                             </button>
+                            </>
                             :
                             <button type="button" id="sidebarCollapse" onClick={this.MostrarMenu} value="collapse" className="btn btn-default-pz ">
                                 <MenuIcon id="btncollapse" visibility={this.props.iconMenuVisible} />
                             </button>
-                        }
-                      
-                   
-                  </div>
-                  <div className="col-5 col-sm-4 justify-content-center">
-                        <p>   {user !== null ? ("Epica  - " + user.Nombres ) : ""}</p>
-                   </div>
-                   <div className="col-3 col-sm-4" style={{ 'textAlign': 'right' }} >
-                        {this.props.iconMenuVisible === 'hidden' ? 
-                            <button type="button" onClick={this.AbrirLogin} value="collapse"  className="btn btn-default-pz ">
-                                <PersonIcon id="btncollapse"  />
+                   }
+                        
+                    <div className="collapse navbar-collapse" id="navbar">
+                        {this.props.visiblePagina === 'true' ?
+                            <ul className="navbar-nav ml-auto">
+                                <li className="nav-item mr-4">
+                                    <Link to="/novedades" className="nav-link" id="novedades">Novedades</Link>
+                                </li>
+                                <li className="nav-item mr-4">
+                                    <Link to="/compania" className="nav-link" id='compania'>Compañia</Link>
+                                </li>
+                                    <li className="nav-item mr-4">
+                                    <Link to="/pideLinea" className="nav-link last-link" id='pideLinea' >Pide en Linea</Link>
+                                    </li>
+                              
+                            </ul>
+                             :
+                            <button type="button" onClick={this.AbrirLogin} value="collapse" className="btn btn-default-pz ">
+                                <PersonIcon id="btncollapse" />
                             </button>
-                            :
-                            ""
-                        }
-                   </div>
-                </div>
+                            }
+                   
                 
+                   </div>
+          
+                </div>
             </nav>
 
         )

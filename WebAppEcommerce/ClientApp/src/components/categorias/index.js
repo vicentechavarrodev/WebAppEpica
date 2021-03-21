@@ -45,10 +45,8 @@ class Categorias extends Component {
     componentDidMount() {
 
         loader.hide();
-        Console.log(this.props.categorias);
         this.props.obtener_categorias();
-        Console.log(this.props.categorias);
-        
+           
     }
 
     created(args) {

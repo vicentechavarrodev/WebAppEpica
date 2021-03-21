@@ -140,7 +140,7 @@ import { Row, Col } from 'react-bootstrap';
                         </li>
                         <li onClick={this.ItemClick} id='itemMenu2' >
                             <Link to="/categorias" id='itemMenu2' >
-                                <Div>
+                                <Row>
                                     <Col xs={3} md={3} id='itemMenu2' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu2' aria-hidden="true"></i></Col>
                                     <Col xs={9} md={9} className="text-left" id='itemMenu2'>Categorias</Col>
                                 </Row>

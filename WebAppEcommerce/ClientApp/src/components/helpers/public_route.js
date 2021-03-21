@@ -2,12 +2,12 @@
 import { Route, Redirect } from 'react-router-dom';
 
 
-const PublicRoute = ({ component: Component, restricted, ...rest }) => {
+const PublicRoute = ({ component: Component, ...rest }) => {
 
    
     return (
         <Route {...rest} render={props => (
-            localStorage.getItem('usuario') && restricted ? <Redirect to="/ventana" /> : <Component {...props} />
+            localStorage.getItem('usuario') ? <Redirect to="/ventana" /> : <Component {...props} />
         )} />
     );
 };

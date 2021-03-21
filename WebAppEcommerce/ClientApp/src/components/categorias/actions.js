@@ -44,7 +44,12 @@ function obtener_categorias() {
     };
 
 
-    function success(categorias) { return { type: categoriaConstants.OBTENER_CATEGORIAS,categorias }; }
+    function success(categorias) {
+        return {
+            type: categoriaConstants.OBTENER_CATEGORIAS,
+            categorias
+        };
+    }
 }
 
 

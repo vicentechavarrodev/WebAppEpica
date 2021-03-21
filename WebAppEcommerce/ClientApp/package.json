@@ -23,6 +23,7 @@
     "react-bootstrap-sweetalert": "^5.1.15",
     "react-bootstrap-typeahead": "^5.1.0",
     "react-dom": "^16.0.0",
+    "react-horizontal-scrolling-menu": "^0.7.10",
     "react-media": "^1.10.0",
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",

@@ -10,7 +10,9 @@ import { withRouter } from "react-router-dom";
 class VentanaPrincipal extends Component {
 
     componentDidMount() {
-       
+        if (localStorage.getItem("usuario") === null) {
+            this.props.history.push("/pagina");
+        }
        
        
     }
@@ -18,14 +20,13 @@ class VentanaPrincipal extends Component {
     render() {
         return (
             <div className="wrapper ">
-                <Header iconMenuVisible="visible" />
-                <MenuLateral /> 
-             
+              <Header visiblePagina="false" />
+              <MenuLateral />
                 <div id="content" >
                     <div className="jumbotron container-fluid table-responsive">
                         {this.props.children}
                     </div>
-                 
+               
                 </div>
             </div>
 

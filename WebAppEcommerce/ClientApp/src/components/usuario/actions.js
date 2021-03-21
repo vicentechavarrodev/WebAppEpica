@@ -246,7 +246,7 @@ function login(codigo, contrasena, history) {
                         if (response.Result !== null) {
                            
                             dispatch(success(response.Result));
-                            history.push('/ventana');
+                            history.push('/pagina');
 
                         } else {
                             loader.hide();

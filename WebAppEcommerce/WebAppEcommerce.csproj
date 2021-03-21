@@ -19,9 +19,19 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\components\nav_pagina\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\components\nav_pagina\**" />
+    <EmbeddedResource Remove="ClientApp\src\components\nav_pagina\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\components\nav_pagina\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\components\nav_pagina\index.js" />
+    <None Remove="ClientApp\src\components\pagina\Style.scss" />
+    <None Remove="ClientApp\src\imagenes\pagina\logo epica.png" />
   </ItemGroup>
 
   <ItemGroup>
