@@ -31,7 +31,7 @@ class Productos extends Component {
         };
 
         this.groupOptions = {
-            columns: ['tipoOpcion.Nombre'],
+            columns: ['Categorias.Nombre'],
             showDropArea: false
            
         };
@@ -54,7 +54,7 @@ class Productos extends Component {
 
     componentDidMount() {
 
-        loader.hide();
+        loader.show();
         this.props.obtener_productos();
         
     }
@@ -138,7 +138,7 @@ class Productos extends Component {
                             <h3>Productos</h3>
                                 </div>
 
-                        <div className=" col-sm-12 col-md-7 col-lg-5 d-flex center-element" >
+                        <div className=" col-sm-12 col-md-7 col-lg-5 d-flex justify-content-end" >
                                 <ul >
                                 <li>
                                     <button id="btnNuevo" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
@@ -171,17 +171,19 @@ class Productos extends Component {
                            
                     </div>
               
-            </nav>
-
+                </nav>
                 <div className='wrap-form table-responsive container-fluid'>
-                    <GridComponent dataSource={productos} ref={this.grid}  rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
-                        <ColumnsDirective>
+
+
+                    <GridComponent dataSource={productos} ref={this.grid} allowGrouping={true} groupSettings={this.groupOptions} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
+                    <ColumnsDirective>
                             <ColumnDirective field='Nombre' width='200' headerText='Nombre' />
                             <ColumnDirective field='Precio' width='200' headerText='Precio' />
+                            <ColumnDirective field='Categorias.Nombre' width='200' headerText='Categoria' />
                             <ColumnDirective width='70' template={this.template} textAlign='Center' />
-                        </ColumnsDirective>
-                        <Inject services={[Search, Toolbar]} />
-                    </GridComponent>
+                    </ColumnsDirective>
+                    <Inject services={[Search, Toolbar, Group]} />
+                </GridComponent>
                 </div>
                     {mostrar_crear ?
                     <Crear

@@ -11,18 +11,22 @@ class VentanaPrincipal extends Component {
 
     componentDidMount() {
        
-       
+        let user = JSON.parse(localStorage.getItem('usuario'));
+        if (!user) {
+            this.props.history.push("/login");
+        }
        
     }
 
     render() {
         return (
             <div className="wrapper ">
-                <Header iconMenuVisible="visible" />
-                <MenuLateral /> 
-             
-                <div id="content" >
+                 <Header visiblePagina="false"  />
+                <MenuLateral />
+
+                 <div id="content" >
                     <div className="jumbotron container-fluid table-responsive">
+                       
                         {this.props.children}
                     </div>
                  

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Api.Helpers;
 using Api.ViewModels;
+using EFCore.BulkExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,7 @@ namespace Api.Controllers
              
                 var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
                 var opciones = new HashSet<int>(productosOpciones.Select(x => x.IdOpcion));
-                var opcionesFiltradas = await db.Opciones.Where(x => !opciones.Contains(x.IdOpcion)).ToListAsync();
+                var opcionesFiltradas = await db.Opciones.Include(o => o.TipoOpcion).Where(x => !opciones.Contains(x.IdOpcion)).ToListAsync();
                 return new Response { IsSuccess = true, Message = " ", Result = opcionesFiltradas };
             }
             catch (Exception ex)
@@ -75,6 +76,38 @@ namespace Api.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("CrearOpcionesProducto/{id}")]
+        public Response CrearOpcionesProducto( int id, List<Opciones> opciones)
+        {
+
+            try
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    var elementos = (from op in opciones
+                                     select new ProductoOpciones
+                                     {
+                                         IdOpcion = op.IdOpcion,
+                                         IdProducto = id
+                                     }).ToList();
+
+                     db.BulkInsert(elementos);
+                    transaction.Commit();
+                    return new Response { IsSuccess = true, Message = "Opcions agregadas correctamente", Result = opciones };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(ex, true);
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+
+        }
+
 
         [HttpPost]
         [Route("Crear")]
@@ -162,6 +195,25 @@ namespace Api.Controllers
                 db.Opciones.Remove(opcion);
                 await db.SaveChangesAsync();
                 return new Response { IsSuccess = true, Message = "Opción eliminada correctamente", Result = null };
+            }
+            catch (Exception ex)
+            {
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+
+            }
+
+        }
+
+        [HttpPost, ActionName("EliminarOpcionProducto")]
+        [Route("EliminarOpcionProducto/{id}")]
+        public async Task<Response> EliminarOpcionProducto(int id)
+        {
+            try
+            {
+                var opcion = await db.ProductoOpciones.FindAsync(id);
+                db.ProductoOpciones.Remove(opcion);
+                await db.SaveChangesAsync();
+                return new Response { IsSuccess = true, Message = "Opción eliminada correctamente del producto", Result = opcion };
             }
             catch (Exception ex)
             {

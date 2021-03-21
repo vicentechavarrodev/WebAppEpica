@@ -16,7 +16,11 @@ export const productoActions = {
     editar_producto,
     producto_seleccionado,
     obtener_opciones_producto,
-    opcion_producto_seleccionado
+    opcion_producto_seleccionado,
+    obtener_opciones_seleccion,
+    ver_seleccionar_opcion,
+    crear_opciones_producto,
+    eliminar_opcion_producto
     
 
 };
@@ -85,9 +89,6 @@ function cargar_crear() {
     function success(init_crear) { return { type: productoConstants.CARGAR_CREATE_PRODUCTO, init_crear }; }
 }
 
-
-
-
 function obtener_opciones_producto(id, context) {
 
     return dispatch => {
@@ -122,6 +123,42 @@ function obtener_opciones_producto(id, context) {
 
 
     function success(opciones_producto) { return { type: productoConstants.OBTENER_OPCIONES_PRODUCTO, opciones_producto }; }
+}
+
+function obtener_opciones_seleccion(id, context) {
+
+    return dispatch => {
+
+        ServicesHelper.obtener_opciones_seleccion(id)
+            .then(
+                response => {
+                    loader.hide();
+
+                    if (response.IsSuccess) {
+
+                        if (response.Result !== null) {
+                            dispatch(success(response.Result));
+                            //context.setState({ producto: response.Result });
+
+
+                        } else {
+                            dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                        }
+
+
+                    } else {
+                        dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                    }
+                },
+                error => {
+
+                    dispatch(alertActions.showMessage(error.toString(), true, 'Ups'));
+                }
+            );
+    };
+
+
+    function success(opciones_seleccion) { return { type: productoConstants.OBTENER_OPCIONES_SELECCION, opciones_seleccion }; }
 }
 
 function cargar_editar(id, context) {
@@ -161,13 +198,17 @@ function cargar_editar(id, context) {
     function success(init_editar) { return { type: productoConstants.CARGAR_EDITAR_PRODUCTO, init_editar };}
 }
 
-
 function ver_crear(mostrar_crear) {
 
     return { type: productoConstants.MOSTRAR_CREATE_PRODUCTO, mostrar_crear };
    
 }
 
+function ver_seleccionar_opcion(mostrar_seleccion_opcion) {
+
+    return { type: productoConstants.MOSTRAR_SELECCION_OPCION, mostrar_seleccion_opcion };
+
+}
 
 function producto_seleccionado(id_producto_seleccionado) {
 
@@ -181,13 +222,11 @@ function opcion_producto_seleccionado(id_opcion_producto_seleccionado) {
 
 }
 
-
 function ver_editar(mostrar_editar) {
 
     return { type: productoConstants.MOSTRAR_EDITAR_PRODUCTO, mostrar_editar };
 
 }
-
 
 function crear_producto(producto, context) {
     return dispatch => {
@@ -233,7 +272,6 @@ function crear_producto(producto, context) {
 
 }
 
-
 function editar_producto(producto,id, context) {
     return dispatch => {
 
@@ -278,4 +316,92 @@ function editar_producto(producto,id, context) {
 
 
 }
+
+function crear_opciones_producto(id,producto, context) {
+    return dispatch => {
+
+
+        ServicesHelper.crear_opciones_producto(id,producto)
+            .then(
+                response => {
+                   
+                    if (response.IsSuccess) {
+                        loader.hide();
+                        if (response.Result !== null) {
+
+                            dispatch(success(true));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Hecho'));
+                            context.props.obtener_opciones_producto(id);
+                            context.props.ver_seleccionar_opcion(false);
+
+
+                        } else {
+                           
+                            dispatch(success(false));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                        }
+
+
+                    } else {
+                        loader.hide();
+                        dispatch(success(false));
+                        dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                    }
+                },
+                error => {
+                    loader.hide();
+                    dispatch(success(false));
+                    dispatch(alertActions.showMessage(error.toString(), true, 'Ups'));
+                }
+            );
+    };
+
+    function success(producto_opciones_creados) { return { type: productoConstants.CREAR_OPCIONES_PRODUCTO, producto_opciones_creados }; }
+
+
+}
+
+function eliminar_opcion_producto(id,idproducto,context) {
+    return dispatch => {
+
+
+        ServicesHelper.eliminar_opcion_producto(id)
+            .then(
+                response => {
+
+                    if (response.IsSuccess) {
+                        loader.hide();
+                        if (response.Result !== null) {
+
+                            dispatch(success(true));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Hecho'));
+                            context.props.obtener_opciones_producto(idproducto);
+
+
+                        } else {
+                            loader.hide();
+                            dispatch(success(false));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                        }
+
+
+                    } else {
+                        loader.hide();
+                        dispatch(success(false));
+                        dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                    }
+                },
+                error => {
+                    loader.hide();
+                    dispatch(success(false));
+                    dispatch(alertActions.showMessage(error.toString(), true, 'Ups'));
+                }
+            );
+    };
+
+    function success(opcion_producto_eliminada) { return { type: productoConstants.ELIMINAR_OPCION_PRODUCTO, opcion_producto_eliminada }; }
+
+
+}
+
 

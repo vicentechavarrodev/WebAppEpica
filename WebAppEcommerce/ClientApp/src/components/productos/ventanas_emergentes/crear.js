@@ -7,7 +7,9 @@ import { loader } from '../../helpers/loader';
 import { alertActions } from '../../alerts_message/actions';
 import { Modal, Form, Col } from 'react-bootstrap';
 import { ComboBoxComponent } from '@syncfusion/ej2-react-dropdowns';
-import Image from '../../../imagenes/generales/not_image.png'
+import {  CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
+import Image from '../../../imagenes/generales/not_image.png';
+import imageCompression from 'browser-image-compression';
 import '../styles.scss';
 
 class CrearProducto extends Component {
@@ -26,6 +28,8 @@ class CrearProducto extends Component {
                 UrlImagen: '',
                 Precio: '',
                 IdCategoria: 0,
+                Descripcion: '',
+                Activo:true
             },
             file: null
         };
@@ -55,13 +59,14 @@ class CrearProducto extends Component {
    
 
     componentDidMount() {
+        loader.show();
         this.props.cargar_crear();
     }
 
 
  
 
-    CreateSubmit(e) {
+     CreateSubmit(e) {
         e.preventDefault();
          const { 
              producto,
@@ -89,38 +94,62 @@ class CrearProducto extends Component {
         file.append('UrlImagen', producto.UrlImagen);
         file.append('Precio', producto.Precio);
         file.append('IdCategoria', producto.IdCategoria);
+        file.append('Descripcion', producto.Descripcion);
+        file.append('Activo', producto.Activo);
        
         this.props.crear_producto(file, this);
        
 
     }
 
-    FileSelectChange(e) {
+    async FileSelectChange(e) {
         e.preventDefault();
         let form = new FormData();
-        console.log(e.target.files);
+
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true
+        }
 
         var img = document.getElementById('image-preview');
 
-        for (var index = 0; index < e.target.files.length; index++) {
-            var element = e.target.files[index];
+        const imageFile = e.target.files[0];
 
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-
+        const compressedFile = await imageCompression(imageFile, options);
+        var reader = new FileReader();
+         reader.onload = function (e) {
                 img.setAttribute( 'src', e.target.result);
                
-            }
-
-            reader.readAsDataURL(element);
-
-
-            form.append('Imagen', element);
-        }
-        this.setState({ file: form });
+          }
+         reader.readAsDataURL(compressedFile);
+         form.append('Imagen', compressedFile);
+         this.setState({ file: form });
     }
 
+
+    async  handleImageUpload(event) {
+
+    const imageFile = event.target.files[0];
+    console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
+    console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+
+    const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true
+    }
+    try {
+        const compressedFile = await imageCompression(imageFile, options);
+        console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+        console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+
+        console.log(compressedFile); // write your own logic
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 
 
 
@@ -156,21 +185,31 @@ class CrearProducto extends Component {
                             <Form.Group as={Col} >
                                 <Form.Control type="text" name="Nombre" value={producto.Nombre} maxLength={15} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
-                        
                         </Form.Row>
-                        <Form.Row sm={10}  >
+                        <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">$</span>
-                                    <Form.Control type="number" name="Precio" value={producto.Precio}
-
-                                        onChange={this.InputChange}
-                                        className="pz-input" placeholder="Precio" />
-                                </div>
+                                <Form.Control type="text" as="textarea" name="Descripcion" rows={3} value={producto.Descripcion}  className="pz-input" onChange={this.InputChange} placeholder="Descripcion" />
                             </Form.Group>
                         </Form.Row>
-                       
-                       
+
+                        <Form.Row sm={12}>
+                            <Form.Group as={Col} >
+                                <Form.Group as={Col} >
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">$</span>
+                                        <Form.Control type="number" name="Precio" value={producto.Precio}
+
+                                            onChange={this.InputChange}
+                                            className="pz-input" placeholder="Precio" />
+                                    </div>
+                                </Form.Group>
+                            </Form.Group>
+                            <Form.Group as={Col}   >
+                                <CheckBoxComponent label='Activo' checked={this.state.producto.Activo} change={(val) => { this.InputChange({ target: { name: 'Activo', value: val.checked } }); }} />
+                            </Form.Group>
+
+                        </Form.Row>
+
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
                                 <ComboBoxComponent name="IdCategoria" showClearButton={false} value={producto.IdCategoria} allowCustom={false} fields={this.fields} change={(val) => { this.InputChange({ target: { name: 'IdCategoria', value: val.value } }); }} allowFiltering={true} placeholder="Categoría" className="pz-input" dataSource={this.props.init_crear.Categorias} />

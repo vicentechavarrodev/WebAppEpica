@@ -8,12 +8,12 @@ import { productoActions } from '../actions';
 import { loader } from '../../helpers/loader';
 import { alertActions } from '../../alerts_message/actions';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
-import { ButtonComponent, CheckBoxComponent  } from '@syncfusion/ej2-react-buttons';
+import { ButtonComponent, CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
 import { DatePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { ComboBoxComponent } from '@syncfusion/ej2-react-dropdowns';
 import { log } from 'util';
 import '../styles.scss';
-
+import imageCompression from 'browser-image-compression';
 class EditarProducto extends Component {
 
     constructor(props) {
@@ -28,6 +28,8 @@ class EditarProducto extends Component {
                 UrlImagen: '',
                 Precio: '',
                 IdCategoria: 0,
+                Descripcion: '',
+                Activo: false
             },
             file: null
         };
@@ -58,7 +60,7 @@ class EditarProducto extends Component {
 
 
     componentDidMount() {
-      
+        loader.show();
         this.props.cargar_editar(this.props.id_producto_seleccionado, this);
         
     }
@@ -95,34 +97,34 @@ class EditarProducto extends Component {
         form.append('UrlImagen', producto.UrlImagen);
         form.append('Precio', producto.Precio);
         form.append('IdCategoria', producto.IdCategoria);
-
-       
-
+        form.append('Descripcion', producto.Descripcion);
+        form.append('Activo', producto.Activo);
         this.props.editar_producto(form, producto.IdProducto, this);
 
     }
 
-    FileSelectChange(e) {
+    async FileSelectChange(e) {
         e.preventDefault();
         let form = new FormData();
+
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true
+        }
+
         var img = document.getElementById('image-preview');
 
-        for (var index = 0; index < e.target.files.length; index++) {
-            var element = e.target.files[index];
+        const imageFile = e.target.files[0];
 
-            var reader = new FileReader();
+        const compressedFile = await imageCompression(imageFile, options);
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            img.setAttribute('src', e.target.result);
 
-            reader.onload = function (e) {
-
-                img.setAttribute('src', e.target.result);
-
-            }
-
-            reader.readAsDataURL(element);
-
-
-            form.append('Imagen', element);
         }
+        reader.readAsDataURL(compressedFile);
+        form.append('Imagen', compressedFile);
         this.setState({ file: form });
     }
 
@@ -159,18 +161,30 @@ class EditarProducto extends Component {
                             </Form.Group>
 
                         </Form.Row>
-                        <Form.Row sm={10}  >
+
+                        <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">$</span>
-                                    <Form.Control type="number" name="Precio" value={this.state.producto.Precio}
-
-                                        onChange={this.InputChange}
-                                        className="pz-input" placeholder="Precio" />
-                                </div>
+                                <Form.Control rows={3} type="text" as="textarea" name="Descripcion" value={this.state.producto.Descripcion}  className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
-                        </Form.Row>
 
+                        </Form.Row>
+                        <Form.Row sm={12}>
+                            <Form.Group as={Col} >
+                              
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">$</span>
+                                        <Form.Control type="number" name="Precio" value={this.state.producto.Precio}
+
+                                            onChange={this.InputChange}
+                                            className="pz-input" placeholder="Precio" />
+                                    </div>
+                              
+                            </Form.Group>
+                            <Form.Group as={Col}   >
+                                <CheckBoxComponent label='Activo' checked={this.state.producto.Activo} change={(val) => { this.InputChange({ target: { name: 'Activo', value: val.checked } }); }} />
+                            </Form.Group>
+
+                        </Form.Row>
 
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >

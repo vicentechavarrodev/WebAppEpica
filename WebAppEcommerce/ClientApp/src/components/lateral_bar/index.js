@@ -129,17 +129,19 @@ import { Row, Col } from 'react-bootstrap';
                 <div className="menu-lateral">
                     <ul className="list-unstyled components">
                         <li onClick={this.ItemClick} id='itemMenu1' >
-                            <Link to="/usuarios" id='itemMenu1' >
+                            <Link to="/pedidos" id='itemMenu1' >
                                 <Row>
                                     <Col xs={3} md={3} id='itemMenu1' className="justify-content-md-center"><i className='fa fa-user' id='itemMenu1' aria-hidden="true"></i></Col>
-                                    <Col xs={9} md={9} className="text-left" id='itemMenu1'>Usuarios</Col>
+                                    <Col xs={9} md={9} className="text-left" id='itemMenu1'>Pedidos</Col>
                                 </Row>
                             </Link>
                         </li>
+
+                       
                         <li onClick={this.ItemClick} id='itemMenu2' >
                             <Link to="/categorias" id='itemMenu2' >
                                 <Row>
-                                    <Col xs={3} md={3} id='itemMenu2' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu2' aria-hidden="true"></i></Col>
+                                    <Col xs={3} md={3} id='itemMenu2' className="justify-content-md-center"><i className='fa fa-bars' id='itemMenu2' aria-hidden="true"></i></Col>
                                     <Col xs={9} md={9} className="text-left" id='itemMenu2'>Categorias</Col>
                                 </Row>
                             </Link>
@@ -147,7 +149,7 @@ import { Row, Col } from 'react-bootstrap';
                         <li onClick={this.ItemClick} id='itemMenu3' >
                             <Link to="/opciones" id='itemMenu3' >
                                 <Row>
-                                    <Col xs={3} md={3} id='itemMenu3' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu3' aria-hidden="true"></i></Col>
+                                    <Col xs={3} md={3} id='itemMenu3' className="justify-content-md-center"><i className='fa fa-th-list' id='itemMenu3' aria-hidden="true"></i></Col>
                                     <Col xs={9} md={9} className="text-left" id='itemMenu3'>Opciones</Col>
                                 </Row>
                             </Link>
@@ -156,13 +158,20 @@ import { Row, Col } from 'react-bootstrap';
                         <li onClick={this.ItemClick} id='itemMenu4' >
                             <Link to="/productos" id='itemMenu4' >
                                 <Row>
-                                    <Col xs={3} md={3} id='itemMenu4' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu4' aria-hidden="true"></i></Col>
+                                    <Col xs={3} md={3} id='itemMenu4' className="justify-content-md-center"><i className='fa fa-cubes' id='itemMenu4' aria-hidden="true"></i></Col>
                                     <Col xs={9} md={9} className="text-left" id='itemMenu4'>Productos</Col>
                                 </Row>
                             </Link>
                         </li>
 
-
+                        <li onClick={this.ItemClick} id='itemMenu5' >
+                            <Link to="/usuarios" id='itemMenu5' >
+                                <Row>
+                                    <Col xs={3} md={3} id='itemMenu5' className="justify-content-md-center"><i className='fa fa-user' id='itemMenu5' aria-hidden="true"></i></Col>
+                                    <Col xs={9} md={9} className="text-left" id='itemMenu5'>Usuarios</Col>
+                                </Row>
+                            </Link>
+                        </li>
 
                     </ul>
                 </div>

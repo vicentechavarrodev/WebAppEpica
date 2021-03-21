@@ -53,6 +53,10 @@ namespace Models
 
         public DbSet<Pedidos> Pedidos { get; set; }
 
+        public DbSet<Estados> Estados { get; set; }
+
+        public DbSet<PedidoDetalles> PedidoDetalles { get; set; }
+
         public DbSet<ProductoOpciones> ProductoOpciones { get; set; }
 
 

@@ -13,6 +13,11 @@
 @import "../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
 @import "../../node_modules/@syncfusion/ej2-popups/styles/material.css";
 @import "../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+
+@import "../../node_modules/react-responsive-tabs/styles.css";
+
+
+
 /* ---------------------------------------------------
     VARIABLES GLOBALES 
 ----------------------------------------------------- */
@@ -61,6 +66,12 @@ label:focus,
 }
 
 
+
+.e-pager .e-currentitem, .e-pager .e-currentitem:hover {
+    background: $primary-color !important;
+    color: #fff;
+    opacity: 1;
+}
 
 
 .pz-input {
@@ -158,7 +169,7 @@ a:focus {
     left: 0;
     top: 0;
     background: rgba(51,51,51,0.7);
-    z-index: 10;
+    z-index: 1550;
 }
 
 @keyframes load8 {
@@ -288,7 +299,7 @@ a:focus {
 .wrap-form {
     min-height: 100vh;
     transition: all 0.3s;
-    padding: 20px;
+    padding: 10px;
     background: #fafafa;
     box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
 }

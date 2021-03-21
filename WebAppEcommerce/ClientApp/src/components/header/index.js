@@ -40,13 +40,13 @@ class Header extends Component {
     //---------------------------------------------------------------
     render() {
         let user = JSON.parse(localStorage.getItem('usuario'));
-       
+        
         return (
             <nav className="navbar-header navbar-expand-sm navbar-dark fixed-top ">
                 <div className="row">
                    <div className="col-4 col-sm-4 ">
-
-                        {this.props.iconMenuVisible === "hidden" ?
+                      
+                        {this.props.visiblePagina === "true" ?
 
                             <p ><img src={Logo} alt="logo" />  Pazzi Orders</p>
                             :
@@ -57,11 +57,9 @@ class Header extends Component {
                       
                    
                   </div>
-                  <div className="col-5 col-sm-4 justify-content-center">
-                        <p>   {user !== null ? ("Epica  - " + user.Nombres ) : ""}</p>
-                   </div>
+                 
                    <div className="col-3 col-sm-4" style={{ 'textAlign': 'right' }} >
-                        {this.props.iconMenuVisible === 'hidden' ? 
+                        {this.props.visiblePagina === 'true' ? 
                             <button type="button" onClick={this.AbrirLogin} value="collapse"  className="btn btn-default-pz ">
                                 <PersonIcon id="btncollapse"  />
                             </button>

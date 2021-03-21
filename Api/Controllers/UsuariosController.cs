@@ -81,7 +81,7 @@ namespace Api.Controllers
 
                 user = ToVistaUsuario(user);
 
-                if (!EncryptHash.Verify(vista.Contrasena, user.Contrasena))
+                if (!(vista.Contrasena == user.Contrasena))
                 {
                     return new Response { IsSuccess = false, Message = "Contraseña incorrecta", Result = null };
 

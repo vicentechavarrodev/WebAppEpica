@@ -28,7 +28,7 @@ class Opciones extends Component {
         };
 
         this.groupOptions = {
-            columns: ['tipoOpcion.Nombre'],
+            columns: ['TipoOpcion.Nombre'],
             showDropArea: false
            
         };
@@ -113,7 +113,7 @@ class Opciones extends Component {
                             <h3>Opciones</h3>
                                 </div>
 
-                        <div className=" col-sm-12 col-md-7 col-lg-5 d-flex center-element" >
+                        <div className=" col-sm-12 col-md-7 col-lg-5 d-flex justify-content-end" >
                                 <ul >
                                 <li>
                                     <button id="btnNuevo" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
@@ -152,7 +152,7 @@ class Opciones extends Component {
                     <GridComponent dataSource={opciones} ref={this.grid} allowGrouping={true} groupSettings={this.groupOptions} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
                         <ColumnsDirective>
                             <ColumnDirective field='Nombre' width='200' headerText='Nombre' />
-                            <ColumnDirective field='tipoOpcion.Nombre' width='200' headerText='Tipo' />
+                            <ColumnDirective field='TipoOpcion.Nombre' width='200' headerText='Tipo' />
                             <ColumnDirective field='Precio' width='200' headerText='Precio' />
                      
                         </ColumnsDirective>
