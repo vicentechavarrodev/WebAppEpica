@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210311010942_initial2")]
+    partial class initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,23 +36,6 @@ namespace Models.Migrations
                     b.HasKey("IdCategoria");
 
                     b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("Models.Estados", b =>
-                {
-                    b.Property<int>("IdEstado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("IdEstado");
-
-                    b.ToTable("Estados");
                 });
 
             modelBuilder.Entity("Models.Opciones", b =>
@@ -129,9 +114,6 @@ namespace Models.Migrations
                     b.Property<DateTime>("FechaHoraPedido")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdEstado")
-                        .HasColumnType("int");
-
                     b.Property<string>("Solicitante")
                         .IsRequired()
                         .HasColumnType("nvarchar(150)")
@@ -146,8 +128,6 @@ namespace Models.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("IdPedido");
-
-                    b.HasIndex("IdEstado");
 
                     b.ToTable("Pedidos");
                 });
@@ -320,13 +300,6 @@ namespace Models.Migrations
                         .HasForeignKey("IdPedido")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Models.Pedidos", b =>
-                {
-                    b.HasOne("Models.Estados", "Estados")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("IdEstado");
                 });
 
             modelBuilder.Entity("Models.ProductoOpciones", b =>

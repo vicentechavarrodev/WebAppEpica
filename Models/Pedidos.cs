@@ -34,9 +34,16 @@ namespace Models
         [Required(ErrorMessage = "El dato {0} es necesario")]
         [JsonProperty(PropertyName = "TotalPedido")]
         public decimal TotalPedido { get; set; }
+       
         [JsonProperty(PropertyName = "ProductoOpciones")]
         public virtual ICollection<PedidoDetalles> PedidoDetalles { get; set; }
 
+        [Display(Name = "Estado")]
+        [JsonProperty(PropertyName = "IdEstado")]
+        public int? IdEstado { get; set; }
 
+        [ForeignKey("IdEstado")]
+        [JsonProperty(PropertyName = "Estados")]
+        public virtual Estados Estados { get; set; }
     }
 }

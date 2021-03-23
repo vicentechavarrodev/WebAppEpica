@@ -275,7 +275,7 @@ function login(codigo, contrasena, history) {
 function logout(history) {
     return dispatch => {
         localStorage.removeItem('usuario');
-        history.push('/');
+        history.push('/pagina');
         success();
     };
 

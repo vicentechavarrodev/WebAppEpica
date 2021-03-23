@@ -107,7 +107,7 @@ class Usuario extends Component {
                             <h3>Usuarios</h3>
                                 </div>
 
-                        <div className=" col-sm-12 col-md-7 col-lg-5 d-flex center-element" >
+                        <div className=" col-sm-12 col-md-7 col-lg-5 d-flex justify-content-end" >
                                 <ul >
                                 <li>
                                     <button id="btnNuevoUsuario" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">

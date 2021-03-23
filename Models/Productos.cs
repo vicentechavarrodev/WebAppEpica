@@ -18,6 +18,13 @@ namespace Models
             [JsonProperty(PropertyName = "Nombre")]
             [Display(Name = "Nombre")]
             public string Nombre { get; set; }
+            [Display(Name = "Activo")]
+            [JsonProperty(PropertyName = "Activo")]
+            public bool Activo { get; set; }
+            [Required(ErrorMessage = "El dato {0} es necesario")]
+            [JsonProperty(PropertyName = "Descripcion")]
+            [Display(Name = "Descripcion")]
+            public string Descripcion { get; set; }
             [Required(ErrorMessage = "El dato {0} es necesario")]
             [Display(Name = "UrlImagen")]
             [JsonProperty(PropertyName = "UrlImagen")]
@@ -30,10 +37,9 @@ namespace Models
             [Display(Name = "Categoría")]
             [JsonProperty(PropertyName = "IdCategoria")]
             public int IdCategoria { get; set; }
-            [JsonIgnore]
             [ForeignKey("IdCategoria")]
+            [JsonProperty(PropertyName = "Categorias")]
             public virtual Categorias Categoria { get; set; }
-
             [JsonProperty(PropertyName = "ProductoOpciones")]
             public virtual ICollection<ProductoOpciones> ProductoOpciones { get; set; }
 

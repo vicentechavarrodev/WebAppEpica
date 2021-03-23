@@ -19,10 +19,9 @@ async function login(codigo, contrasena, codigoSede) {
         headers: authHeader(),
         body: JSON.stringify({ codigo, contrasena})
     };
+ 
 
-    let url = process.env.REACT_APP_API_URL;
-
-    return await fetch(`${url}api/Usuarios/Login`, requestOptions)
+    return await fetch(`${process.env.REACT_APP_API_URL }api/Usuarios/Login`, requestOptions)
         .then(handleResponse)
         .then(response => {
             

@@ -10,6 +10,11 @@ namespace Api.ViewModels
     public class VistaProductos:Productos
     {
 
+
+        [JsonProperty(PropertyName = "Categoria")]
+        public override Categorias Categoria { get; set; }
+
+
         [JsonProperty(PropertyName = "Categorias")]
         public List<Categorias> Categorias { get; set; }
 

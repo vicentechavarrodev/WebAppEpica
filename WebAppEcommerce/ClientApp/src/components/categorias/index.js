@@ -106,7 +106,7 @@ class Categorias extends Component {
                             <h3>Categorias</h3>
                                 </div>
 
-                        <div className=" col-sm-12 col-md-7 col-lg-5 d-flex center-element" >
+                        <div className=" col-sm-12 col-md-7 col-lg-5 d-flex justify-content-end" >
                                 <ul >
                                 <li>
                                     <button id="btnNuevo" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">

@@ -75,7 +75,7 @@ namespace Api.Controllers
         {
             try
             {
-                var productos = await db.Productos.ToListAsync();
+                var productos = await db.Productos.Include(p => p.Categoria).ToListAsync();
 
 
                 return new Response { IsSuccess = true, Message = " ", Result = productos };
@@ -168,10 +168,12 @@ namespace Api.Controllers
                         {
                             Nombre = form["Nombre"],
                             UrlImagen = "productos/" + FileName,
+                            Descripcion = form["Descripcion"],
                             Precio = decimal.Parse(form["Precio"]),
-                            IdCategoria = int.Parse(form["IdCategoria"])
+                            IdCategoria = int.Parse(form["IdCategoria"]),
+                            Activo = bool.Parse(form["Activo"])
 
-                        };
+                    };
 
                         db.Productos.Add(producto);
                         await db.SaveChangesAsync();
@@ -259,7 +261,10 @@ namespace Api.Controllers
                         producto.Nombre = form["Nombre"];
                         producto.Precio = decimal.Parse(form["Precio"]);
                         producto.IdCategoria = int.Parse(form["IdCategoria"]);
+                        producto.Activo = bool.Parse(form["Activo"]);
                         producto.UrlImagen = form["UrlImagen"];
+                        producto.Descripcion = form["Descripcion"];
+
 
                         if (files.Count > 0)
                         {
@@ -338,7 +343,9 @@ namespace Api.Controllers
                 Nombre = producto.Nombre,
                 UrlImagen = producto.UrlImagen,
                 IdCategoria = producto.IdCategoria,
-                Precio = producto.Precio
+                Precio = producto.Precio,
+                Descripcion = producto.Descripcion,
+                Activo = producto.Activo
             };
         }
     }
