@@ -9,7 +9,8 @@ export const ServicesHelper = {
     obtener_opciones_producto,
     obtener_opciones_seleccion,
     crear_opciones_producto,
-    eliminar_opcion_producto
+    eliminar_opcion_producto,
+    productos_por_categoria
 };
 
 
@@ -138,6 +139,16 @@ async function eliminar_opcion_producto(id) {
         .then(response => {
             return response;
         });
+}
+function productos_por_categoria(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+
+    };
+
+    return fetch(`${process.env.REACT_APP_API_URL}api/Productos/ProductosPorCategoria/${id}`, requestOptions).then(handleResponse);
+
 }
 
 

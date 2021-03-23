@@ -20,8 +20,8 @@ export const productoActions = {
     obtener_opciones_seleccion,
     ver_seleccionar_opcion,
     crear_opciones_producto,
-    eliminar_opcion_producto
-    
+    eliminar_opcion_producto,
+    productos_por_categoria
 
 };
 
@@ -402,6 +402,41 @@ function eliminar_opcion_producto(id,idproducto,context) {
     function success(opcion_producto_eliminada) { return { type: productoConstants.ELIMINAR_OPCION_PRODUCTO, opcion_producto_eliminada }; }
 
 
+}
+function productos_por_categoria(id, context) {
+
+    return dispatch => {
+
+        ServicesHelper.productos_por_categoria(id)
+            .then(
+                response => {
+                    loader.hide();
+
+                    if (response.IsSuccess) {
+
+                        if (response.Result !== null) {
+                            dispatch(success(response.Result));
+                            //context.setState({ producto: response.Result });
+
+
+                        } else {
+                            dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                        }
+
+
+                    } else {
+                        dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                    }
+                },
+                error => {
+
+                    dispatch(alertActions.showMessage(error.toString(), true, 'Ups'));
+                }
+            );
+    };
+
+
+    function success(productos_categoria) { return { type: productoConstants.PRODUCTOS_POR_CATEGORIA, productos_categoria }; }
 }
 
 

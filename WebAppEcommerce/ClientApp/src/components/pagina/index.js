@@ -51,7 +51,7 @@ class Pagina extends Component {
                 </section>
                 <section id="container" className="container mt-lg-3 mb-lg-5">
                     <div className="row">
-                        <div class="col linea text-center text-uppercase">
+                        <div className="col linea text-center text-uppercase">
                             <small>Conoce nuestro</small>
                             <h2>Menu</h2>
                         </div>

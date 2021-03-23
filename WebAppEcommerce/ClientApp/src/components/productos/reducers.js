@@ -81,6 +81,14 @@ export function productoReducer(state = initialState.producto_state, action) {
               ...state, opcion_producto_eliminada: action.opcion_producto_eliminada
           };
 
+
+      case productoConstants.PRODUCTOS_POR_CATEGORIA:
+          return {
+
+              ...state, productos_categoria: action.productos_categoria
+          };
+
+
           
 
           

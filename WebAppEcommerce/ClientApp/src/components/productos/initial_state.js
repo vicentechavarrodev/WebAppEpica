@@ -3,7 +3,7 @@ const producto_initial_state = {
 
     producto_state: {
         productos: [],
-        opciones_producto: [],
+        opciones_producto: { VistaProductoOpciones: [] },
         opciones_seleccion: [],
         init_crear: { Categorias:  []},
         init_editar: { Categorias: [] },
@@ -15,7 +15,8 @@ const producto_initial_state = {
         producto_opciones_creados: false,
         id_producto_seleccionado: 0,
         id_opcion_producto_seleccionado: 0,
-        opcion_producto_eliminada:false
+        opcion_producto_eliminada: false,
+        productos_categoria: [],
 
     }
 };

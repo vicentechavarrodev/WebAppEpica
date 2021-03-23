@@ -10,6 +10,8 @@ import ScrollMenu from 'react-horizontal-scrolling-menu';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { categoriaActions } from '../categorias/actions';
+import { productoActions } from '../productos/actions';
+import ModalOpciones from '../productos/productoModal';
 
 
 class PideLinea extends Component {
@@ -19,26 +21,38 @@ class PideLinea extends Component {
 
         this.state = {
 
-            selected: 'item1'
-
+            selected: 'item1',
+            opciones_productos:[],
+            
         };
 
-
+        this.AbrirModal = this.AbrirModal.bind(this);
 
     }
 
-    componentDidMount() {
-        this.props.obtenerCategorias();
-        console.log(this.props.categorias);
+    async componentDidMount() {
+        await this.props.obtenerCategorias();
+        this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
+
+        
+  
         
     }
 
     onSelect = key => {
+
         this.setState({ selected: key });
+        this.props.productos_por_categoria(key);
+        
+    }
+   async AbrirModal(e) {
+
+        await this.props.producto_seleccionado(e.currentTarget.id);
+        this.props.ver_crear(true);
     }
 
        render() {
-
+           const {mostrar_crear } = this.props;
 
            const MenuItem = ({ text, selected }) => {
                return <div
@@ -49,9 +63,9 @@ class PideLinea extends Component {
 
            const Menu = (list, selected) =>
                list.map(el => {
-                   const { Nombre } = el;
-
-                   return <MenuItem text={Nombre} key={Nombre} selected={selected} />;
+                   const { Nombre, IdCategoria } = el;
+                   
+                   return <MenuItem text={Nombre} key={IdCategoria} selected={selected} />;
                });
 
 
@@ -97,258 +111,42 @@ class PideLinea extends Component {
                 <div className="album py-5 bg-light">
                     <div className="container">
                         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
-                            <div className="col-lg-4 col-sm-6">
-                                <div className="card shadow-sm">
-                                    <img className="image-pizzas" src={imageHeader2} width="100%" height="225" />
-                                    <div className="card-body card-style">
-                                        <p className="card-text card-tittle">Pizza Napolitana</p>
-                                        <p className="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit oluptates recusandae consequatur?</p>
-                                        <div className="container">
-                                            <div className="row">
-                                                <div className="col-lg-6 col-button">
-                                                    <button type="button" className="btn" data-toggle="modal" data-target="#añadirModal">
-                                                        <i class="fas fa-cart-plus"></i>
+                            {this.props.productos_categoria.map((item) =>
+                                <div className="col-lg-4 col-sm-6" key={item.IdProducto}>
+                                    <div className="card shadow-sm">
+                                        <img className="image-pizzas" src={item.UrlImagen} width="100%" height="225" />
+                                        <div className="card-body card-style">
+                                            <p className="card-text card-tittle">{item.Nombre}</p>
+                                            <p className="paragraph">{item.Descripcion}</p>
+                                            <div className="container">
+                                                <div className="row">
+                                                    <div className="col-lg-6 col-button">
+                                                        <button type="button" className="btn" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
+                                                            <i class="fas fa-cart-plus"></i>
                                                          Agregar</button>
-                                                </div>
-                                                <div className="col-lg-6 col-price">
-                                                    <p className="text-price">$10.000</p>
+                                                    </div>
+                                                    <div className="col-lg-6 col-price">
+                                                        <p className="text-price">{item.Precio}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            )                        
+                            }
+                            {mostrar_crear ?
+                                <ModalOpciones show={mostrar_crear} onHide={() => this.props.ver_crear(false)} />
+                                :
+                                ""
+                            }
+                            
+
+                         
                         </div>
                     </div>
                 </div>
-                <div className="modal fade" id="añadirModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="staticBackdropLabel">Pizza Napolitana</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                            <div className="modal-body">
-                                <div className="container pl-0 pr-0">
-                                    <div className="row row-modal">
-                                        <div className="col-lg-6 col-12 col-image">
-                                            <img className="image-add" src={imageHeader2}/>
-                                        </div>
-                                        <div className="col-lg-6 col-12">
-                                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, iste</p>
-                                      </div>
-                                      </div>
-                                    <div className="col-12 col-size">
-                                           <p>Elige el tamaño que deseas</p>
-                                        <div className="radio-size">
-                                            <div className="row-size">
-                                                <div className="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example"/>
-                                                  Porcion
-                                                </label>
-                                              </div>
-                                                <div className="col col-price-modal">
-                                                $8.000
-                                              </div>
-                                            </div>
-                                            <div className="row-size">
-                                                <div className="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example"/>
-                                                  Mediana
-                                                </label>
-                                              </div>
-                                                <div className="col col-price-modal">
-                                                $17.000
-                                              </div>
-                                            </div>
-                                            <div className="row-size">
-                                                <div className="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example"/>
-                                                  Grande
-                                                </label>
-                                              </div>
-                                                <div className="col col-price-modal">
-                                                $25.000
-                                              </div>
-                                            </div>
-                                         </div>
-
-                                          <p>Elige la combinacion que deseas</p>
-                                        <div className="radio-size">
-                                            <div className="row-size">
-                                                <div className="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                  Napolitana
-                                                </label>
-                                              </div>
-                                            </div>
-                                            <div className="row-size">
-                                                <div className="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                  Hawaiana
-                                                </label>
-                                              </div>
-                                            </div>
-                                            <div class="row-size">
-                                                <div class="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                  Peperoni
-                                                </label>
-                                              </div>
-                                            </div>
-                                         </div>
-
-                                         <p>¿Deseas agregar algun reborde?</p>
-                                        <div className="radio-size">
-                                            <div className="row-size">
-                                                <div className="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                  Queso
-                                                </label>
-                                              </div>
-                                                <div className="col col-price-modal">
-                                                $8.000
-                                              </div>
-                                            </div>
-                                            <div className="row-size">
-                                                <div className="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                  Bocadillo
-                                                </label>
-                                              </div>
-                                                <div className="col col-price-modal">
-                                                $17.000
-                                              </div>
-                                            </div>
-                                            <div className="row-size">
-                                                <div className="col col-radio">
-                                                <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                  Vegetales
-                                                </label>
-                                              </div>
-                                                <div className="col col-price-modal">
-                                                $25.000
-                                              </div>
-                                            </div>
-                                         </div>
-
-                                         <p>¿Deseas agregar alguna adicion?</p>
-                                        <div className="radio-size">
-                                            <div className="row-size">
-                                                <div className="col">
-                                              <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                Vegetales
-                                              </label>
-                                            </div>
-                                                <div className="row">
-                                                    <div className="col">
-                                                -
-                                              </div>
-                                                    <div className="col">
-                                                1
-                                              </div>
-                                                    <div className="col">
-                                                +
-                                              </div>
-                                            </div>
-                                                <div className="col col-price-modal-adicion">
-                                              $8.000
-                                            </div>
-                                          </div>
-                                            <div className="row-size">
-                                                <div className="col">
-                                              <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                Bocadillo
-                                              </label>
-                                            </div>
-                                                <div className="row">
-                                                    <div className="col">
-                                                -
-                                              </div>
-                                                    <div className="col">
-                                                1
-                                              </div>
-                                                    <div className="col">
-                                                +
-                                              </div>
-       
-                                            </div>
-                                                <div className="col col-price-modal-adicion">
-                                              $17.000
-                                            </div>
-                                          </div>
-                                            <div className="row-size">
-                                                <div className="col">
-                                              <label>
-                                                        <input type="radio" className="option-input radio" name="example2"/>
-                                                Tocineta
-                                              </label>
-                                            </div>
-                                                <div className="row">
-                                                    <div className="col">
-                                                -
-                                              </div>
-                                                    <div className="col">
-                                                2
-                                              </div>
-                                                    <div className="col">
-                                                +
-                                              </div>
-       
-                                            </div>
-                                                <div className="col col-price-modal-adicion">
-                                              $25.000
-                                            </div>
-                                          </div>
-                                       </div>
-                                 </div>
-                                    <div className="modal-footer">
-                                        <div className="container container-footer">
-                                            <div className="row row-footer">
-                                                <div className="col-sm">
-                                                    <div className="container container-cantidad">
-                                                        <div className="row">
-                                                            <div className="col col-cantidad">
-                                               -
-                                              </div>
-                                                            <div className="col">
-                                                1
-                                              </div>
-                                                            <div className="col col-cantidad">
-                                                +
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                                <div className="col-sm col-value">
-                                         $10.000
-                                        </div>
-                                                <div className="col col-buttonadd">
-                                                    <button type="button" className="btn">
-                                                        <i className="fas fa-cart-plus"></i>
-                                            Agregar</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
+         
             
                 <Footer />
             </body>
@@ -361,13 +159,18 @@ class PideLinea extends Component {
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
     const { categorias } = state.categoriaReducer;
-    return { loggingIn, user, categorias };
+    const { productos_categoria, id_producto_seleccionado, opciones_producto, mostrar_crear } = state.productoReducer;
+    return { loggingIn, user, categorias, productos_categoria, id_producto_seleccionado, opciones_producto,mostrar_crear };
 };
 
 
 const mapDispatchToProps = {
     showMessage: alertActions.showMessage,
     obtenerCategorias: categoriaActions.obtener_categorias,
+    productos_por_categoria: productoActions.productos_por_categoria,
+    producto_seleccionado: productoActions.producto_seleccionado,
+    obtener_opciones_producto: productoActions.obtener_opciones_producto,
+    ver_crear: productoActions.ver_crear,
 };
 
 

@@ -1,1 +1,41 @@
-﻿
+﻿.menu-item {
+    padding: 0 40px;
+    margin: 5px 10px;
+    cursor: pointer;
+    border: none;
+   color:white;
+}
+
+.menu-item-wrapper.active {
+    
+    background-color: rgba(42, 39, 39,.8 );
+    border:1px white solid;
+}
+
+
+
+.menu-wrapper {
+    background: #b3191f;
+    border: 1px solid #d1d1d1;
+    box-shadow: 0 0 25px rgba(0, 0, 0,.2 );
+}
+
+.scroll-menu-arrow {
+    padding: 20px;
+    cursor: pointer;
+}
+
+.menu-item-wrapper {
+    outline: none;
+    background-color: #b3191f;
+}
+
+
+
+@media (max-width: 760px) {
+    .menu-item-wrapper{
+        width:100%;
+        text-align:center;
+    }
+}
+

@@ -11,6 +11,7 @@
     "@syncfusion/ej2-react-grids": "^18.4.44",
     "@types/react-bootstrap-typeahead": "^3.4.6",
     "bootstrap": "^4.5.0",
+    "browser-image-compression": "^1.0.14",
     "font-awesome": "^4.7.0",
     "history": "^5.0.0",
     "jquery": "^3.4.1",
