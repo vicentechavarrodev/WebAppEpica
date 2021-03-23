@@ -20,6 +20,8 @@ namespace Api.Controllers
     {
         private readonly DataContext db;
 
+
+
         public OpcionesController(DataContext context)
         {
             db = context;
