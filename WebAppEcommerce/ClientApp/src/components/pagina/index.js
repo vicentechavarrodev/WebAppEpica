@@ -14,6 +14,7 @@ import imageHeader2 from '../../imagenes/pagina/header2.jpg';
 import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 import { Link } from "react-router-dom";
 import { Row, Col } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 
