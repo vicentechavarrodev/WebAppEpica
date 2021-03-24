@@ -50,12 +50,12 @@ class Pagina extends Component {
                      </article>
                 </section>
                 <section id="container" className="container mt-lg-3 mb-lg-5">
-                    <div className="row">
-                        <div className="col linea text-center text-uppercase">
-                            <small>Conoce nuestro</small>
+                    <div className="row smart-order">
+                        <div className="col   text-center text-uppercase ">
+                            <small>EMPIEZA TU PEDIDO</small>
                             <h2>Menu</h2>
                         </div>
-                        <div className="linea"></div>
+                      
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-6 col-lg-4 mb-4">

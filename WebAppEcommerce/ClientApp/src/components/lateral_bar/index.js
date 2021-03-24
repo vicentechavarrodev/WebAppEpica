@@ -33,7 +33,7 @@ import { Row, Col } from 'react-bootstrap';
 
      componentDidMount() {
          loader.hide();
-         this.props.obtener_categorias();
+        // this.props.obtener_categorias();
        
     }
 
