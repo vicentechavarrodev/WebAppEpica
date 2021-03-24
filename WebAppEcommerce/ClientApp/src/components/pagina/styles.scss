@@ -6,7 +6,10 @@
 }
 #carousel {
     position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.7);
 }
+
+
 #carousel .overlay {
     position: absolute;
     top: 0;
@@ -189,7 +192,7 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
-    border-top: 1px solid rgb(145, 145, 145);
+    border-top: 1px solid #dcdcdc;
     border-radius: 0.5px;
 }
 
@@ -354,6 +357,10 @@
     font-weight: bolder;
 }
 
+#container h6 {
+    font-weight: 600;
+}
+
 .carousel-image {
     align-items: flex-end;
 
@@ -473,23 +480,25 @@
     margin-top: 1.375rem;
 }
 
-    @media (max-width:765px) {
 
-        .carousel-image {
-            font-size: 1em;
-        }
 
-        .footer-section {
-            padding-top: 30px;
-        }
+@media (max-width:765px) {
 
-        .fo {
-            display: flex;
-            justify-content: center;
-        }
-
-        .menu-item-wrapper {
-            width: 100%;
-            text-align: center;
-        }
+    .carousel-image {
+        font-size: 1em;
     }
+
+    .footer-section {
+        padding-top: 30px;
+    }
+
+    .fo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu-item-wrapper {
+        width: 100%;
+        text-align: center;
+    }
+}

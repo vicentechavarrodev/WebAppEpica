@@ -19,7 +19,7 @@ class VentanaPrincipal extends Component {
 
     render() {
         return (
-            <div className="wrapper ">
+            <div className="wrapper bg-light">
               <Header visiblePagina="false" />
               <MenuLateral />
                 <div id="content" >

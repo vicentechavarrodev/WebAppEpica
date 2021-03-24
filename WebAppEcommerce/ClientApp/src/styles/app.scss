@@ -344,6 +344,13 @@ a:focus {
     border-radius: 0 !important;
 }
 
+.btn-default {
+    background: $primary-color !important;
+    color: #fff !important;
+    font-weight:600;
+   
+}
+
 .btn-metro-style-pz {
     background: $primary-color !important;
     color: #fff;
@@ -405,6 +412,28 @@ a:focus {
     font: normal normal normal 14px/1 FontAwesome;
     content: "\f08e";
     color: #fff;
+}
+
+.icons-pedido{
+    display:flex;
+}
+
+.icons-pedido:before {
+    content: url('../imagenes/pagina/food-delivery.png');
+    display: inline-block;
+    -ms-flex: auto;
+    flex: auto;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.icons-pedido:after {
+    content: url('../imagenes/pagina/pizza.png');
+    display: inline-block;
+    -ms-flex: auto;
+    flex: auto;
+    height: 30px;
+    margin-left: 20px;
 }
 
 

@@ -90,7 +90,7 @@ class PideLinea extends Component {
                     <div className="content">
                        
                         <ScrollMenu
-                            alignCenter={true}
+                         
                             alignOnResize={true}
                             data={this.menuItems}
                             arrowLeft={ArrowLeft}
@@ -98,9 +98,8 @@ class PideLinea extends Component {
                             selected={this.state.selected}
                             onSelect={this.onSelect}
                             scrollBy={1}
-                            scrollToSelected={true}
-                            transition={1}
-                            clickWhenDrag={false}
+                           
+                        
 
                         />
                     </div>
