@@ -13,6 +13,7 @@ import imageHeader1 from '../../imagenes/pagina/header1.jpg';
 import imageHeader2 from '../../imagenes/pagina/header2.jpg';
 import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 import { Row, Col } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 
@@ -53,7 +54,7 @@ class Pagina extends Component {
                     <div className="row smart-order">
                         <div className="col   text-center text-uppercase ">
                             <small>EMPIEZA TU PEDIDO</small>
-                            <h2>Menu</h2>
+                            <Link to="/pideLinea" className="nav-link last-link" id='pideLinea' ><h2>Menu</h2></Link>
                         </div>
                       
                     </div>

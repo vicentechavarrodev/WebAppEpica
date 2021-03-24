@@ -50,9 +50,10 @@ class Header extends Component {
                     {
                         this.props.visiblePagina === "true" ?
                             <>
-                                <a className="navbar-brand" href="./index.html">
-                                    <img src={Logo} alt="Epica Logo" width="80px"/>
-                            </a>
+                              
+                                <Link to="/pagina" className="navbar-brand"><img src={Logo} alt="Epica Logo" width="80px" /></Link>
+                                    
+                         
                                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span className="navbar-toggler-icon"></span>
                              </button>

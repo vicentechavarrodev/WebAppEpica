@@ -31,8 +31,16 @@ class PideLinea extends Component {
     }
 
     async componentDidMount() {
-        await this.props.obtenerCategorias();
-        this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
+        await this.props.obtenerCategorias().then(function () {
+            this.props.productos_por_categoria(this.props.categorias[0].IdCategoria)
+            }
+            , function () {
+
+            }
+                )
+
+      
+        
 
         
   

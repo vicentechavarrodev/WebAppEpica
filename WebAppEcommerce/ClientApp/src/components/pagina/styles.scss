@@ -1,4 +1,7 @@
 ﻿
+$primary-color: #b3191f;
+$shade-color: rgba(0, 0, 0, 0.24);
+
 #main .carousel-inner img {
     max-height: 90vh;
     object-fit: cover;
@@ -145,6 +148,16 @@
 .text-price {
     font-size: 1em;
     color: black;
+}
+.text-center h2 {
+    color: white;
+    border: 0.5px solid rgba(119, 119, 119, 0.493);
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: $primary-color;
+}
+.text-center h2:hover{
+    background-color:rgba(195, 0, 0, 0.87);
 }
 
 .modal-content {
@@ -360,7 +373,15 @@
 #footer h5 {
     font-weight: bolder;
 }
-
+.fo {
+    padding-left: 20px;
+}
+.fo link-secondary {
+    padding-right: 20px;
+}
+.fo link-secondary span {
+    font-size: 35px;
+}
 .row-footer {
     display: flex;
     justify-content: center;

@@ -25,6 +25,8 @@ class ProductoModal extends Component {
 
 
     render() {
+          
+    
 
         return (
             
@@ -76,26 +78,34 @@ class ProductoModal extends Component {
                                            
                                     }                                
                                         )}
-                                    <p>Elige la combinacion que deseas</p>
-                                    {this.props.opciones_producto.VistaProductoOpciones.map(function (opciones) {
+                                    
+                                    {this.props.opciones_producto.VistaProductoOpciones.map(function (opciones,index) {
+                                      
+                                                                             
 
-                                        if (opciones.Opcion.IdTipoOpcion == "4")
-                                            if (document.querySelector('input[name="2"]:checked') || document.querySelector('input[name="8"]:checked')) {
-                                                return (
-                                                    <div className="radio-size">
-                                                        <div className="row-size">
-                                                            <div className="col col-radio">
-                                                                <label>
-                                                                    <input type="radio" className="option-input radio" name="example2" />
-                                                                    {opciones.Opcion.Nombre}
-                                                                </label>
-                                                            </div>
+                                        if (opciones.Opcion.IdTipoOpcion == "4") {
+                                            const parrafo = (index) => index == 0 ? <p>Elige la combinacion que deseas</p> : ""
+                                            return (
+                                                <div>
+                                                   parrafo(index)
+                                              
+                                                <div className = "radio-size" >
+                                                    <div className="row-size">
+                                                        <div className="col col-radio">
+                                                            <label>
+                                                                <input type="radio" className="option-input radio" name="example2" />
+                                                                {opciones.Opcion.Nombre}
+                                                            </label>
                                                         </div>
                                                     </div>
+                                                    </div>
+                                                </div>
+                                                   
 
 
-                                                )
-                                            } 
+                                            )
+                                        }
+                                            
 
                                     }
                                     )}

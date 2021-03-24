@@ -30,13 +30,13 @@ class Footer extends Component {
                                 <h5 className="text">Encuentranos</h5>
                                 <div className="row fo pt-3">
                                     <a className="link-secondary" href="#">
-                                        <span className="fab fa-facebook-square"></span>
+                                        <span className="fa fa-facebook"></span>
                                 </a>
                                     <a className="link-secondary" href="#">
                                         <span className="fa fa-instagram"></span>
                                 </a>
                                     <a className="link-secondary" href="#">
-                                        <span className="fab fa-whatsapp-square"></span>
+                                        <span className="fa fa-whatsapp"></span>
                                 </a>
 
                             </div>
