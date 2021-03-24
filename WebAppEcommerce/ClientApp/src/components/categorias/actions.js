@@ -18,15 +18,15 @@ export const categoriaActions = {
 
 };
 
-function obtener_categorias() {
-    return dispatch => {
+ function obtener_categorias() {
+    
+    return async  dispatch => {
 
-        ServicesHelper.obtener_categorias()
-            .then(
+        await   ServicesHelper.obtener_categorias().then(
                 response => {
                     loader.hide();
                     if (response.IsSuccess) {
-                        if (response.result !== null) {
+                        if (response.Result !== null) {
                             dispatch(success(response.Result));
                         } else {
                             dispatch(alertActions.showMessage( response.Message, true, 'Ups'));

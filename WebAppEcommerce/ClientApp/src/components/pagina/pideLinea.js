@@ -31,14 +31,12 @@ class PideLinea extends Component {
     }
 
     async componentDidMount() {
-        await this.props.obtenerCategorias();
-        this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
 
-        
-  
-        
+        await this.props.obtenerCategorias(this);
+        this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
     }
 
+   
     onSelect = key => {
 
         this.setState({ selected: key });
@@ -85,7 +83,7 @@ class PideLinea extends Component {
     
    
         return (
-            <body data-spy="scroll" data-target="#navbar" data-offset="57">
+            <div data-spy="scroll" data-target="#navbar" data-offset="57">
                 <Header visiblePagina="true" />
                 <div className="horizontal-menu">
                  <div className="container container-horizontal">
@@ -136,7 +134,8 @@ class PideLinea extends Component {
                             )                        
                             }
                             {mostrar_crear ?
-                                <ModalOpciones show={mostrar_crear} onHide={() => this.props.ver_crear(false)} />
+                                <ModalOpciones show={mostrar_crear}
+                                    onHide={() => this.props.ver_crear(false)} />
                                 :
                                 ""
                             }
@@ -149,7 +148,7 @@ class PideLinea extends Component {
          
             
                 <Footer />
-            </body>
+            </div>
 
 
         );
