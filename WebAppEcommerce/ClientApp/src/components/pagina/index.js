@@ -29,7 +29,7 @@ class Pagina extends Component {
     render() {
 
         return (
-            <body data-spy="scroll" data-target="#navbar" data-offset="57">
+            <div data-spy="scroll" data-target="#navbar" data-offset="57">
             <Header visiblePagina="true" />
             
                   <section id="main">
@@ -91,7 +91,7 @@ class Pagina extends Component {
                 
              
             <Footer />
-             </body>  
+            </div>  
             
 
         );

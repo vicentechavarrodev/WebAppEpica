@@ -10,14 +10,18 @@ export const ServicesHelper = {
 
 
 
-function obtener_categorias() {
+async function obtener_categorias() {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(`${process.env.REACT_APP_API_URL}api/Categorias/Index`, requestOptions).then(handleResponse);
-
+   
+    return await fetch(`${process.env.REACT_APP_API_URL}api/Categorias/Index`, requestOptions)
+        .then(handleResponse)
+        .then(response => {
+            return response;
+        });
 }
 
 async function crear_categoria(categoria) {

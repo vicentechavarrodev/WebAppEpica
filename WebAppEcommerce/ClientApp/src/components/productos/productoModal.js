@@ -32,6 +32,7 @@ class ProductoModal extends Component {
             
             <Modal
                 show={this.props.show}
+                onHide={() => this.props.ver_crear(false)}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
@@ -60,7 +61,8 @@ class ProductoModal extends Component {
                                     <p>Elige el tamaño que deseas</p>
                                     {this.props.opciones_producto.VistaProductoOpciones.map(function(opciones)
                                     {
-                                        if(opciones.Opcion.IdTipoOpcion == "2")
+                                        if (opciones.Opcion.IdTipoOpcion == "2")
+                                            
                                          return(<div className="radio-size">
                                             <div className="row-size">
                                                 <div className="col col-radio">
@@ -231,7 +233,7 @@ const mapDispatchToProps = {
     showMessage: alertActions.showMessage,
     obtenerCategorias: categoriaActions.obtener_categorias,
     obtener_opciones_producto: productoActions.obtener_opciones_producto,
-   
+    ver_crear: productoActions.ver_crear,
 };
 
 
