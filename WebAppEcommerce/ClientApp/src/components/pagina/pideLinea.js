@@ -119,7 +119,7 @@ class PideLinea extends Component {
                                             <div className="container">
                                                 <div className="row">
                                                     <div className="col-lg-6 col-price">
-                                                        <p className="text-price">{item.Precio}</p>
+                                                        <p className="text-price">${item.Precio}</p>
                                                     </div>
                                                     <div className="col-lg-6 col-button">
                                                         <button type="button" className="btn" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
