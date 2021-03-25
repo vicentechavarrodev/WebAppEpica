@@ -34,6 +34,9 @@ $primary-color: #b3191f;
    width: 65px;
 }
 
+.navbar-brand  {
+   margin-left:1rem;
+}
 .navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-nav .nav-link.active {
     color: white;
@@ -68,7 +71,9 @@ $primary-color: #b3191f;
     padding-left: 100px;
 }
 .navbar-light .navbar-toggler {
-    background-color: #f7dca3;
+    border:none;
+    color:white !important;
+    font-size:2rem;
 }
 
 .navbar-toggler:focus {
@@ -90,16 +95,30 @@ $primary-color: #b3191f;
     justify-items: center;
     margin-top: 120px;
 }
-.nav-icon {
-    box-shadow: -4px 1px 18px -9px rgba(0, 0, 0, .7) inset;
-   // box-shadow: -4px 7px 21px -9px rgba(0,0,0,0.75) inset;
+
 #navbar #novedades .navbar-nav li:nth-child(1) {
     background-color: red;
 }
 .navbar-collapse {
     margin-right:20px;
 }
+
+.nav-icon {
+    box-shadow: -4px 1px 18px -9px rgba(0, 0, 0, .7) inset;
+   
+   
+}
 @media (max-width:571px) {
+    .nav-icon {
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .7) inset;
+      
+    }
+
+    .nav-sm {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
 
     .nav-item {
         border-bottom: 0.5px solid rgba(136, 136, 136,0.9);
@@ -128,6 +147,7 @@ $primary-color: #b3191f;
         width: 50px;
     }
 }
+
 
 
 

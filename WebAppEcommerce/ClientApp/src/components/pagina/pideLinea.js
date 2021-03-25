@@ -21,7 +21,7 @@ class PideLinea extends Component {
 
         this.state = {
 
-            selected: 'item1',
+            selected: '1',
             opciones_productos:[],
             
         };
