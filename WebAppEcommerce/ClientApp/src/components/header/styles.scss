@@ -88,10 +88,19 @@ $primary-color: #b3191f;
     justify-items: center;
     margin-top: 120px;
 }
+.nav-icon {
+   
+    box-shadow: -4px 7px 21px -9px rgba(0,0,0,0.75) inset;
+}
 
+.navbar-brand {
+    margin-left: 1rem;
+}
 
 @media (max-width:571px) {
-  
+    .nav-icon {
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75) inset;
+    }
     .nav-item {
         border-bottom: 0.5px solid rgba(136, 136, 136,0.9);
         width: 538px;
@@ -110,14 +119,17 @@ $primary-color: #b3191f;
     .navbar-toggler {
         margin-right: 20px;
     }
-        
+
     .navbar-brand {
         padding-left: 20px;
+      
     }
 
     .navbar-brand img {
         width: 50px;
     }
+
+   
 }
 
 
