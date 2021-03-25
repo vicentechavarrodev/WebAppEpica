@@ -42,8 +42,10 @@ class Header extends Component {
     //---------------------------------------------------------------
     render() {
         let user = JSON.parse(localStorage.getItem('usuario'));
+
      
         return (
+
             <nav id="header" className="navbar navbar-color navbar-expand-lg fixed-top navbar-expand-sm navbar-light">
                 <div className="container-fluid container-nav">
 
@@ -67,14 +69,14 @@ class Header extends Component {
                     <div className="collapse navbar-collapse" id="navbar">
                         {this.props.visiblePagina === 'true' ?
                             <ul className="navbar-nav ml-auto">
-                                <li className="nav-item mr-4">
-                                    <Link to="/novedades" className="nav-link" id="novedades">Novedades</Link>
+                                <li className="nav-item" id="novedades">
+                                    <Link to="/novedades" className="nav-link">Novedades</Link>
                                 </li>
-                                <li className="nav-item mr-4">
-                                    <Link to="/compania" className="nav-link" id='compania'>Compañia</Link>
+                                <li className="nav-item" id='compania'>
+                                    <Link to="/compania" className="nav-link">Compañia</Link>
                                 </li>
-                                    <li className="nav-item mr-4">
-                                    <Link to="/pideLinea" className="nav-link last-link" id='pideLinea' >Pide en Linea</Link>
+                                <li className="nav-item" id='pideLinea'>
+                                    <Link to="/pideLinea" className="nav-link last-link">Pide en Linea</Link>
                                     </li>
                               
                             </ul>

@@ -13,7 +13,7 @@ import { withRouter } from "react-router-dom";
 class Compania extends Component {
 
     componentDidMount() {
-
+        document.getElementById('compania').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
     }
 
 

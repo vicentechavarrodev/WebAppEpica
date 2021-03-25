@@ -1,20 +1,19 @@
 ﻿.footer {
     text-align:center;
     font-size:0.6rem; 
-
 }
-.fa-facebook-square {
-    font-size: 60px;
-    color: white;
+.fo-icons {
+    display: flex;
+    justify-content: center;
+ }
+.text {
+    justify-content: center;
+    display: flex;
 }
-
-.fa-instagram-square {
-    font-size: 60px;
-    color: white;
+.fo-icons .icons-social {
+    font-size: 38px;
+    padding-right: 13px;
 }
-
-.fa-whatsapp-square {
-    font-size: 60px;
-    color: white;
+.fo-icons .icons-social:hover {
+    color:rgba(199, 199, 199, 0.65);
 }
-

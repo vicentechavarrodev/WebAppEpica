@@ -22,6 +22,7 @@ class Pagina extends Component {
 
     componentDidMount() {
         loader.hide();
+        
      
     }
 
@@ -37,16 +38,23 @@ class Pagina extends Component {
                         <div className="carousel-inner">
                             <div className="carousel-item active">
                                 <img className="d-block" src={imageEpica1} alt="Epica 1" />
+                                <div className="carousel-caption d-none d-md-block">
+                                    <p>Parrafo 1 olor sit amet consectetur adipisicing elit.Ex, similique debitis inventore animi, hic incidunt, sapiente n</p>
+                                </div>
                                 </div>
                                 <div className="carousel-item">
-                                <img className="d-block" src={imageEpica2} alt="Epica 2"/>
+                                <img className="d-block" src={imageEpica2} alt="Epica 2" />
+                                <div className="carousel-caption d-none d-md-block">
+                                    <p>Parrafo 2 olor sit amet consectetur adipisicing elit.Ex, similique debitis inventore animi, hic incidunt, sapiente n</p>
                                 </div>
-                                    <div className="carousel-item">
-                                    <img className="d-block" src={imageEpica3} alt="Epica 3"/>
+                                </div>
+                                <div className="carousel-item">
+                                <img className="d-block" src={imageEpica3} alt="Epica 3" />
+                                <div className="carousel-caption d-none d-md-block">
+                                    <p>Parrafo 3 olor sit amet consectetur adipisicing elit.Ex, similique debitis inventore animi, hic incidunt, sapiente n</p>
+                                </div>
                                     </div>
-                                    <div className="carousel-caption d-none d-md-block">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Ex, similique debitis inventore animi, hic incidunt, sapiente n</p>
-                                     </div>
+                                   
                                     </div>
                      </article>
                 </section>

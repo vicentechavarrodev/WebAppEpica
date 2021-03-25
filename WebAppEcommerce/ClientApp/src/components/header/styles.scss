@@ -75,9 +75,11 @@ $primary-color: #b3191f;
     border-color: transparent;
 }
 .nav-item {
+    width: 140px;
     height: 70px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .container .slider {
     background-color: rgb(219, 218, 218);
@@ -91,16 +93,14 @@ $primary-color: #b3191f;
 .nav-icon {
     box-shadow: -4px 1px 18px -9px rgba(0, 0, 0, .7) inset;
    // box-shadow: -4px 7px 21px -9px rgba(0,0,0,0.75) inset;
+#navbar #novedades .navbar-nav li:nth-child(1) {
+    background-color: red;
 }
-
-.navbar-brand {
-    margin-left: 1rem;
+.navbar-collapse {
+    margin-right:20px;
 }
-
 @media (max-width:571px) {
-    .nav-icon {
-        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75) inset;
-    }
+
     .nav-item {
         border-bottom: 0.5px solid rgba(136, 136, 136,0.9);
         width: 538px;
@@ -122,14 +122,11 @@ $primary-color: #b3191f;
 
     .navbar-brand {
         padding-left: 20px;
-      
     }
 
     .navbar-brand img {
         width: 50px;
     }
-
-   
 }
 
 
