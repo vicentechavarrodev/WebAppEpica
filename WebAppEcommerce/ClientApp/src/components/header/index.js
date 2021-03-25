@@ -51,7 +51,7 @@ class Header extends Component {
 
                     {
                         this.props.visiblePagina === "true" ?
-                            <div>
+                            <div className="nav-icon">
                                 <Link to="/pagina" className="navbar-brand">
                                     <img src={Logo} alt="Epica Logo"  />
                                 </Link>
