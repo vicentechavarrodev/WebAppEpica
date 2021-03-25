@@ -362,8 +362,8 @@ a:focus {
 }
 
 .btn-3d-style:hover, .e-grid .e-toolbar-items button[type=button]:hover {
-    background-color:  $secondary-color !important;
-    color:#fff;
+    background: rgba(0, 0, 0, 0.8) !important;
+    color: #fff;
 }
 
 .btn-3d-style:active, .e-grid .e-toolbar-items button[type=button]:active {
@@ -560,10 +560,11 @@ a:focus {
 
 
 .element-hide {
-    display: none;
+    display: none !important;
 }
 
 @media (max-width: 760px) {
+   
     #content {
         margin-left: 0;
     }
@@ -583,6 +584,9 @@ a:focus {
 
     .hidde-element{
         display:none;
+    }
+    .element-hide{
+        display:block !important;
     }
 
     .center-element {

@@ -21,7 +21,7 @@ class PideLinea extends Component {
 
         this.state = {
 
-            selected: 'item1',
+            selected: '1',
             opciones_productos:[],
             
         };
@@ -107,7 +107,7 @@ class PideLinea extends Component {
                     </div>
                 </div>
                 <div className="album py-5 bg-light">
-                    <div className="container">
+                    <div className="container p-4 rounded nav-icon">
                         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
                             {this.props.productos_categoria.map((item) =>
                                 <div className="col-lg-4 col-sm-6" key={item.IdProducto}>

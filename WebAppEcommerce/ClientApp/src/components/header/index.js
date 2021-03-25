@@ -6,8 +6,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
 import { withRouter } from "react-router-dom";
 import Logo from '../../imagenes/pagina/logoEpica.png';
+import iconMenu from '../../imagenes/pagina/pizza-box-menu.png';
 import { Link } from "react-router-dom";
-
+import LocalPizzaIcon from '@material-ui/icons/LocalPizza';
 
 class Header extends Component {
 
@@ -51,13 +52,14 @@ class Header extends Component {
 
                     {
                         this.props.visiblePagina === "true" ?
-                            <div className="nav-icon">
+                            <div className="nav-sm nav-icon">
                                 <Link to="/pagina" className="navbar-brand">
                                     <img src={Logo} alt="Epica Logo"  />
                                 </Link>
                             
                                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span className="navbar-toggler-icon"></span>
+                                 
+                                  <i class="fa fa-bars" aria-hidden="true"></i>
                              </button>
                             </div>
                             :
