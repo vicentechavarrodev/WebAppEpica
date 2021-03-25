@@ -28,14 +28,14 @@ class Footer extends Component {
                         <div className="col-lg-3 col-sm-6 col-md pl-5 pr-0">
                             <div className="container">
                                 <h5 className="text">Encuentranos</h5>
-                                <div className="row fo pt-3">
-                                    <a className="link-secondary" href="#">
+                                <div className="row fo-icons pt-3">
+                                    <a className="link-secondary icons-social" href="#">
                                         <span className="fa fa-facebook"></span>
                                 </a>
-                                    <a className="link-secondary" href="#">
+                                    <a className="link-secondary icons-social" href="#">
                                         <span className="fa fa-instagram"></span>
                                 </a>
-                                    <a className="link-secondary" href="#">
+                                    <a className="link-secondary icons-social" href="#">
                                         <span className="fa fa-whatsapp"></span>
                                 </a>
 

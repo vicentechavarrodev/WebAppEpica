@@ -384,18 +384,6 @@ $shade-color: rgba(0, 0, 0, 0.24);
 }
 
 
-#footer h5 {
-    font-weight: bolder;
-}
-.fo {
-    padding-left: 20px;
-}
-.fo link-secondary {
-    padding-right: 20px;
-}
-.fo link-secondary span {
-    font-size: 35px;
-}
 .row-footer {
     display: flex;
     justify-content: center;
@@ -404,9 +392,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
     height: 60px;
     border-top: 1px solid rgba(112, 112, 112, 0.603);
 }
-.col-button button {
-    width: 100%;
-}
+
 .row-footer .col-sm {
     display: flex;
     align-items: center;
@@ -436,12 +422,17 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .col-button button {
     width: 100%;
     height: inherit;
-    border-top: 1px solid rgb(145, 145, 145);
-    border-right: 1px solid rgb(145, 145, 145);
+    border-radius:0px;
     background-color: #b3191f;
     color:white;
 }
-
+.col-button:hover{
+    color:white;
+    background-color:rgba(159, 4, 4, 0.85);
+}
+.fa-cart-plus{
+    padding-right:8px
+}
 
 .image-add {
     width: 150px;

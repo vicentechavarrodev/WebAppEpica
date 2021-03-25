@@ -75,9 +75,11 @@ $primary-color: #b3191f;
     border-color: transparent;
 }
 .nav-item {
+    width: 140px;
     height: 70px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .container .slider {
     background-color: rgb(219, 218, 218);
@@ -88,10 +90,14 @@ $primary-color: #b3191f;
     justify-items: center;
     margin-top: 120px;
 }
-
-
+#navbar #novedades .navbar-nav li:nth-child(1) {
+    background-color: red;
+}
+.navbar-collapse {
+    margin-right:20px;
+}
 @media (max-width:571px) {
-  
+
     .nav-item {
         border-bottom: 0.5px solid rgba(136, 136, 136,0.9);
         width: 538px;
@@ -110,7 +116,7 @@ $primary-color: #b3191f;
     .navbar-toggler {
         margin-right: 20px;
     }
-        
+
     .navbar-brand {
         padding-left: 20px;
     }

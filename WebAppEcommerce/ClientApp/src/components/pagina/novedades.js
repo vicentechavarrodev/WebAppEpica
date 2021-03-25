@@ -13,6 +13,7 @@ import { withRouter } from "react-router-dom";
 class Novedades extends Component {
 
     componentDidMount() {
+        document.getElementById('novedades').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
 
     }
 

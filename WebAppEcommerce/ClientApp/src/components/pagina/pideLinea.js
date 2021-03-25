@@ -31,7 +31,7 @@ class PideLinea extends Component {
     }
 
     async componentDidMount() {
-
+        document.getElementById('pideLinea').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
         await this.props.obtenerCategorias(this);
         this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
     }
@@ -117,13 +117,13 @@ class PideLinea extends Component {
                                             <p className="paragraph">{item.Descripcion}</p>
                                             <div className="container">
                                                 <div className="row">
-                                                    <div className="col-lg-6 col-button">
-                                                        <button type="button" className="btn" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                         Agregar</button>
-                                                    </div>
                                                     <div className="col-lg-6 col-price">
                                                         <p className="text-price">{item.Precio}</p>
+                                                    </div>
+                                                    <div className="col-lg-6 col-button">
+                                                        <button type="button" className="btn" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
+                                                            <i class="fa fa-cart-plus"></i>
+                                                         Agregar</button>
                                                     </div>
                                                 </div>
                                             </div>
