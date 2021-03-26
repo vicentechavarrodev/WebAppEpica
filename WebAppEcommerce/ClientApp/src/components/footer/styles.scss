@@ -11,9 +11,19 @@
     display: flex;
 }
 .fo-icons .icons-social {
-    font-size: 38px;
+    font-size: 32px;
     padding-right: 13px;
 }
 .fo-icons .icons-social:hover {
     color:rgba(199, 199, 199, 0.65);
+}
+.fa-instagram, .fa-whatsapp {
+    border: 1px solid white;
+    padding: 10px 15px 10px 15px;
+    border-radius:5px;
+}
+.fa-facebook {
+    border: 1px solid white;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
 }
