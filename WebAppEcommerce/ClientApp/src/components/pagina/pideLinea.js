@@ -33,7 +33,15 @@ class PideLinea extends Component {
     async componentDidMount() {
         document.getElementById('pideLinea').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
         await this.props.obtenerCategorias(this);
-        this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
+        if (this.props.location.Id_categoria_seleccionada != undefined) {
+            this.props.productos_por_categoria(this.props.location.Id_categoria_seleccionada);
+            this.onSelect(this.props.location.Id_categoria_seleccionada);
+        } else {
+            console.log("aqui estoy");
+            this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
+        }
+        
+       
     }
 
    

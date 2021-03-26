@@ -1,7 +1,12 @@
-﻿.footer {
-    text-align:center;
-    font-size:0.6rem; 
+﻿$primary-color: #b3191f;
+.footer {
+    text-align: center;
+    font-size: 1rem;
 }
+#footer h5{
+    font-weight:bold;
+    font-size:25px;
+ }
 .fo-icons {
     display: flex;
     justify-content: center;
@@ -21,9 +26,56 @@
     border: 1px solid white;
     padding: 10px 15px 10px 15px;
     border-radius:5px;
+    margin-top:10px;
 }
 .fa-facebook {
     border: 1px solid white;
     padding: 10px 20px 10px 20px;
     border-radius: 5px;
+    margin-top: 10px;
 }
+.fo h5, li {
+    display: flex;
+    justify-content: center;
+
+}
+
+.col-copy{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+}
+.list-unstyled .btn-link {
+    color: white;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    justify-content: flex-start;
+    width: 120px;
+}
+.list-unstyled .btn-link:hover {
+    color: white;
+    background-color:rgba(48, 42, 42, 0.80);
+    text-decoration:none;
+}
+
+
+@media (max-width:574px) {
+    .fo {
+        padding-left: 30px;
+    }
+    .list-unstyled {
+        margin-bottom: 13px;
+        width: 100%;
+    }
+    .fo h5,li {
+        display: flex;
+        justify-content: center;
+    }
+    .fo li {
+        border-bottom: 1px solid white;
+        padding-bottom: 10px;
+        cursor:pointer;
+    }
+}
+

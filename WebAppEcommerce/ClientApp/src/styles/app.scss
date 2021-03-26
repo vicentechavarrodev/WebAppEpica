@@ -564,7 +564,7 @@ a:focus {
 }
 
 @media (max-width: 760px) {
-   
+
     #content {
         margin-left: 0;
     }
@@ -582,11 +582,12 @@ a:focus {
         height: 3em;
     }
 
-    .hidde-element{
-        display:none;
+    .hidde-element {
+        display: none;
     }
-    .element-hide{
-        display:block !important;
+
+    .element-hide {
+        display: block !important;
     }
 
     .center-element {
