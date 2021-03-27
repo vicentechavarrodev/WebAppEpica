@@ -40,8 +40,8 @@ class Footer extends Component {
                             <ul className="list-unstyled text-small">
                                 <h5>Categorias</h5>
                                 {this.props.categorias.map((item) =>
-                                    <li>
-                                        <button className="link-secondary" type="button" class="btn btn-link" id={item.IdCategoria} onClick={this.abrirPideLinea}>{item.Nombre}</button></li>
+                                    <li key={item.IdCategoria}>
+                                        <button className="link-secondary" type="button" className="btn btn-link" id={item.IdCategoria} onClick={this.abrirPideLinea}>{item.Nombre}</button></li>
                                  )}
                               
                          

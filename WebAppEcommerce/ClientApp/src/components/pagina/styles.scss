@@ -11,8 +11,43 @@ $shade-color: rgba(0, 0, 0, 0.24);
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.7);
 }
+#cart-fixed {
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1031;
+    width: 400px;
+    background-color: rgba(150, 16, 16, 0.88);
+    transition:  8s linear;
+}
+#cart-background {
+    position: fixed;
+    background-color: rgba(0,0,0,.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1031;
+    bottom: 0;
+}
 
+.cart-background button {
+    position: absolute;
+    top: 50%;
+    right: 400px;
+}
 
+.car-lateral button {
+    position: absolute;
+    right: 0px;
+    top: 50vh;
+    background-color:$primary-color;
+}
+.car-lateral i{
+    color:white;
+    font-size:30px;
+}
 #carousel .overlay {
     position: absolute;
     top: 0;

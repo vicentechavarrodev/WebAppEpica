@@ -12,24 +12,35 @@ import imageEpica3 from '../../imagenes/pagina/pizza3.jpg';
 import imageHeader1 from '../../imagenes/pagina/header1.jpg';
 import imageHeader2 from '../../imagenes/pagina/header2.jpg';
 import imageHeader3 from '../../imagenes/pagina/header3.jpg';
+import { productoActions } from '../productos/actions';
 import { Link } from "react-router-dom";
-import { Row, Col } from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
 
 
 
 class Pagina extends Component {
 
+
+
+    constructor(props) {
+        super(props);
+        this.openCar = this.openCar.bind(this);
+
+    }
+
     componentDidMount() {
         loader.hide();
         
      
     }
-
+    openCar() {
+        this.props.ver_crear(true);
+    }
+    
 
     render() {
-
-        return (
+        const { mostrar_crear } = this.props;
+         return (
             <div data-spy="scroll" data-target="#navbar" data-offset="57">
             <Header visiblePagina="true" />
             
@@ -64,7 +75,7 @@ class Pagina extends Component {
                             <h6>EMPIEZA TU PEDIDO</h6>
                             <div className="icons-pedido">
                                 <Link to="/pideLinea" className="btn btn-default btn-3d-style  btn-block" >
-                                    <span className="element-hide"><AddIcon  /></span>
+                                    <span className="element-hide"><AddIcon/></span>
                                     <span className="hidde-element"> Entrega a domicilio</span>
                                    
                                 </Link>
@@ -101,12 +112,34 @@ class Pagina extends Component {
                                             </div>
                                       </div>
                         </div>
-                       
-                                </div>
+                      
+                    </div>
+                     <div className="car-lateral fixed-top" >
+                         <button type="button" className="btn btn-link" onClick={this.openCar}>
+                             <i className="fa fa-cart-plus"></i>
+                         </button>
+                     </div>
+                     {mostrar_crear ?
+                         <section id="cart-background">
+                             <div id="cart-fixed">
+
+                             </div>
+                             <button type="button" className="btn btn-link" onClick={this.openCar}>
+                                 <i className="fa fa-cart-plus"></i>
+                             </button>
+                         </section> 
+                         :
+                         ""
+                     }
+                    
+                 
+           
                 </section>
+              
                 
              
-            <Footer />
+                <Footer />
+
             </div>  
             
 
@@ -116,13 +149,16 @@ class Pagina extends Component {
 
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
-    return { loggingIn, user};
+    const {mostrar_crear } = state.productoReducer;
+    return { loggingIn, user,mostrar_crear};
 };
 
 
 const mapDispatchToProps = {
     showMessage: alertActions.showMessage,
+    ver_crear: productoActions.ver_crear,
 };
+
 
 
 

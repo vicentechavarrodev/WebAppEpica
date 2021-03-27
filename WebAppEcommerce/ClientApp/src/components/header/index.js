@@ -59,7 +59,7 @@ class Header extends Component {
                             
                                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                  
-                                  <i class="fa fa-bars" aria-hidden="true"></i>
+                                  <i className="fa fa-bars" aria-hidden="true"></i>
                              </button>
                             </div>
                             :

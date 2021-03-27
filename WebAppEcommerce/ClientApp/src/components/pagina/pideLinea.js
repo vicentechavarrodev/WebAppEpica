@@ -37,7 +37,6 @@ class PideLinea extends Component {
             this.props.productos_por_categoria(this.props.location.Id_categoria_seleccionada);
             this.onSelect(this.props.location.Id_categoria_seleccionada);
         } else {
-            console.log("aqui estoy");
             this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
         }
         
