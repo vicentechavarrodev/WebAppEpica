@@ -15,6 +15,7 @@ import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 import { productoActions } from '../productos/actions';
 import { Link } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
+import Car_Modal from './car_modal';
 
 
 
@@ -25,7 +26,7 @@ class Pagina extends Component {
     constructor(props) {
         super(props);
         this.openCar = this.openCar.bind(this);
-
+      
     }
 
     componentDidMount() {
@@ -34,9 +35,13 @@ class Pagina extends Component {
      
     }
     openCar() {
+        const btn = document.getElementById('btn-car');
+        btn.style.display = 'none';
         this.props.ver_crear(true);
+      
+       
     }
-    
+       
 
     render() {
         const { mostrar_crear } = this.props;
@@ -114,20 +119,13 @@ class Pagina extends Component {
                         </div>
                       
                     </div>
-                     <div className="car-lateral fixed-top" >
-                         <button type="button" className="btn btn-link" onClick={this.openCar}>
+                     <div className="car-lateral fixed-top">
+                         <button type="button" className="btn btn-link" id='btn-car' onClick={this.openCar}>
                              <i className="fa fa-cart-plus"></i>
                          </button>
                      </div>
                      {mostrar_crear ?
-                         <section id="cart-background">
-                             <div id="cart-fixed">
-
-                             </div>
-                             <button type="button" className="btn btn-link" onClick={this.openCar}>
-                                 <i className="fa fa-cart-plus"></i>
-                             </button>
-                         </section> 
+                         <Car_Modal/>
                          :
                          ""
                      }

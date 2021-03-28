@@ -19,9 +19,44 @@ $shade-color: rgba(0, 0, 0, 0.24);
     right: 0;
     z-index: 1031;
     width: 400px;
-    background-color: rgba(150, 16, 16, 0.88);
-    transition:  8s linear;
+    background-color: white;
+    animation-name: example;
+    animation-duration: 10s;
 }
+@keyframes example {
+    0% {
+        right: 0px;
+        -webkit-transition-duration: 5s;
+    }
+  }
+#cart-fixed .container {
+    position: absolute;
+    bottom: 0px;
+ 
+}
+.col-car-pedido {
+    display: flex;
+    justify-content: center;
+}
+#cart-fixed .container .row {
+    border-top: 1px solid rgba(126, 126, 126, 0.80);
+    padding-top: 5px;
+}
+.tittle-car{
+    background-color:$primary-color;
+    height:100px;
+    font-weight:bold;
+   
+}
+.tittle-car h2 {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    height: 100px;
+    color: white;
+}
+
 #cart-background {
     position: fixed;
     background-color: rgba(0,0,0,.5);
@@ -30,12 +65,19 @@ $shade-color: rgba(0, 0, 0, 0.24);
     right: 0;
     z-index: 1031;
     bottom: 0;
+   
 }
 
-.cart-background button {
+
+#cart-background .btn-link {
     position: absolute;
     top: 50%;
     right: 400px;
+    background-color: $primary-color;
+}
+
+#cart-background .btn-link:hover {
+    background-color: rgba(152, 6, 6, 0.88);
 }
 
 .car-lateral button {
@@ -48,6 +90,11 @@ $shade-color: rgba(0, 0, 0, 0.24);
     color:white;
     font-size:30px;
 }
+#cart-background .fa-cart-plus {
+    color: white;
+    font-size: 30px;
+}
+
 #carousel .overlay {
     position: absolute;
     top: 0;
@@ -60,6 +107,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .card-style {
     padding: 0px;
 }
+
 
 .card-tittle {
     display: flex;
@@ -490,9 +538,6 @@ $shade-color: rgba(0, 0, 0, 0.24);
 }
 
 
-
-
-
 .menu-wrapper {
     background: #b3191f;
     border: 1px solid #d1d1d1;
@@ -528,7 +573,29 @@ $shade-color: rgba(0, 0, 0, 0.24);
     margin-top: 22px;
     margin-top: 1.375rem;
 }
-
+.button-movil{
+    display:none;
+}
+.col-btn-pedido {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+    padding-bottom:10px;
+    padding-top:20px;
+    
+}
+.col-btn-pedido button {
+    padding: 0px;
+    width: 400px;
+    background-color: $primary-color;
+    color: white;
+    height: 40px;
+    font-weight:bold;
+}
+.col-btn-pedido button:hover {
+    background-color: rgba(151, 13, 13, 0.90);
+  
+}
 
 
 @media (max-width:765px) {
@@ -557,3 +624,24 @@ $shade-color: rgba(0, 0, 0, 0.24);
         filter: grayscale(10%);
     }
 }
+
+@media (max-width:500px) {
+    .button-movil {
+        display:inline;
+        position: absolute;
+        right: 0px;
+        z-index: 10034;
+        background-color: #b3191f;
+        top: 0px;
+        color:white;
+        font-size:20px;
+    }
+    #cart-background .btn-link {
+        display: none;
+    }
+    #cart-fixed {
+        width: 100%;
+    }
+   
+}
+
