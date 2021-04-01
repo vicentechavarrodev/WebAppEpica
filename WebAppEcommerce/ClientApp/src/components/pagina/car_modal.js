@@ -13,7 +13,7 @@ class ProductoModal extends Component {
 
     constructor(props) {
         super(props);
-       this.closeCar = this.closeCar.bind(this);
+        this.closeCar = this.closeCar.bind(this);
     }
 
    async componentDidMount() {
@@ -40,20 +40,68 @@ class ProductoModal extends Component {
                     <div className="tittle-car">
                         <h2>Tu pedido</h2>
                     </div>
-                    <div class="container">
+                    <div class="container content-pedido">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-car-pedido">Subtotal</div>
-                            <div class="col-12 col-sm-6 col-car-pedido">$12.000</div>
+                            <div class="col-1 col-amount-pedido">
+                                1
+                            </div>
+                            <div class="col-8 col-description-pedido">
+                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                            </div>
+                            <div class="col col-price-pedido">
+                                $10.000
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1 col-amount-pedido">
+                                2
+                            </div>
+                            <div class="col-8 col-description-pedido">
+                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                            </div>
+                            <div class="col col-price-pedido">
+                                $20.000
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1 col-amount-pedido">
+                                1
+                            </div>
+                            <div class="col-8 col-description-pedido">
+                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                            </div>
+                            <div class="col col-price-pedido">
+                                $10.000
+                            </div>
+                        </div>
+                     </div>
+                    <div className="container content-pedido-static">
+                        <div className="date-person">
+                        </div>
+                            <div className="mb-2">
+                                <input type="text" className="form-control" id="Solicitante" placeholder="Ingresa tu nombre"/>
+                        </div>
+                            <div className="mb-2">
+                                <input type="text" className="form-control" id="Direccion" placeholder="Digita tu direccion" />
+                        </div>
+                            <div className="mb-2">
+                                <input type="text" className="form-control" id="Telefono" placeholder="Telefono de contacto" />
+                        </div>
+                        <div className="date-total">
+                        </div>
+                       <div class="row">
+                            <div class="col-6 col-car-pedido">Subtotal</div>
+                            <div class="col-6 col-car-pedido">$12.000</div>
                             <div class="w-100 d-none d-md-block"></div>
-                            <div class="col-12 col-sm-6 col-car-pedido">Domicilio</div>
-                            <div class="col-12 col-sm-6 col-car-pedido">$12.000</div>
+                            <div class="col-6 col-car-pedido">Domicilio</div>
+                            <div class="col-6 col-car-pedido">$12.000</div>
                             <div class="w-100 d-none d-md-block"></div>
-                            <div class="col-12 col-sm-6 col-car-pedido">TOTAL</div>
-                            <div class="col-12 col-sm-6 col-car-pedido">$24.000</div>
+                            <div class="col-6 col-car-pedido">TOTAL</div>
+                            <div class="col-6 col-car-pedido">$24.000</div>
 
                             <div class="w-100 d-none d-md-block"></div>
 
-                            <div class="col-12 col-sm-6 col-btn-pedido"><button type="button" class="btn btn-pedido">Hacer pedido</button></div>
+                            <div class="col col-btn-pedido"><button type="button" class="btn btn-pedido">Hacer pedido</button></div>
                             
                         </div>
                     </div>

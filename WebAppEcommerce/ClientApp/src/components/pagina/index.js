@@ -36,8 +36,9 @@ class Pagina extends Component {
     }
     openCar() {
         const btn = document.getElementById('btn-car');
+      
         btn.style.display = 'none';
-        this.props.ver_crear(true);
+        ipthis.props.ver_crear(true);
       
        
     }
