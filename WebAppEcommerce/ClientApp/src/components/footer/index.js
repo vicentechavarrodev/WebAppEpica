@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import './styles.scss';
 import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
+import { Link } from "react-router-dom";
 
 class Footer extends Component {
 
@@ -36,7 +37,7 @@ class Footer extends Component {
                         <h5>Epica Pizzeria Artesanal</h5>
                             <p className="d-block mb-3"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate distinctio velit deleniti earum ullam temporibus! Incidunt cupiditate, consectetur ipsam repellat rem similique assumenda corporis accusantium, soluta, aspernatur ex exercitationem quasi!</p>
                     </div>
-                        <div className="col-lg-4 fo col-sm-6 col-md col-xs-12 border-right">
+                        <div className="col-lg-4 footer-categorias col-sm-6 col-md col-xs-12 border-right">
                             <ul className="list-unstyled text-small">
                                 <h5>Categorias</h5>
                                 {this.props.categorias.map((item) =>
@@ -45,7 +46,10 @@ class Footer extends Component {
                                  )}
                               
                          
-                        </ul>
+                            </ul>
+                            <li className="list-unstyled text-small" id="login">
+                                <Link to="/login" className="nav-link">Login</Link>
+                            </li>
 
                     </div>
                         <div className="col-lg-3 col-sm-6 col-md pl-lg-5 pr-0">
