@@ -3,13 +3,11 @@ import './styles.scss';
 import { connect } from 'react-redux';
 import { alertActions } from '../alerts_message/actions';
 import { withRouter } from "react-router-dom";
-import imageHeader2 from '../../imagenes/pagina/header2.jpg';
 import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
-import { Modal} from 'react-bootstrap';
 
 
-class ProductoModal extends Component {
+class Car_modal extends Component {
 
     constructor(props) {
         super(props);
@@ -144,4 +142,4 @@ const mapDispatchToProps = {
 
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductoModal));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Car_modal));
