@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210331174428_initial9")]
+    partial class initial9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,7 +221,7 @@ namespace Models.Migrations
                     b.Property<int>("IdTipoOpcion")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdTipoSeleccion")
+                    b.Property<int?>("IdTipoSeleccion")
                         .HasColumnType("int");
 
                     b.Property<bool>("MostrarInicio")
@@ -454,9 +456,7 @@ namespace Models.Migrations
 
                     b.HasOne("Models.TipoSelecciones", "TipoSeleccion")
                         .WithMany("ProductoTipoOpciones")
-                        .HasForeignKey("IdTipoSeleccion")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("IdTipoSeleccion");
                 });
 
             modelBuilder.Entity("Models.Productos", b =>

@@ -10,7 +10,10 @@ export function productoReducer(state = initialState.producto_state, action) {
           return {
               ...state, productos: action.productos
           };
-
+      case productoConstants.OBTENER_TIPO_OPCIONES_AGREGADAS:
+          return {
+              ...state, productos_tipo_opciones_agregadas: action.productos_tipo_opciones_agregadas
+          };
       case productoConstants.OBTENER_OPCIONES_PRODUCTO:
           return {
               ...state, opciones_producto: action.opciones_producto
@@ -81,6 +84,11 @@ export function productoReducer(state = initialState.producto_state, action) {
               ...state, opcion_producto_eliminada: action.opcion_producto_eliminada
           };
 
+      case productoConstants.ELIMINAR_TIPO_OPCION_PRODUCTO:
+          return {
+
+              ...state, tipo_opcion_producto_eliminada: action.tipo_opcion_producto_eliminada
+          };
 
       case productoConstants.PRODUCTOS_POR_CATEGORIA:
           return {
@@ -89,10 +97,64 @@ export function productoReducer(state = initialState.producto_state, action) {
           };
 
 
-          
+      case productoConstants.OBTENER_TIPO_OPCIONES_PRODUCTO:
+          return {
 
-          
-     
+              ...state, tipos_opciones_producto: action.tipos_opciones_producto
+          };
+      case productoConstants.MOSTRAR_CREAR_TIPO_OPCION:
+          return {
+
+              ...state, mostrar_agregar_tipo_opcion: action.mostrar_agregar_tipo_opcion
+          };
+      case productoConstants.PRODUCTO_TIPO_OPCION_CREADA:
+          return {
+
+              ...state, producto_tipo_opcion_creada: action.producto_tipo_opcion_creada
+          };
+
+      case productoConstants.CARGAR__EDITAR_TIPO_OPCION_PRODUCTO:
+          return {
+
+              ...state, init_editar_producto_tipo_op: action.init_editar_producto_tipo_op
+          };
+
+      case productoConstants.MOSTRAR_EDITAR_TIPO_OPCION_PRODUCTO:
+          return {
+
+              ...state, mostrar_editar_tipo_opcion: action.mostrar_editar_tipo_opcion
+          };
+      case productoConstants.EDITAR_TIPO_OPCION_PRODUCTO:
+          return {
+
+              ...state, tipo_opcion_producto_actualizada: action.tipo_opcion_producto_actualizada
+          };
+
+
+      case productoConstants.OPCION_SECUNDARIA_CREADA:
+          return {
+
+              ...state, opcion_secundaria_creada: action.opcion_secundaria_creada
+          };
+
+
+      case productoConstants.CARGAR_TIPO_OPCION_SECUNDARIA:
+          return {
+
+              ...state, opcion_secundaria: action.opcion_secundaria
+          };
+
+      case productoConstants.MOSTRAR_CREAR_TIPO_OPCION_SECUNDARIA:
+          return {
+
+              ...state, mostrar_crear_opcion_secundaria: action.mostrar_crear_opcion_secundaria
+          };
+      case productoConstants.OBTENER_TIPO_SELECCIONES:
+          return {
+
+              ...state, tipos_seleccion: action.tipos_seleccion
+          };
+        
       default:
           return state;
   }

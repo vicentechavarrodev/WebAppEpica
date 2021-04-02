@@ -20,7 +20,10 @@ namespace Models
         [Display(Name = "TipoOpcion")]
         [JsonProperty(PropertyName = "IdOpcion")]
         public int IdOpcion { get; set; }
-      
+        [Display(Name = "MuestraSecundario")]
+        [JsonProperty(PropertyName = "MuestraSecundario")]
+        public bool MuestraSecundario { get; set; }
+
         [ForeignKey("IdOpcion")]
         [JsonProperty(PropertyName = "Opcion")]
         public virtual Opciones Opcion { get; set; }
@@ -28,6 +31,10 @@ namespace Models
         [ForeignKey("IdProducto")]
         [JsonProperty(PropertyName = "Producto")]
         public virtual Productos Producto { get; set; }
+
+     
+        [JsonProperty(PropertyName = "ProductoOpcionTipoOpciones")]
+        public virtual ICollection<ProductoOpcionTipoOpciones> ProductoOpcionTipoOpciones { get; set; }
 
     }
 }

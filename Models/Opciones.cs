@@ -29,6 +29,10 @@ namespace Models
         [Required(ErrorMessage = "El dato {0} es necesario")]
         [JsonProperty(PropertyName = "Precio")]
         public decimal Precio { get; set; }
+        [Display(Name = "Activa")]
+        [JsonProperty(PropertyName = "Activa")]
+        public bool Activa { get; set; }
+
         [Display(Name = "TipoOpcion")]
         [JsonProperty(PropertyName = "IdTipoOpcion")]
         public int IdTipoOpcion { get; set; }

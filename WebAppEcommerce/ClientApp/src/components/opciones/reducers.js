@@ -47,7 +47,16 @@ export function opcionesReducer(state = initialState.opciones_state, action) {
             
               ...state, id_opcion_seleccionada: action.id_opcion_seleccionada
           };
-     
+
+      case opcionesConstants.MOSTRAR_OPCIONES:
+          return {
+
+              ...state, mostrar_opciones: action.mostrar_opciones
+          };
+
+
+
+          
       default:
           return state;
   }

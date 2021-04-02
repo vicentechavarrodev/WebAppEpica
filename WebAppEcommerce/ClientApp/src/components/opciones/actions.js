@@ -14,7 +14,8 @@ export const opcionActions = {
     cargar_editar,
     ver_editar,
     editar_opcion,
-    opcion_seleccionada
+    opcion_seleccionada,
+    ver_opciones
     
 
 };
@@ -128,6 +129,12 @@ function ver_crear(mostrar_crear) {
 
     return { type: opcionesConstants.MOSTRAR_CREATE_OPCION, mostrar_crear };
    
+}
+
+function ver_opciones(mostrar_opciones) {
+
+    return { type: opcionesConstants.MOSTRAR_OPCIONES, mostrar_opciones };
+
 }
 
 

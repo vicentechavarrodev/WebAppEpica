@@ -125,7 +125,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .modal-content {
     display: flex;
     justify-content: center;
-    margin: 0px;
+    padding:10px;
+    border:none !important;
+  
 }
 
 .container-footer {
@@ -163,10 +165,16 @@ $shade-color: rgba(0, 0, 0, 0.24);
     background-color:rgba(195, 0, 0, 0.87);
 }
 
-.modal-content {
-    font-size: 20px;
-    width: 550px;
+.option-show {
+    transition: opacity 1s ease-out;
+    opacity: 0;
+    height: 0;
 }
+.option-show.enable {
+    opacity: 1;
+    height: auto;
+}
+
 
 .modal-content .dropdown .dropdown-toggle {
     width: 100%;
@@ -290,9 +298,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
     height: 30px;
     width: 30px;
     position: absolute;
-    content: '🗶';
+    content: ' ';
     display: inline-block;
-    font-size: 20px;
+    font-size: .5rem;
     text-align: center;
     line-height: 30px;
     border-radius: 20px;
@@ -389,7 +397,6 @@ $shade-color: rgba(0, 0, 0, 0.24);
     justify-content: center;
     width: 100%;
     margin: 0px;
-    height: 60px;
     border-top: 1px solid rgba(112, 112, 112, 0.603);
 }
 
@@ -435,9 +442,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
 }
 
 .image-add {
-    width: 150px;
-    border: 2px solid black;
-    border-radius: 10px;
+    width: 100%;
+    border-radius: 5px;
 }
 .menu-item {
     padding: 0 40px;
@@ -498,6 +504,10 @@ $shade-color: rgba(0, 0, 0, 0.24);
 
     .carousel-image {
         font-size: 1em;
+    }
+
+    .row-footer{
+        height:auto;
     }
 
     .footer-section {

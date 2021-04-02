@@ -36,7 +36,7 @@ class App extends Component {
 
         return (
             //Contenedor dinamico de las paginas, sus hijos son todas las paginas del router app
-            <div className="wrapper">
+            <div >
 
                 {this.props.children}
                 <SweetAlert

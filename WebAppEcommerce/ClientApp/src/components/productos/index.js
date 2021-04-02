@@ -117,7 +117,7 @@ class Productos extends Component {
     gridTemplate(props) {
         
         return (
-            <button type="submit" ref={this.details} id={props.IdProducto} onClick={this.showDetails} className="btn btn-default-pz btn-3d-style  btn-block"> <PostAddIcon /> </button>
+            <button type="submit" ref={this.details} id={props.IdProducto} onClick={this.showDetails} className="btn btn-default btn-3d-style "> <PostAddIcon /> </button>
            
         );
 
@@ -180,7 +180,7 @@ class Productos extends Component {
                             <ColumnDirective field='Nombre' width='200' headerText='Nombre' />
                             <ColumnDirective field='Precio' width='200' headerText='Precio' />
                             <ColumnDirective field='Categorias.Nombre' width='200' headerText='Categoria' />
-                            <ColumnDirective width='70' template={this.template} textAlign='Center' />
+                            <ColumnDirective width='70' template={this.template}  />
                     </ColumnsDirective>
                     <Inject services={[Search, Toolbar, Group]} />
                 </GridComponent>

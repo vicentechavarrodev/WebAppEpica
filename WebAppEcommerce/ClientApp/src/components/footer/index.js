@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import './styles.scss';
+import { Link } from "react-router-dom";
 
 class Footer extends Component {
     render() {
@@ -21,7 +22,11 @@ class Footer extends Component {
                                 <li><a className="link-secondary" href="#">Team feature</a></li>
                                 <li><a className="link-secondary" href="#">Stuff for developers</a></li>
                                 <li><a className="link-secondary" href="#">Another one</a></li>
-                                <li><a className="link-secondary" href="#">Last time</a></li>
+                                <li>
+                                    <Link to="/login"  >
+                                        Login
+                                    </Link>
+                                </li>
                         </ul>
 
                     </div>

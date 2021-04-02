@@ -19,17 +19,16 @@ class VentanaPrincipal extends Component {
 
     render() {
         return (
-            <div className="wrapper bg-light">
-              <Header visiblePagina="false" />
-              <MenuLateral />
+             <div className="wrapper bg-light">
+                <Header iconMenuVisible="visible" />
+                <MenuLateral /> 
                 <div id="content" >
                     <div className="jumbotron container-fluid table-responsive">
                         {this.props.children}
                     </div>
-               
+                 
                 </div>
             </div>
-
         );
     }
 }

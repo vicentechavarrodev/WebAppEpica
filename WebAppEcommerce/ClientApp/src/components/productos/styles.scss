@@ -15,3 +15,23 @@
 .img-prop {
     border-radius: 50%;
 }
+
+
+.container-scroll {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.scroll-content {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+
+.list-group-item{
+    padding:5px;
+}

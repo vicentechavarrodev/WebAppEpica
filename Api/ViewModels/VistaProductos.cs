@@ -14,12 +14,18 @@ namespace Api.ViewModels
         [JsonProperty(PropertyName = "Categoria")]
         public override Categorias Categoria { get; set; }
 
+   
 
         [JsonProperty(PropertyName = "Categorias")]
         public List<Categorias> Categorias { get; set; }
 
 
+        [JsonProperty(PropertyName = "VistaProductoOpcionesGroup")]
+        public List<IGrouping <int, VistaProductoOpciones>> VistaProductoOpcionesGroup { get; set; }
+
         [JsonProperty(PropertyName = "VistaProductoOpciones")]
-        public List<ProductoOpciones> VistaProductoOpciones { get; set; }
+        public List<VistaProductoOpciones> VistaProductoOpciones { get; set; }
+
+        
     }
 }
