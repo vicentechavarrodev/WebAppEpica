@@ -34,10 +34,9 @@
     border-radius: 5px;
     margin-top: 10px;
 }
-.fo h5, li {
+.footer-categorias h5, li {
     display: flex;
     justify-content: center;
-
 }
 
 .col-copy{
@@ -61,21 +60,21 @@
 
 
 @media (max-width:574px) {
-    .fo {
+    .footer-categorias {
         padding-left: 30px;
     }
     .list-unstyled {
         margin-bottom: 13px;
         width: 100%;
     }
-    .fo h5,li {
+    .footer-categorias h5, li {
         display: flex;
         justify-content: center;
     }
-    .fo li {
+    .footer-categorias li {
         border-bottom: 1px solid white;
         padding-bottom: 10px;
-        cursor:pointer;
+        cursor: pointer;
     }
     .list-unstyled .btn-link {
         display: flex;
