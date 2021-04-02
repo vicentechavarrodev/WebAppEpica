@@ -103,9 +103,9 @@ class Pagina extends Component {
                         </div>
                       
                     </div>
-                    <div className="row p-4 nav-icon rounded">
+                    <div className="row p-lg-4  p-sm-0 ">
                         <div className="col-12 col-md-6 col-lg-4 mb-4">
-                            <div className="card shadow-sm">
+                            <div className="card ">
                                 <img className="card-img-top" src={imageHeader1} alt="Foto de Pizza 1" />
                                 <div className="card-body">
                                     <h5 className="card-title">Pizza 1</h5>
@@ -114,7 +114,7 @@ class Pagina extends Component {
                              </div>
                             </div>
                         <div className="col-12 col-md-6 col-lg-4 mb-4">
-                            <div className="card shadow-sm">
+                            <div className="card ">
                                 <img className="card-img-top" src={imageHeader2} alt="Foto de Pizza 2"/>
                                 <div className="card-body">
                                     <h5 className="card-title">Pizza 2</h5>
@@ -123,7 +123,7 @@ class Pagina extends Component {
                                    </div>
                                 </div>
                         <div className="col-12 col-md-6 col-lg-4 mb-4">
-                            <div className="card shadow-sm">
+                            <div className="card ">
                                 <img className="card-img-top" src={imageHeader3} alt="Foto de Pizza 3"/>
                                 <div className="card-body">
                                     <h5 className="card-title">Pizza 3</h5>

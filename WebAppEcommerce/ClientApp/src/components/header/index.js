@@ -63,7 +63,7 @@ class Header extends Component {
                              </button>
                             </div>
                             :
-                            <button type="button" id="sidebarCollapse" onClick={this.MostrarMenu} value="collapse" className="btn btn-default-pz ">
+                            <button type="button" id="sidebarCollapse" onClick={this.MostrarMenu} value="collapse" className="btn btn-default  ">
                                 <MenuIcon id="btncollapse" visibility={this.props.iconMenuVisible} />
                             </button>
                    }
@@ -83,9 +83,7 @@ class Header extends Component {
                               
                             </ul>
                              :
-                            <button type="button" onClick={this.AbrirLogin} value="collapse" className="btn btn-default-pz ">
-                                <PersonIcon id="btncollapse" />
-                            </button>
+                           ""
                             }
                    
                 

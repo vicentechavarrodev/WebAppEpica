@@ -33,7 +33,7 @@ import { Row, Col } from 'react-bootstrap';
 
      componentDidMount() {
          loader.hide();
-        // this.props.obtener_categorias();
+     
        
     }
 
@@ -127,7 +127,7 @@ import { Row, Col } from 'react-bootstrap';
         
        
         return (
-            <nav id="sidebar" className={menuLateralVisible} >
+            <div id="sidebar" className={menuLateralVisible} >
                 <div className="menu-lateral">
                     <ul className="list-unstyled components">
                         <li onClick={this.ItemClick} id='itemMenu1' >
@@ -155,11 +155,19 @@ import { Row, Col } from 'react-bootstrap';
                             </Link>
                         </li>
 
-                        <li onClick={this.ItemClick} id='itemMenu3' >
-                            <Link to="/opciones" id='itemMenu3' >
+                        <li onClick={this.ItemClick} id='itemMenu4' >
+                            <Link to="/productos" id='itemMenu4' >
                                 <Row>
-                                    <Col xs={3} md={3} id='itemMenu3' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu3' aria-hidden="true"></i></Col>
-                                    <Col xs={9} md={9} className="text-left" id='itemMenu3'>Opciones</Col>
+                                    <Col xs={3} md={3} id='itemMenu4' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu4' aria-hidden="true"></i></Col>
+                                    <Col xs={9} md={9} className="text-left" id='itemMenu4'>Productos</Col>
+                                </Row>
+                            </Link>
+                        </li>
+                        <li onClick={this.ItemClick} id='itemMenu5' >
+                            <Link to="/pedidos" id='itemMenu5' >
+                                <Row>
+                                    <Col xs={3} md={3} id='itemMenu5' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu5' aria-hidden="true"></i></Col>
+                                    <Col xs={9} md={9} className="text-left" id='itemMenu5'>Pedidos</Col>
                                 </Row>
                             </Link>
                         </li>
@@ -177,7 +185,7 @@ import { Row, Col } from 'react-bootstrap';
                         
                     </li>
                 </ul>
-            </nav>
+            </div>
              
             
         );

@@ -9,7 +9,8 @@ const opciones_initial_state = {
         mostrar_editar: false,
         opcion_creada: false,
         opcion_actualizada: false,
-        id_opcion_seleccionada: 0
+        id_opcion_seleccionada: 0,
+        mostrar_opciones:''
     }
 };
 

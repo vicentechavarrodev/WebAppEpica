@@ -6,14 +6,22 @@ import { loader } from '../helpers/loader';
 import { alertActions } from '../alerts_message/actions';
 import { ColumnDirective, ColumnsDirective, GridComponent, Toolbar, Inject, Search, Group } from '@syncfusion/ej2-react-grids';
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
-import AddIcon from '@material-ui/icons/AddSharp';
 import SeleccionarOpcion from './ventanas_emergentes/seleccionar_opcion';
+import AgregarOpcion from './ventanas_emergentes/agregar_tipo_opcion';
+import EditarTipoOpcion from './ventanas_emergentes/editar_tipo_opcion';
+import CrearOpcionSecundaria from './ventanas_emergentes/crear_opcion_secundaria';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import EditIcon from '@material-ui/icons/Edit';
+import { Modal, Form, Col, Row, Container} from 'react-bootstrap';
 
 class DetalleProducto extends Component {
 
     grid = React.createRef();
+    details = React.createRef();
+    detailsOp = React.createRef();
 
     constructor(props) {
         super(props);
@@ -29,17 +37,22 @@ class DetalleProducto extends Component {
 
         };
 
+        this.state = {
+            IdProductoTipoOpcion: 0,
+            IdProductoOpcion:0
+        };
+
 
 
         this.toolbarOptions = ['Search'];
-        this.rowSelected = this.rowSelected.bind(this);
-        this.rowDeselected = this.rowDeselected.bind(this);
         this.filterTemplate = this.filterTemplate.bind(this);
         this.MenuOptionClick = this.MenuOptionClick.bind(this);
-
-
-
-
+        this.templateTipOpcion = this.gridTemplateTipoOpcion.bind(this);  
+        this.ItemTipoOpcion = this.ItemTipoOpcion.bind(this);
+        this.ItemOpcion = this.ItemOpcion.bind(this);
+        this.templateOpcion = this.gridTemplateOpcion.bind(this);  
+        this.templateSecundaria = this.gridTemplateSecundaria.bind(this);   
+        
     }
 
 
@@ -47,7 +60,8 @@ class DetalleProducto extends Component {
     componentDidMount() {
         loader.hide();
       
-        this.props.obtener_opciones_producto(this.props.location.IdProducto);
+        this.props.obtener_opciones_producto(this.props.location.IdProducto, false, this);
+        this.props.obtener_tipo_opciones_producto_agregadas(this.props.location.IdProducto,  this);
 
     }
 
@@ -65,7 +79,12 @@ class DetalleProducto extends Component {
             this.props.eliminar_opcion_producto(this.props.id_opcion_producto_seleccionado, this.props.location.IdProducto, this);
         } else if (e.currentTarget.id === "btnAtras") {
             this.props.history.goBack();
-        } 
+        } else if (e.currentTarget.id === "btnAgregar") {
+            this.props.mostrar_agregar(true);
+            
+        }
+
+        
 
 
 
@@ -76,27 +95,115 @@ class DetalleProducto extends Component {
         this.grid.current.clearFiltering();
     }
 
-    rowSelected(e) {
-        if (this.grid) {
-            let opcion = this.grid.current.getSelectedRecords();
-            this.props.opcion_producto_seleccionado(opcion[0].IdProductoOpciones);
-        }
-    }
 
-    rowDeselected(e) {
-        if (this.grid) {
-            this.props.opcion_producto_seleccionado(0);
-        }
-    }
+
+   
+   
 
     filterTemplate() {
 
         return (<ButtonComponent onClick={this.clearFilter.bind(this)} ></ButtonComponent>);
     }
 
+    gridTemplateSecundaria(props) {
+
+
+     
+     
+        
+        return (
+            <Container fluid="md" >
+                <Row>
+                    {
+                       
+                        props.MuestraSecundario ?
+                            <p>{props.ProductoOpcionTipoOpciones[0].ProductoTipoOpcion.TipoOpcion.Nombre} </p>
+                            :""
+                    }
+                </Row>
+            </Container>
+
+        );
+
+    }
+    
+
+    gridTemplateOpcion(props) {
+       
+        return (
+            <Container fluid="md" >
+                <Row>
+                    <Col className="mt-1">
+                        <button id={props.IdProductoOpciones} ref={this.detailsOp} onClick={this.ItemOpcion} name="btnEliminar" className="btn btn-default btn-3d-style  "> <DeleteIcon /> </button>
+                    </Col>
+                    <Col className="mt-1">
+                        <button id={props.IdProductoOpciones} ref={this.detailsOp} onClick={this.ItemOpcion} name="btnEditar" className="btn btn-default btn-3d-style  "> <EditIcon /> </button>
+                    </Col>
+                </Row>
+            </Container>
+
+        );
+
+    }
+
+
+    gridTemplateTipoOpcion(props) {
+      
+        return (
+            <Container fluid="md" >
+            <Row>
+                 <Col className="mt-1">
+                        <button  id={props.IdProductoTipoOpcion} ref={this.details} onClick={this.ItemTipoOpcion} name="btnEliminar" className="btn btn-default btn-3d-style  "> <DeleteIcon /> </button>
+                </Col>
+                    <Col className="mt-1">
+                        <button  id={props.IdProductoTipoOpcion} ref={this.details} onClick={this.ItemTipoOpcion} name="btnEditar" className="btn btn-default btn-3d-style  "> <EditIcon /> </button>
+                </Col>
+          </Row>
+            </Container>
+
+        );
+
+    }
+
+    ItemTipoOpcion(e) {
+
+
+        console.log(e.currentTarget.id);
+        if (e.currentTarget.name === "btnEditar") {
+
+            this.props.ver_editar_tipo_opcion(true);
+            this.setState({ IdProductoTipoOpcion: e.currentTarget.id})
+
+        } else if (e.currentTarget.name === "btnEliminar") {
+            this.props.eliminar_tipo_opcion_producto(e.currentTarget.id, this.props.location.IdProducto, this);
+        }
+
+      
+
+
+
+    }
+
+    ItemOpcion(e) {
+
+        console.log(e.currentTarget.id)
+      
+        if (e.currentTarget.name === "btnEditar") {
+            this.setState({ IdProductoOpcion: e.currentTarget.id })
+            this.props.ver_crear_opcion_secundaria(true);
+           
+
+        } else if (e.currentTarget.name === "btnEliminar") {
+          
+            this.props.eliminar_opcion_producto(e.currentTarget.id, this.props.location.IdProducto, this);
+           
+        }
+
+    }
+
 
     render() {
-        const { opciones_producto, mostrar_seleccion_opcion} = this.props;
+        const { opciones_producto, mostrar_seleccion_opcion, mostrar_agregar_tipo_opcion, mostrar_editar_tipo_opcion, mostrar_crear_opcion_secundaria} = this.props;
 
 
         return (
@@ -113,18 +220,22 @@ class DetalleProducto extends Component {
 
                 </nav>
 
-                <div className='wrap-form table-responsive container-fluid'>
+                <div className='wrap-form '>
                     <img Id="image-preview" src={`${process.env.REACT_APP_API_URL}app-images/${opciones_producto.UrlImagen}`} alt="Imagen" />
                     <div className="row col-12" >
                         <div className=" col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center align-items-center">
-                            <h3>Opciones de producto</h3>
+                            
                         </div>
                       
                         <div className=" col-sm-12 mb-2 col-md-6 col-lg-6  d-flex justify-content-end" >
-
-                            <button id="btnNuevo" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
+                            <button id="btnAgregar" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz ml-1">
                                 <div>
-                                    <AddIcon />
+                                    <FormatAlignCenterIcon />
+                                </div>
+                            </button>
+                            <button id="btnNuevo" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz ml-1">
+                                <div>
+                                    <FormatListBulletedIcon />
                                 </div>
                             </button>
                             <button id="btnEliminar" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz ml-1">
@@ -139,14 +250,43 @@ class DetalleProducto extends Component {
                             </button>
                         </div>
                     </div>
-                    <GridComponent dataSource={opciones_producto.VistaProductoOpciones}  ref={this.grid} allowGrouping={true} groupSettings={this.groupOptions} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
-                        <ColumnsDirective>
-                            <ColumnDirective field='Opcion.NombreAlias' width='200' headerText='Nombre' />
-                            <ColumnDirective field='Opcion.TipoOpcion.Nombre' width='200' headerText='Tipo' />
-                            <ColumnDirective field='Opcion.Precio' width='200' headerText='Precio' />
-                        </ColumnsDirective>
-                        <Inject services={[Search, Toolbar, Group]} />
-                    </GridComponent>
+
+                    <Form.Row sm={10} className="p-1 align-items-center justify-content-center font-weight-bold">
+                        <h4 className="font-weight-bold" >Opciones</h4>
+                    </Form.Row>
+                    <Form.Row sm={10}>
+
+                        <div className=' table-responsive container-fluid'>
+                                <GridComponent dataSource={this.props.productos_tipo_opciones_agregadas}     >
+                                    <ColumnsDirective>
+                                        <ColumnDirective field='TipoOpcion.Nombre' width='200' headerText='Tipo' />
+                                        <ColumnDirective field='Encabezado' width='200' headerText='Encabezado' />
+                                        <ColumnDirective field='MostrarInicio' width='200' headerText='MostrarInicio' />
+                                        <ColumnDirective width='80' template={this.templateTipOpcion}  />
+                                    </ColumnsDirective>
+                                    <Inject/>
+                            </GridComponent>
+                        </div>
+                    </Form.Row>
+                    <Form.Row sm={10} className="p-1 m-2 align-items-center justify-content-center font-weight-bold">
+                        <h4 className="font-weight-bold">Items por opción</h4>
+                    </Form.Row>
+                    <Form.Row sm={10}>
+                        <div className=' table-responsive container-fluid'>
+                        <GridComponent dataSource={opciones_producto.VistaProductoOpciones} ref={this.grid} allowGrouping={true} groupSettings={this.groupOptions} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
+                            <ColumnsDirective>
+                                <ColumnDirective field='Opcion.NombreAlias' width='200' headerText='Nombre' />
+                                <ColumnDirective field='Opcion.TipoOpcion.Nombre' width='200' headerText='Tipo' />
+                                    <ColumnDirective field='Opcion.Precio' width='200' headerText='Precio' />
+                                    <ColumnDirective width='100' template={this.templateSecundaria} headerText='Muestra' />
+                                    <ColumnDirective width='80' template={this.templateOpcion} />
+                            </ColumnsDirective>
+                            <Inject services={[Search, Toolbar, Group]} />
+                            </GridComponent>
+                        </div>
+                    </Form.Row>
+
+                   
                 </div>
 
                 {mostrar_seleccion_opcion ?
@@ -157,7 +297,55 @@ class DetalleProducto extends Component {
 
 
                 }
+                {mostrar_agregar_tipo_opcion ?
+                    <AgregarOpcion
+                        IdProducto = { this.props.location.IdProducto}
+                        show={mostrar_agregar_tipo_opcion}
+                        onHide={() => this.props.mostrar_agregar(false)}
+                    /> : " "
+
+
+                }
+
+                {mostrar_editar_tipo_opcion   ?
+                    <EditarTipoOpcion
+                        IdProductoTipoOpcion={this.state.IdProductoTipoOpcion}
+                        show={mostrar_editar_tipo_opcion}
+                        onHide={() => this.props.ver_editar_tipo_opcion(false)}
+                    /> : " "
+
+
+                }
+
+                {this.props.mostrar_crear_opcion_secundaria ?
+                    <CrearOpcionSecundaria
+                        IdProductoOpcion={this.state.IdProductoOpcion}
+                        IdProducto={this.props.location.IdProducto}
+                        show={mostrar_crear_opcion_secundaria}
+                        onHide={() => this.props.ver_crear_opcion_secundaria(false)}
+                    /> : " "
+
+
+                }
+
+                {mostrar_agregar_tipo_opcion ?
+                    <AgregarOpcion
+                        IdProducto={this.props.location.IdProducto}
+                        show={mostrar_agregar_tipo_opcion}
+                        onHide={() => this.props.mostrar_agregar(false)}
+                    /> : " "
+
+
+                }
+
                
+
+          
+
+
+                
+
+                
             </div>
         );
     }
@@ -165,8 +353,8 @@ class DetalleProducto extends Component {
 
 
 function mapStateToProps(state) {
-    const { opciones_producto, id_producto_seleccionado, id_opcion_producto_seleccionado, mostrar_seleccion_opcion, opcion_producto_eliminada} = state.productoReducer;
-    return { opciones_producto, id_producto_seleccionado, id_opcion_producto_seleccionado, mostrar_seleccion_opcion, opcion_producto_eliminada};
+    const { opciones_producto, id_producto_seleccionado, id_opcion_producto_seleccionado, mostrar_seleccion_opcion, opcion_producto_eliminada, mostrar_agregar_tipo_opcion, productos_tipo_opciones_agregadas, mostrar_editar_tipo_opcion, mostrar_crear_opcion_secundaria} = state.productoReducer;
+    return { opciones_producto, id_producto_seleccionado, id_opcion_producto_seleccionado, mostrar_seleccion_opcion, opcion_producto_eliminada, mostrar_agregar_tipo_opcion, productos_tipo_opciones_agregadas, mostrar_editar_tipo_opcion, mostrar_crear_opcion_secundaria};
 }
 
 
@@ -175,11 +363,15 @@ const mapDispatchToProps = {
     obtener_opciones_producto: productoActions.obtener_opciones_producto,
     opcion_producto_seleccionado: productoActions.opcion_producto_seleccionado,
     ver_seleccionar_opcion: productoActions.ver_seleccionar_opcion,
+    mostrar_agregar: productoActions.mostrar_agregar,
     eliminar_opcion_producto: productoActions.eliminar_opcion_producto,
-
-
+    obtener_tipo_opciones_producto_agregadas: productoActions.obtener_tipo_opciones_producto_agregadas,
+    eliminar_tipo_opcion_producto: productoActions.eliminar_tipo_opcion_producto,
+    ver_editar_tipo_opcion: productoActions.ver_editar_tipo_opcion,
+    ver_crear_opcion_secundaria: productoActions.ver_crear_opcion_secundaria
 
     
+
 
 }
 

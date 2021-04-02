@@ -68,7 +68,7 @@ $primary-color: #b3191f;
     color: white;
 }
 .container-nav {
-    padding-left: 100px;
+    padding-left: 10px;
 }
 .navbar-light .navbar-toggler {
     border:none;
@@ -145,6 +145,10 @@ $primary-color: #b3191f;
 
     .navbar-brand img {
         width: 50px;
+    }
+
+    html {
+        font-size: 1.4rem;
     }
 }
 

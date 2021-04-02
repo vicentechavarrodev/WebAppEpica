@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210327212703_initial7")]
+    partial class initial7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,13 +215,13 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("IdOpcion")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdTipoOpcion")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdTipoSeleccion")
+                    b.Property<int?>("IdTipoOpcion")
                         .HasColumnType("int");
 
                     b.Property<bool>("MostrarInicio")
@@ -230,8 +232,6 @@ namespace Models.Migrations
                     b.HasIndex("IdProducto");
 
                     b.HasIndex("IdTipoOpcion");
-
-                    b.HasIndex("IdTipoSeleccion");
 
                     b.ToTable("ProductoTipoOpciones");
                 });
@@ -312,23 +312,6 @@ namespace Models.Migrations
                     b.HasKey("IdTipoOpcion");
 
                     b.ToTable("TipoOpciones");
-                });
-
-            modelBuilder.Entity("Models.TipoSelecciones", b =>
-                {
-                    b.Property<int>("IdTipoSeleccion")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("IdTipoSeleccion");
-
-                    b.ToTable("TipoSelecciones");
                 });
 
             modelBuilder.Entity("Models.Usuarios", b =>
@@ -448,15 +431,7 @@ namespace Models.Migrations
 
                     b.HasOne("Models.TipoOpciones", "TipoOpcion")
                         .WithMany("ProductoTipoOpciones")
-                        .HasForeignKey("IdTipoOpcion")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Models.TipoSelecciones", "TipoSeleccion")
-                        .WithMany("ProductoTipoOpciones")
-                        .HasForeignKey("IdTipoSeleccion")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("IdTipoOpcion");
                 });
 
             modelBuilder.Entity("Models.Productos", b =>

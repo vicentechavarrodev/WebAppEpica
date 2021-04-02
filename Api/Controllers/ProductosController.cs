@@ -29,16 +29,83 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        [Route("ProductoOpciones/{Id}")]
-        public async Task<Response> ProductoOpciones(int Id)
+        [Route("TipoSelecciones")]
+        public async Task<Response> TipoSelecciones()
         {
             try
             {
+                var tipoSelecciones = await db.TipoSelecciones.ToListAsync();
+
+
+                return new Response { IsSuccess = true, Message = " ", Result = tipoSelecciones };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+
+        }
+
+        [HttpGet]
+        [Route("ProductoOpciones/{Id}/{Agrupado}")]
+        public async Task<Response> ProductoOpciones(int Id,bool Agrupado)
+        {
+            try
+            {
+               
                 var producto = await db.Productos.FindAsync(Id);
                 var vista = ToVistaProducto(producto);
-                var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
-                vista.VistaProductoOpciones = productosOpciones;
+                var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(pot => pot.ProductoOpcionTipoOpciones).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+                if (Agrupado)
+                {
 
+                    var grouping = (from p in productosOpciones
+                                    select new VistaProductoOpciones
+                                    {
+                                        IdProductoOpciones = p.IdProductoOpciones,
+                                        IdOpcion = p.IdOpcion,
+                                        Opcion = p.Opcion,
+                                        IdProducto = p.IdProducto,
+                                        MuestraSecundario = p.MuestraSecundario,
+                                        ProductoOpcionTipoOpciones = (from o in  p.ProductoOpcionTipoOpciones  
+                                                                       select new VistaProductoOpcionTipoOpciones
+                                                                       {
+                                                                           IdProductoOpciones= o.IdProductoOpciones,
+                                                                           IdProductoTipoOpcion= o.IdProductoTipoOpcion,
+                                                                           ProductoTipoOpcion = db.ProductoTipoOpciones.Include(p => p.TipoOpcion).First(p =>p.IdProductoTipoOpcion== o.IdProductoTipoOpcion)
+                                                                       }
+                                                                      
+                                                                      ).ToList()
+                                    }).ToList().GroupBy(x => x.Opcion.IdTipoOpcion);
+
+
+
+
+                    vista.VistaProductoOpcionesGroup = grouping.ToList();
+                }
+                else
+                {
+                    vista.VistaProductoOpciones = (from p in productosOpciones
+                                                   select new VistaProductoOpciones
+                                                   {
+                                                       IdProductoOpciones = p.IdProductoOpciones,
+                                                       IdOpcion = p.IdOpcion,
+                                                       Opcion = p.Opcion,
+                                                       IdProducto = p.IdProducto,
+                                                       MuestraSecundario = p.MuestraSecundario,
+                                                       ProductoOpcionTipoOpciones = (from o in p.ProductoOpcionTipoOpciones
+                                                                                     select new VistaProductoOpcionTipoOpciones
+                                                                                     {
+                                                                                         IdProductoOpciones = o.IdProductoOpciones,
+                                                                                         IdProductoTipoOpcion = o.IdProductoTipoOpcion,
+                                                                                         ProductoTipoOpcion = db.ProductoTipoOpciones.Include(p => p.TipoOpcion).First(p => p.IdProductoTipoOpcion == o.IdProductoTipoOpcion)
+                                                                                     }
+
+                                                                                     ).ToList()
+                                                   }).ToList();
+                }
                 return new Response { IsSuccess = true, Message = " ", Result = vista };
             }
             catch (Exception ex)
@@ -124,6 +191,119 @@ namespace Api.Controllers
            
         }
 
+ 
+
+
+        [HttpPost]
+        [Route("CrearProductoTipoOpcion")]
+        public async Task<Response> CrearProductoTipoOpcion([Bind("Encabezado,IdProducto,IdTipoOpcion,MostrarInicio")] ProductoTipoOpciones productTipoOpcion)
+        {
+
+            try
+            {
+                db.Add(productTipoOpcion);
+                await db.SaveChangesAsync();
+                return new Response { IsSuccess = true, Message = "Agregado  correctamente", Result = productTipoOpcion };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+        }
+
+        [HttpGet]
+        [Route("CrearOpcionSecundaria/{id}")]
+        public async Task<Response> CrearOpcionSecundaria(int id)
+        {
+            try
+            {
+                var opcion = await db.ProductoOpciones.Include(p => p.Opcion).Include(p => p.ProductoOpcionTipoOpciones).FirstAsync(p => p.IdProductoOpciones == id);
+
+                var tipoOpcionesProducto = await db.ProductoTipoOpciones.Where(p => p.IdTipoOpcion != opcion.Opcion.IdTipoOpcion).Include(p => p.TipoOpcion).OrderBy(u => u).ToListAsync();
+
+            
+
+             
+              
+                var opcionSecundaria = new VistaOpcionSecundaria();
+                 if ( opcion.ProductoOpcionTipoOpciones.Count > 0)
+                {
+                    opcionSecundaria.IdProductoOpciones = opcion.ProductoOpcionTipoOpciones.First().IdProductoOpciones;
+                    opcionSecundaria.IdProductoTipoOpcion = opcion.ProductoOpcionTipoOpciones.First().IdProductoTipoOpcion;
+
+                }
+
+                opcionSecundaria.ProductoTipoOpciones = tipoOpcionesProducto;
+                opcionSecundaria.MuestraSecundario = opcion.MuestraSecundario;
+
+                return new Response { IsSuccess = true, Message = string.Empty, Result = opcionSecundaria };
+            }
+            catch (Exception ex)
+            {
+                return new Response { IsSuccess = false, Message = ex.InnerException.Message, Result = new VistaProductos { Categorias = null } };
+            }
+
+        }
+
+        [HttpPost]
+        [Route("CrearOpcionSecundaria")]
+        public async Task<Response> CrearOpcionSecundaria(VistaOpcionSecundaria vista)
+        {
+
+
+            using (var transacction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var opcionSecundaria = await db.ProductoOpcionTipoOpciones.Where(po => po.IdProductoOpciones== vista.IdProductoOpciones).ToListAsync();
+                    var productoOpcion = await db.ProductoOpciones.FindAsync(vista.IdProductoOpciones);
+
+
+                    if (vista.MuestraSecundario )
+                    {
+
+                        if (opcionSecundaria.Count > 0 )
+                        {
+                            opcionSecundaria.First().IdProductoTipoOpcion = vista.IdProductoTipoOpcion;
+                            db.Update(opcionSecundaria.First());
+                        }
+                        else
+                        {
+                            db.Add(new ProductoOpcionTipoOpciones { 
+                              IdProductoOpciones= vista.IdProductoOpciones,
+                              IdProductoTipoOpcion= vista.IdProductoTipoOpcion
+                            });
+                        }
+                      
+                    }
+                    else
+                    {
+                        if(opcionSecundaria != null)
+                        {
+                            db.Remove(opcionSecundaria.First());
+                        }
+                    }
+
+
+                    productoOpcion.MuestraSecundario = vista.MuestraSecundario;
+                    db.Update(productoOpcion);
+                    await db.SaveChangesAsync();
+                    transacction.Commit();
+                    return new Response { IsSuccess = true, Message = "Agregada correctamente", Result = productoOpcion };
+
+
+                }
+                catch (Exception ex)
+                {
+                    transacction.Rollback();
+                    return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+                }
+            }
+        }
+
+     
         [HttpGet]
         [Route("Crear")]
         public async Task<Response> Crear()
@@ -140,8 +320,6 @@ namespace Api.Controllers
             }
 
         }
-
-
 
         [HttpPost, DisableRequestSizeLimit]
         [Route("Crear")]
@@ -294,6 +472,44 @@ namespace Api.Controllers
         }
 
 
+        [HttpGet]
+        [Route("EditarTipoOpcionProducto/{id}")]
+        public async Task<Response> EditarTipoOpcionProducto(int? id)
+        {
+            if (id == null)
+            {
+                return new Response { IsSuccess = false, Message = "Debes enviar un id", Result = null };
+            }
+
+            var tipoOpcionesProducto = await db.ProductoTipoOpciones.FindAsync(id);
+            var tipoOpciones =  db.TipoOpciones.ToList();
+            var vista = ToVistaTipoOpcionProducto(tipoOpcionesProducto);
+            vista.TipoOpciones = tipoOpciones;
+            return new Response { IsSuccess = true, Message = "", Result = vista };
+        }
+
+        [HttpPost]
+        [Route("EditarTipoOpcionProducto")]
+        public async Task<Response> EditarTipoOpcionProducto(VistaTipoOpcionProducto productoTipoOpciones)
+        {
+          
+            try
+            {
+                db.Update(productoTipoOpciones);
+                await db.SaveChangesAsync();
+                return new Response { IsSuccess = true, Message = "Opcion actualizada correctamente", Result = productoTipoOpciones };
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                
+                    return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+               
+            }
+
+        }
+
+
+
         [HttpPost, ActionName("Eliminar")]
         [Route("Eliminar/{id}")]
         public async Task<Response> Eliminar(int id)
@@ -303,7 +519,7 @@ namespace Api.Controllers
                 var producto = await db.Productos.FindAsync(id);
                 db.Productos.Remove(producto);
                 await db.SaveChangesAsync();
-                return new Response { IsSuccess = true, Message = "Producto eliminado correctamente", Result = null };
+                return new Response { IsSuccess = true, Message = "Producto eliminado correctamente", Result = producto };
             }
             catch (Exception ex)
             {
@@ -318,13 +534,76 @@ namespace Api.Controllers
         {
             try
             {
-                var productoOpcion = await db.ProductoOpciones.FindAsync(id);
-                db.ProductoOpciones.Remove(productoOpcion);
-                await db.SaveChangesAsync();
-                return new Response { IsSuccess = true, Message = "Producto eliminado correctamente de la opción", Result = null };
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    var productoOpcion = await  db.ProductoOpciones.Include( p=> p.ProductoOpcionTipoOpciones).FirstAsync(p => p.IdProductoOpciones == id);
+                    if (productoOpcion.ProductoOpcionTipoOpciones.Count > 0)
+                    {
+                        
+                        db.ProductoOpcionTipoOpciones.Remove(productoOpcion.ProductoOpcionTipoOpciones.First());
+                    }
+
+                    db.ProductoOpciones.Remove(productoOpcion);
+                    await db.SaveChangesAsync();
+                    transaction.Commit();
+                    return new Response { IsSuccess = true, Message = "Opción eliminada correctamente del producto", Result = productoOpcion };
+                }
+
+              
             }
             catch (Exception ex)
             {
+                
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+
+            }
+        }
+
+        [HttpPost, ActionName("EliminarProductoTipoOpcion")]
+        [Route("EliminarProductoTipoOpcion/{id}")]
+        public async Task<Response> EliminarProductoTipoOpcion(int id)
+        {
+            try
+            {
+
+                using (var transaction = db.Database.BeginTransaction())
+                {
+
+                    var ProductoTipoOpcion = await db.ProductoTipoOpciones.FindAsync(id);
+
+                    var opcionesProducto =  db.ProductoOpciones.Include(p => p.ProductoOpcionTipoOpciones).Where(pt => pt.Opcion.IdTipoOpcion == ProductoTipoOpcion.IdTipoOpcion).ToList();
+                   
+
+                    if(opcionesProducto.Count > 0)
+                    {
+                        foreach (var item in opcionesProducto)
+                        {
+                          
+                            if(item.ProductoOpcionTipoOpciones.Count > 0)
+                            {
+                                db.ProductoOpcionTipoOpciones.Remove(item.ProductoOpcionTipoOpciones.First());
+                                await db.SaveChangesAsync();
+                            }
+
+                            db.ProductoOpciones.Remove(item);
+                            await db.SaveChangesAsync();
+                        }
+                    }
+
+                    db.ProductoTipoOpciones.Remove(ProductoTipoOpcion);
+                    await db.SaveChangesAsync();
+                    transaction.Commit();
+                    return new Response { IsSuccess = true, Message = "Tipo de Opción eliminada correctamente del producto", Result = ProductoTipoOpcion };
+                 
+                }
+
+
+               
+
+            }
+            catch (Exception ex)
+            {
+
                 return new Response { IsSuccess = false, Message = ex.Message, Result = null };
 
             }
@@ -346,6 +625,20 @@ namespace Api.Controllers
                 Precio = producto.Precio,
                 Descripcion = producto.Descripcion,
                 Activo = producto.Activo
+            };
+        }
+
+        private VistaTipoOpcionProducto ToVistaTipoOpcionProducto(ProductoTipoOpciones productoTipoOpcion)
+        {
+            return new VistaTipoOpcionProducto
+            {
+                IdTipoOpcion= productoTipoOpcion.IdTipoOpcion,
+                IdProducto = productoTipoOpcion.IdProducto,
+                Encabezado = productoTipoOpcion.Encabezado,
+                MostrarInicio = productoTipoOpcion.MostrarInicio,
+                IdProductoTipoOpcion = productoTipoOpcion.IdProductoTipoOpcion,
+                IdTipoSeleccion= productoTipoOpcion.IdTipoSeleccion
+
             };
         }
     }

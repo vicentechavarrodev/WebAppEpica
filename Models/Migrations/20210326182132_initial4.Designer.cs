@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210326182132_initial4")]
+    partial class initial4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,6 +67,9 @@ namespace Models.Migrations
 
                     b.Property<int>("IdTipoOpcion")
                         .HasColumnType("int");
+
+                    b.Property<bool>("MuestraSecundario")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -155,28 +160,6 @@ namespace Models.Migrations
                     b.ToTable("Pedidos");
                 });
 
-            modelBuilder.Entity("Models.ProductoOpcionTipoOpciones", b =>
-                {
-                    b.Property<int>("IdProductoOpcionTipoOpcion")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IdProductoOpciones")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdProductoTipoOpcion")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdProductoOpcionTipoOpcion");
-
-                    b.HasIndex("IdProductoOpciones");
-
-                    b.HasIndex("IdProductoTipoOpcion");
-
-                    b.ToTable("ProductoOpcionTipoOpciones");
-                });
-
             modelBuilder.Entity("Models.ProductoOpciones", b =>
                 {
                     b.Property<int>("IdProductoOpciones")
@@ -190,9 +173,6 @@ namespace Models.Migrations
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<bool>("MuestraSecundario")
-                        .HasColumnType("bit");
-
                     b.HasKey("IdProductoOpciones");
 
                     b.HasIndex("IdOpcion");
@@ -200,40 +180,6 @@ namespace Models.Migrations
                     b.HasIndex("IdProducto");
 
                     b.ToTable("ProductoOpciones");
-                });
-
-            modelBuilder.Entity("Models.ProductoTipoOpciones", b =>
-                {
-                    b.Property<int>("IdProductoTipoOpcion")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Encabezado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdProducto")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdTipoOpcion")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdTipoSeleccion")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("MostrarInicio")
-                        .HasColumnType("bit");
-
-                    b.HasKey("IdProductoTipoOpcion");
-
-                    b.HasIndex("IdProducto");
-
-                    b.HasIndex("IdTipoOpcion");
-
-                    b.HasIndex("IdTipoSeleccion");
-
-                    b.ToTable("ProductoTipoOpciones");
                 });
 
             modelBuilder.Entity("Models.Productos", b =>
@@ -314,23 +260,6 @@ namespace Models.Migrations
                     b.ToTable("TipoOpciones");
                 });
 
-            modelBuilder.Entity("Models.TipoSelecciones", b =>
-                {
-                    b.Property<int>("IdTipoSeleccion")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("IdTipoSeleccion");
-
-                    b.ToTable("TipoSelecciones");
-                });
-
             modelBuilder.Entity("Models.Usuarios", b =>
                 {
                     b.Property<int>("IdUsuario")
@@ -386,7 +315,7 @@ namespace Models.Migrations
             modelBuilder.Entity("Models.Opciones", b =>
                 {
                     b.HasOne("Models.TipoOpciones", "TipoOpcion")
-                        .WithMany()
+                        .WithMany("Opciones")
                         .HasForeignKey("IdTipoOpcion")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -408,21 +337,6 @@ namespace Models.Migrations
                         .HasForeignKey("IdEstado");
                 });
 
-            modelBuilder.Entity("Models.ProductoOpcionTipoOpciones", b =>
-                {
-                    b.HasOne("Models.ProductoOpciones", "ProductoOpciones")
-                        .WithMany("ProductoOpcionTipoOpciones")
-                        .HasForeignKey("IdProductoOpciones")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Models.ProductoTipoOpciones", "ProductoTipoOpcion")
-                        .WithMany("ProductoOpcionTipoOpciones")
-                        .HasForeignKey("IdProductoTipoOpcion")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Models.ProductoOpciones", b =>
                 {
                     b.HasOne("Models.Opciones", "Opcion")
@@ -434,27 +348,6 @@ namespace Models.Migrations
                     b.HasOne("Models.Productos", "Producto")
                         .WithMany("ProductoOpciones")
                         .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Models.ProductoTipoOpciones", b =>
-                {
-                    b.HasOne("Models.Productos", "Producto")
-                        .WithMany("ProductoTipoOpciones")
-                        .HasForeignKey("IdProducto")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Models.TipoOpciones", "TipoOpcion")
-                        .WithMany("ProductoTipoOpciones")
-                        .HasForeignKey("IdTipoOpcion")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Models.TipoSelecciones", "TipoSeleccion")
-                        .WithMany("ProductoTipoOpciones")
-                        .HasForeignKey("IdTipoSeleccion")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

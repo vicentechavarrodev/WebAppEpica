@@ -26,16 +26,62 @@ namespace Api.Controllers
         {
             db = context;
         }
+
+
+
+        [HttpGet]
+        [Route("ObtenerTipoOpciones/{Id}")]
+        public async Task<Response> ObtenerTipoOpciones(int Id)
+        {
+            try
+            {
+                var ProductoTipoOpciones = await db.ProductoTipoOpciones.Where(p => p.IdProducto == Id).ToListAsync();
+                var TipoOpciones = new HashSet<int>(ProductoTipoOpciones.Select(x => x.IdTipoOpcion));
+                var TipoOpcionesFiltradas = await db.TipoOpciones.Where(x => !TipoOpciones.Contains(x.IdTipoOpcion)).ToListAsync();
+                return new Response { IsSuccess = true, Message = " ", Result = TipoOpcionesFiltradas };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+        }
+
+
+        [HttpGet]
+        [Route("ObtenerTipoOpcionesProductoAgregadas/{Id}")]
+        public async Task<Response> ObtenerTipoOpcionesProductoAgregadas(int Id)
+        {
+            try
+            {
+                var ProductoTipoOpciones = await db.ProductoTipoOpciones.Include(pop => pop.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+
+                return new Response { IsSuccess = true, Message = " ", Result = ProductoTipoOpciones };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response { IsSuccess = false, Message = ex.Message, Result = null };
+            }
+
+        }
+
         [HttpGet]
         [Route("ProductoOpciones/{Id}")]
         public async Task<Response> ProductoOpciones(int Id)
         {
             try
             {
-             
-                var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+                var productosOpciones = await db.ProductoOpciones.Where(p => p.IdProducto == Id).ToListAsync();
                 var opciones = new HashSet<int>(productosOpciones.Select(x => x.IdOpcion));
                 var opcionesFiltradas = await db.Opciones.Include(o => o.TipoOpcion).Where(x => !opciones.Contains(x.IdOpcion)).ToListAsync();
+
+                var productosTipoOpciones = await db.ProductoTipoOpciones.Where(p => p.IdProducto == Id).ToListAsync();
+                var tipoOpciones = new HashSet<int>(productosTipoOpciones.Select(x => x.IdTipoOpcion));
+
+                 opcionesFiltradas =  opcionesFiltradas.Where(x => tipoOpciones.Contains(x.IdTipoOpcion)).ToList();
+
                 return new Response { IsSuccess = true, Message = " ", Result = opcionesFiltradas };
             }
             catch (Exception ex)
@@ -233,7 +279,8 @@ namespace Api.Controllers
                 Nombre = opcion.Nombre,
                 NombreAlias = opcion.NombreAlias,
                 IdTipoOpcion = opcion.IdTipoOpcion,
-                Precio = opcion.Precio
+                Precio = opcion.Precio,
+                Activa = opcion.Activa
             };
         }
 

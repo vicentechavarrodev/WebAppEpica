@@ -67,6 +67,16 @@ label:focus,
     box-shadow: none !important;
 }
 
+label{
+    margin:0;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
 .dl-horizontal dt {
     white-space: normal;
 }
@@ -145,6 +155,12 @@ a:focus {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important;
     }
+
+
+html {
+    font-size: 12px;
+}
+
   /* ---------------------------------------------------
     LOADER STYLE
 ----------------------------------------------------- */
@@ -290,9 +306,14 @@ a:focus {
     CONTENT & WRAPER STYLE
 ----------------------------------------------------- */
 
-
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
 
 #content {
+    margin-top:70px;
     width: 100%;
     min-height: 100vh;
     transition: all 0.3s;
@@ -344,8 +365,10 @@ a:focus {
 .btn-default {
     background: $primary-color !important;
     color: #fff !important;
-    font-weight:600;
-   
+    height: 100% ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-metro-style-pz {
@@ -565,6 +588,13 @@ a:focus {
 
 @media (max-width: 760px) {
 
+    html {
+        font-size: 1.2rem;
+    }
+
+    .modal-content{
+        padding:5px;
+    }
     #content {
         margin-left: 0;
     }
@@ -610,7 +640,19 @@ a:focus {
 }
 @media (max-width:571px) {
     body {
-        font-size: 20px;
+        font-size: .7rem;
     }
+
+    .modal-content, .MuiTypography-body1 {
+        font-size: .62rem !important;
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        font-size: .7rem;
+    }
+
+
 }
+
+
 

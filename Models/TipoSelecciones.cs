@@ -7,25 +7,19 @@ using System.Text;
 
 namespace Models
 {
-   public class TipoOpciones
+  public  class TipoSelecciones
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonProperty(PropertyName = "IdTipoOpcion")]
-        public int IdTipoOpcion { get; set; }
+        [JsonProperty(PropertyName = "IdTipoSeleccion")]
+        public int IdTipoSeleccion { get; set; }
         [Required(ErrorMessage = "El dato {0} es necesario")]
         [MaxLength(100, ErrorMessage = "El tamaño maximo de el {0} is {1} caracteres")]
         [Display(Name = "Nombre")]
         [JsonProperty(PropertyName = "Nombre")]
         public string Nombre { get; set; }
-        [Display(Name = "TienePrecio")]
-        [JsonProperty(PropertyName = "TienePrecio")]
-        public bool TienePrecio { get; set; }
-
         [JsonProperty(PropertyName = "ProductoTipoOpciones")]
-        [JsonIgnore]
         public virtual ICollection<ProductoTipoOpciones> ProductoTipoOpciones { get; set; }
-
 
     }
 }

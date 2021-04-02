@@ -15,7 +15,7 @@ import Pagina from '../pagina/index';
 import PideLinea from '../pagina/pideLinea';
 import Novedades from '../pagina/novedades';
 import Compania from '../pagina/compania';
-
+import Pedidos from '../pedidos/index';
 
 
 const AppRoutes = () =>
@@ -35,7 +35,7 @@ const AppRoutes = () =>
                     <PrivateRoute component={Opciones} path="/opciones" exact />
                     <PrivateRoute component={Productos} path="/productos" exact />
                     <PrivateRoute component={Details} path="/details" exact />
-                   
+                    <PrivateRoute component={Pedidos} path="/pedidos" exact />
                 </Ventana>
 
                        
