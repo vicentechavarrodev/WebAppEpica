@@ -12,24 +12,41 @@ import imageEpica3 from '../../imagenes/pagina/pizza3.jpg';
 import imageHeader1 from '../../imagenes/pagina/header1.jpg';
 import imageHeader2 from '../../imagenes/pagina/header2.jpg';
 import imageHeader3 from '../../imagenes/pagina/header3.jpg';
+import { productoActions } from '../productos/actions';
 import { Link } from "react-router-dom";
-import { Row, Col } from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
+import Car_Modal from './car_modal';
 
 
 
 class Pagina extends Component {
+
+
+
+    constructor(props) {
+        super(props);
+        this.openCar = this.openCar.bind(this);
+      
+    }
 
     componentDidMount() {
         loader.hide();
         
      
     }
-
+    openCar() {
+        const btn = document.getElementById('btn-car');
+      
+        btn.style.display = 'none';
+        this.props.ver_crear(true);
+      
+       
+    }
+       
 
     render() {
-
-        return (
+        const { mostrar_crear } = this.props;
+         return (
             <div data-spy="scroll" data-target="#navbar" data-offset="57">
             <Header visiblePagina="true" />
             
@@ -53,9 +70,22 @@ class Pagina extends Component {
                                 <div className="carousel-caption d-none d-md-block">
                                     <p>Parrafo 3 olor sit amet consectetur adipisicing elit.Ex, similique debitis inventore animi, hic incidunt, sapiente n</p>
                                 </div>
-                                    </div>
+                                </div>
                                    
-                                    </div>
+                         </div>
+                         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                             <span class="sr-only">Previous</span>
+                         </a>
+                         <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                             <span class="sr-only">Next</span>
+                         </a>
+                         <ol class="carousel-indicators">
+                             <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                             <li data-target="#carousel" data-slide-to="1"></li>
+                             <li data-target="#carousel" data-slide-to="2"></li>
+                         </ol>
                      </article>
                 </section>
                 <section id="container" className="container mt-lg-3 mb-lg-5">
@@ -64,7 +94,7 @@ class Pagina extends Component {
                             <h6>EMPIEZA TU PEDIDO</h6>
                             <div className="icons-pedido">
                                 <Link to="/pideLinea" className="btn btn-default btn-3d-style  btn-block" >
-                                    <span className="element-hide"><AddIcon  /></span>
+                                    <span className="element-hide"><AddIcon/></span>
                                     <span className="hidde-element"> Entrega a domicilio</span>
                                    
                                 </Link>
@@ -101,12 +131,27 @@ class Pagina extends Component {
                                             </div>
                                       </div>
                         </div>
-                       
-                                </div>
+                      
+                    </div>
+                     <div className="car-lateral fixed-top">
+                         <button type="button" className="btn btn-link" id='btn-car' onClick={this.openCar}>
+                             <i className="fa fa-cart-plus"></i>
+                         </button>
+                     </div>
+                     {mostrar_crear ?
+                         <Car_Modal/>
+                         :
+                         ""
+                     }
+                    
+                 
+           
                 </section>
+              
                 
              
-            <Footer />
+                <Footer />
+
             </div>  
             
 
@@ -116,13 +161,16 @@ class Pagina extends Component {
 
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
-    return { loggingIn, user};
+    const {mostrar_crear } = state.productoReducer;
+    return { loggingIn, user,mostrar_crear};
 };
 
 
 const mapDispatchToProps = {
     showMessage: alertActions.showMessage,
+    ver_crear: productoActions.ver_crear,
 };
+
 
 
 
