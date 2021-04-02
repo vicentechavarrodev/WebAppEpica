@@ -11,6 +11,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.7);
 }
+.carousel-indicators{
+    margin-bottom:0px;
+}
 #cart-fixed {
     position: absolute;
     height: 100vh;
@@ -22,7 +25,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
     background-color: white;
     animation-name: slidein;
     animation-duration: 100s;
-    font-size:14px;
+    font-size: 14px;
 }
 
 .content-pedido-static {
@@ -161,10 +164,11 @@ $shade-color: rgba(0, 0, 0, 0.24);
         align-items: center;
     }
 
-    .carousel-caption p {
-        margin-bottom: 0px;
-        font-size: 25px;
-    }
+.carousel-caption p {
+    margin-bottom: 0px;
+    font-size: 25px;
+    text-shadow: 3px 3px 3px black;
+}
 
     .row-modal {
         padding-top: 15px;
@@ -477,10 +481,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
         width: 100%;
     }
 
-    #carousel .overlay .container,
-    #carousel .overlay .row {
-        height: 100%;
-    }
+  
 
     #container h5 {
         font-weight: bolder;
@@ -671,6 +672,11 @@ $shade-color: rgba(0, 0, 0, 0.24);
             filter: grayscale(10%);
         }
     }
+        @media (max-width:578px) {
+            .horizontal-menu {
+                margin: 0px 10px 0px 10px
+            }
+        }
 
     @media (max-width:500px) {
         .button-movil {

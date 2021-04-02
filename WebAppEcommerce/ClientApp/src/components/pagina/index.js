@@ -38,7 +38,7 @@ class Pagina extends Component {
         const btn = document.getElementById('btn-car');
       
         btn.style.display = 'none';
-        ipthis.props.ver_crear(true);
+        this.props.ver_crear(true);
       
        
     }
@@ -70,9 +70,22 @@ class Pagina extends Component {
                                 <div className="carousel-caption d-none d-md-block">
                                     <p>Parrafo 3 olor sit amet consectetur adipisicing elit.Ex, similique debitis inventore animi, hic incidunt, sapiente n</p>
                                 </div>
-                                    </div>
+                                </div>
                                    
-                                    </div>
+                         </div>
+                         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                             <span class="sr-only">Previous</span>
+                         </a>
+                         <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                             <span class="sr-only">Next</span>
+                         </a>
+                         <ol class="carousel-indicators">
+                             <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                             <li data-target="#carousel" data-slide-to="1"></li>
+                             <li data-target="#carousel" data-slide-to="2"></li>
+                         </ol>
                      </article>
                 </section>
                 <section id="container" className="container mt-lg-3 mb-lg-5">
