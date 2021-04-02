@@ -15,7 +15,7 @@ import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 import { productoActions } from '../productos/actions';
 import { Link } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
-import Car_Modal from './car_modal';
+import CarModal from './car_modal';
 
 
 
@@ -139,7 +139,7 @@ class Pagina extends Component {
                          </button>
                      </div>
                      {mostrar_crear ?
-                         <Car_Modal/>
+                         <CarModal/>
                          :
                          ""
                      }
