@@ -14,6 +14,7 @@ import { ComboBoxComponent } from '@syncfusion/ej2-react-dropdowns';
 import { log } from 'util';
 import '../styles.scss';
 import imageCompression from 'browser-image-compression';
+
 class EditarProducto extends Component {
 
     constructor(props) {

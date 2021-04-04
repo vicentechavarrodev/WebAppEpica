@@ -186,7 +186,7 @@ function init_editar_tipo_opcion_producto(id) {
 }
 
 async function editar_producto(producto, id) {
-    console.log(id);
+  
     const requestOptions = {
         method: 'POST',
         headers: {

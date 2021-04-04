@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\banner\styles.css" />
+    <None Remove="ClientApp\src\components\banner\styles.css.map" />
+    <None Remove="ClientApp\src\components\banner\styles.scss" />
     <None Remove="ClientApp\src\components\nav_pagina\index.js" />
     <None Remove="ClientApp\src\components\pagina\Style.scss" />
     <None Remove="ClientApp\src\imagenes\pagina\logo epica.png" />
