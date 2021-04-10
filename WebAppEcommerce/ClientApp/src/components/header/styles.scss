@@ -13,6 +13,9 @@ $primary-color: #b3191f;
 .container-nav{
     height:70px;
 }
+.ocult-menu {
+    display:none;
+}
 
 .navbar-header p {
     color: #fff;
@@ -112,6 +115,13 @@ $primary-color: #b3191f;
     .nav-icon {
         box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .7) inset;
       
+    }
+    .ocult-menu {
+        display:none;
+        position: fixed;
+        width: 100vw;
+        bottom: 0px;
+        height: 305px;
     }
 
     .nav-sm {

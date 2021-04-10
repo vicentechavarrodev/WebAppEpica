@@ -5,6 +5,10 @@ import './styles.scss';
 import { connect } from 'react-redux';
 import { alertActions } from '../alerts_message/actions';
 import { withRouter } from "react-router-dom";
+import Carrito from '../carrito/index';
+import imageHeader1 from '../../imagenes/pagina/header1.jpg';
+import imageHeader2 from '../../imagenes/pagina/header2.jpg';
+import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 
 
 
@@ -22,69 +26,74 @@ class Novedades extends Component {
         return (
             <body data-spy="scroll" data-target="#navbar" data-offset="57">
                 <Header visiblePagina="true" />
-                <main className="container">
-                    <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-                        <h1 className="display-4">Novedades</h1>
-                        <p className="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+                <div className="row smart-order-novedades">
+                    <div className="col   text-center text-uppercase pt-2 pb-4">
+                        <h1>NOVEDADES</h1>
+                     
                     </div>
 
-                    <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                        <div className="col">
-                            <div className="card mb-4 shadow-sm">
-                                <div className="card-header">
-                                    <h4 className="my-0 fw-normal">Free</h4>
-                                </div>
-                                <div className="card-body">
-                                    <h1 className="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-                                    <ul className="list-unstyled mt-3 mb-4">
-                                        <li>10 users included</li>
-                                        <li>2 GB of storage</li>
-                                        <li>Email support</li>
-                                        <li>Help center access</li>
-                                    </ul>
-                                    <button type="button" className="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="card mb-4 shadow-sm">
-                                <div className="card-header">
-                                    <h4 className="my-0 fw-normal">Pro</h4>
-                                </div>
-                                <div className="card-body">
-                                    <h1 className="card-title pricing-card-title">$15 <small className="text-muted">/ mo</small></h1>
-                                    <ul className="list-unstyled mt-3 mb-4">
-                                        <li>20 users included</li>
-                                        <li>10 GB of storage</li>
-                                        <li>Priority email support</li>
-                                        <li>Help center access</li>
-                                    </ul>
-                                    <button type="button" className="w-100 btn btn-lg btn-primary">Get started</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="card mb-4 shadow-sm">
-                                <div className="card-header">
-                                    <h4 className="my-0 fw-normal">Enterprise</h4>
-                                </div>
-                                <div className="card-body">
-                                    <h1 className="card-title pricing-card-title">$29 <small className="text-muted">/ mo</small></h1>
-                                    <ul className="list-unstyled mt-3 mb-4">
-                                        <li>30 users included</li>
-                                        <li>15 GB of storage</li>
-                                        <li>Phone and email support</li>
-                                        <li>Help center access</li>
-                                    </ul>
-                                    <button type="button" className="w-100 btn btn-lg btn-primary">Contact us</button>
-                                </div>
+                </div>
+                <div className="row row-novedades p-lg-4  p-sm-0 ">
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
+                        <div className="card ">
+                            <img className="card-img-top" src={imageHeader1} alt="Foto de Pizza 1" />
+                            <div className="card-body">
+                                <h5 className="card-title">Pizza 1</h5>
+                                <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
                             </div>
                         </div>
                     </div>
-                </main>
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
+                        <div className="card ">
+                            <img className="card-img-top" src={imageHeader2} alt="Foto de Pizza 2" />
+                            <div className="card-body">
+                                <h5 className="card-title">Pizza 2</h5>
+                                <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
+                        <div className="card ">
+                            <img className="card-img-top" src={imageHeader3} alt="Foto de Pizza 3" />
+                            <div className="card-body">
+                                <h5 className="card-title">Pizza 3</h5>
+                                <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
+                        <div className="card ">
+                            <img className="card-img-top" src={imageHeader1} alt="Foto de Pizza 1" />
+                            <div className="card-body">
+                                <h5 className="card-title">Pizza 1</h5>
+                                <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
+                        <div className="card ">
+                            <img className="card-img-top" src={imageHeader1} alt="Foto de Pizza 1" />
+                            <div className="card-body">
+                                <h5 className="card-title">Pizza 1</h5>
+                                <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
+                        <div className="card ">
+                            <img className="card-img-top" src={imageHeader1} alt="Foto de Pizza 1" />
+                            <div className="card-body">
+                                <h5 className="card-title">Pizza 1</h5>
+                                <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                        
 
                
-
+                <Carrito/>
 
                 <Footer />
             </body>

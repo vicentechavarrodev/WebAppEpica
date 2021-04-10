@@ -1,0 +1,53 @@
+﻿
+$primary-color: #b3191f;
+$shade-color: rgba(0, 0, 0, 0.24);
+
+#cart-background {
+    position: fixed;
+    background-color: rgba(0,0,0,.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1031;
+    bottom: 0;
+}
+
+
+#cart-background .btn-link {
+    position: absolute;
+    top: 50%;
+    right: 400px;
+    background-color: $primary-color;
+}
+
+#cart-background .btn-link:hover {
+    background-color: rgba(152, 6, 6, 0.88);
+}
+
+.car-lateral button {
+    position: absolute;
+    right: 0px;
+    top: 50vh;
+    background-color: $primary-color;
+}
+
+.car-lateral i {
+    color: white;
+    font-size: 30px;
+}
+
+#cart-background .fa-cart-plus {
+    color: white;
+    font-size: 30px;
+}
+@media (max-width:500px) {
+
+
+    #cart-background .btn-link {
+        display: none;
+    }
+
+    #cart-fixed {
+        width: 100%;
+    }
+}

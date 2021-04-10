@@ -31,8 +31,10 @@ class Car_modal extends Component {
     
 
         return (
-            
-            <section id="cart-background">   
+
+            <section id="cart-background">
+                <div className="font" onClick={this.closeCar} >
+                </div>
                 <div id="cart-fixed">
                   
                     <div className="tittle-car">

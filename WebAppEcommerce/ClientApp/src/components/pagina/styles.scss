@@ -14,6 +14,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .carousel-indicators{
     margin-bottom:0px;
 }
+.row-novedades {
+    margin: 60px 20px 0px 20px;
+}
 #cart-fixed {
     position: absolute;
     height: 100vh;
@@ -28,10 +31,13 @@ $shade-color: rgba(0, 0, 0, 0.24);
     font-size: 14px;
 }
 
-.content-pedido-static {
-    position: absolute;
-    bottom: 0px;
- 
+.content-pedido-static .form-control{
+    font-size:1em;
+}
+.content-pedido-static{
+    position:absolute;
+    bottom:0;
+    background-color:white;
 }
 .col-car-pedido {
     display: flex;
@@ -74,45 +80,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
     font-size:25px;
 }
 
-#cart-background {
-    position: fixed;
-    background-color: rgba(0,0,0,.5);
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1031;
-    bottom: 0;
-   
-}
 
-
-    #cart-background .btn-link {
-        position: absolute;
-        top: 50%;
-        right: 400px;
-        background-color: $primary-color;
-    }
-
-    #cart-background .btn-link:hover {
-        background-color: rgba(152, 6, 6, 0.88);
-    }
-
-    .car-lateral button {
-        position: absolute;
-        right: 0px;
-        top: 50vh;
-        background-color: $primary-color;
-    }
-
-    .car-lateral i {
-        color: white;
-        font-size: 30px;
-    }
-
-    #cart-background .fa-cart-plus {
-        color: white;
-        font-size: 30px;
-    }
 
     #carousel .overlay {
         position: absolute;
@@ -270,11 +238,44 @@ $shade-color: rgba(0, 0, 0, 0.24);
         cursor: pointer;
         background-color: $primary-color;
     }
+    .text-center h1{
+       font-weight:bold;
+    }
+.container-compañia {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    -webkit-box-shadow: 2px 1px 25px -13px rgba(0,0,0,0.73);
+    -moz-box-shadow: 2px 1px 25px -13px rgba(0,0,0,0.73);
+    box-shadow: 2px 1px 25px -13px rgba(0,0,0,0.73);
+    margin-bottom: 20px;
+}
+.column-image {
+    width: 450px;
+    display: flex;
+    justify-content: center;
+    
+}
+.subtittle p {
+    font-size:1em;
+}
+.container-compañia .image {
+    height: 600px;
+    object-fit: cover;
+}
 
     .text-center h2:hover {
         background-color: rgba(195, 0, 0, 0.87);
     }
 
+    .container-compañia .row{
+        width:800px;
+        margin:0px;
+    }
+    .container-compañia h6{
+        font-size:1em;
+        margin-top:12px;
+    }
 .option-show {
     transition: opacity 1s ease-out;
     opacity: 0;
@@ -617,10 +618,35 @@ $shade-color: rgba(0, 0, 0, 0.24);
         margin-top: 22px;
         margin-top: 1.375rem;
     }
+.smart-order-novedades{
+    display:flex;
+    margin:120px 10px 0px 10px;
+}
+.smart-order-novedades:before, .smart-order-novedades:after {
+    content: " ";
+    display: inline-block;
+    -ms-flex: auto;
+    flex: auto;
+    height: 2px;
+    background-color: #dcdcdc;
+    margin-top: 22px;
+    margin-top: 1.375rem;
+}
 
-    .button-movil {
-        display: none;
-    }
+
+.button-movil {
+    display: inline;
+    position: absolute;
+    right: 0;
+    z-index: 10034;
+    background-color: #b3191f;
+    top: 0px;
+    color: white;
+    font-size: 20px;
+    height: 55px;
+    width: 60px;
+}
+
 
     .col-btn-pedido {
         display: flex;
@@ -628,16 +654,24 @@ $shade-color: rgba(0, 0, 0, 0.24);
         max-width: 100%;
         padding-bottom: 10px;
         padding-top: 20px;
-    }
 
-    .col-btn-pedido button {
-        padding: 0px;
-        width: 400px;
-        background-color: $primary-color;
-        color: white;
-        height: 40px;
-        font-weight: bold;
     }
+.font {
+    position: fixed;
+    height: 100vh;
+    right: 400px;
+    width: 100vw;
+}
+
+.col-btn-pedido button {
+    padding: 0px;
+    width: 400px;
+    font-size: 1.5em;
+    background-color: $primary-color;
+    color: white;
+    height: 40px;
+    font-weight: bold;
+}
 
     .col-btn-pedido button:hover {
         background-color: rgba(151, 13, 13, 0.90);
@@ -685,24 +719,5 @@ $shade-color: rgba(0, 0, 0, 0.24);
             }
         }
 
-    @media (max-width:500px) {
-        .button-movil {
-            display: inline;
-            position: absolute;
-            right: 0px;
-            z-index: 10034;
-            background-color: #b3191f;
-            top: 0px;
-            color: white;
-            font-size: 20px;
-        }
-
-        #cart-background .btn-link {
-            display: none;
-        }
-
-        #cart-fixed {
-            width: 100%;
-        }
-    }
+   
 

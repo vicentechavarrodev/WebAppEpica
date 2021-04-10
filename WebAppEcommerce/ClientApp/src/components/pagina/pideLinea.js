@@ -12,7 +12,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
 import ModalOpciones from '../productos/productoModal';
-
+import Carrito from '../carrito/index';
 
 class PideLinea extends Component {
     
@@ -152,6 +152,7 @@ class PideLinea extends Component {
                         </div>
                     </div>
                 </div>
+                <Carrito/>
          
             
                 <Footer />
