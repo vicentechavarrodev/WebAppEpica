@@ -1,20 +1,32 @@
-﻿.burbuja {
-   
+﻿.burbuja1 , .burbuja2 ,.burbuja3 {
     margin-left: 10px;
+    border-radius:50%;
+    height:15px;
+   
+
+  
 }
+
 e-row #grid-row2 {
     background-color: green;
 }
 
 .estado-pendiente {
+    color: #DB2B30;
     background-color: #DB2B30;
 }
 
 .estado-recibido {
+    color: #F2E205;
     background-color: #F2E205;
 }
 
 .estado-enviado {
+    color: #4EDB3E;
     background-color: #4EDB3E;
+}
+
+#grid-pedidos .e-grid td.e-active {
+    background-color: #3c3c3c !important;
 }
 

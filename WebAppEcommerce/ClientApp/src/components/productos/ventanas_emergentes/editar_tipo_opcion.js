@@ -27,17 +27,42 @@ class EditarTipoOpcionProducto extends Component {
                 IdTipoOpcion: 0,
                 MostrarInicio: false,
                 IdTipoSeleccion: 0,
-                TipoOpciones: []
-            }
+                TipoOpciones: [],
+                EsPrincipal: false,
+                Orden: 0,
+               
+            },
+            OrdenCombo: []
         };
 
 
         this.fields1 = { text: 'Nombre', value: 'IdTipoSeleccion' };
         this.fields = { text: 'Nombre', value: 'IdTipoOpcion' };
+        this.fields2 = { text: 'Nombre', value: 'Orden' };
 
         this.InputChange = this.InputChange.bind(this);
         this.EditSubmit = this.EditSubmit.bind(this);
 
+    }
+
+    async agregarOrden() {
+        let cantidadOrden = [];
+
+
+        if (this.props.productos_tipo_opciones_agregadas.length > 0) {
+            for (var i = 0; i < this.props.productos_tipo_opciones_agregadas.length; i++) {
+                let pos = i + 1;
+                await cantidadOrden.push({ Nombre: "Posicion " + pos, Orden: pos });
+                if (i === this.props.productos_tipo_opciones_agregadas.length - 1) {
+                    await cantidadOrden.push({ Nombre: "Posicion " + (pos + 1), Orden: pos + 1 });
+                }
+            }
+        } else {
+
+            await cantidadOrden.push({ Nombre: "Posicion " + 1, Orden: 1 });
+        }
+
+        return cantidadOrden
     }
 
     InputChange(e) {
@@ -59,7 +84,13 @@ class EditarTipoOpcionProducto extends Component {
         await this.props.obtener_tipos_seleccion(this);
         await  this.props.init_editar_tipo_opcion_producto(this.props.IdProductoTipoOpcion,this);
       
+        let ordenArray = await this.agregarOrden();
+
        
+        this.setState({
+                OrdenCombo: ordenArray
+        });
+
 
 
     }
@@ -96,7 +127,7 @@ class EditarTipoOpcionProducto extends Component {
 
     render() {
 
-      
+        console.log(this.state.OrdenCombo)
      
         return (
 
@@ -126,8 +157,20 @@ class EditarTipoOpcionProducto extends Component {
                             <Form.Group as={Col}   >
                                 <CheckBoxComponent label='MostrarInicio' checked={this.state.productoTipoOpcion.MostrarInicio} change={(val) => { this.InputChange({ target: { name: 'MostrarInicio', value: val.checked } }); }} />
                             </Form.Group>
+                            <Form.Group as={Col}   >
+                                <CheckBoxComponent label='EsPrincipal' checked={this.state.productoTipoOpcion.EsPrincipal} change={(val) => { this.InputChange({ target: { name: 'EsPrincipal', value: val.checked } }); }} />
+                            </Form.Group>
 
                         </Form.Row>
+
+                        {this.state.OrdenCombo.length > 0 ?
+                            <Form.Row sm={12}>
+                                <Form.Group as={Col}>
+                                    <ComboBoxComponent name="Orden" showClearButton={false} value={this.state.productoTipoOpcion.Orden} allowCustom={false} fields={this.fields2} change={(val) => { this.InputChange({ target: { name: 'Orden', value: val.value } }); }} allowFiltering={true} placeholder="Orden" className="pz-input" dataSource={this.state.OrdenCombo} />
+                                </Form.Group>
+                            </Form.Row>
+                            : ""
+                        }
                         {
                             this.props.tipos_seleccion.length > 0 ?
                                 <Form.Row sm={10}>
@@ -163,8 +206,8 @@ class EditarTipoOpcionProducto extends Component {
 
 
 function mapStateToProps(state) {
-    const { mostrar_editar_tipo_opcion, tipos_opciones_producto, tipos_seleccion } = state.productoReducer;
-    return { mostrar_editar_tipo_opcion, tipos_opciones_producto, tipos_seleccion};
+    const { mostrar_editar_tipo_opcion, tipos_opciones_producto, tipos_seleccion, productos_tipo_opciones_agregadas } = state.productoReducer;
+    return { mostrar_editar_tipo_opcion, tipos_opciones_producto, tipos_seleccion, productos_tipo_opciones_agregadas};
 };
 
 

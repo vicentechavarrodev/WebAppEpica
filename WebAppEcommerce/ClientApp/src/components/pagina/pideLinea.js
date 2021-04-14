@@ -92,7 +92,7 @@ class PideLinea extends Component {
         return (
             <div data-spy="scroll" data-target="#navbar" data-offset="57">
                 <Header visiblePagina="true" />
-                <div className="horizontal-menu">
+                <div className="horizontal-menu bg-light">
                  <div className="container container-horizontal">
                     <div className="content">
                        
@@ -130,7 +130,7 @@ class PideLinea extends Component {
                                                     </div>
                                                     <div className="col-lg-6 col-button">
                                                         <button type="button" className="btn" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
-                                                            <i class="fa fa-cart-plus"></i>
+                                                            <i className="fa fa-cart-plus"></i>
                                                          Agregar</button>
                                                     </div>
                                                 </div>

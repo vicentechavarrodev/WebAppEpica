@@ -57,13 +57,20 @@ namespace Api.Controllers
                
                 var producto = await db.Productos.FindAsync(Id);
                 var vista = ToVistaProducto(producto);
-                var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(pot => pot.ProductoOpcionTipoOpciones).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+              
                 if (Agrupado)
                 {
 
+
+
+                    var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(pot => pot.ProductoOpcionTipoOpciones).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+
                     var grouping = (from p in productosOpciones
+                                    join pot in db.ProductoTipoOpciones on p.Opcion.IdTipoOpcion equals pot.IdTipoOpcion
+                                    where pot.IdProducto == Id
                                     select new VistaProductoOpciones
                                     {
+                                        ProductoTipoOpcion= pot,
                                         IdProductoOpciones = p.IdProductoOpciones,
                                         IdOpcion = p.IdOpcion,
                                         Opcion = p.Opcion,
@@ -74,6 +81,7 @@ namespace Api.Controllers
                                                                        {
                                                                            IdProductoOpciones= o.IdProductoOpciones,
                                                                            IdProductoTipoOpcion= o.IdProductoTipoOpcion,
+                                                                             
                                                                            ProductoTipoOpcion = db.ProductoTipoOpciones.Include(p => p.TipoOpcion).First(p =>p.IdProductoTipoOpcion== o.IdProductoTipoOpcion)
                                                                        }
                                                                       
@@ -83,11 +91,16 @@ namespace Api.Controllers
 
 
 
-                    vista.VistaProductoOpcionesGroup = grouping.ToList();
+                     vista.VistaProductoOpcionesGroup = grouping.ToList();
                 }
                 else
                 {
+
+                    var productosOpciones = await db.ProductoOpciones.Include(po => po.Opcion).Include(pot => pot.ProductoOpcionTipoOpciones).Include(po => po.Opcion.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+                   
                     vista.VistaProductoOpciones = (from p in productosOpciones
+                                                   
+                                                   //orderby pot.Orden descending
                                                    select new VistaProductoOpciones
                                                    {
                                                        IdProductoOpciones = p.IdProductoOpciones,
@@ -95,6 +108,7 @@ namespace Api.Controllers
                                                        Opcion = p.Opcion,
                                                        IdProducto = p.IdProducto,
                                                        MuestraSecundario = p.MuestraSecundario,
+                                                       //ProductoTipoOpcion = pot,
                                                        ProductoOpcionTipoOpciones = (from o in p.ProductoOpcionTipoOpciones
                                                                                      select new VistaProductoOpcionTipoOpciones
                                                                                      {
@@ -196,7 +210,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("CrearProductoTipoOpcion")]
-        public async Task<Response> CrearProductoTipoOpcion([Bind("Encabezado,IdProducto,IdTipoOpcion,MostrarInicio")] ProductoTipoOpciones productTipoOpcion)
+        public async Task<Response> CrearProductoTipoOpcion([Bind("Encabezado,IdProducto,IdTipoOpcion,MostrarInicio,Orden,EsPrincipal")] ProductoTipoOpciones productTipoOpcion)
         {
 
             try
@@ -349,7 +363,8 @@ namespace Api.Controllers
                             Descripcion = form["Descripcion"],
                             Precio = decimal.Parse(form["Precio"]),
                             IdCategoria = int.Parse(form["IdCategoria"]),
-                            Activo = bool.Parse(form["Activo"])
+                            Activo = bool.Parse(form["Activo"]),
+                            EsPizza = bool.Parse(form["EsPizza"])
 
                     };
 
@@ -442,7 +457,7 @@ namespace Api.Controllers
                         producto.Activo = bool.Parse(form["Activo"]);
                         producto.UrlImagen = form["UrlImagen"];
                         producto.Descripcion = form["Descripcion"];
-
+                        producto.EsPizza = bool.Parse(form["EsPizza"]);
 
                         if (files.Count > 0)
                         {
@@ -482,6 +497,7 @@ namespace Api.Controllers
             }
 
             var tipoOpcionesProducto = await db.ProductoTipoOpciones.FindAsync(id);
+            var cantidad =  db.ProductoTipoOpciones.Where(p => p.IdProducto == tipoOpcionesProducto.IdProducto).Count();
             var tipoOpciones =  db.TipoOpciones.ToList();
             var vista = ToVistaTipoOpcionProducto(tipoOpcionesProducto);
             vista.TipoOpciones = tipoOpciones;
@@ -624,7 +640,8 @@ namespace Api.Controllers
                 IdCategoria = producto.IdCategoria,
                 Precio = producto.Precio,
                 Descripcion = producto.Descripcion,
-                Activo = producto.Activo
+                Activo = producto.Activo,
+                EsPizza= producto.EsPizza
             };
         }
 
@@ -632,12 +649,15 @@ namespace Api.Controllers
         {
             return new VistaTipoOpcionProducto
             {
-                IdTipoOpcion= productoTipoOpcion.IdTipoOpcion,
+               
+                Orden = productoTipoOpcion.Orden,
+                IdTipoOpcion = productoTipoOpcion.IdTipoOpcion,
                 IdProducto = productoTipoOpcion.IdProducto,
                 Encabezado = productoTipoOpcion.Encabezado,
                 MostrarInicio = productoTipoOpcion.MostrarInicio,
                 IdProductoTipoOpcion = productoTipoOpcion.IdProductoTipoOpcion,
-                IdTipoSeleccion= productoTipoOpcion.IdTipoSeleccion
+                IdTipoSeleccion= productoTipoOpcion.IdTipoSeleccion,
+                EsPrincipal= productoTipoOpcion.EsPrincipal
 
             };
         }

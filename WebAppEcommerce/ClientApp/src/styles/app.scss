@@ -362,13 +362,16 @@ html {
     border-radius: 0 !important;
 }
 
+
+
 .btn-default {
     background: $primary-color !important;
     color: #fff !important;
-    height: 100% ;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: .2rem;
 }
 
 .btn-metro-style-pz {
@@ -647,9 +650,15 @@ html {
         font-size: .62rem !important;
     }
 
+    .modal-content .MuiSvgIcon-root {
+        font-size: .7rem !important;
+    }
+
     .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
         font-size: .7rem;
     }
+
+
 
 
 }

@@ -28,9 +28,16 @@ namespace Models
         [JsonProperty(PropertyName = "Encabezado")]
         [Display(Name = "Encabezado")]
         public string Encabezado { get; set; }
+        [Display(Name = "EsPrincipal")]
+        [JsonProperty(PropertyName = "EsPrincipal")]
+        public bool EsPrincipal { get; set; }
         [Display(Name = "MostrarInicio")]
         [JsonProperty(PropertyName = "MostrarInicio")]
         public bool MostrarInicio { get; set; }
+      
+        [Display(Name = "Orden")]
+        [JsonProperty(PropertyName = "Orden")]
+        public int Orden { get; set; }
         [JsonIgnore]
         [ForeignKey("IdTipoSeleccion")]
         [JsonProperty(PropertyName = "TipoSeleccion")]

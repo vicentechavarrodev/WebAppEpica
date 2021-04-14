@@ -26,7 +26,10 @@ class TipoOpcionProducto extends Component {
                 Encabezado: '',
                 IdTipoOpcion: 0,
                 MostrarInicio: true,
-                IdTipoSeleccion:0
+                IdTipoSeleccion: 0,
+                EsPrincipal: false,
+                Orden: 0,
+                OrdenCombo:[]
             }
         };
 
@@ -34,7 +37,7 @@ class TipoOpcionProducto extends Component {
 
         this.fields = { text: 'Nombre', value: 'IdTipoOpcion' };
         this.fields1 = { text: 'Nombre', value: 'IdTipoSeleccion' };
-
+        this.fields2 = { text: 'Nombre', value: 'Orden' };
         
       
         this.InputChange = this.InputChange.bind(this);
@@ -54,6 +57,26 @@ class TipoOpcionProducto extends Component {
         });
     }
 
+
+    async agregarOrden() {
+        let cantidadOrden = [];
+
+
+        if (this.props.productos_tipo_opciones_agregadas.length > 0) {
+            for (var i = 0; i < this.props.productos_tipo_opciones_agregadas.length; i++) {
+                let pos = i + 1;
+                await  cantidadOrden.push({ Nombre: "Posicion " + pos, Orden: pos });
+                if (i === this.props.productos_tipo_opciones_agregadas.length - 1) {
+                    await    cantidadOrden.push({ Nombre: "Posicion " + (pos + 1), Orden: pos + 1 });
+                }
+            }
+        } else {
+
+         await   cantidadOrden.push({ Nombre: "Posicion " + 1, Orden: 1 });
+        }
+
+        return cantidadOrden
+    }
    
 
     async componentDidMount() {
@@ -62,12 +85,17 @@ class TipoOpcionProducto extends Component {
 
         await this.props.obtener_tipos_seleccion(this);
 
+        let ordenArray=  await this.agregarOrden();
+
+       
+       
         
         const { productoTipoOpcion } = this.state;
         this.setState({
             productoTipoOpcion: {
                 ...productoTipoOpcion,
-                IdProducto : this.props.IdProducto
+                IdProducto: this.props.IdProducto,
+                OrdenCombo: ordenArray
             }
         });
 
@@ -111,6 +139,7 @@ class TipoOpcionProducto extends Component {
 
     render() {
         const { productoTipoOpcion } = this.state;
+
         return (
 
 
@@ -141,8 +170,22 @@ class TipoOpcionProducto extends Component {
                             <Form.Group as={Col}   >
                                 <CheckBoxComponent label='MostrarInicio' checked={productoTipoOpcion.MostrarInicio} change={(val) => { this.InputChange({ target: { name: 'MostrarInicio', value: val.checked } }); }} />
                             </Form.Group>
+                            <Form.Group as={Col}   >
+                                <CheckBoxComponent label='EsPrincipal' checked={productoTipoOpcion.EsPrincipal} change={(val) => { this.InputChange({ target: { name: 'EsPrincipal', value: val.checked } }); }} />
+                            </Form.Group>
+
 
                         </Form.Row>
+                        {this.state.productoTipoOpcion.OrdenCombo.length > 0 ?
+                            <Form.Row sm={12}>
+                                <Form.Group as={Col}>
+                                    <ComboBoxComponent name="Orden" showClearButton={false} value={productoTipoOpcion.Orden} allowCustom={false} fields={this.fields2} change={(val) => { this.InputChange({ target: { name: 'Orden', value: val.value } }); }} allowFiltering={true} placeholder="Orden" className="pz-input" dataSource={this.state.productoTipoOpcion.OrdenCombo} />
+                                </Form.Group>
+                            </Form.Row>
+                            :""
+                        }
+
+                     
 
 
                         {
@@ -189,8 +232,8 @@ class TipoOpcionProducto extends Component {
 
 
 function mapStateToProps(state) {
-    const { mostrar_agregar_tipo_opcion, tipos_opciones_producto, tipos_seleccion} = state.productoReducer;
-    return { mostrar_agregar_tipo_opcion, tipos_opciones_producto, tipos_seleccion};
+    const { mostrar_agregar_tipo_opcion, tipos_opciones_producto, tipos_seleccion, productos_tipo_opciones_agregadas} = state.productoReducer;
+    return { mostrar_agregar_tipo_opcion, tipos_opciones_producto, tipos_seleccion, productos_tipo_opciones_agregadas};
 };
 
 

@@ -279,10 +279,12 @@ $shade-color: rgba(0, 0, 0, 0.24);
     transition: opacity 1s ease-out;
     opacity: 0;
     height: 0;
+    display:none;
 }
 .option-show.enable {
     opacity: 1;
     height: auto;
+    display: block;
 }
 
 
@@ -642,6 +644,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
     .col-btn-pedido button:hover {
         background-color: rgba(151, 13, 13, 0.90);
     }
+
+
 
 
 

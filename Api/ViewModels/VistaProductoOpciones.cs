@@ -9,5 +9,10 @@ namespace Api.ViewModels
 
         [JsonProperty(PropertyName = "ProductoOpcionTipoOpciones")]
         public List<VistaProductoOpcionTipoOpciones> ProductoOpcionTipoOpciones { get; set; }
+
+
+        [JsonProperty(PropertyName = "ProductoTipoOpcion")]
+        public ProductoTipoOpciones ProductoTipoOpcion { get; set; }
+
     }
 }

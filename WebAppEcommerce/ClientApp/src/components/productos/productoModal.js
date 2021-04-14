@@ -14,170 +14,425 @@ import clsx from 'clsx';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { opcionActions } from '../opciones/actions';
+import { Options} from '../helpers/item_opcion';
 
 class ProductoModal extends Component {
 
+
+
     constructor(props) {
         super(props);
-        this.state={
-            total:0
+        this.state = {
+            total: 0,
+            cantidad: 1,
+            opcionesSeleccionadas: []
+          
         }
-    
-        this.handleRadioChange = this.handleRadioChange.bind(this);
+
     }
 
-   async componentDidMount() {
-
-       await this.props.obtener_opciones_producto(this.props.id_producto_seleccionado,true, this);
-      
-              
+    async componentDidMount() {
+        await this.props.obtener_opciones_producto(this.props.id_producto_seleccionado, true, this);
     }
 
-    handleRadioChange(event) {
-        var option = JSON.parse(event.target.value);
-        if (option.MuestraSecundario) {
 
-            let id = option.ProductoOpcionTipoOpciones[0].IdTipoOpcion;
-        } 
-        
-    }
+
     render() {
 
-        const useStyles = makeStyles({
-            root: {
-                '&:hover': {
-                    backgroundColor: 'transparent',
-                },
-            },
-            icon: {
-                borderRadius: '50%',
-                width: 20,
-                height: 20,
-                boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
-                backgroundColor: '#f5f8fa',
-                backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))'
-               
-            },
-            checkedIcon: {
-                backgroundColor: '#b3191f',
-                backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))'
-            
-            },
-        });
+        const deseleccionar = async  (event, opcion) => {
+            event.stopPropagation();
 
-        const StyledRadio = (props) =>  {
-            const classes = useStyles();
+                let check = this.state[opcion.IdProductoOpciones];
 
-            return (
-                <Radio
-                    className={classes.root}
-                    disableRipple
-                    color="default"
-                    checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
-                    icon={<span className={classes.icon} />}
-                    {...props}
-                />
-            );
-        }
+                if (check === true) {
 
-        const OptionItem = ({ opcion, index }) => {
-            var op = JSON.stringify(opcion)
-            console.log(opcion);
-           return (<div className="row-size">
-                    <div className="col-8 col-radio">
-                       <FormControlLabel key={index} value={op} control={<StyledRadio />} label={opcion.Opcion.NombreAlias} />
-                    </div>
-                    <div className="col-3 col-price-modal">
-                        {opcion.Opcion.Precio}
-                    </div>
-                </div>)
+                    this.setState({ [opcion.IdProductoOpciones]: false });
 
-        }
+                    let op = this.state.opcionesSeleccionadas.filter(item => item.idTipoOpcion === opcion.Opcion.IdTipoOpcion);
 
+                    if (op.length > 0 && op[0].subOpcion !== 0) {
+                        var id = op[0].subOpcion;
 
-        const OptionItems = ({ opciones, index }) => {
-          
-            return (
-                <ListGroup.Item key={index} className=" pl-0 pr-0">
-                    <div>
-                        <p>Elige el tamaño que deseas </p>
-                        <RadioGroup defaultValue="1" name="customized-radios" onChange={this.handleRadioChange}>
-                            {
-                                opciones.map((opcion,i ) => {
+                        let opciones = this.state.opcionesSeleccionadas.filter(item => item.idTipoOpcion !== opcion.Opcion.IdTipoOpcion)
 
-                                    return <OptionItem opcion={opcion} index={i} key={i} />;
-                                })
+                        while (id !== 0) {
+
+                            const sub = this.state.opcionesSeleccionadas.find(item => item.idTipoOpcion === id);
+
+                            var e = document.getElementById(`${id}-item-op`);
+                            e.classList.remove("enable");
+
+                            if (sub !== undefined) {
+
+                                opciones = opciones.filter(item => item.idTipoOpcion !== sub.idTipoOpcion)
+
+                                this.setState({  [sub.idProductoOpciones]: false });
+
+                                id = sub.subOpcion;
+                            } else {
+                                id = 0;
                             }
-                         </RadioGroup>
-                    </div>
+                        await    this.setState({ opcionesSeleccionadas: opciones });
 
-                </ListGroup.Item>
 
-            )
+                        }
+
+                    } else {
+               
+                        const opciones = this.state.opcionesSeleccionadas.filter(item => item.idTipoOpcion !== opcion.Opcion.IdTipoOpcion)
+                
+                        await  this.setState({ opcionesSeleccionadas: opciones });
+                    }
+
+
+                }
+
+                generarPrecio();
+        }
+
+        const HandleRadioChange = async (event) => {
+            event.stopPropagation();
+
+            let option = JSON.parse(event.target.value);
+
+            let optioncheck = this.state.opcionesSeleccionadas.find(item => item.idTipoOpcion === option.Opcion.IdTipoOpcion);
+
+            this.setState({ [option.IdProductoOpciones]: false });
+
+
+            if (optioncheck === undefined) {
+                this.setState({ [option.IdProductoOpciones]: true });
+            } else {
+                this.setState({ [optioncheck.idProductoOpciones]: false, [option.IdProductoOpciones]: true });
+            }
+          
+           
+          await  procesarSeleccion(option)
+            
+          generarPrecio();
+        }
+
+        const procesarSeleccion = (option) => {
+
+          
+
+            const { opcionesSeleccionadas } = this.state;
+            let IdsubOpcion = 0;
+
+            if (option.MuestraSecundario) {
+                let id = option.ProductoOpcionTipoOpciones[0].ProductoTipoOpcion.IdTipoOpcion;
+                var element = document.getElementById(`${id}-item-op`);
+                element.classList.add("enable");
+                IdsubOpcion = id;
+               // element.firstChild.lastChild.setAttribute("value", undefined);
+
+            } else {
+
+                let op = this.state.opcionesSeleccionadas.filter(item => item.idTipoOpcion === option.Opcion.IdTipoOpcion);
+
+                if (op.length > 0 && op[0].subOpcion !== 0) {
+                    var id = op[0].subOpcion;
+
+                    while (id !== 0) {
+
+                        const sub = this.state.opcionesSeleccionadas.find(item => item.idTipoOpcion === id);
+
+                        var e = document.getElementById(`${id}-item-op`);
+                        e.classList.remove("enable");
+
+                        if (sub !== undefined) {
+                            let index = this.state.opcionesSeleccionadas.findIndex(item => item.idTipoOpcion === id);
+
+                            if (index > -1) {
+                                const opciones = this.state.opcionesSeleccionadas.splice(index, 1);
+                                this.setState({ opcionesSeleccionadas: opciones });
+                            }
+
+                            this.setState({ [sub.idProductoOpciones]: false });
+
+                            id = sub.subOpcion;
+                        } else {
+                            id = 0;
+                        }
+
+                    }
+
+                }
+            }
+
+            let opcionSeleccionada = {
+                idTipoOpcion: option.Opcion.IdTipoOpcion,
+                nombreTipo: option.Opcion.TipoOpcion.Nombre,
+                nombre: option.Opcion.Nombre,
+                idProductoOpciones: option.IdProductoOpciones,
+                subOpcion: IdsubOpcion,
+                cantidad: 0,
+                idTipoSeleccion: option.ProductoTipoOpcion.IdTipoSeleccion,
+                precio: option.Opcion.Precio,
+                añadir:''
+            };
+
+            if (this.state.opcionesSeleccionadas.length > 0) {
+
+                const o = this.state.opcionesSeleccionadas.find(item => item.idTipoOpcion === option.Opcion.IdTipoOpcion);
+
+                this.setState({
+                    opcionesSeleccionadas: o === undefined ? [...opcionesSeleccionadas, opcionSeleccionada] : this.state.opcionesSeleccionadas.map((item, index) =>
+                        item.idTipoOpcion === option.Opcion.IdTipoOpcion ? { ...item, nombre: option.Opcion.Nombre, subOpcion: IdsubOpcion, idProductoOpciones: option.IdProductoOpciones, precio: option.Opcion.Precio } : item
+                    )
+                });
+
+
+            } else {
+                this.setState({
+                    opcionesSeleccionadas: [...opcionesSeleccionadas, opcionSeleccionada]
+                });
+            }
+
+        
+        }
+
+        const rdbtnSelec = (opciones) => {
+            for (var i = 0; i < opciones.length; i++) {
+                let id = opciones[i].IdProductoOpciones;
+                var ids = this.state[id]
+                if (ids == null) {
+                    this.setState({ [id]: false });
+                }
+            }
+        }
+
+        const CambioSeleccion = (opcion) => {
+            return this.state[opcion.IdProductoOpciones]
+        }
+
+        const Agregar = async (event, value, opcion) => {
+            console.log(value)
+            if (value === 0) {
+                
+
+                await this.setState({
+                    opcionesSeleccionadas: this.state.opcionesSeleccionadas.map((item, index) => item.idProductoOpciones === opcion.IdProductoOpciones ? { ...item, añadir: "Pmer. Sabor" } : item
+                    )
+                });
+            } else if (value === 50) {
+                
+                await this.setState({
+                    opcionesSeleccionadas: this.state.opcionesSeleccionadas.map((item, index) => item.idProductoOpciones === opcion.IdProductoOpciones ? { ...item, añadir: "Toda" } : item
+                    )
+                });
+            } else if (value === 100) {
+        
+                await this.setState({
+                    opcionesSeleccionadas: this.state.opcionesSeleccionadas.map((item, index) => item.idProductoOpciones === opcion.IdProductoOpciones ? { ...item, añadir: "Sdo. Sabor" } : item
+                    )
+                });
+            }
+          
+        }
+
+        const CantidadChange = async (event) => {
+            let cantidad = this.state.cantidad;
+
+            if (event.currentTarget.name === "cant-mas") {
+                if (cantidad < 99) {
+                    cantidad = cantidad + 1;
+                }
+            } else if (event.currentTarget.name === "cant-menos") {
+                if (cantidad > 1) {
+                    cantidad = cantidad - 1;
+                }
+            }
+
+            await this.setState({
+                cantidad
+            });
+
+            generarPrecio();
+        }
+
+        const HandleIncreChange = async (event, opcion) => {
+
+     
+
+            var element = document.getElementById(`${opcion.IdProductoOpciones}-item-op-var`);
+
+
+
+            let cantidad = parseInt(element.innerHTML);
+
+
+
+            if (event.currentTarget.name === "cant-mas") {
+                if (cantidad < 99) {
+                    cantidad = cantidad + 1;
+                }
+            } else if (event.currentTarget.name === "cant-menos") {
+                if (cantidad > 0) {
+                    cantidad = cantidad - 1;
+                }
+            }
+
+
            
 
+         
+
+            element.innerHTML = cantidad;
+
+            let opcionSeleccionada = {
+                idTipoOpcion: opcion.Opcion.IdTipoOpcion,
+                nombreTipo: opcion.Opcion.TipoOpcion.Nombre,
+                nombre: opcion.Opcion.Nombre,
+                idProductoOpciones: opcion.IdProductoOpciones,
+                subOpcion: 0,
+                cantidad: cantidad,
+                idTipoSeleccion: opcion.ProductoTipoOpcion.IdTipoSeleccion,
+                precio: opcion.Opcion.Precio,
+                añadir: ''
+            };
+
+            if (this.state.opcionesSeleccionadas.length > 0) {
+                if (cantidad === 0) {
+                    let opciones = this.state.opcionesSeleccionadas.filter(item => item.idProductoOpciones !== opcion.IdProductoOpciones);
+                    await this.setState({ opcionesSeleccionadas: opciones });
+       
+                } else {
+                    const o = this.state.opcionesSeleccionadas.find(item => item.idProductoOpciones === opcion.IdProductoOpciones);
+
+                    await   this.setState({
+                        opcionesSeleccionadas: o === undefined ? [...this.state.opcionesSeleccionadas, opcionSeleccionada] : this.state.opcionesSeleccionadas.map((item, index) =>
+                            item.idProductoOpciones === opcion.IdProductoOpciones ? { ...item, nombre: opcion.Opcion.Nombre, subOpcion: 0, idProductoOpciones: opcion.IdProductoOpciones, cantidad: cantidad, precio :opcion.Opcion.Precio } : item
+                        )
+                    });
+                }
+
+
+            } else {
+          
+                if (cantidad !== 0) {
+                    await   this.setState({
+                        opcionesSeleccionadas: [...this.state.opcionesSeleccionadas, opcionSeleccionada]
+                    });
+
+                }
+            }
+
+            if (this.props.opciones_producto.EsPizza) {
+
+                var e = document.getElementById(`${opcion.IdProductoOpciones}-item-add`);
+                if (e != null) {
+                    var child = e.getElementsByTagName('input')[0];
+
+                    if (cantidad === 1) {
+                        e.classList.add("enable");
+
+                        await Agregar(event, parseInt(child.value), opcion)
+                    } else if (cantidad === 0) {
+                        e.classList.remove("enable");
+                    }
+
+                }
+            }
+
+            generarPrecio();
         }
-   
+
+
+
+
+        const generarPrecio =  () => {
+            let total = 0;
+
+            if (this.state.opcionesSeleccionadas.length > 0) {
+
+                for (var i = 0; i < this.state.opcionesSeleccionadas.length; i++) {
+                    let opcion = this.state.opcionesSeleccionadas[i];
+
+                    if (opcion.idTipoSeleccion === 1) {
+                        total = total + opcion.precio;
+
+                    } else {
+                        total = total + (opcion.precio * opcion.cantidad);
+                    }
+
+                    this.setState({
+                        total: (total * this.state.cantidad)
+                    });
+                }
+            } else {
+
+               
+                this.setState({ total: 0 });
+            }
+
+
+            
+           
+         
+        }
 
         return (
 
-           
-            
+
+
             <Modal
                 show={this.props.show}
                 onHide={() => this.props.ver_crear(false)}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
-                
-            >        
-                 
-                 <div>
-                      
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="staticBackdropLabel">{this.props.opciones_producto.Nombre}</h5>
-                             <button type="button" onClick={this.props.onHide} className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        <div className="modal-body">
+
+            >
+
+                <div>
+
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="staticBackdropLabel">{this.props.opciones_producto.Nombre}</h5>
+                        <button type="button" onClick={this.props.onHide} className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
                         <div className="container-scroll p-1 ">
-                                    <div className="row row-modal">
-                                        <div className="col-lg-6 col-12 col-image">
-                                            <img className="image-add" src={`${process.env.REACT_APP_API_URL}app-images/${this.props.opciones_producto.UrlImagen}`} alt="producto" />
-                                        </div>
-                                        <div className="col-lg-6 col-12">
-                                        <p>{this.props.opciones_producto.Descripcion}</p>
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-size p-0 scroll-content">
-                                {this.props.opciones_producto.VistaProductoOpciones != null && this.props.opciones_producto.VistaProductoOpciones.length > 0?
+                            <div className="row row-modal">
+                                <div className="col-lg-6 col-12 col-image">
+                                    <img className="image-add" src={`${process.env.REACT_APP_API_URL}app-images/${this.props.opciones_producto.UrlImagen}`} alt="producto" />
+                                </div>
+                                <div className="col-lg-6 col-12">
+                                    <p>{this.props.opciones_producto.Descripcion}</p>
+                                </div>
+                            </div>
+                            <div className="col-12 col-size p-0 scroll-content">
+                                {this.props.opciones_producto.VistaProductoOpcionesGroup != null && this.props.opciones_producto.VistaProductoOpcionesGroup.length > 0 ?
                                     <ListGroup variant="flush" >
                                         {
-                                            
-                                            this.props.opciones_producto.VistaProductoOpcionesGroup.map(function (opciones,index) {
-                                              
-                                                return <OptionItems opciones={opciones} index={index} /> 
+
+                                            this.props.opciones_producto.VistaProductoOpcionesGroup.map(function (opciones, index, array) {                                             
+                                                rdbtnSelec(opciones);
+                                                return <Options.OptionItems opciones={opciones} Agregar={Agregar} HandleIncreChange={HandleIncreChange} index={index}  HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} deseleccionar={deseleccionar} />
 
                                             })
                                         }
 
-                                       
-                                        
+
+
                                     </ListGroup>
-                                    :""
+                                    : ""
 
                                 }
-                       
+
+                               
+
 
 
                             </div>
                         </div>
-                       
+
                     </div>
-                 
+
                 </div>
-                 
+
                 <div className="modal-footer">
                     <div className="container container-footer">
                         <div className="row row-footer ">
@@ -185,15 +440,15 @@ class ProductoModal extends Component {
 
                                 <div className="row h-100 p-1">
                                     <div className="col-4 col-cantidad align-items-center">
-                                        <a className="btn btn-default btn-3d-style  btn-block" >
+                                        <a className="btn btn-default btn-3d-style  btn-block" href="#" name="cant-menos" onClick={(e) =>  CantidadChange(e)} >
                                             <RemoveIcon />
                                         </a>
                                     </div>
                                     <div className="col-4 d-flex align-items-center mt-2 mb-2 justify-content-center ">
-                                        1
-                                              </div>
+                                        <p> {this.state.cantidad}</p>
+                                    </div>
                                     <div className="col-4 col-cantidad">
-                                        <a className="btn btn-default btn-3d-style  btn-block" >
+                                        <a className="btn btn-default btn-3d-style  btn-block" href="#" name="cant-mas" onClick={(e) => CantidadChange(e)} >
                                             <AddIcon />
                                         </a>
                                     </div>
@@ -201,7 +456,7 @@ class ProductoModal extends Component {
                                 </div>
                             </div>
                             <div className="col-sm-12 col-lg-3 col-value  d-flex align-items-center justify-content-center font-weight-bold">
-                                {this.state.total}
+                                <h4 className="font-weight-bold">  $  {this.state.total} </h4>
                             </div>
                             <div className="col-sm-12 col-lg-3 p-1 ">
                                 <a className="btn btn-default btn-3d-style  btn-block" >
@@ -213,19 +468,20 @@ class ProductoModal extends Component {
                         </div>
                     </div>
                 </div>
-               
+
             </Modal>
 
-           
-           
 
-                          
+
+
+
 
 
 
         );
     }
 }
+
 
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
@@ -241,7 +497,8 @@ const mapDispatchToProps = {
     obtenerCategorias: categoriaActions.obtener_categorias,
     obtener_opciones_producto: productoActions.obtener_opciones_producto,
     ver_crear: productoActions.ver_crear,
-    ver_opciones: opcionActions.ver_opciones
+    ver_opciones: opcionActions.ver_opciones,
+    producto_seleccionado: productoActions.producto_seleccionado
     
 };
 

@@ -26,8 +26,8 @@ class Pedidos extends Component {
         this.state = {
             tabs: [
                 { name: 'Todos', id: 0 },
-                { name: 'Recibidos', id: 1},
-                { name: 'Pendientes', id: 2},
+                { name: 'Pendientes' , id: 1},
+                { name: 'Recibidos', id: 2},
                 { name: 'Enviados', id: 3},
             ],
             pendientes: 0,
@@ -80,9 +80,9 @@ class Pedidos extends Component {
             b3.remove();
         }
 
-        content1 = `<span id='b-1' class='burbuja'>(${this.state.recibidos})</span>`;
-        content2 = `<span id='b-2' class='burbuja'>(${this.state.pendientes})</span>`;
-        content3 = `<span id='b-3' class='burbuja'>(${this.state.enviados})</span>`;
+        content1 = `<span id='b-1' > <span class='burbuja1 estado-pendiente  fa fa-circle'></span> (${this.state.pendientes})</span>`;
+        content2 = `<span id='b-2' > <span class='burbuja2 estado-recibido  fa fa-circle'></span> (${this.state.recibidos})</span>`;
+        content3 = `<span id='b-3' > <span class='burbuja3 estado-enviado fa fa-circle'></span> (${this.state.enviados})</span>`;
 
         if (tab1 != null && tab2 != null && tab3 != null) {
 
@@ -107,7 +107,6 @@ class Pedidos extends Component {
     rowSelected(e) {
         if (this.grid) {
             let pedido = this.grid.getSelectedRecords();
-            console.log(e);
             this.props.seleccionar_pedido(pedido[0].IdPedido);
             this.props.mostrar_detalle_pedido(true);
           
@@ -151,8 +150,8 @@ class Pedidos extends Component {
     getTabs() {
      
         const contend = (idEstado, index) => {
-          this.agregarBurbuja();
-         return   <div className='wrap-form table-responsive container-fluid'>
+         this.agregarBurbuja();
+         return   <div id="grid-pedidos" className='wrap-form table-responsive container-fluid'>
              <GridComponent dataSource={this.props.pedidos} rowDataBound={this.rowDataBound} ref={grid => this.grid = grid} allowPaging={true} toolbar={this.toolbarOptions}  rowSelected={this.rowSelected} searchSettings={this.searchOptions} created={this.created.bind(this)} >
                     <ColumnsDirective>
                      <ColumnDirective field='Descripcion' width='200' headerText='Descripción' />
@@ -174,23 +173,10 @@ class Pedidos extends Component {
     }
 
     change(e) {
-        if (e === 0) {
-            this.props.obtener_pedidos(0, this);
-            this.setState({ idEstado: 0 });
+     
+            this.props.obtener_pedidos(e, this);
+            this.setState({ idEstado: e });
 
-        } else if (e === 1) {
-            this.props.obtener_pedidos(1, this);
-            this.setState({ idEstado: 1 });
-
-        } else if (e === 2) {
-
-            this.props.obtener_pedidos(2, this);
-            this.setState({ idEstado: 2 });
-
-        } else if (e === 3) {
-            this.props.obtener_pedidos(3, this);
-            this.setState({ idEstado: 3 });
-        }
        
     }
 

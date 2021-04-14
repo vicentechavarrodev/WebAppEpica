@@ -22,6 +22,7 @@ class EditarOpcion extends Component {
                 NombreAlias: '',
                 Precio: 0,
                 IdTipoOpcion: 0,
+             
 
             },
             esVisibleOpcion1: ''
@@ -51,7 +52,7 @@ class EditarOpcion extends Component {
             opcion: {
                 ...opcion,
                 [name]: value,
-                Precio: name === 'Precio' ? value : precio
+                //Precio: name === 'Precio' ? value : precio
 
             },
 
@@ -98,6 +99,8 @@ class EditarOpcion extends Component {
 
 
     render() {
+
+        console.log(this.state.opcion)
         return (
             <Modal
                 show={this.props.show}
@@ -130,7 +133,7 @@ class EditarOpcion extends Component {
                                 <ComboBoxComponent name="IdTipoOpcion" showClearButton={false} value={this.state.opcion.IdTipoOpcion} allowCustom={false} fields={this.fields} change={(val) => { this.InputChange({ target: { name: 'IdTipoOpcion', value: val.value, TienePrecio: val.itemData.TienePrecio } }); }} allowFiltering={true} placeholder="Opciones" className="pz-input" dataSource={this.props.init_editar.TipoOpciones} />
                             </Form.Group>
                         </Form.Row>
-                        <Form.Row sm={10} className={this.state.esVisibleOpcion1} >
+                        <Form.Row sm={10}  >
                             <Form.Group as={Col} >
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">$</span>

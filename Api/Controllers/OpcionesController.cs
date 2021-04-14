@@ -55,7 +55,7 @@ namespace Api.Controllers
         {
             try
             {
-                var ProductoTipoOpciones = await db.ProductoTipoOpciones.Include(pop => pop.TipoOpcion).Where(p => p.IdProducto == Id).ToListAsync();
+                var ProductoTipoOpciones = await db.ProductoTipoOpciones.Include(pop => pop.TipoOpcion).Where(p => p.IdProducto == Id).OrderBy(p => p.Orden).ToListAsync();
 
                 return new Response { IsSuccess = true, Message = " ", Result = ProductoTipoOpciones };
             }

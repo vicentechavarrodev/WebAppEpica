@@ -23,6 +23,9 @@ namespace Api.ViewModels
         [JsonProperty(PropertyName = "VistaProductoOpcionesGroup")]
         public List<IGrouping <int, VistaProductoOpciones>> VistaProductoOpcionesGroup { get; set; }
 
+
+
+
         [JsonProperty(PropertyName = "VistaProductoOpciones")]
         public List<VistaProductoOpciones> VistaProductoOpciones { get; set; }
 

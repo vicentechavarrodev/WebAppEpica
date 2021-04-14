@@ -29,7 +29,8 @@ class CrearProducto extends Component {
                 Precio: '',
                 IdCategoria: 0,
                 Descripcion: '',
-                Activo:true
+                Activo: true,
+                EsPizza:false
             },
             file: null
         };
@@ -96,8 +97,9 @@ class CrearProducto extends Component {
         file.append('IdCategoria', producto.IdCategoria);
         file.append('Descripcion', producto.Descripcion);
         file.append('Activo', producto.Activo);
-       
-        this.props.crear_producto(file, this);
+        file.append('EsPizza', producto.EsPizza);
+
+         this.props.crear_producto(file, this);
        
 
     }
@@ -178,6 +180,7 @@ class CrearProducto extends Component {
                                     </div>
                                 </Form.Group>
                             </Form.Group>
+
                             <Form.Group as={Col}   >
                                 <CheckBoxComponent label='Activo' checked={this.state.producto.Activo} change={(val) => { this.InputChange({ target: { name: 'Activo', value: val.checked } }); }} />
                             </Form.Group>
@@ -185,8 +188,11 @@ class CrearProducto extends Component {
                         </Form.Row>
 
                         <Form.Row sm={10}>
-                            <Form.Group as={Col} >
+                            <Form.Group as={Col}>
                                 <ComboBoxComponent name="IdCategoria" showClearButton={false} value={producto.IdCategoria} allowCustom={false} fields={this.fields} change={(val) => { this.InputChange({ target: { name: 'IdCategoria', value: val.value } }); }} allowFiltering={true} placeholder="Categoría" className="pz-input" dataSource={this.props.init_crear.Categorias} />
+                            </Form.Group>
+                            <Form.Group as={Col}>
+                                <CheckBoxComponent label='Es Pizza' checked={this.state.producto.EsPizza} change={(val) => { this.InputChange({ target: { name: 'EsPizza', value: val.checked } }); }} />
                             </Form.Group>
                         </Form.Row>
 

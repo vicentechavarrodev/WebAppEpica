@@ -29,7 +29,8 @@ class EditarProducto extends Component {
                 Precio: '',
                 IdCategoria: 0,
                 Descripcion: '',
-                Activo: false
+                Activo: false,
+                EsPizza: false
             },
             file: null
         };
@@ -99,6 +100,7 @@ class EditarProducto extends Component {
         form.append('IdCategoria', producto.IdCategoria);
         form.append('Descripcion', producto.Descripcion);
         form.append('Activo', producto.Activo);
+        form.append('EsPizza', producto.EsPizza);
         this.props.editar_producto(form, producto.IdProducto, this);
 
     }
@@ -189,6 +191,9 @@ class EditarProducto extends Component {
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
                                 <ComboBoxComponent name="IdCategoria" showClearButton={false} value={this.state.producto.IdCategoria} allowCustom={false} fields={this.fields} change={(val) => { this.InputChange({ target: { name: 'IdCategoria', value: val.value } }); }} allowFiltering={true} placeholder="Categoría" className="pz-input" dataSource={this.props.init_editar.Categorias} />
+                            </Form.Group>
+                            <Form.Group as={Col}>
+                                <CheckBoxComponent label='Es Pizza' checked={this.state.producto.EsPizza} change={(val) => { this.InputChange({ target: { name: 'EsPizza', value: val.checked } }); }} />
                             </Form.Group>
                         </Form.Row>
 
