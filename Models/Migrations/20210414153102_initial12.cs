@@ -7,12 +7,12 @@ namespace Models.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "EsPizza",
+                name: "EsPrincipal",
                 table: "ProductoTipoOpciones");
 
             migrationBuilder.AddColumn<bool>(
-                name: "EsPizza",
-                table: "Productos",
+                name: "EsObligatoria",
+                table: "ProductoTipoOpciones",
                 nullable: false,
                 defaultValue: false);
         }
@@ -20,11 +20,11 @@ namespace Models.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "EsPizza",
-                table: "Productos");
+                name: "EsObligatoria",
+                table: "ProductoTipoOpciones");
 
             migrationBuilder.AddColumn<bool>(
-                name: "EsPizza",
+                name: "EsPrincipal",
                 table: "ProductoTipoOpciones",
                 type: "bit",
                 nullable: false,

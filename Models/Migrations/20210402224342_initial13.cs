@@ -6,8 +6,7 @@ namespace Models.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Banner");
+           
 
             migrationBuilder.CreateTable(
                 name: "Banners",
@@ -27,8 +26,7 @@ namespace Models.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Banners");
+         
 
             migrationBuilder.CreateTable(
                 name: "Banner",

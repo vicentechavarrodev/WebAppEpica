@@ -657,7 +657,7 @@ namespace Api.Controllers
                 MostrarInicio = productoTipoOpcion.MostrarInicio,
                 IdProductoTipoOpcion = productoTipoOpcion.IdProductoTipoOpcion,
                 IdTipoSeleccion= productoTipoOpcion.IdTipoSeleccion,
-                EsPrincipal= productoTipoOpcion.EsPrincipal
+                EsObligatoria= productoTipoOpcion.EsObligatoria
 
             };
         }

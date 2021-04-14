@@ -28,9 +28,9 @@ namespace Models
         [JsonProperty(PropertyName = "Encabezado")]
         [Display(Name = "Encabezado")]
         public string Encabezado { get; set; }
-        [Display(Name = "EsPrincipal")]
-        [JsonProperty(PropertyName = "EsPrincipal")]
-        public bool EsPrincipal { get; set; }
+        [Display(Name = "EsObligatoria")]
+        [JsonProperty(PropertyName = "EsObligatoria")]
+        public bool EsObligatoria { get; set; }
         [Display(Name = "MostrarInicio")]
         [JsonProperty(PropertyName = "MostrarInicio")]
         public bool MostrarInicio { get; set; }
