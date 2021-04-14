@@ -239,7 +239,7 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("EsPrincipal")
+                    b.Property<bool>("EsObligatoria")
                         .HasColumnType("bit");
 
                     b.Property<int>("IdProducto")

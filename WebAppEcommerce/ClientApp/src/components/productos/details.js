@@ -238,11 +238,6 @@ class DetalleProducto extends Component {
                                     <FormatListBulletedIcon />
                                 </div>
                             </button>
-                            <button id="btnEliminar" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz ml-1">
-                                <div>
-                                    <DeleteIcon />
-                                </div>
-                            </button>
                             <button id="btnAtras" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz ml-1">
                                 <div>
                                     <ArrowBackIcon />

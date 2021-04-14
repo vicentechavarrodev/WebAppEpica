@@ -10,7 +10,7 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210402222958_initial12")]
+    [Migration("20210414153102_initial12")]
     partial class initial12
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Models.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Models.Banner", b =>
+            modelBuilder.Entity("Models.Banners", b =>
                 {
                     b.Property<int>("IdBanner")
                         .ValueGeneratedOnAdd()
@@ -44,7 +44,7 @@ namespace Models.Migrations
 
                     b.HasKey("IdBanner");
 
-                    b.ToTable("Banner");
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("Models.Categorias", b =>
@@ -241,6 +241,9 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("EsObligatoria")
+                        .HasColumnType("bit");
+
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
@@ -252,6 +255,9 @@ namespace Models.Migrations
 
                     b.Property<bool>("MostrarInicio")
                         .HasColumnType("bit");
+
+                    b.Property<int>("Orden")
+                        .HasColumnType("int");
 
                     b.HasKey("IdProductoTipoOpcion");
 
@@ -277,6 +283,9 @@ namespace Models.Migrations
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EsPizza")
+                        .HasColumnType("bit");
 
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");

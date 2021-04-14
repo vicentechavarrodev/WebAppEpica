@@ -6,11 +6,6 @@ import { withRouter } from "react-router-dom";
 import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
 import { Modal, ListGroup} from 'react-bootstrap';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { opcionActions } from '../opciones/actions';
@@ -25,7 +20,8 @@ class ProductoModal extends Component {
         this.state = {
             total: 0,
             cantidad: 1,
-            opcionesSeleccionadas: []
+            opcionesSeleccionadas: [],
+            opcionesObligatorias: []
           
         }
 
@@ -114,7 +110,7 @@ class ProductoModal extends Component {
 
         const procesarSeleccion = (option) => {
 
-          
+            
 
             const { opcionesSeleccionadas } = this.state;
             let IdsubOpcion = 0;
@@ -124,7 +120,7 @@ class ProductoModal extends Component {
                 var element = document.getElementById(`${id}-item-op`);
                 element.classList.add("enable");
                 IdsubOpcion = id;
-               // element.firstChild.lastChild.setAttribute("value", undefined);
+              
 
             } else {
 
@@ -169,7 +165,8 @@ class ProductoModal extends Component {
                 cantidad: 0,
                 idTipoSeleccion: option.ProductoTipoOpcion.IdTipoSeleccion,
                 precio: option.Opcion.Precio,
-                añadir:''
+                añadir: '',
+                orden: option.ProductoTipoOpcion.Orden
             };
 
             if (this.state.opcionesSeleccionadas.length > 0) {
@@ -192,22 +189,44 @@ class ProductoModal extends Component {
         
         }
 
-        const rdbtnSelec = (opciones) => {
-            for (var i = 0; i < opciones.length; i++) {
-                let id = opciones[i].IdProductoOpciones;
-                var ids = this.state[id]
-                if (ids == null) {
-                    this.setState({ [id]: false });
+        const rdbtnSelec = async (opciones) => {
+
+            if (opciones.length > 0) {
+                if (opciones[0].ProductoTipoOpcion.EsObligatoria) {
+                    let TipoOpcion = opciones[0].ProductoTipoOpcion.TipoOpcion;
+                   
+                    let opcion = this.state.opcionesObligatorias.find(item => item.IdTipoOpcion === TipoOpcion.IdTipoOpcion);
+
+                    
+                    if (opcion === undefined) {
+                        await this.setState({
+                            opcionesObligatorias: [...this.state.opcionesObligatorias, {
+                                IdTipoOpcion: TipoOpcion.IdTipoOpcion,
+                                Nombre: TipoOpcion.Nombre,
+                                Orden: opciones[0].ProductoTipoOpcion.Orden
+                            }]
+                        });
+
+                    }
                 }
             }
+
+                for (var i = 0; i < opciones.length; i++) {
+                    let id = opciones[i].IdProductoOpciones;
+                    var ids = this.state[id]
+                    if (ids == null) {
+                        this.setState({ [id]: false });
+                    }
+                }
+            
         }
 
         const CambioSeleccion = (opcion) => {
             return this.state[opcion.IdProductoOpciones]
         }
 
-        const Agregar = async (event, value, opcion) => {
-            console.log(value)
+        const AgregarAdicion = async (event, value, opcion) => {
+           
             if (value === 0) {
                 
 
@@ -229,6 +248,54 @@ class ProductoModal extends Component {
                 });
             }
           
+        }
+
+        const Agregar = async (event) => {
+
+            if (this.state.opcionesObligatorias.length > 0) {
+
+                 this.state.opcionesObligatorias.sort((a, b) => (a.Orden - b.Orden));
+
+                for (var i = 0; i < this.state.opcionesObligatorias.length; i++) {
+
+                    let e = this.state.opcionesSeleccionadas.find(item => item.idTipoOpcion === this.state.opcionesObligatorias[i].IdTipoOpcion);
+
+                    if (e === undefined) {
+                        this.props.showMessage('Debes seleccionar ' + this.state.opcionesObligatorias[i].Nombre, true, 'Información');
+                        return
+                    }
+
+
+                }
+            }
+
+            let descripcion =  this.props.opciones_producto.Nombre ;
+
+            this.state.opcionesSeleccionadas.sort((a, b) => (a.orden - b.orden));
+
+            for (var j = 0; j < this.state.opcionesSeleccionadas.length; j++) {
+
+                descripcion += " / " + this.state.opcionesSeleccionadas[j].nombreTipo + " :" +
+                    (this.state.opcionesSeleccionadas[j].cantidad !== 0 ? ` ${this.state.opcionesSeleccionadas[j].cantidad} `  : " ") +
+                    this.state.opcionesSeleccionadas[j].nombre + 
+                    (this.state.opcionesSeleccionadas[j].cantidad !== 0 ? ` $${(this.state.opcionesSeleccionadas[j].cantidad * this.state.opcionesSeleccionadas[j].precio)} ` : this.state.opcionesSeleccionadas[j].precio !== 0 ? ` $${this.state.opcionesSeleccionadas[j].precio} ` : "") +
+                    (this.state.opcionesSeleccionadas[j].añadir !== "" ? ` Agregar a: ${this.state.opcionesSeleccionadas[j].añadir} ` : "")
+            }
+
+
+          
+            let productoPedido = {
+                Cantidad: this.state.cantidad,
+                Descripcion: descripcion,
+                Subtotal: this.state.total,
+                IdPedido: 0,
+                IdPedidoDetalle:0
+            }
+
+
+            this.props.agregar_pedido_general(productoPedido);
+            this.props.ver_crear(false)
+
         }
 
         const CantidadChange = async (event) => {
@@ -253,15 +320,9 @@ class ProductoModal extends Component {
 
         const HandleIncreChange = async (event, opcion) => {
 
-     
-
             var element = document.getElementById(`${opcion.IdProductoOpciones}-item-op-var`);
 
-
-
             let cantidad = parseInt(element.innerHTML);
-
-
 
             if (event.currentTarget.name === "cant-mas") {
                 if (cantidad < 99) {
@@ -272,11 +333,6 @@ class ProductoModal extends Component {
                     cantidad = cantidad - 1;
                 }
             }
-
-
-           
-
-         
 
             element.innerHTML = cantidad;
 
@@ -289,7 +345,8 @@ class ProductoModal extends Component {
                 cantidad: cantidad,
                 idTipoSeleccion: opcion.ProductoTipoOpcion.IdTipoSeleccion,
                 precio: opcion.Opcion.Precio,
-                añadir: ''
+                añadir: '',
+                orden: opcion.ProductoTipoOpcion.Orden
             };
 
             if (this.state.opcionesSeleccionadas.length > 0) {
@@ -327,7 +384,7 @@ class ProductoModal extends Component {
                     if (cantidad === 1) {
                         e.classList.add("enable");
 
-                        await Agregar(event, parseInt(child.value), opcion)
+                        await AgregarAdicion(event, parseInt(child.value), opcion)
                     } else if (cantidad === 0) {
                         e.classList.remove("enable");
                     }
@@ -337,9 +394,6 @@ class ProductoModal extends Component {
 
             generarPrecio();
         }
-
-
-
 
         const generarPrecio =  () => {
             let total = 0;
@@ -373,16 +427,12 @@ class ProductoModal extends Component {
         }
 
         return (
-
-
-
             <Modal
                 show={this.props.show}
                 onHide={() => this.props.ver_crear(false)}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
-
             >
 
                 <div>
@@ -410,7 +460,8 @@ class ProductoModal extends Component {
 
                                             this.props.opciones_producto.VistaProductoOpcionesGroup.map(function (opciones, index, array) {                                             
                                                 rdbtnSelec(opciones);
-                                                return <Options.OptionItems opciones={opciones} Agregar={Agregar} HandleIncreChange={HandleIncreChange} index={index}  HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} deseleccionar={deseleccionar} />
+                                      
+                                                return <Options.OptionItems opciones={opciones} AgregarAdicion={AgregarAdicion} HandleIncreChange={HandleIncreChange} index={index}  HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} deseleccionar={deseleccionar} />
 
                                             })
                                         }
@@ -421,11 +472,6 @@ class ProductoModal extends Component {
                                     : ""
 
                                 }
-
-                               
-
-
-
                             </div>
                         </div>
 
@@ -459,7 +505,7 @@ class ProductoModal extends Component {
                                 <h4 className="font-weight-bold">  $  {this.state.total} </h4>
                             </div>
                             <div className="col-sm-12 col-lg-3 p-1 ">
-                                <a className="btn btn-default btn-3d-style  btn-block" >
+                                <a className="btn btn-default btn-3d-style  btn-block" onClick={Agregar} >
                                     <i className="fa fa-cart-plus"></i>
                                             Agregar
                                  </a>
@@ -472,12 +518,6 @@ class ProductoModal extends Component {
             </Modal>
 
 
-
-
-
-
-
-
         );
     }
 }
@@ -486,9 +526,9 @@ class ProductoModal extends Component {
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
     const { categorias } = state.categoriaReducer;
-    const { opciones_producto, id_producto_seleccionado } = state.productoReducer;
+    const { opciones_producto, id_producto_seleccionado, productos_pedido } = state.productoReducer;
     const { mostrar_opciones } = state.opcionesReducer;
-    return { loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, mostrar_opciones};
+    return { productos_pedido,loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, mostrar_opciones};
 };
 
 
@@ -498,7 +538,8 @@ const mapDispatchToProps = {
     obtener_opciones_producto: productoActions.obtener_opciones_producto,
     ver_crear: productoActions.ver_crear,
     ver_opciones: opcionActions.ver_opciones,
-    producto_seleccionado: productoActions.producto_seleccionado
+    producto_seleccionado: productoActions.producto_seleccionado,
+    agregar_pedido_general: productoActions.agregar_pedido_general
     
 };
 

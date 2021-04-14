@@ -9,7 +9,7 @@ namespace Models
 {
     public class DataContext : DbContext
     {
-        const string connectionString = "Data Source=.;Initial Catalog=Ecommerce1;Integrated Security=False;User Id=sa; Password=dosantos62333;";
+        const string connectionString = "Data Source=.;Initial Catalog=Ecommerce1;Integrated Security=False;User Id=sa; Password=PazziSoftware*;";
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 

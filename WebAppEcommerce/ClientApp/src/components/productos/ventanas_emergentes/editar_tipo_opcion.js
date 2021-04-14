@@ -28,7 +28,7 @@ class EditarTipoOpcionProducto extends Component {
                 MostrarInicio: false,
                 IdTipoSeleccion: 0,
                 TipoOpciones: [],
-                EsPrincipal: false,
+                EsObligatoria: false,
                 Orden: 0,
                
             },
@@ -155,11 +155,12 @@ class EditarTipoOpcionProducto extends Component {
                         <Form.Row sm={12}>
 
                             <Form.Group as={Col}   >
-                                <CheckBoxComponent label='MostrarInicio' checked={this.state.productoTipoOpcion.MostrarInicio} change={(val) => { this.InputChange({ target: { name: 'MostrarInicio', value: val.checked } }); }} />
+                                <CheckBoxComponent label='¿Mostrar al Inicio?' checked={this.state.productoTipoOpcion.MostrarInicio} change={(val) => { this.InputChange({ target: { name: 'MostrarInicio', value: val.checked } }); }} />
                             </Form.Group>
                             <Form.Group as={Col}   >
-                                <CheckBoxComponent label='EsPrincipal' checked={this.state.productoTipoOpcion.EsPrincipal} change={(val) => { this.InputChange({ target: { name: 'EsPrincipal', value: val.checked } }); }} />
+                                <CheckBoxComponent label='¿Es Obligatoria?' checked={this.state.productoTipoOpcion.EsObligatoria} change={(val) => { this.InputChange({ target: { name: 'EsObligatoria', value: val.checked } }); }} />
                             </Form.Group>
+
 
                         </Form.Row>
 
