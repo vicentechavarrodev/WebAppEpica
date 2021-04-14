@@ -22,7 +22,7 @@ class Car_modal extends Component {
     closeCar() {
         const btn = document.getElementById('btn-car');
         btn.style.display = 'inline';
-        this.props.ver_crear(false);
+        this.props.ver_car(false);
     }
 
 
@@ -139,7 +139,7 @@ const mapDispatchToProps = {
     showMessage: alertActions.showMessage,
     obtenerCategorias: categoriaActions.obtener_categorias,
     obtener_opciones_producto: productoActions.obtener_opciones_producto,
-    ver_crear: productoActions.ver_crear,
+    ver_car: productoActions.ver_car,
 };
 
 

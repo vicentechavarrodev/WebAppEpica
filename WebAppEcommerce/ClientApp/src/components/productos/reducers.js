@@ -40,6 +40,11 @@ export function productoReducer(state = initialState.producto_state, action) {
               ...state, mostrar_crear: action.mostrar_crear
 
           };
+      case productoConstants.MOSTRAR_CAR_PRODUCTO:
+          return {
+              ...state, mostrar_car: action.mostrar_car
+
+          };
       case productoConstants.MOSTRAR_SELECCION_OPCION:
           return {
               ...state, mostrar_seleccion_opcion: action.mostrar_seleccion_opcion

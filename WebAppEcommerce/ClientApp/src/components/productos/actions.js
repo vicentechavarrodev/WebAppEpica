@@ -9,6 +9,7 @@ export const productoActions = {
    
     obtener_productos,
     ver_crear,
+    ver_car,
     crear_producto,
     cargar_crear,
     cargar_editar,
@@ -271,6 +272,11 @@ function ver_crear(mostrar_crear) {
 
     return { type: productoConstants.MOSTRAR_CREATE_PRODUCTO, mostrar_crear };
    
+}
+function ver_car(mostrar_car) {
+
+    return { type: productoConstants.MOSTRAR_CAR_PRODUCTO, mostrar_car };
+
 }
 
 function mostrar_agregar(mostrar_agregar_tipo_opcion) {

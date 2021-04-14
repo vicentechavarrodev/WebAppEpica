@@ -152,7 +152,10 @@ class PideLinea extends Component {
                         </div>
                     </div>
                 </div>
-                <Carrito/>
+             
+                    <Carrito />
+                  
+
          
             
                 <Footer />

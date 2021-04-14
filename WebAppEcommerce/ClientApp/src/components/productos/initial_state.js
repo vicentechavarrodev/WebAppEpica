@@ -8,6 +8,7 @@ const producto_initial_state = {
         init_crear: { Categorias:  []},
         init_editar: { Categorias: [] },
         mostrar_crear: false,
+        mostrar_car:false,
         mostrar_editar: false,
         mostrar_seleccion_opcion: false,
         producto_creado: false,

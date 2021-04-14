@@ -19,7 +19,7 @@ class Carrito extends Component {
         const btn = document.getElementById('btn-car');
 
         btn.style.display = 'none';
-        this.props.ver_crear(true);
+        this.props.ver_car(true);
 
 
     }
@@ -32,7 +32,7 @@ class Carrito extends Component {
     //---------------------------------------------------------------
     render() {
      
-        const { mostrar_crear } = this.props;
+        const { mostrar_car } = this.props;
     return (
         <section>
             <div className="car-lateral fixed-top">
@@ -41,7 +41,7 @@ class Carrito extends Component {
                 </button>
             </div>
             {
-                mostrar_crear ?
+                mostrar_car ?
                     <CarModal />
                     :
                     ""
@@ -59,8 +59,8 @@ class Carrito extends Component {
 const mapStateToProps = (state) => {
 
     const { menuLateralVisible } = state.lateralBarReducer;
-    const { mostrar_crear } = state.productoReducer;
-    return { mostrar_crear};
+    const { mostrar_car } = state.productoReducer;
+    return { mostrar_car};
 
     return {
         menuLateralVisible
@@ -71,7 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     lateral_bar_visible: LateralBarActions.lateral_bar_visible,
-    ver_crear: productoActions.ver_crear,
+    ver_car: productoActions.ver_car,
 };
 
 

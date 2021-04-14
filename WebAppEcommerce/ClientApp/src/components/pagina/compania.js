@@ -30,28 +30,27 @@ class Compania extends Component {
                     </div>
 
                 </div>
-                <div class="container container-compañia">
-                    <div className="row">
-                            <div class="col-12 subtittle">
-                                <p>Nuestra Historia</p>
+                <div className="row row-compania p-lg-4  p-sm-0 ">
+                    <div className="col-lg-8 col-sm-10 col-xs-12 mb-4">
+                        <div className="card ">
+                            <img className="card-img-top" src={imageHeader1} alt="Foto de Pizza 1" />
+                            <div className="card-body">
+                                <h5 className="card-title">Pizza 1</h5>
+                                <p className="card-text">Lorem Ipsum is simply dummy text of the
+                                printing and typesetting industry. Lorem
+                                Ipsum has been the industry's standard dummy
+                                text ever since the 1500s, when an unknown printer took
+                                a galley of type and scrambled it to make a type specimen book.
+                                It has survived not only five centuries, but also the leap into
+                                electronic typesetting, remaining essentially unchanged. It was popularised in
+                                the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                                more recently with desktop publishing software like Aldus PageMaker including versions
+                            of Lorem Ipsum.</p>
                             </div>
-                            <div class="col-12 column-image">
-                            <img className="image" src={imageHeader1} alt="Foto de Pizza 1" />
-                        </div>
-                        <div class="col-12">
-                            <h6>Lorem Ipsum is simply dummy text of the
-                            printing and typesetting industry. Lorem
-                            Ipsum has been the industry's standard dummy
-                            text ever since the 1500s, when an unknown printer took
-                            a galley of type and scrambled it to make a type specimen book.
-                            It has survived not only five centuries, but also the leap into
-                            electronic typesetting, remaining essentially unchanged. It was popularised in
-                            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                            more recently with desktop publishing software like Aldus PageMaker including versions
-                            of Lorem Ipsum.</h6>
                         </div>
                     </div>
                     </div>
+              
          
                 <Carrito/>
 

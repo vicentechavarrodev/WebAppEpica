@@ -17,6 +17,12 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .row-novedades {
     margin: 60px 20px 0px 20px;
 }
+.row-compania {
+    margin: 60px 20px 0px 20px;
+    display:flex;
+    justify-content:center;
+
+}
 #cart-fixed {
     position: absolute;
     height: 100vh;
