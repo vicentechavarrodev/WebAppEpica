@@ -33,7 +33,8 @@ export const productoActions = {
     crear_opcion_secundaria,
     init_crear_opcion_secundaria,
     ver_crear_opcion_secundaria,
-    obtener_tipos_seleccion
+    obtener_tipos_seleccion,
+    agregar_pedido_general
 
 };
 
@@ -809,4 +810,10 @@ function obtener_tipos_seleccion( context) {
 
 
     function success(tipos_seleccion) { return { type: productoConstants.OBTENER_TIPO_SELECCIONES, tipos_seleccion }; }
+}
+
+
+function agregar_pedido_general(productos_pedido) {
+    return { type: productoConstants.AGREGAR_PRODUCTO_PEDIDO, productos_pedido };
+
 }

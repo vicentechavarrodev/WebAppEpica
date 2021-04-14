@@ -154,7 +154,15 @@ export function productoReducer(state = initialState.producto_state, action) {
 
               ...state, tipos_seleccion: action.tipos_seleccion
           };
-        
+      case productoConstants.AGREGAR_PRODUCTO_PEDIDO:
+          return {
+              ...state,
+              productos_pedido: state.productos_pedido.concat(action.productos_pedido)
+           
+          };
+
+
+          
       default:
           return state;
   }

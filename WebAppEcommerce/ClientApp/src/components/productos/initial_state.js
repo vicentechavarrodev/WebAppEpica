@@ -29,7 +29,7 @@ const producto_initial_state = {
         opcion_secundaria: { ProductoTipoOpciones: [] },
         mostrar_crear_opcion_secundaria: false,
         tipos_seleccion: [],
-     
+        productos_pedido:[]
 
 
     }

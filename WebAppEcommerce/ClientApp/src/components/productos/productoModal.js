@@ -110,6 +110,8 @@ class ProductoModal extends Component {
 
         const procesarSeleccion = (option) => {
 
+            
+
             const { opcionesSeleccionadas } = this.state;
             let IdsubOpcion = 0;
 
@@ -163,7 +165,8 @@ class ProductoModal extends Component {
                 cantidad: 0,
                 idTipoSeleccion: option.ProductoTipoOpcion.IdTipoSeleccion,
                 precio: option.Opcion.Precio,
-                añadir:''
+                añadir: '',
+                orden: option.ProductoTipoOpcion.Orden
             };
 
             if (this.state.opcionesSeleccionadas.length > 0) {
@@ -259,14 +262,39 @@ class ProductoModal extends Component {
 
                     if (e === undefined) {
                         this.props.showMessage('Debes seleccionar ' + this.state.opcionesObligatorias[i].Nombre, true, 'Información');
-                        break
+                        return
                     }
 
 
                 }
             }
 
+            let descripcion =  this.props.opciones_producto.Nombre ;
 
+            this.state.opcionesSeleccionadas.sort((a, b) => (a.orden - b.orden));
+
+            for (var j = 0; j < this.state.opcionesSeleccionadas.length; j++) {
+
+                descripcion += " / " + this.state.opcionesSeleccionadas[j].nombreTipo + " :" +
+                    (this.state.opcionesSeleccionadas[j].cantidad !== 0 ? ` ${this.state.opcionesSeleccionadas[j].cantidad} `  : " ") +
+                    this.state.opcionesSeleccionadas[j].nombre + 
+                    (this.state.opcionesSeleccionadas[j].cantidad !== 0 ? ` $${(this.state.opcionesSeleccionadas[j].cantidad * this.state.opcionesSeleccionadas[j].precio)} ` : this.state.opcionesSeleccionadas[j].precio !== 0 ? ` $${this.state.opcionesSeleccionadas[j].precio} ` : "") +
+                    (this.state.opcionesSeleccionadas[j].añadir !== "" ? ` Agregar a: ${this.state.opcionesSeleccionadas[j].añadir} ` : "")
+            }
+
+
+          
+            let productoPedido = {
+                Cantidad: this.state.cantidad,
+                Descripcion: descripcion,
+                Subtotal: this.state.total,
+                IdPedido: 0,
+                IdPedidoDetalle:0
+            }
+
+
+            this.props.agregar_pedido_general(productoPedido);
+            this.props.ver_crear(false)
 
         }
 
@@ -317,7 +345,8 @@ class ProductoModal extends Component {
                 cantidad: cantidad,
                 idTipoSeleccion: opcion.ProductoTipoOpcion.IdTipoSeleccion,
                 precio: opcion.Opcion.Precio,
-                añadir: ''
+                añadir: '',
+                orden: opcion.ProductoTipoOpcion.Orden
             };
 
             if (this.state.opcionesSeleccionadas.length > 0) {
@@ -497,9 +526,9 @@ class ProductoModal extends Component {
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
     const { categorias } = state.categoriaReducer;
-    const { opciones_producto, id_producto_seleccionado } = state.productoReducer;
+    const { opciones_producto, id_producto_seleccionado, productos_pedido } = state.productoReducer;
     const { mostrar_opciones } = state.opcionesReducer;
-    return { loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, mostrar_opciones};
+    return { productos_pedido,loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, mostrar_opciones};
 };
 
 
@@ -509,7 +538,8 @@ const mapDispatchToProps = {
     obtener_opciones_producto: productoActions.obtener_opciones_producto,
     ver_crear: productoActions.ver_crear,
     ver_opciones: opcionActions.ver_opciones,
-    producto_seleccionado: productoActions.producto_seleccionado
+    producto_seleccionado: productoActions.producto_seleccionado,
+    agregar_pedido_general: productoActions.agregar_pedido_general
     
 };
 
