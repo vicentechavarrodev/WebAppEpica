@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210402224342_initial13")]
+    partial class initial13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,9 +241,6 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("EsPrincipal")
-                        .HasColumnType("bit");
-
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
@@ -253,9 +252,6 @@ namespace Models.Migrations
 
                     b.Property<bool>("MostrarInicio")
                         .HasColumnType("bit");
-
-                    b.Property<int>("Orden")
-                        .HasColumnType("int");
 
                     b.HasKey("IdProductoTipoOpcion");
 
@@ -281,9 +277,6 @@ namespace Models.Migrations
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EsPizza")
-                        .HasColumnType("bit");
 
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");

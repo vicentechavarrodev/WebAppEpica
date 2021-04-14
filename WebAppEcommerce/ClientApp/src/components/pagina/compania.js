@@ -5,6 +5,8 @@ import './styles.scss';
 import { connect } from 'react-redux';
 import { alertActions } from '../alerts_message/actions';
 import { withRouter } from "react-router-dom";
+import Carrito from '../carrito/index';
+import imageHeader1 from '../../imagenes/pagina/header1.jpg';
 
 
 
@@ -21,67 +23,37 @@ class Compania extends Component {
         return (
             <body data-spy="scroll" data-target="#navbar" data-offset="57">
                 <Header visiblePagina="true" />
-                <main className="container">
-                    <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-                        <h1 className="display-4">Compañia</h1>
-                        <p className="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+                <div className="row smart-order-novedades">
+                    <div className="col   text-center text-uppercase pt-2 pb-4">
+                        <h1>COMPAÑIA</h1>
+
                     </div>
 
-                    <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                        <div className="col">
-                            <div className="card mb-4 shadow-sm">
-                                <div className="card-header">
-                                    <h4 className="my-0 fw-normal">Free</h4>
-                                </div>
-                                <div className="card-body">
-                                    <h1 className="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-                                    <ul className="list-unstyled mt-3 mb-4">
-                                        <li>10 users included</li>
-                                        <li>2 GB of storage</li>
-                                        <li>Email support</li>
-                                        <li>Help center access</li>
-                                    </ul>
-                                    <button type="button" className="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
-                                </div>
+                </div>
+                <div class="container container-compañia">
+                    <div className="row">
+                            <div class="col-12 subtittle">
+                                <p>Nuestra Historia</p>
                             </div>
+                            <div class="col-12 column-image">
+                            <img className="image" src={imageHeader1} alt="Foto de Pizza 1" />
                         </div>
-                        <div className="col">
-                            <div className="card mb-4 shadow-sm">
-                                <div className="card-header">
-                                    <h4 className="my-0 fw-normal">Pro</h4>
-                                </div>
-                                <div className="card-body">
-                                    <h1 className="card-title pricing-card-title">$15 <small className="text-muted">/ mo</small></h1>
-                                    <ul className="list-unstyled mt-3 mb-4">
-                                        <li>20 users included</li>
-                                        <li>10 GB of storage</li>
-                                        <li>Priority email support</li>
-                                        <li>Help center access</li>
-                                    </ul>
-                                    <button type="button" className="w-100 btn btn-lg btn-primary">Get started</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="card mb-4 shadow-sm">
-                                <div className="card-header">
-                                    <h4 className="my-0 fw-normal">Enterprise</h4>
-                                </div>
-                                <div className="card-body">
-                                    <h1 className="card-title pricing-card-title">$29 <small className="text-muted">/ mo</small></h1>
-                                    <ul className="list-unstyled mt-3 mb-4">
-                                        <li>30 users included</li>
-                                        <li>15 GB of storage</li>
-                                        <li>Phone and email support</li>
-                                        <li>Help center access</li>
-                                    </ul>
-                                    <button type="button" className="w-100 btn btn-lg btn-primary">Contact us</button>
-                                </div>
-                            </div>
+                        <div class="col-12">
+                            <h6>Lorem Ipsum is simply dummy text of the
+                            printing and typesetting industry. Lorem
+                            Ipsum has been the industry's standard dummy
+                            text ever since the 1500s, when an unknown printer took
+                            a galley of type and scrambled it to make a type specimen book.
+                            It has survived not only five centuries, but also the leap into
+                            electronic typesetting, remaining essentially unchanged. It was popularised in
+                            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                            more recently with desktop publishing software like Aldus PageMaker including versions
+                            of Lorem Ipsum.</h6>
                         </div>
                     </div>
-                </main>
-
+                    </div>
+         
+                <Carrito/>
 
 
 

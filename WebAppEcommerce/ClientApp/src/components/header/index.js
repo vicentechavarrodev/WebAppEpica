@@ -16,6 +16,8 @@ class Header extends Component {
         super();
         this.MostrarMenu = this.MostrarMenu.bind(this);
         this.AbrirLogin = this.AbrirLogin.bind(this);
+
+        this.menuVisible = this.menuVisible.bind(this);
     }
 
     //-------------------------------Eventos------------------------
@@ -38,6 +40,17 @@ class Header extends Component {
         }
 
     }
+    menuVisible() {
+
+        const ocult = document.getElementById('ocult-menu');
+        if (ocult.style.display = 'none') {
+            ocult.style.display = 'inline';
+        } 
+      
+      
+
+
+    }
 
 
     //---------------------------------------------------------------
@@ -56,20 +69,23 @@ class Header extends Component {
                                 <Link to="/pagina" className="navbar-brand">
                                     <img src={Logo} alt="Epica Logo"  />
                                 </Link>
-                            
-                                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+                                <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={this.menuVisible} data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                  
                                   <i className="fa fa-bars" aria-hidden="true"></i>
                              </button>
                             </div>
                             :
-                            <button type="button" id="sidebarCollapse" onClick={this.MostrarMenu} value="collapse" className="btn btn-default  ">
+                            <button type="button" id="sidebarCollapse" value="collapse" className="btn btn-default  ">
                                 <MenuIcon id="btncollapse" visibility={this.props.iconMenuVisible} />
                             </button>
                    }
                         
                     <div className="collapse navbar-collapse" id="navbar">
+                        <div className="ocult-menu" id="ocult-menu" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        </div>
                         {this.props.visiblePagina === 'true' ?
+                        
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item" id="novedades">
                                     <Link to="/novedades" className="nav-link">Novedades</Link>

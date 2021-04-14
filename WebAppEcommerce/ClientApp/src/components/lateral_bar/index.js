@@ -171,6 +171,14 @@ import { Row, Col } from 'react-bootstrap';
                                 </Row>
                             </Link>
                         </li>
+                        <li onClick={this.ItemClick} id='itemMenu6' >
+                            <Link to="/banners" id='itemMenu6' >
+                                <Row>
+                                    <Col xs={3} md={3} id='itemMenu6' className="justify-content-md-center"><i className='fa fa-cog' id='itemMenu6' aria-hidden="true"></i></Col>
+                                    <Col xs={9} md={9} className="text-left" id='itemMenu6'>Banners</Col>
+                                </Row>
+                            </Link>
+                        </li>
 
 
 
