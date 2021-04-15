@@ -123,7 +123,7 @@ import { Row, Col } from 'react-bootstrap';
     render() {
        
         const { menuLateralVisible } = this.props;
-      
+        
         
        
         return (

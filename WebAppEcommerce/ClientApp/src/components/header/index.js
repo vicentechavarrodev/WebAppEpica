@@ -76,8 +76,8 @@ class Header extends Component {
                              </button>
                             </div>
                             :
-                            <button type="button" id="sidebarCollapse" value="collapse" className="btn btn-default  ">
-                                <MenuIcon id="btncollapse" visibility={this.props.iconMenuVisible} />
+                            <button type="button" id="sidebarCollapse" value="collapse" className="btn btn-default" onClick={this.MostrarMenu}>
+                                <MenuIcon id="btncollapse" visibility={this.props.iconMenuVisible}/>
                             </button>
                    }
                         
