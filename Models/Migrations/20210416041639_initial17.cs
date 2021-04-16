@@ -2,13 +2,14 @@
 
 namespace Models.Migrations
 {
-    public partial class initial11 : Migration
+    public partial class initial17 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-         
+           
+
             migrationBuilder.AddColumn<bool>(
-                name: "EsPizza",
+                name: "EsPizzas",
                 table: "Productos",
                 nullable: false,
                 defaultValue: false);
@@ -16,11 +17,13 @@ namespace Models.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-          
+            migrationBuilder.DropColumn(
+                name: "EsPizzas",
+                table: "Productos");
 
             migrationBuilder.AddColumn<bool>(
                 name: "EsPizza",
-                table: "ProductoTipoOpciones",
+                table: "Productos",
                 type: "bit",
                 nullable: false,
                 defaultValue: false);

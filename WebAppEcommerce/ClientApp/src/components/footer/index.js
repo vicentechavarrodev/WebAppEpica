@@ -6,6 +6,7 @@ import './styles.scss';
 import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
 import { Link } from "react-router-dom";
+import { loader } from '../helpers/loader';
 
 class Footer extends Component {
 
@@ -18,8 +19,10 @@ class Footer extends Component {
         await this.props.obtenerCategorias(this);
 
     }
-    abrirPideLinea(e) {
-        this.props.history.push({
+   async abrirPideLinea(e) {
+       
+       await this.props.history.push({
+            
             pathname: '/pideLinea',
             Id_categoria_seleccionada: e.currentTarget.id,
         });
