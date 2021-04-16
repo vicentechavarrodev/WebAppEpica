@@ -83,8 +83,10 @@ class Car_modal extends Component {
 
     EliminarPedido(e) {
       
-        let pedidos = this.props.productos_pedido.filter(item => item.Descripcion !== e.target.name && item.Cantidad === e.target.value)
+        let pedidos = this.props.productos_pedido.filter(item => e.target.value + item.Descripcion !== e.target.value + e.target.name)
 
+
+        console.log(e.target.value)
 
         let cantidad=0, subtotal = 0;
 
