@@ -36,8 +36,10 @@ namespace Api.Controllers
             {
 
                 var pedidos = from pedido in db.Pedidos
-                             
-                                        select new VistaPedidos
+                              where pedido.FechaHoraPedido.Date >= DateTime.Now.Date.AddDays(-1) &&
+                                    pedido.FechaHoraPedido.Date <= DateTime.Now.Date
+                                    orderby pedido.FechaHoraPedido descending
+                              select new VistaPedidos
                                         {
                                             IdPedido = pedido.IdPedido,
                                             Direccion = pedido.Direccion,

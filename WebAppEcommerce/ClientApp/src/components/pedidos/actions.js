@@ -25,19 +25,29 @@ function obtener_pedidos(id,context) {
                     let pedidos;
                     if (response.IsSuccess) {
                         pedidos = response.Result;
-
-                        var recibidos = pedidos.filter(word => word.IdEstado === 1);
-                        var pendientes = pedidos.filter(word => word.IdEstado === 2);
-                        var enviados = pedidos.filter(word => word.IdEstado === 3);
+                       
+                        let pendientes = pedidos.filter(e => e.IdEstado === 1);
+                        let recibidos = pedidos.filter(e => e.IdEstado === 2);
+                        let enviados = pedidos.filter(e => e.IdEstado === 3);
 
                         if (id === 1) {
-                            pedidos = recibidos;
-                        } else if (id === 2) {
                             pedidos = pendientes;
+                           
+                        } else if (id === 2) {
+                            pedidos = recibidos;
                         } else if (id === 3) {
                             pedidos = enviados;
                         }
-                       
+
+                        console.log(context.state.pendientes)
+                        console.log(context.state.pendientes.length)
+                        if (context.state.pendientes !== 0 && context.state.pendientes != null) {
+                            if (pendientes.length > context.state.pendientes) {
+                                context.audioNotification()
+                            }
+
+                        }
+                        
                         context.setState({
                             pendientes: pendientes.length,
                             recibidos: recibidos.length,

@@ -48,16 +48,22 @@ class Pedidos extends Component {
     }
 
     componentDidMount() {
+
+
         setInterval(() => {
             this.props.obtener_pedidos(this.state.idEstado, this);
             this.agregarBurbuja();
         }, 5000);
        
         loader.hide();
-        var audio = document.getElementById("audio");
-        audio.play();
+       
         this.props.obtener_pedidos(this.state.idEstado, this);
        
+    }
+
+    audioNotification() {
+        var audio = document.getElementById("audio");
+        audio.play();
     }
 
     agregarBurbuja() {
@@ -153,9 +159,9 @@ class Pedidos extends Component {
          this.agregarBurbuja();
          return   <div id="grid-pedidos" className='wrap-form table-responsive container-fluid'>
              <GridComponent dataSource={this.props.pedidos} rowDataBound={this.rowDataBound} ref={grid => this.grid = grid} allowPaging={true} toolbar={this.toolbarOptions}  rowSelected={this.rowSelected} searchSettings={this.searchOptions} created={this.created.bind(this)} >
-                    <ColumnsDirective>
-                     <ColumnDirective field='Descripcion' width='200' headerText='Descripción' />
-                     <ColumnDirective field='FechaHoraPedido' width='100' headerText='Hora Pedido' />
+                 <ColumnsDirective>
+                     <ColumnDirective field='Solicitante' width='200' headerText='Solicitante' />
+                     <ColumnDirective field='FechaHoraPedido' headerText='Hora Pedido' type="datetime" format='MM/dd/yyyy HH:mm:ss' width='170'></ColumnDirective> 
                     </ColumnsDirective>
                     <Inject services={[Search, Toolbar, Page]} />
                 </GridComponent>
@@ -173,9 +179,11 @@ class Pedidos extends Component {
     }
 
     change(e) {
-     
-            this.props.obtener_pedidos(e, this);
+
+
             this.setState({ idEstado: e });
+            this.props.obtener_pedidos(e, this);
+           
 
        
     }
