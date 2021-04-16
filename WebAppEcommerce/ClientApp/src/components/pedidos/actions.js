@@ -38,9 +38,7 @@ function obtener_pedidos(id,context) {
                         } else if (id === 3) {
                             pedidos = enviados;
                         }
-
-                        console.log(context.state.pendientes)
-                        console.log(context.state.pendientes.length)
+                      
                         if (context.state.pendientes !== 0 && context.state.pendientes != null) {
                             if (pendientes.length > context.state.pendientes) {
                                 context.audioNotification()

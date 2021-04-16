@@ -3,7 +3,7 @@
     pedidos_state: {
         pedidos: [],
         mostrar_detalle: false,
-        pedido: {},
+        pedido: { PedidoDetalles:[]},
         id_pedido_seleccionado: 0,
         estado_cambiado: {},
         pedido_enviado:false

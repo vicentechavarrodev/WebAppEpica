@@ -72,10 +72,7 @@ class Detalle extends Component {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Card.Title>Descripción</Card.Title>
-                    <Card.Text>
-                        {this.props.pedido.Descripcion}
-                     </Card.Text>
+                 
 
                     <ListGroup variant="flush">
                        
@@ -117,16 +114,28 @@ class Detalle extends Component {
                         }
                        
                         <ListGroup.Item>
-                            <div className='table-responsive '>
-                                <GridComponent dataSource={this.props.pedido.PedidoDetalles} ref={grid => this.grid = grid} allowPaging={true}  >
-                                    <ColumnsDirective>
-                                        <ColumnDirective field='Cantidad' width='50' headerText='Cant' />
-                                        <ColumnDirective field='Descripcion' width='250' headerText='Descripción' />
-                                        <ColumnDirective field='Subtotal' width='50' headerText='Subtotal' />
-                                    </ColumnsDirective>
-                                    <Inject services={[Search, Toolbar, Page]} />
-                                </GridComponent>
+                            <div class="container content-pedido">
+                                {
+                                    this.props.pedido.PedidoDetalles.map((item, index) => {
+                                        return <div class="row" id={index} key={index}>
+                                            <div class="col-2 col-amount-pedido">
+                                                {item.Cantidad}
+                                            </div>
+                                            <div class="col-8 col-description-pedido">
+                                                {item.Descripcion}
+                                            </div>
+                                            <div class="col-2 col-price-pedido">
+                                                {item.Subtotal}
+                                            </div>
+                                            
+                                        </div>
+                                    })
+                                }
+
+
                             </div>
+
+                   
                         </ListGroup.Item>
                         <ListGroup.Item className="p-0 text-center">
                             <Form.Group as={Row} >
