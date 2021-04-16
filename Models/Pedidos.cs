@@ -14,9 +14,6 @@ namespace Models
         [JsonProperty(PropertyName = "IdPedido")]
         public int IdPedido { get; set; }
         [Required(ErrorMessage = "El dato {0} es necesario")]
-        [JsonProperty(PropertyName = "Descripcion")]
-        public string Descripcion { get; set; }
-        [Required(ErrorMessage = "El dato {0} es necesario")]
         [MaxLength(150, ErrorMessage = "El tamaño maximo de el {0} is {1} caracteres")]
         [JsonProperty(PropertyName = "Solicitante")]
         public string Solicitante { get; set; }

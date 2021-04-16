@@ -5,7 +5,6 @@ import './styles.scss';
 import { connect } from 'react-redux';
 import { alertActions } from '../alerts_message/actions';
 import { withRouter } from "react-router-dom";
-import imageHeader2 from '../../imagenes/pagina/header2.jpg';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -33,7 +32,7 @@ class PideLinea extends Component {
     async componentDidMount() {
         document.getElementById('pideLinea').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
         await this.props.obtenerCategorias(this);
-        if (this.props.location.Id_categoria_seleccionada != undefined) {
+        if (this.props.location.Id_categoria_seleccionada !== undefined) {
             this.props.productos_por_categoria(this.props.location.Id_categoria_seleccionada);
             this.onSelect(this.props.location.Id_categoria_seleccionada);
         } else {
@@ -51,7 +50,7 @@ class PideLinea extends Component {
         
     }
    async AbrirModal(e) {
-
+       console.log(e.currentTarget.id)
         await this.props.producto_seleccionado(e.currentTarget.id);
         this.props.ver_crear(true);
     }

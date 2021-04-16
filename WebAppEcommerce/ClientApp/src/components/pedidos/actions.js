@@ -10,7 +10,8 @@ export const pedidosActions = {
     mostrar_detalle_pedido,
     obtener_pedido,
     seleccionar_pedido,
-    cambiar_estado
+    cambiar_estado,
+    enviar_pedido
 };
 
 function obtener_pedidos(id,context) {
@@ -149,6 +150,48 @@ function mostrar_detalle_pedido(mostrar_detalle) {
 function seleccionar_pedido(id_pedido_seleccionado) {
 
     return { type: pedidosConstants.SELECCIONAR_PEDIDO, id_pedido_seleccionado };
+
+}
+
+function enviar_pedido(pedido,context) {
+
+    return async dispatch => {
+        await ServicesHelper.enviar_pedido(pedido)
+            .then(
+                response => {
+
+                    if (response.IsSuccess) {
+                        loader.hide();
+                        if (response.Result !== null) {
+
+                            dispatch(success(true));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Hecho'));
+                            context.props.ver_car(false);
+                            context.props.limpiar_pedidos([])
+                            context.props.asignar_cantidad_pedido(0);
+
+                        } else {
+
+                            dispatch(success(false));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                        }
+
+
+                    } else {
+                        loader.hide();
+                        dispatch(success(false));
+                        dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                    }
+                },
+                error => {
+                    loader.hide();
+                    dispatch(success(false));
+                    dispatch(alertActions.showMessage(error.toString(), true, 'Ups'));
+                }
+            );
+    };
+
+    function success(pedido_enviado) { return { type: pedidosConstants.ENVIAR_PEDIDO, pedido_enviado }; }
 
 }
 

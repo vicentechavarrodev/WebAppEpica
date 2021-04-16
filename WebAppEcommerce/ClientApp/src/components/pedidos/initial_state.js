@@ -5,7 +5,8 @@
         mostrar_detalle: false,
         pedido: {},
         id_pedido_seleccionado: 0,
-        estado_cambiado: {}
+        estado_cambiado: {},
+        pedido_enviado:false
        
     }
 }

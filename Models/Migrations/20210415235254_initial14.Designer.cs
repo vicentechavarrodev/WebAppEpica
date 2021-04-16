@@ -10,8 +10,8 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210414153102_initial12")]
-    partial class initial12
+    [Migration("20210415235254_initial14")]
+    partial class initial14
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -147,10 +147,6 @@ namespace Models.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Direccion")
                         .IsRequired()

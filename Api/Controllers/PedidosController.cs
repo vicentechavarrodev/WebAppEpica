@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Api.Helpers;
 using Api.ViewModels;
+using EFCore.BulkExtensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -44,7 +45,6 @@ namespace Api.Controllers
                                             FechaHoraPedido = pedido.FechaHoraPedido,
                                             IdEstado = pedido.IdEstado,
                                             Solicitante = pedido.Solicitante,
-                                            Descripcion = pedido.Descripcion,
                                             Telefono = pedido.Telefono,
                                             TotalPedido = pedido.TotalPedido,
                                         };
@@ -81,7 +81,6 @@ namespace Api.Controllers
                                   FechaHoraPedido = pedido.FechaHoraPedido,
                                   IdEstado = pedido.IdEstado,
                                   Solicitante = pedido.Solicitante,
-                                  Descripcion = pedido.Descripcion,
                                   Telefono = pedido.Telefono,
                                   TotalPedido = pedido.TotalPedido,
                               };
@@ -95,6 +94,46 @@ namespace Api.Controllers
 
                 return new Response { IsSuccess = false, Message = ex.Message, Result = null };
             }
+        }
+
+
+        [HttpPost]
+        [Route("GrabarPedido")]
+        public async Task<Response> GrabarPedido([FromBody]  VistaPedidos vista)
+        {
+            try
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    vista.IdEstado = 1;
+                    vista.FechaHoraPedido = DateTime.Now;
+                    db.Pedidos.Add(vista);
+                    await db.SaveChangesAsync();
+
+                    foreach (var item in vista.PedidoDetalles)
+                    {
+                        item.IdPedido = vista.IdPedido;
+                        db.PedidoDetalles.Add(item);
+                        await db.SaveChangesAsync();
+                    }
+
+                    transaction.Commit();
+                    return new Response { IsSuccess = true, Message = "Pedido realizado ", Result = vista };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(ex, true);
+                return new Response { IsSuccess = false, Message = "Este pedido no se realizo", Result = null };
+            }
+
+       
+
+
+
+            
+
         }
 
 
@@ -133,7 +172,6 @@ namespace Api.Controllers
                 FechaHoraPedido = pedido.FechaHoraPedido,
                 IdEstado = pedido.IdEstado,
                 Solicitante = pedido.Solicitante,
-                Descripcion = pedido.Descripcion,
                 Telefono = pedido.Telefono,
                 TotalPedido = pedido.TotalPedido,
             };

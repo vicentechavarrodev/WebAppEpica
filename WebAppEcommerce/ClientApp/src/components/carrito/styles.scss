@@ -36,6 +36,23 @@ $shade-color: rgba(0, 0, 0, 0.24);
     font-size: 30px;
 }
 
+.car-lateral .cantidad-pedidos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    left: -15px;
+    bottom: 0;
+    top: -10px;
+    font-weight: 500;
+    background: #212529;
+    border-radius: 50px;
+    width: 25px;
+    height: 25px;
+}
+
 #cart-background .fa-cart-plus {
     color: white;
     font-size: 30px;

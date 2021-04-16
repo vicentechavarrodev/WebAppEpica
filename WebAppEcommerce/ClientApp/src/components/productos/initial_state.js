@@ -30,7 +30,12 @@ const producto_initial_state = {
         opcion_secundaria: { ProductoTipoOpciones: [] },
         mostrar_crear_opcion_secundaria: false,
         tipos_seleccion: [],
-        productos_pedido:[]
+        productos_pedido: [],
+        total_pedido: 0,
+        total_domicilio: 4000,
+        cantidad_pedidos: 0,
+        nombre_pedido:''
+
 
 
     }

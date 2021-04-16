@@ -35,8 +35,11 @@ export const productoActions = {
     init_crear_opcion_secundaria,
     ver_crear_opcion_secundaria,
     obtener_tipos_seleccion,
-    agregar_pedido_general
-
+    agregar_pedido_general,
+    limpiar_opciones_productos,
+    asignar_cantidad_pedido,
+    asignar_total_pedido,
+    limpiar_pedidos,
 };
 
 
@@ -823,3 +826,28 @@ function agregar_pedido_general(productos_pedido) {
     return { type: productoConstants.AGREGAR_PRODUCTO_PEDIDO, productos_pedido };
 
 }
+
+
+
+function limpiar_pedidos(productos_pedido) {
+    return { type: productoConstants.LIMPIAR_PEDIDOS, productos_pedido };
+
+}
+
+
+function limpiar_opciones_productos(opciones_producto) {
+    return { type: productoConstants.OBTENER_OPCIONES_PRODUCTO, opciones_producto };
+
+}
+
+
+function asignar_total_pedido(total_pedido) {
+    return { type: productoConstants.ASIGNAR_TOTAL_PEDIDO, total_pedido };
+
+}
+
+function asignar_cantidad_pedido(cantidad_pedidos) {
+    return { type: productoConstants.ASIGNAR_CANTIDAD_PEDIDO, cantidad_pedidos };
+
+}
+

@@ -71,13 +71,13 @@ const StyledRadio = (props) => {
 
 
 
-const OptionItemRdio = ({ opcion, index, CambioSeleccion, deseleccionar }) => {
+const OptionItemRdio = ({ opcion, index, CambioSeleccion, Deseleccionar }) => {
     var op = JSON.stringify(opcion)
    
     return (<div className="row-size" key={index}>
         <div className="col-7 col-radio ml-0">
             <FormControlLabel key={index} value={op}  checked={CambioSeleccion(opcion)}
-                onClick={(e) => deseleccionar(e,opcion)}
+                onClick={(e) => Deseleccionar(e,opcion)}
                 control={<StyledRadio />} label={opcion.Opcion.NombreAlias} />
         </div>
         <div className="col-4 col-price-modal">
@@ -91,7 +91,7 @@ const OptionItemRdio = ({ opcion, index, CambioSeleccion, deseleccionar }) => {
 }
 
 
-const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, deseleccionar, HandleIncreChange, cantidad, AgregarAdicion,defaultValue }) => {
+const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Deseleccionar, HandleIncreChange, cantidad, AgregarAdicion,defaultValue }) => {
 
 
  
@@ -106,7 +106,7 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, dese
                         {
                             opciones.map((opcion, i) => {
                                
-                                return <OptionItemRdio opcion={opcion}  CambioSeleccion={CambioSeleccion} index={i} key={i} deseleccionar={deseleccionar} />;
+                                return <OptionItemRdio opcion={opcion}  CambioSeleccion={CambioSeleccion} index={i} key={i} Deseleccionar={Deseleccionar} />;
                             })
                         }
                         </RadioGroup> 

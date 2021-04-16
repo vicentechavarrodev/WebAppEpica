@@ -38,7 +38,9 @@ class Carrito extends Component {
             <div className="car-lateral fixed-top">
                 <button type="button" className="btn btn-link" id='btn-car' onClick={this.openCar}>
                     <i className="fa fa-cart-plus"></i>
+                    <span className="cantidad-pedidos">{this.props.cantidad_pedidos}</span>
                 </button>
+               
             </div>
             {
                 mostrar_car ?
@@ -57,13 +59,13 @@ class Carrito extends Component {
 //-------------------------------Redux------------------------
 
 const mapStateToProps = (state) => {
-
     const { menuLateralVisible } = state.lateralBarReducer;
-    const { mostrar_car } = state.productoReducer;
-    return { mostrar_car};
-
+    const { mostrar_car, productos_pedido, cantidad_pedidos } = state.productoReducer;
     return {
-        menuLateralVisible
+        menuLateralVisible,
+        mostrar_car,
+        productos_pedido,
+        cantidad_pedidos
     };
 
 

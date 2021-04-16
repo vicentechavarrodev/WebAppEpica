@@ -4,7 +4,8 @@ import { authHeader } from '../helpers/header_auth';
 export const ServicesHelper = {
     obtener_pedidos,
     obtener_pedido,
-    cambiar_estado
+    cambiar_estado,
+    enviar_pedido
 };
 
 
@@ -27,6 +28,18 @@ function cambiar_estado(id,idEstado) {
 
 
     return fetch(`${process.env.REACT_APP_API_URL}api/Pedidos/CambiarEstado/${id}/${idEstado}`, requestOptions).then(handleResponse);
+
+}
+
+function enviar_pedido(pedido) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify(pedido)
+    };
+
+    console.log(requestOptions.body)
+    return fetch(`${process.env.REACT_APP_API_URL}api/Pedidos/GrabarPedido`, requestOptions).then(handleResponse);
 
 }
 

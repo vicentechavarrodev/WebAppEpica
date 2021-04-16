@@ -165,7 +165,27 @@ export function productoReducer(state = initialState.producto_state, action) {
               productos_pedido: state.productos_pedido.concat(action.productos_pedido)
            
           };
+      case productoConstants.ASIGNAR_TOTAL_PEDIDO:
+          return {
+              ...state, total_pedido: action.total_pedido
+          };
 
+      case productoConstants.ASIGNAR_CANTIDAD_PEDIDO:
+          return {
+              ...state, cantidad_pedidos: action.cantidad_pedidos
+          };
+
+      case productoConstants.LIMPIAR_PEDIDOS:
+          return {
+              ...state, productos_pedido: action.productos_pedido
+
+          };
+
+      case productoConstants.ASIGNAR_NOMBRE_PEDIDO:
+          return {
+              ...state, nombre_pedido: action.nombre_pedido
+
+          };
 
           
       default:

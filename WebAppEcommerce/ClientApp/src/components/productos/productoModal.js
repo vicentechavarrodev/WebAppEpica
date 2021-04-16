@@ -9,7 +9,8 @@ import { Modal, ListGroup} from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { opcionActions } from '../opciones/actions';
-import { Options} from '../helpers/item_opcion';
+import { Options } from '../helpers/item_opcion';
+
 
 class ProductoModal extends Component {
 
@@ -25,17 +26,17 @@ class ProductoModal extends Component {
           
         }
 
+        this.baseState = this.state
+
     }
 
     async componentDidMount() {
         await this.props.obtener_opciones_producto(this.props.id_producto_seleccionado, true, this);
     }
 
-
-
     render() {
 
-        const deseleccionar = async  (event, opcion) => {
+        const Deseleccionar = async  (event, opcion) => {
             event.stopPropagation();
 
                 let check = this.state[opcion.IdProductoOpciones];
@@ -83,7 +84,7 @@ class ProductoModal extends Component {
 
                 }
 
-                generarPrecio();
+                GenerarPrecio();
         }
 
         const HandleRadioChange = async (event) => {
@@ -103,12 +104,12 @@ class ProductoModal extends Component {
             }
           
            
-          await  procesarSeleccion(option)
+          await  ProcesarSeleccion(option)
             
-          generarPrecio();
+          GenerarPrecio();
         }
 
-        const procesarSeleccion = (option) => {
+        const ProcesarSeleccion = (option) => {
 
             
 
@@ -189,7 +190,7 @@ class ProductoModal extends Component {
         
         }
 
-        const rdbtnSelec = async (opciones) => {
+        const RdbtnSelec = async (opciones) => {
 
             if (opciones.length > 0) {
                 if (opciones[0].ProductoTipoOpcion.EsObligatoria) {
@@ -292,10 +293,15 @@ class ProductoModal extends Component {
                 IdPedidoDetalle:0
             }
 
-
+            this.props.asignar_cantidad_pedido((this.state.cantidad + this.props.cantidad_pedidos))
+            this.props.asignar_total_pedido((this.state.total + this.props.total_pedido))
+            this.props.limpiar_opciones_productos({ VistaProductoOpciones: [], VistaProductoOpcionesGroup: [] });
+            await this.setState(this.baseState)
             this.props.agregar_pedido_general(productoPedido);
             this.props.ver_crear(false)
-
+            this.props.ver_car(true)
+          
+            
         }
 
         const CantidadChange = async (event) => {
@@ -315,7 +321,7 @@ class ProductoModal extends Component {
                 cantidad
             });
 
-            generarPrecio();
+            GenerarPrecio();
         }
 
         const HandleIncreChange = async (event, opcion) => {
@@ -392,10 +398,10 @@ class ProductoModal extends Component {
                 }
             }
 
-            generarPrecio();
+            GenerarPrecio();
         }
 
-        const generarPrecio =  () => {
+        const GenerarPrecio =  () => {
             let total = 0;
 
             if (this.state.opcionesSeleccionadas.length > 0) {
@@ -426,10 +432,15 @@ class ProductoModal extends Component {
          
         }
 
+        const CerrarModal = async (event) => {
+            this.props.limpiar_opciones_productos({ VistaProductoOpciones: [], VistaProductoOpcionesGroup: [] });
+            this.props.ver_crear(false)
+        }
+
         return (
             <Modal
                 show={this.props.show}
-                onHide={() => this.props.ver_crear(false)}
+                onHide={(e) => CerrarModal(e)}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
@@ -457,13 +468,13 @@ class ProductoModal extends Component {
                                 {this.props.opciones_producto.VistaProductoOpcionesGroup != null && this.props.opciones_producto.VistaProductoOpcionesGroup.length > 0 ?
                                     <ListGroup variant="flush" >
                                         {
-
+                                         
                                             this.props.opciones_producto.VistaProductoOpcionesGroup.map(function (opciones, index, array) {                                             
-                                                rdbtnSelec(opciones);
-                                      
-                                                return <Options.OptionItems opciones={opciones} AgregarAdicion={AgregarAdicion} HandleIncreChange={HandleIncreChange} index={index}  HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} deseleccionar={deseleccionar} />
+                                                RdbtnSelec(opciones);
+                                                return <Options.OptionItems opciones={opciones} AgregarAdicion={AgregarAdicion} HandleIncreChange={HandleIncreChange} index={index}  HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} Deseleccionar={Deseleccionar} />
 
                                             })
+                                        
                                         }
 
 
@@ -486,7 +497,7 @@ class ProductoModal extends Component {
 
                                 <div className="row h-100 p-1">
                                     <div className="col-4 col-cantidad align-items-center">
-                                        <a className="btn btn-default btn-3d-style  btn-block" href="#" name="cant-menos" onClick={(e) =>  CantidadChange(e)} >
+                                        <a className="btn btn-default btn-3d-style  btn-block"  name="cant-menos" onClick={(e) =>  CantidadChange(e)} >
                                             <RemoveIcon />
                                         </a>
                                     </div>
@@ -494,7 +505,7 @@ class ProductoModal extends Component {
                                         <p> {this.state.cantidad}</p>
                                     </div>
                                     <div className="col-4 col-cantidad">
-                                        <a className="btn btn-default btn-3d-style  btn-block" href="#" name="cant-mas" onClick={(e) => CantidadChange(e)} >
+                                        <a className="btn btn-default btn-3d-style  btn-block"  name="cant-mas" onClick={(e) => CantidadChange(e)} >
                                             <AddIcon />
                                         </a>
                                     </div>
@@ -523,12 +534,14 @@ class ProductoModal extends Component {
 }
 
 
+
+
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
     const { categorias } = state.categoriaReducer;
-    const { opciones_producto, id_producto_seleccionado, productos_pedido } = state.productoReducer;
+    const { opciones_producto, id_producto_seleccionado, productos_pedido, total_pedido, cantidad_pedidos } = state.productoReducer;
     const { mostrar_opciones } = state.opcionesReducer;
-    return { productos_pedido,loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, mostrar_opciones};
+    return { productos_pedido, loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, mostrar_opciones, total_pedido, cantidad_pedidos};
 };
 
 
@@ -539,7 +552,11 @@ const mapDispatchToProps = {
     ver_crear: productoActions.ver_crear,
     ver_opciones: opcionActions.ver_opciones,
     producto_seleccionado: productoActions.producto_seleccionado,
-    agregar_pedido_general: productoActions.agregar_pedido_general
+    agregar_pedido_general: productoActions.agregar_pedido_general,
+    ver_car: productoActions.ver_car,
+    limpiar_opciones_productos: productoActions.limpiar_opciones_productos,
+    asignar_cantidad_pedido: productoActions.asignar_cantidad_pedido,
+    asignar_total_pedido: productoActions.asignar_total_pedido
     
 };
 

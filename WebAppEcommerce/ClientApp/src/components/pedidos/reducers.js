@@ -38,6 +38,14 @@ export function pedidosReducer(state = initialState.pedidos_state, action) {
             }
 
         }
+
+
+        case pedidosConstants.ENVIAR_PEDIDO: {
+            return {
+                ...state, pedido_enviado: action.pedido_enviado
+            }
+
+        }
             
 
 
