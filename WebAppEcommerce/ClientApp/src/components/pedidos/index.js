@@ -47,17 +47,17 @@ class Pedidos extends Component {
 
     }
 
-    componentDidMount() {
+    async componentDidMount() {
 
 
-        setInterval(() => {
-            this.props.obtener_pedidos(this.state.idEstado, this);
+        setInterval(async () => {
+            await  this.props.obtener_pedidos(this.state.idEstado, this);
             this.agregarBurbuja();
         }, 5000);
        
         loader.hide();
        
-        this.props.obtener_pedidos(this.state.idEstado, this);
+      await  this.props.obtener_pedidos(this.state.idEstado, this);
        
     }
 
@@ -178,11 +178,11 @@ class Pedidos extends Component {
         }));
     }
 
-    change(e) {
+    async change(e) {
+        console.log(e)
 
-
-            this.setState({ idEstado: e });
-            this.props.obtener_pedidos(e, this);
+        this.setState({ idEstado: e });
+        await this.props.obtener_pedidos(e, this);
            
 
        

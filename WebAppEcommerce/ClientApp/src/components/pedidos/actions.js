@@ -15,9 +15,9 @@ export const pedidosActions = {
 };
 
 function obtener_pedidos(id,context) {
-    return dispatch => {
+    return async dispatch => {
 
-        ServicesHelper.obtener_pedidos(id)
+     await  ServicesHelper.obtener_pedidos(id)
             .then(
                 response => {
                     loader.hide();
