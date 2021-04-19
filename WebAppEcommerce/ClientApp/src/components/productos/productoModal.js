@@ -32,6 +32,9 @@ class ProductoModal extends Component {
 
     async componentDidMount() {
         await this.props.obtener_opciones_producto(this.props.id_producto_seleccionado, true, this);
+       if (!this.props.opciones_producto.EsVariable) {
+            this.setState({ total: this.props.opciones_producto.Precio})
+       }
     }
 
     render() {
@@ -381,7 +384,7 @@ class ProductoModal extends Component {
                 }
             }
 
-            if (this.props.opciones_producto.EsPizza) {
+            if (opcion.ProductoTipoOpcion.MostrarPartes) {
 
                 var e = document.getElementById(`${opcion.IdProductoOpciones}-item-add`);
                 if (e != null) {
@@ -404,28 +407,33 @@ class ProductoModal extends Component {
         const GenerarPrecio =  () => {
             let total = 0;
 
-            if (this.state.opcionesSeleccionadas.length > 0) {
+         
 
-                for (var i = 0; i < this.state.opcionesSeleccionadas.length; i++) {
-                    let opcion = this.state.opcionesSeleccionadas[i];
+                if (this.state.opcionesSeleccionadas.length > 0) {
 
-                    if (opcion.idTipoSeleccion === 1) {
-                        total = total + opcion.precio;
+                    for (var i = 0; i < this.state.opcionesSeleccionadas.length; i++) {
+                        let opcion = this.state.opcionesSeleccionadas[i];
 
-                    } else {
-                        total = total + (opcion.precio * opcion.cantidad);
+                        if (opcion.idTipoSeleccion === 1) {
+                            total = total + opcion.precio;
+
+                        } else {
+                            total = total + (opcion.precio * opcion.cantidad);
+                        }
+
+                       
                     }
 
                     this.setState({
-                        total: (total * this.state.cantidad)
+                        total: (total * this.state.cantidad + (this.props.opciones_producto.EsVariable ? 0 : (this.props.opciones_producto.Precio * this.state.cantidad)) )
                     });
+                } else {
+
+
+                    this.setState({ total: 0 + (this.props.opciones_producto.EsVariable ? 0 : (this.props.opciones_producto.Precio * this.state.cantidad))});
                 }
-            } else {
 
-               
-                this.setState({ total: 0 });
-            }
-
+           
 
             
            

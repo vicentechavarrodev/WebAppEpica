@@ -1,4 +1,4 @@
-﻿import React, { Component, createRef } from 'react';
+﻿import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { connect } from 'react-redux';
@@ -30,7 +30,8 @@ class CrearProducto extends Component {
                 IdCategoria: 0,
                 Descripcion: '',
                 Activo: true,
-                EsPizza:false
+                PrecioVariable: false,
+                TieneOpciones:false
             },
             file: null
         };
@@ -52,9 +53,12 @@ class CrearProducto extends Component {
         this.setState({
             producto: {
                 ...producto,
-                [name]: value
+                [name]: value,
+                Precio: (name === "PrecioVariable" && value && name !== "Precio") ? 0 : this.state.Precio
             }
         });
+
+ 
     }
 
    
@@ -80,7 +84,7 @@ class CrearProducto extends Component {
         }else if (!producto.Nombre) {
             this.props.showMessage('Debes ingresar un nombre.', true, 'Información');
             return;
-        } else if (!producto.Precio) {
+         } else if (!producto.Precio && !producto.PrecioVariable) {
             this.props.showMessage('Debes ingresar un precio.', true, 'Información');
             return;
         } else if (producto.IdCategoria === 0) {
@@ -97,9 +101,9 @@ class CrearProducto extends Component {
         file.append('IdCategoria', producto.IdCategoria);
         file.append('Descripcion', producto.Descripcion);
         file.append('Activo', producto.Activo);
-        file.append('EsPizza', producto.EsPizza);
-
-         this.props.crear_producto(file, this);
+        file.append('PrecioVariable', producto.PrecioVariable);
+        file.append('TieneOpciones', producto.TieneOpciones);
+        this.props.crear_producto(file, this);
        
 
     }
@@ -168,32 +172,37 @@ class CrearProducto extends Component {
                             </Form.Group>
                         </Form.Row>
 
-                        <Form.Row sm={12}>
-                            <Form.Group as={Col} >
-                                <Form.Group as={Col} >
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">$</span>
-                                        <Form.Control type="number" name="Precio" value={producto.Precio}
-
-                                            onChange={this.InputChange}
-                                            className="pz-input" placeholder="Precio" />
-                                    </div>
-                                </Form.Group>
-                            </Form.Group>
-
+                        <Form.Row sm={10}>
                             <Form.Group as={Col}   >
                                 <CheckBoxComponent label='Activo' checked={this.state.producto.Activo} change={(val) => { this.InputChange({ target: { name: 'Activo', value: val.checked } }); }} />
                             </Form.Group>
-
+                            <Form.Group as={Col}>
+                                <CheckBoxComponent label='¿Su precio es variable?' checked={this.state.producto.PrecioVariable} change={(val) => { this.InputChange({ target: { name: 'PrecioVariable', value: val.checked } }); }} />
+                            </Form.Group>
                         </Form.Row>
 
+                        <Form.Row sm={12}>
+                            {!this.state.producto.PrecioVariable ?
+                                <Form.Group as={Col} >
+                                
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text">$</span>
+                                            <Form.Control type="number" name="Precio" value={producto.Precio}
+                                                onChange={this.InputChange}
+                                                className="pz-input" placeholder="Precio" />
+                                        </div>
+                                  
+                                </Form.Group>
+                                : ""
+
+                            }
+
+                        </Form.Row>
                         <Form.Row sm={10}>
                             <Form.Group as={Col}>
                                 <ComboBoxComponent name="IdCategoria" showClearButton={false} value={producto.IdCategoria} allowCustom={false} fields={this.fields} change={(val) => { this.InputChange({ target: { name: 'IdCategoria', value: val.value } }); }} allowFiltering={true} placeholder="Categoría" className="pz-input" dataSource={this.props.init_crear.Categorias} />
                             </Form.Group>
-                            <Form.Group as={Col}>
-                                <CheckBoxComponent label='Es Pizza' checked={this.state.producto.EsPizza} change={(val) => { this.InputChange({ target: { name: 'EsPizza', value: val.checked } }); }} />
-                            </Form.Group>
+                        
                         </Form.Row>
 
                         <Form.Row sm={10}>

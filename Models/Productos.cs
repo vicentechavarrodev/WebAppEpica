@@ -21,9 +21,12 @@ namespace Models
             [Display(Name = "Activo")]
             [JsonProperty(PropertyName = "Activo")]
             public bool Activo { get; set; }
-            [Display(Name = "EsPizza")]
-            [JsonProperty(PropertyName = "EsPizza")]
-            public bool EsPizza { get; set; }
+            [Display(Name = "PrecioVariable")]
+            [JsonProperty(PropertyName = "PrecioVariable")]
+            public bool PrecioVariable { get; set; }
+            [Display(Name = "TieneOpciones")]
+            [JsonProperty(PropertyName = "TieneOpciones")]
+            public bool TieneOpciones { get; set; }
             [Required(ErrorMessage = "El dato {0} es necesario")]
             [JsonProperty(PropertyName = "Descripcion")]
             [Display(Name = "Descripcion")]

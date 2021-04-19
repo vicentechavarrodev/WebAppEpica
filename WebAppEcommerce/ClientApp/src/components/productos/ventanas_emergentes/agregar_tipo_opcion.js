@@ -28,6 +28,7 @@ class TipoOpcionProducto extends Component {
                 MostrarInicio: true,
                 IdTipoSeleccion: 0,
                 EsObligatoria: false,
+                MostrarPartes: false,
                 Orden: 0,
                 OrdenCombo:[]
             }
@@ -139,7 +140,7 @@ class TipoOpcionProducto extends Component {
 
     render() {
         const { productoTipoOpcion } = this.state;
-
+        //console.log()
         return (
 
 
@@ -174,6 +175,7 @@ class TipoOpcionProducto extends Component {
                                 <CheckBoxComponent label='¿Es Obligatoria?' checked={productoTipoOpcion.EsPrincipal} change={(val) => { this.InputChange({ target: { name: 'EsObligatoria', value: val.checked } }); }} />
                             </Form.Group>
 
+                           
 
                         </Form.Row>
                         {this.state.productoTipoOpcion.OrdenCombo.length > 0 ?
@@ -201,11 +203,20 @@ class TipoOpcionProducto extends Component {
                    
                         {
                             this.props.tipos_seleccion.length > 0 ?
+                               
                                 <Form.Row sm={10}>
                                     <Form.Group as={Col} >
                                         <ComboBoxComponent name="IdTipoSeleccion" showClearButton={false} value={productoTipoOpcion.IdTipoSeleccion} allowCustom={false} fields={this.fields1} change={(val) => { this.InputChange({ target: { name: 'IdTipoSeleccion', value: val.value } }); }} allowFiltering={true} placeholder="Tipo Selección" className="pz-input" dataSource={this.props.tipos_seleccion} />
                                     </Form.Group>
+                                    {this.state.productoTipoOpcion.IdTipoSeleccion === 2 ?
+                                        <Form.Group as={Col}   >
+                                            <CheckBoxComponent label='¿Muestra partes de pizza?' checked={this.state.productoTipoOpcion.MostrarPartes} change={(val) => { this.InputChange({ target: { name: 'MostrarPartes', value: val.checked } }); }} />
+                                        </Form.Group>
+                                        : ""
+                                    }
                                 </Form.Row>
+                         
+                        
                                 : ""
                         }
               

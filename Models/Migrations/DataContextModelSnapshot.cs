@@ -254,6 +254,9 @@ namespace Models.Migrations
                     b.Property<bool>("MostrarInicio")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("MostrarPartes")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Orden")
                         .HasColumnType("int");
 
@@ -282,9 +285,6 @@ namespace Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("EsPizza")
-                        .HasColumnType("bit");
-
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");
 
@@ -295,6 +295,12 @@ namespace Models.Migrations
 
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("PrecioVariable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("TieneOpciones")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UrlImagen")
                         .IsRequired()
