@@ -25,6 +25,9 @@ namespace Models
         [MaxLength(16, ErrorMessage = "El tamaño maximo de el {0} is {1} caracteres")]
         [JsonProperty(PropertyName = "Telefono")]
         public string Telefono { get; set; }
+        [MaxLength(50, ErrorMessage = "El tamaño maximo de el {0} is {1} caracteres")]
+        [JsonProperty(PropertyName = "Comentario")]
+        public string Comentario { get; set; }
         [DataType(DataType.DateTime)]
         [JsonProperty(PropertyName = "FechaHoraPedido")]
         public DateTime FechaHoraPedido { get; set; }

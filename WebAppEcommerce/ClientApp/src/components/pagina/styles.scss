@@ -23,6 +23,22 @@ $shade-color: rgba(0, 0, 0, 0.24);
     justify-content:center;
 
 }
+.fa-trash:hover{
+    color:rgba(160, 14, 14, 0.90);
+    font-size:25px;
+}
+.btn-delete {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    padding: 0px;
+    color: $primary-color;
+}
+.btn-delete:hover {
+    color: rgba(178, 14, 14, 0.89);
+}
 #cart-fixed {
     position: absolute;
     height: 100vh;
@@ -67,7 +83,12 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .content-pedido{
     position:relative;
     overflow-y:scroll;
-    height:43%;
+    height:41%;
+}
+.content-pedido-detalle {
+    position: relative;
+    overflow-y: scroll;
+    height: 200px;
 }
 .col-amount-pedido, .col-description-pedido, .col-price-pedido {
     padding-right: 0px;
@@ -154,8 +175,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
-    width: 260px;
-    height: 230px;
+    height: 200px;
     object-fit: cover;
 }
 
@@ -569,10 +589,10 @@ $shade-color: rgba(0, 0, 0, 0.24);
         color: white;
     }
 
-    .btn:hover {
-        color: white;
-        background-color: rgba(144, 6, 6, 0.78)
-    }
+.btn-pidelinea:hover {
+    color: white;
+    background-color: rgba(144, 6, 6, 0.78)
+}
 
     .fa-cart-plus {
         padding-right: 8px

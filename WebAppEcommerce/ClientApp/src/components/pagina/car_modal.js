@@ -20,7 +20,8 @@ class Car_modal extends Component {
                 IdPedido: 0,
                 Solicitante: localStorage.getItem('Solicitante') !== null ? localStorage.getItem('Solicitante'): "",
                 Direccion: localStorage.getItem('Direccion') !== null ? localStorage.getItem('Direccion') : "",
-                Telefono: localStorage.getItem('Telefono') !== null ? localStorage.getItem('Telefono') :"",
+                Telefono: localStorage.getItem('Telefono') !== null ? localStorage.getItem('Telefono') : "",
+                Comentario: localStorage.getItem('Comentario') !== null ? localStorage.getItem('Comentario') : "",
                 TotalPedido: (this.props.total_domicilio + this.props.total_pedido),
                 PedidoDetalles: this.props.productos_pedido
             }
@@ -58,6 +59,7 @@ class Car_modal extends Component {
             this.props.showMessage('Debes seleccionar un teléfono.', true, 'Información');
             return;
         }
+        
 
 
         await this.props.enviar_pedido(pedido,this);
@@ -143,8 +145,8 @@ class Car_modal extends Component {
                                       <div class="col-2 col-price-pedido">
                                             {item.Subtotal}
                                      </div>
-                                     <div class="col-1 p-1 ">
-                                         <a className="btn btn-default btn-3d-style   btn-block" style={{ height: "50px" }}  onClick={(e) => { this.EliminarPedido({ target: { name: item.Descripcion, value: item.Cantidad } }); }} >
+                                     <div class="col-1 p-1 mb-3 ">
+                                         <a className="btn btn-delete" onClick={(e) => { this.EliminarPedido({ target: { name: item.Descripcion, value: item.Cantidad } }); }} >
                                              <i className="fa fa-trash"></i>
                                          </a>
                                      </div>
@@ -165,6 +167,9 @@ class Car_modal extends Component {
                         </div>
                         <div className="mb-2">
                             <input type="number" className="form-control" name="Telefono" value={pedido.Telefono} id="Telefono" onChange={this.InputChange} placeholder="Telefono de contacto" />
+                        </div>
+                        <div className="mb-2">
+                            <input type="text-area" className="form-control" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Anexa un comentario" />
                         </div>
                         <div className="date-total">
                         </div>

@@ -48,6 +48,7 @@ namespace Api.Controllers
                                             IdEstado = pedido.IdEstado,
                                             Solicitante = pedido.Solicitante,
                                             Telefono = pedido.Telefono,
+                                            Comentario = pedido.Comentario,
                                             TotalPedido = pedido.TotalPedido,
                                         };
 
@@ -84,6 +85,7 @@ namespace Api.Controllers
                                   IdEstado = pedido.IdEstado,
                                   Solicitante = pedido.Solicitante,
                                   Telefono = pedido.Telefono,
+                                  Comentario = pedido.Comentario,
                                   TotalPedido = pedido.TotalPedido,
                               };
                 var p =  pedidos.FirstOrDefault() ;
@@ -175,6 +177,7 @@ namespace Api.Controllers
                 IdEstado = pedido.IdEstado,
                 Solicitante = pedido.Solicitante,
                 Telefono = pedido.Telefono,
+                Comentario = pedido.Comentario,
                 TotalPedido = pedido.TotalPedido,
             };
         }

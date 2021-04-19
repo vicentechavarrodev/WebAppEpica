@@ -16,6 +16,9 @@ class Carrito extends Component {
     //-------------------------------Eventos------------------------
 
     openCar() {
+        
+        
+        
         const btn = document.getElementById('btn-car');
 
         btn.style.display = 'none';

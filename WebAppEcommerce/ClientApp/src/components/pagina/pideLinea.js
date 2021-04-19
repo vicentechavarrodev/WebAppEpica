@@ -117,7 +117,7 @@ class PideLinea extends Component {
                         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
                             {this.props.productos_categoria.map((item) =>
                                 <div className="col-lg-4 col-sm-6" key={item.IdProducto}>
-                                    <div className="card shadow-sm">
+                                    <div className="card">
                                         <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" width="100%" height="225" />
                                         <div className="card-body card-style">
                                             <p className="card-text card-tittle">{item.Nombre}</p>
@@ -128,7 +128,7 @@ class PideLinea extends Component {
                                                         <p className="text-price">${item.Precio}</p>
                                                     </div>
                                                     <div className="col-lg-6 col-button">
-                                                        <button type="button" className="btn" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
+                                                        <button type="button" className="btn btn-pidelinea" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
                                                             <i className="fa fa-cart-plus"></i>
                                                          Agregar</button>
                                                     </div>

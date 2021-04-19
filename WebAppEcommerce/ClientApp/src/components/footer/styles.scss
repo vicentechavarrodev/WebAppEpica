@@ -34,10 +34,11 @@
     border-radius: 5px;
     margin-top: 10px;
 }
-.footer-categorias h5, .li-footer {
+.li-footer {
     display: flex;
     justify-content: center;
 }
+
 
 .col-copy{
     display:flex;
@@ -56,6 +57,10 @@
     color: white;
     background-color:rgba(48, 42, 42, 0.80);
     text-decoration:none;
+}
+.list-unstyled h5{
+    display:flex;
+    justify-content:center;
 }
 
 

@@ -114,7 +114,7 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
                         </div>: ""
                 }
 
-                {opciones[0].ProductoTipoOpcion.IdTipoSeleccion === 3 ?
+                {opciones[0].ProductoTipoOpcion.IdTipoSeleccion === 2 ?
                     
                     <div className="p-1">
                         <p className="m-3">{opciones[0].ProductoTipoOpcion.Encabezado}</p>

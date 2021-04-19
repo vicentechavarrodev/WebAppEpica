@@ -99,6 +99,17 @@ class Detalle extends Component {
                                 </Col>
                             </Form.Group>
                         </ListGroup.Item>
+                        <ListGroup.Item className="p-0 text-center">
+                            <Form.Group as={Row} >
+                                <Form.Label column sm="6">
+                                    Comentario:
+                            </Form.Label>
+                                <Col sm="6" className="p-0 text-center" >
+                                    <Form.Control className="text-center" plaintext readOnly defaultValue={this.props.pedido.Comentario} />
+
+                                </Col>
+                            </Form.Group>
+                        </ListGroup.Item>
 
 
                         {
@@ -114,17 +125,17 @@ class Detalle extends Component {
                         }
                        
                         <ListGroup.Item>
-                            <div class="container content-pedido">
+                            <div className="container content-pedido-detalle">
                                 {
                                     this.props.pedido.PedidoDetalles.map((item, index) => {
-                                        return <div class="row" id={index} key={index}>
-                                            <div class="col-2 col-amount-pedido">
+                                        return <div className="row" id={index} key={index}>
+                                            <div className="col-2 col-amount-pedido">
                                                 {item.Cantidad}
                                             </div>
-                                            <div class="col-8 col-description-pedido">
+                                            <div className="col-8 col-description-pedido">
                                                 {item.Descripcion}
                                             </div>
-                                            <div class="col-2 col-price-pedido">
+                                            <div className="col-2 col-price-pedido">
                                                 {item.Subtotal}
                                             </div>
                                             
@@ -143,7 +154,7 @@ class Detalle extends Component {
                                     Total:
                             </Form.Label>
                                 <Col sm="6"  >
-                                    <Form.Control className="text-center text-danger " plaintext readOnly defaultValue={this.props.pedido.TotalPedido} />
+                                    <Form.Control className="text-center text-danger " plaintext readOnly value={this.props.pedido.TotalPedido} />
 
                                 </Col>
                             </Form.Group>
