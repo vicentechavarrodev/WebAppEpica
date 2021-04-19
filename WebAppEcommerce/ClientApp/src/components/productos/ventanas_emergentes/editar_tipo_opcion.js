@@ -127,7 +127,7 @@ class EditarTipoOpcionProducto extends Component {
 
     render() {
 
-        console.log(this.state.OrdenCombo)
+
      
         return (
 
@@ -160,7 +160,13 @@ class EditarTipoOpcionProducto extends Component {
                             <Form.Group as={Col}   >
                                 <CheckBoxComponent label='¿Es Obligatoria?' checked={this.state.productoTipoOpcion.EsObligatoria} change={(val) => { this.InputChange({ target: { name: 'EsObligatoria', value: val.checked } }); }} />
                             </Form.Group>
-
+                            {this.state.productoTipoOpcion.IdTipoSeleccion === 2 ?
+                                <Form.Group as={Col}   >
+                                    <CheckBoxComponent label='¿Muestra partes de pizza?' checked={this.state.productoTipoOpcion.MostrarPartes} change={(val) => { this.InputChange({ target: { name: 'MostrarPartes', value: val.checked } }); }} />
+                                </Form.Group>
+                                : ""
+                            }
+                           
 
                         </Form.Row>
 
@@ -169,6 +175,7 @@ class EditarTipoOpcionProducto extends Component {
                                 <Form.Group as={Col}>
                                     <ComboBoxComponent name="Orden" showClearButton={false} value={this.state.productoTipoOpcion.Orden} allowCustom={false} fields={this.fields2} change={(val) => { this.InputChange({ target: { name: 'Orden', value: val.value } }); }} allowFiltering={true} placeholder="Orden" className="pz-input" dataSource={this.state.OrdenCombo} />
                                 </Form.Group>
+                                
                             </Form.Row>
                             : ""
                         }

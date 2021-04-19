@@ -364,9 +364,10 @@ namespace Api.Controllers
                             Precio = decimal.Parse(form["Precio"]),
                             IdCategoria = int.Parse(form["IdCategoria"]),
                             Activo = bool.Parse(form["Activo"]),
-                            EsPizza = bool.Parse(form["EsPizza"])
+                            PrecioVariable = bool.Parse(form["PrecioVariable"]),
+                            TieneOpciones = bool.Parse(form["TieneOpciones"])
 
-                    };
+                        };
 
                         db.Productos.Add(producto);
                         await db.SaveChangesAsync();
@@ -457,7 +458,8 @@ namespace Api.Controllers
                         producto.Activo = bool.Parse(form["Activo"]);
                         producto.UrlImagen = form["UrlImagen"];
                         producto.Descripcion = form["Descripcion"];
-                        producto.EsPizza = bool.Parse(form["EsPizza"]);
+                        producto.PrecioVariable = bool.Parse(form["PrecioVariable"]);
+                        producto.TieneOpciones = bool.Parse(form["TieneOpciones"]);
 
                         if (files.Count > 0)
                         {
@@ -641,7 +643,8 @@ namespace Api.Controllers
                 Precio = producto.Precio,
                 Descripcion = producto.Descripcion,
                 Activo = producto.Activo,
-                EsPizza= producto.EsPizza
+                PrecioVariable= producto.PrecioVariable,
+                TieneOpciones = producto.TieneOpciones
             };
         }
 
@@ -657,7 +660,9 @@ namespace Api.Controllers
                 MostrarInicio = productoTipoOpcion.MostrarInicio,
                 IdProductoTipoOpcion = productoTipoOpcion.IdProductoTipoOpcion,
                 IdTipoSeleccion= productoTipoOpcion.IdTipoSeleccion,
-                EsObligatoria= productoTipoOpcion.EsObligatoria
+                EsObligatoria= productoTipoOpcion.EsObligatoria,
+                MostrarPartes = productoTipoOpcion.MostrarPartes,
+
 
             };
         }

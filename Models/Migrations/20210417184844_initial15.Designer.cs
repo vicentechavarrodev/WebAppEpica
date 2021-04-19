@@ -10,7 +10,7 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210416005125_initial15")]
+    [Migration("20210417184844_initial15")]
     partial class initial15
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -293,6 +293,9 @@ namespace Models.Migrations
 
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("TieneOpciones")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UrlImagen")
                         .IsRequired()

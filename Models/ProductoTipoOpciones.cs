@@ -31,10 +31,12 @@ namespace Models
         [Display(Name = "EsObligatoria")]
         [JsonProperty(PropertyName = "EsObligatoria")]
         public bool EsObligatoria { get; set; }
+        [Display(Name = "MostrarPartes")]
+        [JsonProperty(PropertyName = "MostrarPartes")]
+        public bool MostrarPartes { get; set; }
         [Display(Name = "MostrarInicio")]
         [JsonProperty(PropertyName = "MostrarInicio")]
         public bool MostrarInicio { get; set; }
-      
         [Display(Name = "Orden")]
         [JsonProperty(PropertyName = "Orden")]
         public int Orden { get; set; }

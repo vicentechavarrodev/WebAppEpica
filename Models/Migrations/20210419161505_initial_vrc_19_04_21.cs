@@ -2,14 +2,22 @@
 
 namespace Models.Migrations
 {
-    public partial class initial17 : Migration
+    public partial class initial_vrc_19_04_21 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-           
+            migrationBuilder.DropColumn(
+                name: "EsPizza",
+                table: "Productos");
 
             migrationBuilder.AddColumn<bool>(
-                name: "EsPizzas",
+                name: "MostrarPartes",
+                table: "ProductoTipoOpciones",
+                nullable: false,
+                defaultValue: false);
+
+            migrationBuilder.AddColumn<bool>(
+                name: "PrecioVariable",
                 table: "Productos",
                 nullable: false,
                 defaultValue: false);
@@ -18,7 +26,11 @@ namespace Models.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "EsPizzas",
+                name: "MostrarPartes",
+                table: "ProductoTipoOpciones");
+
+            migrationBuilder.DropColumn(
+                name: "PrecioVariable",
                 table: "Productos");
 
             migrationBuilder.AddColumn<bool>(

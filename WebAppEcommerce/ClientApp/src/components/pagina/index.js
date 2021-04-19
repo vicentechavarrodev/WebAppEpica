@@ -18,14 +18,11 @@ import Carrito from '../carrito/index';
 
 
 class Pagina extends Component {
-
+  
 
 
     constructor(props) {
-        super(props);
-      
-      
-      
+        super(props);  
     }
 
    async componentDidMount() {
@@ -74,12 +71,12 @@ class Pagina extends Component {
                              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                              <span className="sr-only">Previous</span>
                          </a>
-                         <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                         <a className="carousel-control-next" href="#carousel" role="button" data-slide="next">
                              <span className="carousel-control-next-icon" aria-hidden="true"></span>
                              <span className="sr-only">Next</span>
                          </a>
-                         <ol class="carousel-indicators">
-                             <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                         <ol className="carousel-indicators">
+                             <li data-target="#carousel" data-slide-to="0" className="active"></li>
                              <li data-target="#carousel" data-slide-to="1"></li>
                              <li data-target="#carousel" data-slide-to="2"></li>
                          </ol>

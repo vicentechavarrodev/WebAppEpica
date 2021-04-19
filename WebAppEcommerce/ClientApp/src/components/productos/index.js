@@ -117,6 +117,7 @@ class Productos extends Component {
     gridTemplate(props) {
         
         return (
+           
             <button type="submit" ref={this.details} id={props.IdProducto} onClick={this.showDetails} className="btn btn-default btn-3d-style "> <PostAddIcon /> </button>
            
         );
