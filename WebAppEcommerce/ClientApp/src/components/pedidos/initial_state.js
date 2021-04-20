@@ -6,7 +6,10 @@
         pedido: { PedidoDetalles:[]},
         id_pedido_seleccionado: 0,
         estado_cambiado: {},
-        pedido_enviado:false
+        pedido_enviado: false,
+        pendientes: 0,
+        recibidos: 0,
+        enviados: 0
        
     }
 }

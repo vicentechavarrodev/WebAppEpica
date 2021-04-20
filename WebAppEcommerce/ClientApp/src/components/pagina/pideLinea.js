@@ -125,12 +125,29 @@ class PideLinea extends Component {
                                             <div className="container">
                                                 <div className="row">
                                                     <div className="col-lg-6 col-price">
-                                                        <p className="text-price">${item.Precio}</p>
+                                                        {!item.PrecioVariable ?
+                                                            <p className="text-price">${item.Precio}</p>
+                                                            :""
+                                                        }
                                                     </div>
                                                     <div className="col-lg-6 col-button">
                                                         <button type="button" className="btn btn-pidelinea" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
-                                                            <i className="fa fa-cart-plus"></i>
-                                                         Agregar</button>
+                                                            {item.PrecioVariable ?
+                                                                <span>
+                                                                    <i className="fa fa-th-list mr-2"></i>
+                                                                        Personalizar
+                                                                 </span>
+
+                                                                :
+                                                                <span>
+                                                                    <i className="fa fa-cart-plus"></i>
+                                                                        Agregar
+                                                                 </span>
+
+
+                                                            }
+
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

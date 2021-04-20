@@ -383,7 +383,7 @@ class ProductoModal extends Component {
 
                 }
             }
-
+            console.log(opcion.ProductoTipoOpcion.MostrarPartes)
             if (opcion.ProductoTipoOpcion.MostrarPartes) {
 
                 var e = document.getElementById(`${opcion.IdProductoOpciones}-item-add`);

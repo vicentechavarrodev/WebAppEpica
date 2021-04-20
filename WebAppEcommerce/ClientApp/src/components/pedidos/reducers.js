@@ -46,6 +46,34 @@ export function pedidosReducer(state = initialState.pedidos_state, action) {
             }
 
         }
+
+
+
+
+        case pedidosConstants.CAMBIAR_ESTADO_ENVIADO: {
+            return {
+                ...state, enviados: action.enviados
+            }
+
+        }
+
+        case pedidosConstants.CAMBIAR_ESTADO_PENDIENTE: {
+            return {
+                ...state, pendientes: action.pendientes
+            }
+
+        }
+
+
+        case pedidosConstants.CAMBIAR_ESTADO_RECIBIDO: {
+            return {
+                ...state, recibidos: action.recibidos
+            }
+
+        }
+         
+         
+
             
 
 

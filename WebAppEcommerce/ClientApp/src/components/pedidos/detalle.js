@@ -60,6 +60,7 @@ class Detalle extends Component {
        
         return (
             <Modal
+                onHide={(e) => this.props.mostrar_detalle_pedido(false)}
                 show={this.props.show}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
@@ -188,8 +189,8 @@ class Detalle extends Component {
 
 
 function mapStateToProps(state) {
-    const { mostrar_detalle, pedido, id_pedido_seleccionado} = state.pedidosReducer;
-    return { mostrar_detalle, pedido, id_pedido_seleccionado};
+    const { mostrar_detalle, pedido, id_pedido_seleccionado, pendientes, recibidos, enviados } = state.pedidosReducer;
+    return { mostrar_detalle, pedido, id_pedido_seleccionado, pendientes, recibidos, enviados };
 };
 
 
@@ -199,6 +200,9 @@ const mapDispatchToProps = {
     obtener_pedido: pedidosActions.obtener_pedido,
     cambiar_estado: pedidosActions.cambiar_estado,
     obtener_pedidos: pedidosActions.obtener_pedidos,
+    cambiar_estado_pendiente: pedidosActions.cambiar_estado_pendiente,
+    cambiar_estado_recibido: pedidosActions.cambiar_estado_recibido,
+    cambiar_estado_enviado: pedidosActions.cambiar_estado_enviado,
    
 };
 

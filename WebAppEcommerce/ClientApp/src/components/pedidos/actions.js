@@ -11,7 +11,10 @@ export const pedidosActions = {
     obtener_pedido,
     seleccionar_pedido,
     cambiar_estado,
-    enviar_pedido
+    enviar_pedido,
+    cambiar_estado_pendiente,
+    cambiar_estado_recibido,
+    cambiar_estado_enviado
 };
 
 function obtener_pedidos(id,context) {
@@ -25,32 +28,37 @@ function obtener_pedidos(id,context) {
                     let pedidos;
                     if (response.IsSuccess) {
                         pedidos = response.Result;
-                       
-                        let pendientes = pedidos.filter(e => e.IdEstado === 1);
-                        let recibidos = pedidos.filter(e => e.IdEstado === 2);
+
+                        //console.log(id)
+                     
+                        let recibidos =  pedidos.filter(e => e.IdEstado === 1);
+                        let pendientes = pedidos.filter(e => e.IdEstado === 2);
                         let enviados = pedidos.filter(e => e.IdEstado === 3);
 
-                        if (id === 1) {
-                            pedidos = pendientes;
-                           
-                        } else if (id === 2) {
+                        if (id === 1) {   
                             pedidos = recibidos;
+                        } else if (id === 2) {
+                            pedidos = pendientes;
                         } else if (id === 3) {
                             pedidos = enviados;
                         }
-                      
-                        if (context.state.pendientes !== 0 && context.state.pendientes != null) {
-                            if (pendientes.length > context.state.pendientes) {
+
+                       
+
+                        if (context.props.recibidos !== 0 && context.props.recibidos != null) {
+                            if (recibidos.length > context.props.recibidos) {
                                 context.audioNotification()
                             }
 
                         }
+
+                        console.log(context)
+                        context.props.cambiar_estado_recibido(recibidos.length)
+                        context.props.cambiar_estado_enviado(enviados.length)
+                        context.props.cambiar_estado_pendiente(pendientes.length)
                         
-                        context.setState({
-                            pendientes: pendientes.length,
-                            recibidos: recibidos.length,
-                            enviados: enviados.length
-                        });
+                        
+                     
 
                         if (pedidos !== null) {
                             dispatch(success(pedidos));
@@ -175,8 +183,11 @@ function enviar_pedido(pedido,context) {
                             dispatch(success(true));
                             dispatch(alertActions.showMessage(response.Message, true, 'Hecho'));
                             context.props.ver_car(false);
+                          
                             context.props.limpiar_pedidos([])
                             context.props.asignar_cantidad_pedido(0);
+                            context.props.asignar_total_pedido(0);
+                           
 
                         } else {
 
@@ -205,7 +216,22 @@ function enviar_pedido(pedido,context) {
 
 
 
+function cambiar_estado_pendiente(pendientes) {
+   
+    return { type: pedidosConstants.CAMBIAR_ESTADO_PENDIENTE, pendientes };
 
+}
+
+function cambiar_estado_recibido(recibidos) {
+ 
+    return { type: pedidosConstants.CAMBIAR_ESTADO_RECIBIDO, recibidos };
+
+}
+
+function cambiar_estado_enviado(enviados) {
+    return { type: pedidosConstants.CAMBIAR_ESTADO_ENVIADO, enviados };
+
+}
 
 
 

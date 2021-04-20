@@ -21,6 +21,9 @@ namespace Models
             [Display(Name = "Activo")]
             [JsonProperty(PropertyName = "Activo")]
             public bool Activo { get; set; }
+
+
+        
             [Display(Name = "PrecioVariable")]
             [JsonProperty(PropertyName = "PrecioVariable")]
             public bool PrecioVariable { get; set; }

@@ -26,13 +26,11 @@ class Pedidos extends Component {
         this.state = {
             tabs: [
                 { name: 'Todos', id: 0 },
-                { name: 'Pendientes' , id: 1},
-                { name: 'Recibidos', id: 2},
+                { name: 'Recibidos', id: 1 },
+                { name: 'Pendientes', id: 2 },
                 { name: 'Enviados', id: 3},
             ],
-            pendientes: 0,
-            recibidos: 0,
-            enviados: 0,
+           
             idEstado:0
 
         }
@@ -86,9 +84,9 @@ class Pedidos extends Component {
             b3.remove();
         }
 
-        content1 = `<span id='b-1' > <span class='burbuja1 estado-pendiente  fa fa-circle'></span> (${this.state.pendientes})</span>`;
-        content2 = `<span id='b-2' > <span class='burbuja2 estado-recibido  fa fa-circle'></span> (${this.state.recibidos})</span>`;
-        content3 = `<span id='b-3' > <span class='burbuja3 estado-enviado fa fa-circle'></span> (${this.state.enviados})</span>`;
+        content1 = `<span id='b-1' > <span class='burbuja1 estado-recibido   fa fa-circle'></span> (${this.props.recibidos})</span>`;
+        content2 = `<span id='b-2' > <span class='burbuja2 estado-pendiente fa fa-circle'></span> (${this.props.pendientes})</span>`;
+        content3 = `<span id='b-3' > <span class='burbuja3 estado-enviado fa fa-circle'></span> (${this.props.enviados})</span>`;
 
         if (tab1 != null && tab2 != null && tab3 != null) {
 
@@ -122,9 +120,9 @@ class Pedidos extends Component {
     rowDataBound(args) {
         if (args.row) {
             if (args.data.IdEstado === 1) {
-                args.row.classList.add('estado-pendiente');
-            } else if (args.data.IdEstado === 2) {
                 args.row.classList.add('estado-recibido');
+            } else if (args.data.IdEstado === 2) {
+                args.row.classList.add('estado-pendiente');
             } else if (args.data.IdEstado === 3) {
                 args.row.classList.add('estado-enviado');
             }
@@ -179,8 +177,8 @@ class Pedidos extends Component {
     }
 
     async change(e) {
-        console.log(e)
-
+      
+   
         this.setState({ idEstado: e });
         await this.props.obtener_pedidos(e, this);
            
@@ -222,8 +220,8 @@ class Pedidos extends Component {
 
 
 function mapStateToProps(state) {
-    const { pedidos, mostrar_detalle } = state.pedidosReducer;
-    return { pedidos, mostrar_detalle };
+    const { pedidos, mostrar_detalle, pendientes, recibidos, enviados } = state.pedidosReducer;
+    return { pedidos, mostrar_detalle, pendientes, recibidos, enviados};
 }
 
 
@@ -232,6 +230,9 @@ const mapDispatchToProps = {
     obtener_pedidos: pedidosActions.obtener_pedidos,
     mostrar_detalle_pedido: pedidosActions.mostrar_detalle_pedido,
     seleccionar_pedido: pedidosActions.seleccionar_pedido,
+    cambiar_estado_pendiente: pedidosActions.cambiar_estado_pendiente,
+    cambiar_estado_recibido: pedidosActions.cambiar_estado_recibido,
+    cambiar_estado_enviado: pedidosActions.cambiar_estado_enviado,
     
 }
 
