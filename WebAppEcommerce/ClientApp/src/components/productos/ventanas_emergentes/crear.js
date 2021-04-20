@@ -54,7 +54,7 @@ class CrearProducto extends Component {
             producto: {
                 ...producto,
                 [name]: value,
-                Precio: (name === "PrecioVariable" && value && name !== "Precio") ? 0 : this.state.Precio
+                Precio: (name === "PrecioVariable" && value && name !== "Precio") ? 0 : name ==="Precio"? value : this.state.producto.Precio
             }
         });
 
@@ -84,7 +84,7 @@ class CrearProducto extends Component {
         }else if (!producto.Nombre) {
             this.props.showMessage('Debes ingresar un nombre.', true, 'Información');
             return;
-         } else if (!producto.Precio && !producto.PrecioVariable) {
+         } else if (!producto.Precio  && !producto.PrecioVariable) {
             this.props.showMessage('Debes ingresar un precio.', true, 'Información');
             return;
         } else if (producto.IdCategoria === 0) {
@@ -163,7 +163,7 @@ class CrearProducto extends Component {
                             
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="text" name="Nombre" value={producto.Nombre} maxLength={15} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
+                                <Form.Control type="text" name="Nombre" value={producto.Nombre}  className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row sm={10}>

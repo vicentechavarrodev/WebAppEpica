@@ -51,7 +51,7 @@ class EditarProducto extends Component {
             producto: {
                 ...producto,
                 [name]: value,
-                Precio: (name === "PrecioVariable" && value && name !== "Precio") ? 0 : this.state.Precio
+                Precio: (name === "PrecioVariable" && value && name !== "Precio") ? 0 : name === "Precio" ? value : this.state.producto.Precio
             }
         });
     }
