@@ -97,7 +97,7 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
  
 
     return (
-        <ListGroup.Item id={`${opciones[0].ProductoTipoOpcion.IdTipoOpcion}-item-op`} key={opciones[0].ProductoTipoOpcion.IdTipoOpcion} className={`${opciones[0].ProductoTipoOpcion.MostrarInicio ? "" : "option-show"} pl-0 pr-0`}>
+        <ListGroup.Item id={`${opciones[0].ProductoTipoOpcion.IdTipoOpcion}-item-op`} key={opciones[0].ProductoTipoOpcion.IdTipoOpcion} className={`${opciones[0].ProductoTipoOpcion.MostrarInicio ? "" : "option-show"} pl-sm-0 pr-sm-0 `}>
             <div>
                 {opciones[0].ProductoTipoOpcion.IdTipoSeleccion === 1 ?
                     <div>
@@ -128,7 +128,7 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
                                         <Col className="col-3"><h6> $ {opcion.Opcion.Precio}</h6></Col>
                                         <Col className="col-4 ">
                                             <Row>
-                                                <Col className="col-3 p-0 d-flex justify-content-center align-items-center">
+                                                    <Col className="col-3 p-sm-0 d-flex justify-content-center align-items-center">
                                                     <a className=" btn-default btn-3d-style  btn-block " name="cant-menos" onClick={(e) => HandleIncreChange(e, opcion)} >
                                                         <RemoveIcon />
                                                     </a>

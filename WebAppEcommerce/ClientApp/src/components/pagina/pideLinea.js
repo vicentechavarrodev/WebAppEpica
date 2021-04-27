@@ -36,7 +36,10 @@ class PideLinea extends Component {
              this.props.productos_por_categoria(this.props.location.Id_categoria_seleccionada);
              this.onSelect(this.props.location.Id_categoria_seleccionada);
         } else {
-            this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
+            if (this.props.categorias.length  > 0) {
+                this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
+            }
+          
         }
         
        
@@ -105,9 +108,6 @@ class PideLinea extends Component {
                                 onSelect={this.onSelect}
                                 scrollBy={1}
                                 alignCenter={false}
-                           
-                        
-
                         />
                     </div>
                     </div>

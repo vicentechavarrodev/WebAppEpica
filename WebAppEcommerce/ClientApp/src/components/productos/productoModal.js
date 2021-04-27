@@ -472,7 +472,7 @@ class ProductoModal extends Component {
                                     <p>{this.props.opciones_producto.Descripcion}</p>
                                 </div>
                             </div>
-                            <div className="col-12 col-size p-0 scroll-content">
+                            <div className="col-12 col-size p-sm-0 p-lg-3  scroll-content">
                                 {this.props.opciones_producto.VistaProductoOpcionesGroup != null && this.props.opciones_producto.VistaProductoOpcionesGroup.length > 0 ?
                                     <ListGroup variant="flush" >
                                         {

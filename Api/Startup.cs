@@ -46,8 +46,7 @@ namespace Api
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["JWT:JWT_ISSUER_TOKEN"],
                     ValidAudience = Configuration["JWT:JWT_AUDIENCE_TOKEN"],
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(Configuration["JWT:JWT_SECRET_KEY"])
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:JWT_SECRET_KEY"])
                     )
                 };
             });

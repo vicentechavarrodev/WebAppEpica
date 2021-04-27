@@ -30,7 +30,8 @@ async function crear_banner(banner) {
     const requestOptions = {
         method: 'POST',
         headers: {
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "Authorization": process.env.REACT_APP_PASSWORD_AUTH
         },
         body: banner
     };
@@ -72,7 +73,8 @@ async function editar_banner(banner,id) {
     const requestOptions = {
         method: 'POST',
         headers: {
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "Authorization": process.env.REACT_APP_PASSWORD_AUTH
         },
         body: banner
     };

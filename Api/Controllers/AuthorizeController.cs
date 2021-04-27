@@ -26,6 +26,7 @@ namespace Api.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
+        [Route("Authenticate")]
         public IActionResult Authenticate(AuthorizeRequest auth)
         {
             var _userInfo = AutenticarUsuarioAsync(auth.Username, auth.Password);

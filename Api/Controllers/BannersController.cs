@@ -9,12 +9,14 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BannersController : Controller
     {
         private readonly DataContext db;

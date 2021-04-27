@@ -1,4 +1,5 @@
 ﻿using Api.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -14,6 +15,7 @@ namespace Api.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsuariosController
     {
         private readonly DataContext db;

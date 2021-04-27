@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Api.Helpers;
 using Api.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,6 +17,8 @@ namespace Api.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class ProductosController : Controller
     {
 
@@ -81,12 +84,11 @@ namespace Api.Controllers
                                                                        {
                                                                            IdProductoOpciones= o.IdProductoOpciones,
                                                                            IdProductoTipoOpcion= o.IdProductoTipoOpcion,
-                                                                             
                                                                            ProductoTipoOpcion = db.ProductoTipoOpciones.Include(p => p.TipoOpcion).First(p =>p.IdProductoTipoOpcion== o.IdProductoTipoOpcion)
                                                                        }
                                                                       
                                                                       ).ToList()
-                                    }).ToList().GroupBy(x => x.Opcion.IdTipoOpcion);
+                                    }).ToList().OrderBy(x => x.ProductoTipoOpcion.Orden).GroupBy(x => x.Opcion.IdTipoOpcion);
 
 
 
@@ -235,7 +237,7 @@ namespace Api.Controllers
             {
                 var opcion = await db.ProductoOpciones.Include(p => p.Opcion).Include(p => p.ProductoOpcionTipoOpciones).FirstAsync(p => p.IdProductoOpciones == id);
 
-                var tipoOpcionesProducto = await db.ProductoTipoOpciones.Where(p => p.IdTipoOpcion != opcion.Opcion.IdTipoOpcion).Include(p => p.TipoOpcion).OrderBy(u => u).ToListAsync();
+                var tipoOpcionesProducto = await db.ProductoTipoOpciones.Where(p => p.IdTipoOpcion != opcion.Opcion.IdTipoOpcion && p.IdProducto == opcion.IdProducto).Include(p => p.TipoOpcion).OrderBy(u => u).ToListAsync();
 
             
 

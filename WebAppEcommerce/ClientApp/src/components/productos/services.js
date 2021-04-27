@@ -61,7 +61,8 @@ async function crear_producto(producto) {
     const requestOptions = {
         method: 'POST',
         headers: {
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "Authorization": process.env.REACT_APP_PASSWORD_AUTH
         },
         body: producto
     };
@@ -190,7 +191,8 @@ async function editar_producto(producto, id) {
     const requestOptions = {
         method: 'POST',
         headers: {
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "Authorization": process.env.REACT_APP_PASSWORD_AUTH
         },
         body: producto
     };

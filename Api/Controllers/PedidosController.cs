@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Api.Helpers;
 using Api.ViewModels;
 using EFCore.BulkExtensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,6 +17,7 @@ namespace Api.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PedidosController : Controller
     {
         private readonly DataContext db;
