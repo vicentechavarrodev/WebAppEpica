@@ -95,7 +95,7 @@ namespace Models.Migrations
                         .HasColumnType("datetime2")
                         .HasMaxLength(100);
 
-                    b.Property<DateTime>("HoraInicial")
+                    b.Property<DateTime>("HoraInicials")
                         .HasColumnType("datetime2")
                         .HasMaxLength(100);
 

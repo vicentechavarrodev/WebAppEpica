@@ -383,13 +383,13 @@ class ProductoModal extends Component {
 
                 }
             }
-            console.log(opcion.ProductoTipoOpcion.MostrarPartes)
+          
             if (opcion.ProductoTipoOpcion.MostrarPartes) {
 
                 var e = document.getElementById(`${opcion.IdProductoOpciones}-item-add`);
                 if (e != null) {
                     var child = e.getElementsByTagName('input')[0];
-
+                   
                     if (cantidad === 1) {
                         e.classList.add("enable");
 
