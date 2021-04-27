@@ -49,9 +49,9 @@
     color: white;
     padding: 0px;
     margin: 0px;
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
-    width: 120px;
+    justify-content: center;
 }
 .list-unstyled .btn-link:hover {
     color: white;
@@ -81,9 +81,6 @@
         padding-bottom: 10px;
         cursor: pointer;
     }
-    .list-unstyled .btn-link {
-        display: flex;
-        justify-content: center;
-    }
+   
 }
 

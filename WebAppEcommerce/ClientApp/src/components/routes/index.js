@@ -17,6 +17,7 @@ import PideLinea from '../pagina/pideLinea';
 import Novedades from '../pagina/novedades';
 import Compania from '../pagina/compania';
 import Pedidos from '../pedidos/index';
+import Horarios from '../horario/index';
 
 
 const AppRoutes = () =>
@@ -38,6 +39,7 @@ const AppRoutes = () =>
                     <PrivateRoute component={Details} path="/details" exact />
                     <PrivateRoute component={Pedidos} path="/pedidos" exact />
                     <PrivateRoute component={Banners} path="/banners" exact />
+                    <PrivateRoute component={Horarios} path="/horarios" exact />
                 </Ventana>
 
                        

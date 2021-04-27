@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210420142713_anderson20_04_21_2")]
+    partial class anderson20_04_21_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,31 +79,6 @@ namespace Models.Migrations
                     b.HasKey("IdEstado");
 
                     b.ToTable("Estados");
-                });
-
-            modelBuilder.Entity("Models.Horarios", b =>
-                {
-                    b.Property<int>("IdHorario")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Dia")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<DateTime>("HoraFinal")
-                        .HasColumnType("datetime2")
-                        .HasMaxLength(100);
-
-                    b.Property<DateTime>("HoraInicial")
-                        .HasColumnType("datetime2")
-                        .HasMaxLength(100);
-
-                    b.HasKey("IdHorario");
-
-                    b.ToTable("Horarios");
                 });
 
             modelBuilder.Entity("Models.Opciones", b =>

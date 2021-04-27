@@ -21,6 +21,8 @@
     <Compile Remove="Migrations\20210331174219_initial9.Designer.cs" />
     <Compile Remove="Migrations\20210412233328_initial11.cs" />
     <Compile Remove="Migrations\20210412233328_initial11.Designer.cs" />
+    <Compile Remove="Migrations\20210420142713_anderson20_04_21_2.cs" />
+    <Compile Remove="Migrations\20210420142713_anderson20_04_21_2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
