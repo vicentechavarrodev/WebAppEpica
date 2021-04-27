@@ -134,7 +134,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .paragraph {
     margin-left: 15px;
     margin-right: 15px;
-    height: 140px;
+    height: 90px;
    
 }
 
@@ -252,10 +252,10 @@ $shade-color: rgba(0, 0, 0, 0.24);
         padding: 0px;
     }
 
-    .image-pizzas {
-        object-fit: cover;
-        border-radius: 5px 5px 0px 0px;
-    }
+.image-pizzas {
+    object-fit: scale-down;
+    border-radius: 5px 5px 0px 0px;
+}
 
     .text-price {
         font-size: 1em;
@@ -680,6 +680,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
     height: 55px;
     width: 60px;
 }
+.button-movil:hover{
+    color:rgba(155, 9, 9, 0.78);
+}
 
 
     .col-btn-pedido {
@@ -709,6 +712,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
 
     .col-btn-pedido button:hover {
         background-color: rgba(151, 13, 13, 0.90);
+        color:white;
     }
 
 

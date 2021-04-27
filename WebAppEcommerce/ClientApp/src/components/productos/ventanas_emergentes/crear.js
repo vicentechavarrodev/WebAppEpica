@@ -47,7 +47,7 @@ class CrearProducto extends Component {
     }
 
     InputChange(e) {
-       
+     
         const { name, value } = e.target;
         const { producto } = this.state;
         this.setState({
