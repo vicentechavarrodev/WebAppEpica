@@ -149,7 +149,8 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
                                         </Row>
                                         <Row key={opcion.IdProductoOpciones} id={`${opcion.IdProductoOpciones}-item-add`} className="option-show d-flex m-1" >
                                             <Col className="col-6 text-center "  >
-                                               ¿En que parte de la pizza?
+                                                <h6> ¿En que parte de la pizza?</h6>
+                                              
                                             </Col>
                                             <Col className="col-6"  >
 
