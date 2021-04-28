@@ -5,6 +5,7 @@ import { LateralBarActions } from '.././lateral_bar/actions';
 import CarModal from '../pagina/car_modal';
 import { productoActions } from '../productos/actions';
 import { withRouter } from "react-router-dom";
+import { sliceElements } from '@syncfusion/ej2-react-grids';
 
 class Carrito extends Component {
 
@@ -20,7 +21,7 @@ class Carrito extends Component {
         
         
         const btn = document.getElementById('btn-car');
-
+       
         btn.style.display = 'none';
         this.props.ver_car(true);
 

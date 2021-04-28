@@ -13,11 +13,13 @@ $shade-color: rgba(0, 0, 0, 0.24);
 }
 
 
+
 #cart-background .btn-link {
     position: absolute;
     top: 50%;
     right: 400px;
     background-color: $primary-color;
+    
 }
 
 #cart-background .btn-link:hover {

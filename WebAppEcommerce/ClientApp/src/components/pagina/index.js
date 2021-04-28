@@ -25,8 +25,10 @@ class Pagina extends Component {
         super(props);  
     }
 
-   async componentDidMount() {
-        loader.hide();
+    async componentDidMount() {
+
+       loader.hide();
+       window.scroll(100, 0);
        await this.props.obtenerBanners(this);
       
      

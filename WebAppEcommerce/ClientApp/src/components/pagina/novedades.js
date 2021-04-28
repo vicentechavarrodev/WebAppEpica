@@ -17,12 +17,14 @@ import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 class Novedades extends Component {
 
     componentDidMount() {
+        window.scroll(100, 0);
         document.getElementById('novedades').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
-
+      
     }
 
 
     render() {
+
         return (
             <body data-spy="scroll" data-target="#navbar" data-offset="57">
                 <Header visiblePagina="true" />

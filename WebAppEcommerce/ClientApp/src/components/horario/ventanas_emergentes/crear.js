@@ -18,14 +18,14 @@ class CrearHorario extends Component {
     constructor(props) {
         super(props);
 
-
+    
 
         this.state = {
             horario: {
                 IdHorario: 0,
                 Dia: '',
-                HoraInicial: '',
-                HoraFinal: ''
+                HoraInicial: Date.now(),
+                HoraFinal: Date.now()
             },
             dias: [
                 'domingo',
@@ -54,15 +54,21 @@ class CrearHorario extends Component {
 
 
     InputChange(e) {
-
+    
         const { name, value } = e.target;
         const { horario } = this.state;
-        this.setState({
-            horario: {
-                ...horario,
-                [name]: value
-            }
-        });
+        if (name === "HoraInicial") {
+            const obtencion = value;
+            const Hours = parseInt(obtencion);
+            const Minutes = obtencion.slice(3)
+            horario.HoraInicial.setHours(Hours);
+            horario.HoraInicial.setMinutes(Minutes);
+            console.log(horario.HoraInicial);
+
+        }
+
+
+        
        
     }
     InputChangeDia(e) {
@@ -103,8 +109,9 @@ class CrearHorario extends Component {
 
  
         loader.show();
-       
-        this.props.crear_horario(horario, this);
+
+        console.log(horario.HoraInicial);
+        //this.props.crear_horario(horario, this);
 
 
     }
@@ -141,12 +148,12 @@ class CrearHorario extends Component {
 
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="time" name="HoraInicial" value={horario.HoraInicial}  className="pz-input" onChange={this.InputChange} placeholder="Hora Inicial" />
+                                <Form.Control type="time" id="HoraInicial" name="HoraInicial"  className="pz-input" onChange={this.InputChange} placeholder="Hora Inicial" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="time" name="HoraFinal" value={horario.HoraFinal} className="pz-input" onChange={this.InputChange} placeholder="Hora Final" />
+                                <Form.Control type="time" name="HoraFinal"  className="pz-input" onChange={this.InputChange} placeholder="Hora Final" />
                             </Form.Group>
                         </Form.Row>
 

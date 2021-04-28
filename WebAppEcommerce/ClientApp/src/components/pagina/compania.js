@@ -15,6 +15,7 @@ import imageHeader1 from '../../imagenes/pagina/header1.jpg';
 class Compania extends Component {
 
     componentDidMount() {
+        window.scroll(100, 0);
         document.getElementById('compania').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
     }
 

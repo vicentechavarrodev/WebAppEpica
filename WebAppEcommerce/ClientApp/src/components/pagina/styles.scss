@@ -23,6 +23,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
     justify-content:center;
 
 }
+
 .fa-trash:hover{
     color:rgba(160, 14, 14, 0.90);
     font-size:25px;
@@ -121,15 +122,21 @@ $shade-color: rgba(0, 0, 0, 0.24);
     .card-style {
         padding: 0px;
     }
+.cards {
+    max-width: 327px;
+}
+.justify-card{
+    display:flex;
+    justify-content:center;
+}
 
-
-    .card-tittle {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 6px;
-        padding-top: 20px;
-        margin-bottom: 0px;
-    }
+.card-tittle {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 6px;
+    padding-top: 20px;
+    margin-bottom: 0px;
+}
 
 .paragraph {
     margin-left: 15px;
@@ -387,6 +394,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
 
     .scroll-menu-arrow {
         cursor: pointer;
+        
     }
 
     @keyframes click-wave {

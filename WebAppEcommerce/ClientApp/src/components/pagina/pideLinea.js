@@ -30,6 +30,7 @@ class PideLinea extends Component {
     }
 
     async componentDidMount() {
+        window.scroll(100, 0);
         document.getElementById('pideLinea').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
         await this.props.obtenerCategorias(this);
         if (this.props.location.Id_categoria_seleccionada !== undefined) {
@@ -116,10 +117,10 @@ class PideLinea extends Component {
                     <div className="container p-lg-4  p-sm-0 rounded nav-icon">
                         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
                             {this.props.productos_categoria.map((item) =>
-                                <div className="col-lg-4 col-sm-6" key={item.IdProducto}>
-                                    <div className="card">
+                                <div className="col-lg-4 col-sm-6 justify-card" key={item.IdProducto}>
+                                    <div className="card cards">
                                         <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" width="100%" height="225" />
-                                        <div className="card-body card-style">
+                                           <div className="card-body card-style">
                                             <p className="card-text card-tittle">{item.Nombre}</p>
                                             <p className="paragraph">{item.Descripcion}</p>
                                             <div className="container">
