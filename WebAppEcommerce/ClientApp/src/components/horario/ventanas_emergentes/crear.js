@@ -24,8 +24,8 @@ class CrearHorario extends Component {
             horario: {
                 IdHorario: 0,
                 Dia: '',
-                HoraInicial: Date.now(),
-                HoraFinal: Date.now()
+                HoraInicial: new Date(),
+                HoraFinal: new Date()
             },
             dias: [
                 'domingo',
@@ -60,11 +60,18 @@ class CrearHorario extends Component {
         if (name === "HoraInicial") {
             const obtencion = value;
             const Hours = parseInt(obtencion);
-            const Minutes = obtencion.slice(3)
-            horario.HoraInicial.setHours(Hours);
-            horario.HoraInicial.setMinutes(Minutes);
-            console.log(horario.HoraInicial);
-
+            const Minutes = obtencion.slice(3);
+            this.setState({
+                HoraInicial: horario.HoraInicial.setHours(Hours, Minutes, '00'),
+            });
+        }
+        else if (name === "HoraFinal") {
+            const obtencion = value;
+            const Hours = parseInt(obtencion);
+            const Minutes = obtencion.slice(3);
+            this.setState({
+                HoraFinal: horario.HoraFinal.setHours(Hours, Minutes, '00'),
+            });
         }
 
 
@@ -110,8 +117,7 @@ class CrearHorario extends Component {
  
         loader.show();
 
-        console.log(horario.HoraInicial);
-        //this.props.crear_horario(horario, this);
+       this.props.crear_horario(horario, this);
 
 
     }

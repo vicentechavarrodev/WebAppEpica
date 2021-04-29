@@ -64,6 +64,7 @@ namespace Api.Controllers
 
         }
 
+     
         [HttpGet]
         [Route("Editar/{id}")]
         public async Task<Response> Editar(int? id)
