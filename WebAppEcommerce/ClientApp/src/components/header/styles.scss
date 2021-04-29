@@ -66,9 +66,10 @@ $primary-color: #b3191f;
 }
 
 .navbar-color {
-    box-shadow: 0 2px 4px 0 rgba(0, 0 ,0, .7);
+    box-shadow: 0 2px 4px 0 rgba(0, 0,0, .7);
     padding: 0px;
     color: white;
+    z-index: 2000;
 }
 .container-nav {
     padding-left: 10px;

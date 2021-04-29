@@ -96,7 +96,7 @@ class PideLinea extends Component {
             <div data-spy="scroll" data-target="#navbar" data-offset="57">
                 <Header visiblePagina="true" />
                 <div className="horizontal-menu bg-light">
-                 <div className="container container-horizontal">
+                 <div className="container container-horizontal fixed-top">
                     <div className="content">
                        
                         <ScrollMenu
@@ -114,7 +114,7 @@ class PideLinea extends Component {
                     </div>
                 </div>
                 <div className="album py-5 bg-light">
-                    <div className="container p-lg-4  p-sm-0 rounded nav-icon">
+                    <div className="container p-lg-4 p-sm-0 rounded nav-icon">
                         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
                             {this.props.productos_categoria.map((item) =>
                                 <div className="col-lg-4 col-sm-6 col-md-6 justify-card" key={item.IdProducto}>

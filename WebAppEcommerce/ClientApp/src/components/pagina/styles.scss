@@ -64,6 +64,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
     animation-duration: 100s;
     font-size: 14px;
 }
+.album{
+    margin-top:120px;
+}
 
 .content-pedido-static .form-control{
     font-size:1em;
@@ -648,10 +651,12 @@ $shade-color: rgba(0, 0, 0, 0.24);
         width: 100%;
     }
 
-    .container-horizontal {
-        padding-right: 0px;
-        padding-left: 0px;
-    }
+.container-horizontal {
+    padding-right: 0px;
+    padding-left: 0px;
+    background-color: white;
+    z-index: 1200;
+}
 
     .smart-order {
         display: flex;
@@ -776,6 +781,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
             .justify-card {
                 display: flex;
                 justify-content: center;
+               
             }
             .cards {
                 width: 327px;
