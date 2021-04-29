@@ -17,11 +17,19 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .row-novedades {
     margin: 60px 20px 0px 20px;
 }
+.row-novedades h5{
+    font-size:1.3rem;
+    font-weight:bold;
+}
 .row-compania {
     margin: 60px 20px 0px 20px;
     display:flex;
     justify-content:center;
 
+}
+.row-compania h5{
+    font-size:1.3rem;
+    font-weight:bold;
 }
 
 .fa-trash:hover{
@@ -125,10 +133,6 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .cards {
     max-width: 327px;
 }
-.justify-card{
-    display:flex;
-    justify-content:center;
-}
 
 .card-tittle {
     display: flex;
@@ -136,6 +140,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
     padding-bottom: 6px;
     padding-top: 20px;
     margin-bottom: 0px;
+    font-weight:bold;
+    font-size: 1.2em;
 }
 
 .paragraph {
@@ -262,6 +268,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .image-pizzas {
     object-fit: scale-down;
     border-radius: 5px 5px 0px 0px;
+    object-position: top;
 }
 
     .text-price {
@@ -518,13 +525,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
         padding: 0px;
     }
 
-    .card-tittle {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 6px;
-        padding-top: 20px;
-        margin-bottom: 0px;
-    }
+    
 
     .d-block {
         width: 100%;
@@ -534,6 +535,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
 
     #container h5 {
         font-weight: bolder;
+        font-size:1.2em;
     }
 
     #container h6 {
@@ -607,8 +609,10 @@ $shade-color: rgba(0, 0, 0, 0.24);
     }
 
 .image-add {
-    width: 100%;
+    width: 248px;
     border-radius: 5px;
+    height: 186px;
+    object-fit: contain;
 }
 .menu-item {
     padding: 0 40px;
@@ -760,10 +764,18 @@ $shade-color: rgba(0, 0, 0, 0.24);
             object-fit: cover;
             filter: grayscale(10%);
         }
+         
     }
         @media (max-width:578px) {
             .horizontal-menu {
                 margin: 0px 10px 0px 10px
+            }
+            .justify-card {
+                display: flex;
+                justify-content: center;
+            }
+            .cards {
+                width: 327px;
             }
         }
 

@@ -468,7 +468,7 @@ class ProductoModal extends Component {
                                 <div className="col-lg-6 col-12 col-image">
                                     <img className="image-add" src={`${process.env.REACT_APP_API_URL}app-images/${this.props.opciones_producto.UrlImagen}`} alt="producto" />
                                 </div>
-                                <div className="col-lg-6 col-12">
+                                <div className="col-lg-6 col-12 col-description">
                                     <p>{this.props.opciones_producto.Descripcion}</p>
                                 </div>
                             </div>

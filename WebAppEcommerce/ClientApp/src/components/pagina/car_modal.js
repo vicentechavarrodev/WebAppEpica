@@ -169,7 +169,7 @@ class Car_modal extends Component {
                             <input type="number" className="form-control" name="Telefono" value={pedido.Telefono} id="Telefono" onChange={this.InputChange} placeholder="Telefono de contacto" />
                         </div>
                         <div className="mb-2">
-                            <input type="text-area" className="form-control" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Anexa un comentario" />
+                            <textarea type="text-area" rows="1" className="form-control" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Anexa un comentario" />
                         </div>
                         <div className="date-total">
                         </div>

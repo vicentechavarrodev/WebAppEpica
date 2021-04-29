@@ -32,7 +32,7 @@ class Compania extends Component {
 
                 </div>
                 <div className="row row-compania p-lg-4  p-sm-0 ">
-                    <div className="col-lg-8 col-sm-10 col-xs-12 mb-4">
+                    <div className="col-lg-7 col-sm-10 col-xs-12 mb-4">
                         <div className="card ">
                             <img className="card-img-top" src={imageHeader1} alt="Foto de Pizza 1" />
                             <div className="card-body">
