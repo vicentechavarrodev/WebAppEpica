@@ -46,7 +46,9 @@ class Car_modal extends Component {
         const {
             pedido
         } = this.state;
-        if (!this.props.productos_pedido.length ===0 ) {
+
+        console.log(pedido)
+        if (pedido.PedidoDetalles.length ===0 ) {
             this.props.showMessage('Debes agregar al menos un producto.', true, 'Información');
             return;
         } else if (!pedido.Solicitante) {
@@ -55,8 +57,8 @@ class Car_modal extends Component {
         } else if (!pedido.Direccion) {
             this.props.showMessage('Debes ingresar una dirección.', true, 'Información');
             return;
-        } else if (pedido.Telefono === 0) {
-            this.props.showMessage('Debes seleccionar un teléfono.', true, 'Información');
+        } else if (pedido.Telefono === null || pedido.Telefono === "" ) {
+            this.props.showMessage('Debes ingresar un numero de teléfono.', true, 'Información');
             return;
         }
         

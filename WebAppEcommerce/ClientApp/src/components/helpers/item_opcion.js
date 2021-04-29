@@ -75,7 +75,7 @@ const OptionItemRdio = ({ opcion, index, CambioSeleccion, Deseleccionar }) => {
     var op = JSON.stringify(opcion)
    
     return (<div className="row-size" key={index}>
-        <div className="col-7 col-radio ml-0">
+        <div className="col-8 col-radio ml-0">
             <FormControlLabel key={index} value={op}  checked={CambioSeleccion(opcion)}
                 onClick={(e) => Deseleccionar(e,opcion)}
                 control={<StyledRadio />} label={opcion.Opcion.NombreAlias} />
@@ -97,7 +97,7 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
  
 
     return (
-        <ListGroup.Item id={`${opciones[0].ProductoTipoOpcion.IdTipoOpcion}-item-op`} key={opciones[0].ProductoTipoOpcion.IdTipoOpcion} className={`${opciones[0].ProductoTipoOpcion.MostrarInicio ? "" : "option-show"} pl-sm-0 pr-sm-0 `}>
+        <ListGroup.Item id={`${opciones[0].ProductoTipoOpcion.IdTipoOpcion}-item-op`} key={opciones[0].ProductoTipoOpcion.IdTipoOpcion} className={`${opciones[0].ProductoTipoOpcion.MostrarInicio ? "" : "option-show"} padding-modal-producto `}>
             <div>
                 {opciones[0].ProductoTipoOpcion.IdTipoSeleccion === 1 ?
                     <div>
@@ -124,11 +124,11 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
 
                                     return <div>
                                     <Row className="mt-2 mb-1">
-                                        <Col className="col-4"><h6>{opcion.Opcion.NombreAlias}</h6></Col>
-                                        <Col className="col-3"><h6> $ {opcion.Opcion.Precio}</h6></Col>
+                                            <Col className="col-4 "><h6>{opcion.Opcion.NombreAlias}</h6></Col>
+                                            <Col className="col-3 p-0"><h6> $ {opcion.Opcion.Precio}</h6></Col>
                                         <Col className="col-4 ">
                                             <Row>
-                                                    <Col className="col-3 p-sm-0 d-flex justify-content-center align-items-center">
+                                                    <Col className="col-3 p-0 d-flex justify-content-center align-items-center">
                                                     <a className=" btn-default btn-3d-style  btn-block " name="cant-menos" onClick={(e) => HandleIncreChange(e, opcion)} >
                                                         <RemoveIcon />
                                                     </a>
@@ -148,8 +148,8 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
                                         </Col>
                                         </Row>
                                         <Row key={opcion.IdProductoOpciones} id={`${opcion.IdProductoOpciones}-item-add`} className="option-show d-flex m-1" >
-                                            <Col className="col-6 text-center "  >
-                                                <h6> ¿En que parte de la pizza?</h6>
+                                            <Col className="col-6 text-center " >
+                                                <h6>  <span id={`${opcion.IdProductoOpciones}-item-flavor`}> Toda </span> </h6>
                                               
                                             </Col>
                                             <Col className="col-6"  >
