@@ -45,14 +45,14 @@ class Footer extends Component {
                                 <h5>Categorias</h5>
                                 {this.props.categorias.map((item) =>
                                     <li className="li-footer" key={item.IdCategoria}>
-                                        <button className="link-secondary" type="button" className="btn btn-link" id={item.IdCategoria} onClick={this.abrirPideLinea}>{item.Nombre}</button></li>
+                                        <button  type="button" className="link-secondary btn btn-link" id={item.IdCategoria} onClick={this.abrirPideLinea}>{item.Nombre}</button></li>
                                  )}
                               
-                         
+                                <li className="li-footer" id="login">
+                                    <Link to="/login" className="link-secondary btn btn-link">Cuenta</Link>
+                                </li>
                             </ul>
-                            <li className="list-unstyled text-small" id="login">
-                                <Link to="/login" className="nav-link">Login</Link>
-                            </li>
+                           
 
                     </div>
                         <div className="col-lg-3 col-sm-6 col-md pl-lg-5 pr-0">

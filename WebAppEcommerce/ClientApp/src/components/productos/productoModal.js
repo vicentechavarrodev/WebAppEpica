@@ -230,22 +230,28 @@ class ProductoModal extends Component {
         }
 
         const AgregarAdicion = async (event, value, opcion) => {
+          
+            var e = document.getElementById(`${opcion.IdProductoOpciones}-item-flavor`);
+
+            //var child = e.children[0].getElementsByTagName('span');
+
+            //console.log(child);
            
             if (value === 0) {
-                
 
+                e.textContent = "Primer Sabor";
                 await this.setState({
                     opcionesSeleccionadas: this.state.opcionesSeleccionadas.map((item, index) => item.idProductoOpciones === opcion.IdProductoOpciones ? { ...item, añadir: "Pmer. Sabor" } : item
                     )
                 });
             } else if (value === 50) {
-                
+                e.textContent  = "Toda";
                 await this.setState({
                     opcionesSeleccionadas: this.state.opcionesSeleccionadas.map((item, index) => item.idProductoOpciones === opcion.IdProductoOpciones ? { ...item, añadir: "Toda" } : item
                     )
                 });
             } else if (value === 100) {
-        
+                e.innerHTML = "Segundo sabor";
                 await this.setState({
                     opcionesSeleccionadas: this.state.opcionesSeleccionadas.map((item, index) => item.idProductoOpciones === opcion.IdProductoOpciones ? { ...item, añadir: "Sdo. Sabor" } : item
                     )
@@ -472,7 +478,7 @@ class ProductoModal extends Component {
                                     <p>{this.props.opciones_producto.Descripcion}</p>
                                 </div>
                             </div>
-                            <div className="col-12 col-size p-sm-0 p-lg-3  scroll-content">
+                            <div className="col-12 col-size  p-0 p-sm-0  scroll-content">
                                 {this.props.opciones_producto.VistaProductoOpcionesGroup != null && this.props.opciones_producto.VistaProductoOpcionesGroup.length > 0 ?
                                     <ListGroup variant="flush" >
                                         {

@@ -655,10 +655,13 @@ html {
     }
 
     .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-        font-size: .7rem;
+        font-size: .6rem;
     }
 
-
+    .padding-modal-producto{
+        padding-left:0 !important;
+        padding-right:0!important;
+    }
 
 
 }
