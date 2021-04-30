@@ -96,7 +96,7 @@ class PideLinea extends Component {
             <div data-spy="scroll" data-target="#navbar" data-offset="57">
                 <Header visiblePagina="true" />
                 <div className="horizontal-menu bg-light">
-                 <div className="container container-horizontal">
+                 <div className="container container-horizontal fixed-top">
                     <div className="content">
                        
                         <ScrollMenu

@@ -137,17 +137,17 @@ class Car_modal extends Component {
                     <div class="container content-pedido">
                         {
                              this.props.productos_pedido.map((item,index) =>{
-                                 return <div class="row" id={index} key={index}>
-                                        <div class="col-1 col-amount-pedido">
+                                 return <div className="row" id={index} key={index}>
+                                        <div className="col-1 col-amount-pedido">
                                             {item.Cantidad }
                                         </div>
-                                       <div class="col-8 col-description-pedido">
+                                       <div className="col-8 col-description-pedido">
                                             {item.Descripcion}
                                         </div>
-                                      <div class="col-2 col-price-pedido">
+                                      <div className="col-2 col-price-pedido">
                                             {item.Subtotal}
                                      </div>
-                                     <div class="col-1 p-1 mb-3 ">
+                                     <div className="col-1 p-1 mb-3 ">
                                          <a className="btn btn-delete" onClick={(e) => { this.EliminarPedido({ target: { name: item.Descripcion, value: item.Cantidad } }); }} >
                                              <i className="fa fa-trash"></i>
                                          </a>
@@ -171,7 +171,7 @@ class Car_modal extends Component {
                             <input type="number" className="form-control" name="Telefono" value={pedido.Telefono} id="Telefono" onChange={this.InputChange} placeholder="Telefono de contacto" />
                         </div>
                         <div className="mb-2">
-                            <textarea type="text-area" rows="1" className="form-control" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Anexa un comentario" />
+                            <textarea type="text-area" rows="1" className="form-control text-area" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Anexa un comentario" />
                         </div>
                         <div className="date-total">
                         </div>
