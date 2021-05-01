@@ -181,7 +181,7 @@ function enviar_pedido(pedido,context) {
                         if (response.Result !== null) {
 
                             dispatch(success(true));
-                            dispatch(alertActions.showMessage(response.Message, true, 'Hecho'));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Gracias'));
                             context.props.ver_car(false);
                           
                             context.props.limpiar_pedidos([])
