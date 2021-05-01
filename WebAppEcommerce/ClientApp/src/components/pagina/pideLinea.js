@@ -119,10 +119,26 @@ class PideLinea extends Component {
                             {this.props.productos_categoria.map((item) =>
                                 <div className="col-lg-4 col-sm-6 col-md-6 justify-card" key={item.IdProducto}>
                                     <div className="card cards">
-                                        <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" width="100%"  />
+                                        <div class="container container-movil">
+                                            <div class="row">
+                                                <div class="col image-movil">
+                                                    <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" width="100%" height="225" />
+                                                </div>
+                                                <div className="col column-movil">
+                                                   
+                                                        <p className="card-text card-tittle">{item.Nombre}</p>
+                                                        <p className="paragraph">{item.Descripcion}</p>
+                                              
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div className="container-web">
+                                        <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" width="100%" height="225" />
                                            <div className="card-body card-style">
                                             <p className="card-text card-tittle">{item.Nombre}</p>
-                                            <p className="paragraph">{item.Descripcion}</p>
+                                                        <p className="paragraph">{item.Descripcion}</p>
+                                            </div>
+                                        </div>
                                             <div className="container">
                                                 <div className="row">
                                                     <div className="col-lg-6 col-price">
@@ -131,30 +147,36 @@ class PideLinea extends Component {
                                                             :""
                                                         }
                                                     </div>
-                                                    <div className="col-lg-6 col-button">
-                                                        <button type="button" className="btn btn-pidelinea" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
+                                                  
                                                             {item.PrecioVariable ?
+                                                                <div className="col-lg-6 col-button">
+                                                                    <button type="button" className="btn btn-pidelinea" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
                                                                 <span>
                                                                     <i className="fa fa-th-list mr-2"></i>
                                                                         Personalizar
                                                                  </span>
+                                                            </button>
+                                                                </div>
 
                                                                 :
+                                                             <div className="col-lg-6 col-button">
+                                                                <button type="button" className="btn btn-pidelinea" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
                                                                 <span>
                                                                     <i className="fa fa-cart-plus"></i>
                                                                         Agregar
                                                                  </span>
-
+                                                                </button>
+                                                              </div>
 
                                                             }
 
-                                                        </button>
-                                                    </div>
+
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                             
                             )                        
                             }
                             {mostrar_crear ?

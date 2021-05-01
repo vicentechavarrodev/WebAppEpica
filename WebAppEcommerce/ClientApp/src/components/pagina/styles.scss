@@ -654,8 +654,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .container-horizontal {
     padding-right: 0px;
     padding-left: 0px;
-    background-color: white;
-    z-index: 1200;
+    background-color: rgb(248, 249, 250);
+    z-index: 1000;
 }
 
     .smart-order {
@@ -734,6 +734,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
         background-color: rgba(151, 13, 13, 0.90);
         color:white;
     }
+    .container-movil{
+        display:none;
+    }
 
 
 
@@ -773,6 +776,68 @@ $shade-color: rgba(0, 0, 0, 0.24);
             filter: grayscale(10%);
         }
          
+    }
+@media (max-width:580px) {
+    .horizontal-menu {
+        margin: 0px 10px 0px 10px
+    }
+
+    .justify-card {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0px 20px 0px 20px;
+    }
+
+    .cards {
+   
+        max-width:450px;
+    }
+    .image-movil{
+        padding:0px;
+    }
+
+    .container-movil {
+        display: inherit;
+        height: 205px
+    }
+
+    .container-web {
+        display: none;
+        height: 200px;
+    }
+
+    .image-pizzas {
+        object-fit: scale-down;
+        object-position: center;
+        height: 100%;
+        padding: 0px 0px 0px 10px;
+    }
+
+    .column-movil {
+        height: 100%;
+        padding-right: 0px;
+        padding-left:8px;
+    }
+
+    .card-tittle {
+        padding-bottom: 6px;
+        padding-top: 20px;
+        padding-right: 8px;
+        margin-bottom: 0px;
+        font-weight: bold;
+        font-size: 1.2em;
+        padding-left:8px;
+        display: inline-flex;
+        }
+
+
+        .paragraph {
+            margin-left: 8px;
+            margin-right: 8px;
+            height: 90px;
+            margin-bottom: 0px
+        }
     }
         @media (max-width:578px) {
             .horizontal-menu {
