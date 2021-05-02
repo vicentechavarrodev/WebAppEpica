@@ -27,8 +27,6 @@ class Horario extends Component {
             operator: 'contains'
         };
 
-
-
         this.toolbarOptions = ['Search'];
         this.rowSelected = this.rowSelected.bind(this);
         this.rowDeselected = this.rowDeselected.bind(this);

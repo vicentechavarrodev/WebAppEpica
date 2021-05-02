@@ -18,15 +18,18 @@ namespace Models
         [JsonProperty(PropertyName = "Dia")]
         [Display(Name = "Dia")]
         public string Dia { get; set; }
-        [Required(ErrorMessage = "El dato {0} es necesario")]
-        [MaxLength(100, ErrorMessage = "El tamaño maximo de el {0} is {1} caracteres")]
-        [JsonProperty(PropertyName = "HoraInicial")]
+
         [Display(Name = "HoraInicial")]
-        public DateTime HoraInicial { get; set; }
         [Required(ErrorMessage = "El dato {0} es necesario")]
-        [MaxLength(100, ErrorMessage = "El tamaño maximo de el {0} is {1} caracteres")]
-        [JsonProperty(PropertyName = "HoraFinal")]
+        [DataType(DataType.DateTime)]
+        [JsonProperty(PropertyName = "HoraInicial")]
+        public DateTime HoraInicial { get; set; }
+
         [Display(Name = "HoraFinal")]
+        [Required(ErrorMessage = "El dato {0} es necesario")]
+        [DataType(DataType.DateTime)]
+        [JsonProperty(PropertyName = "HoraFinal")]
         public DateTime HoraFinal { get; set; }
+
     }
 }
