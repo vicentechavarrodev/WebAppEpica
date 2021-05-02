@@ -30,14 +30,15 @@ class PideLinea extends Component {
     }
 
     async componentDidMount() {
-        window.scroll(100, 0);
         document.getElementById('pideLinea').style.backgroundColor = "rgba(0, 0, 0, 0.24)";
         await this.props.obtenerCategorias(this);
         if (this.props.location.Id_categoria_seleccionada !== undefined) {
+             window.scroll(100, 0);
              this.props.productos_por_categoria(this.props.location.Id_categoria_seleccionada);
              this.onSelect(this.props.location.Id_categoria_seleccionada);
         } else {
-            if (this.props.categorias.length  > 0) {
+            if (this.props.categorias.length > 0) {
+                window.scroll(100, 0);
                 this.props.productos_por_categoria(this.props.categorias[0].IdCategoria);
             }
           
