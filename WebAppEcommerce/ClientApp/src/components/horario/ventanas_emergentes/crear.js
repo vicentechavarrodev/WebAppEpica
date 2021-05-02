@@ -24,8 +24,8 @@ class CrearHorario extends Component {
             horario: {
                 IdHorario: 0,
                 Dia: '',
-                HoraInicial: new Date(),
-                HoraFinal: new Date()
+                HoraInicial: "2011-04-02 17:15:45",
+                HoraFinal: "2011-04-02 17:15:45"
             },
             dias: [
                 'domingo',
@@ -57,22 +57,24 @@ class CrearHorario extends Component {
     
         const { name, value } = e.target;
         const { horario } = this.state;
-        if (name === "HoraInicial") {
-            const obtencion = value;
-            const Hours = parseInt(obtencion);
-            const Minutes = obtencion.slice(3);
-            this.setState({
-                HoraInicial: horario.HoraInicial.setHours(Hours, Minutes, '00'),
-            });
-        }
-        else if (name === "HoraFinal") {
-            const obtencion = value;
-            const Hours = parseInt(obtencion);
-            const Minutes = obtencion.slice(3);
-            this.setState({
-                HoraFinal: horario.HoraFinal.setHours(Hours, Minutes, '00'),
-            });
-        }
+        //if (name === "HoraInicial") {
+        //    //const obtencion = value;
+        //    //const Hours = parseInt(obtencion);
+        //    //const Minutes = obtencion.slice(3);
+        //    //const date = horario.HoraInicial.setHours(Hours, Minutes, '00');
+        //    console.log(horario.HoraInicial.toISOString());
+        //    this.setState({
+        //        HoraInicial: horario.HoraInicial,
+        //       });
+        //}
+        //else if (name === "HoraFinal") {
+        //    const obtencion = value;
+        //    const Hours = parseInt(obtencion);
+        //    const Minutes = obtencion.slice(3);
+        //    this.setState({
+        //        HoraFinal: horario.HoraFinal,
+        //    });
+        //}
 
 
         
@@ -117,7 +119,7 @@ class CrearHorario extends Component {
  
         loader.show();
         console.log(horario);
-       //this.props.crear_horario(horario, this);
+        this.props.crear_horario(horario, this);
 
 
     }

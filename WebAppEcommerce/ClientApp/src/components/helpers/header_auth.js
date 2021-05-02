@@ -2,7 +2,7 @@
 
     return {
         'Content-Security-Policy': 'upgrade-insecure-requests',
-        'Content-Type': 'application/json',
+        contentType: "application/json; charset=utf-8",
         'Access-Control-Allow-Origin': '*',
         Accept: 'application/json',
         Pragma: 'no-cache',
