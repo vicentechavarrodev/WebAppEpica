@@ -233,9 +233,6 @@ class ProductoModal extends Component {
           
             var e = document.getElementById(`${opcion.IdProductoOpciones}-item-flavor`);
 
-            //var child = e.children[0].getElementsByTagName('span');
-
-            //console.log(child);
            
             if (value === 0) {
 
@@ -308,7 +305,7 @@ class ProductoModal extends Component {
             await this.setState(this.baseState)
             this.props.agregar_pedido_general(productoPedido);
             this.props.ver_crear(false)
-            this.props.ver_car(true)
+           
           
             
         }

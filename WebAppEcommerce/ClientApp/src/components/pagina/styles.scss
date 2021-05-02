@@ -153,7 +153,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .paragraph {
     margin-left: 15px;
     margin-right: 15px;
-    height: 90px;
+    height: auto;
+    height:60px;
    
 }
 
@@ -186,15 +187,11 @@ $shade-color: rgba(0, 0, 0, 0.24);
     text-shadow: 3px 3px 3px black;
 }
 
-    .row-modal {
-        padding-top: 15px;
-    }
+  
 
 .col-image {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
-    height: 200px;
     object-fit: cover;
 }
 
@@ -274,7 +271,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .image-pizzas {
     object-fit: scale-down;
     border-radius: 5px 5px 0px 0px;
-    object-position: top;
+    
+    max-height:225px;
 }
 
     .text-price {
@@ -387,13 +385,15 @@ $shade-color: rgba(0, 0, 0, 0.24);
         font-weight: 700;
     }
 
-    .menu-item {
-        padding: 0 40px;
-        margin: 5px 10px;
-        user-select: none;
-        cursor: pointer;
-        border: none;
-    }
+.menu-item {
+    padding: 0 40px;
+    margin: 5px 10px;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    justify-content: center;
+}
 
     .menu-item-wrapper.active {
         border: 1px blue solid;
@@ -499,10 +499,10 @@ $shade-color: rgba(0, 0, 0, 0.24);
     }
 
     .card {
-        //border: 1px solid #d1d1d1;
+      
         border-radius: 5px;
         box-shadow: 0 0 25px rgba(0,0,0,0.2);
-        margin-bottom: 40px;
+        margin-bottom: 15px;
     }
 
     .card button {
@@ -618,12 +618,12 @@ $shade-color: rgba(0, 0, 0, 0.24);
     width: 248px;
     border-radius: 5px;
     height: 186px;
-    object-fit: contain;
+    
 }
 .menu-item {
     padding: 0 40px;
     margin: 5px 10px;
-    cursor: pointer;
+    cursor: pointer;    
     border: none;
     color: white;
 }
@@ -782,24 +782,35 @@ $shade-color: rgba(0, 0, 0, 0.24);
         margin: 0px 10px 0px 10px
     }
 
+    .col-button  {
+        
+        height: auto;
+   
+    }
+
+    .col-button button {
+        border-radius: 0 0 3px 3px;
+    }
+
     .justify-card {
         display: flex;
         justify-content: center;
         width: 100%;
-        padding: 0px 20px 0px 20px;
+        padding: 0px 10px 0px 10px;
     }
 
     .cards {
-   
-        max-width:450px;
+        min-width: 100%;
+        //max-width: 450px;
     }
-    .image-movil{
-        padding:0px;
+    .image-movil {
+        padding: 5px;
+        height: 100px;
     }
 
     .container-movil {
         display: inherit;
-        height: 205px
+        height: auto
     }
 
     .container-web {
@@ -808,10 +819,11 @@ $shade-color: rgba(0, 0, 0, 0.24);
     }
 
     .image-pizzas {
-        object-fit: scale-down;
-        object-position: center;
+        object-fit: cover;
+        
         height: 100%;
-        padding: 0px 0px 0px 10px;
+        width: 100%;
+        border-radius: 8px;
     }
 
     .column-movil {
@@ -839,6 +851,25 @@ $shade-color: rgba(0, 0, 0, 0.24);
             margin-bottom: 0px
         }
     }
+        @media (max-width:578px) {
+            .horizontal-menu {
+                margin: 0px 10px 0px 10px
+            }
+            .justify-card {
+                display: flex;
+                justify-content: center;
+               
+            }
+            .cards {
+                
+                font-size:1em;
+            }
+
+            .card-tittle {
+                padding-bottom: 0px;
+                padding-top: 0px;
+            }
+        }
 
    
 

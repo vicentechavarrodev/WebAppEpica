@@ -80,7 +80,7 @@ const OptionItemRdio = ({ opcion, index, CambioSeleccion, Deseleccionar }) => {
                 onClick={(e) => Deseleccionar(e,opcion)}
                 control={<StyledRadio />} label={opcion.Opcion.NombreAlias} />
         </div>
-        <div className="col-4 col-price-modal">
+        <div className="col-4 col-price-modal p-0">
               {opcion.Opcion.Precio === 0 ?
                 "" : `$ ${opcion.Opcion.Precio}`
 

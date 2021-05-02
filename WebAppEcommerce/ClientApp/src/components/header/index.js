@@ -95,7 +95,7 @@ class Header extends Component {
                                 </li>
                                 <li className="nav-item" id='pideLinea'>
                                     <Link to="/pideLinea" className="nav-link last-link">Pide en Linea</Link>
-                                    </li>
+                                 </li>
                               
                             </ul>
                              :

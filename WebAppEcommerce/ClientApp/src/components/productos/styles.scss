@@ -25,7 +25,7 @@
 
 .scroll-content {
     width: 100%;
-    max-height: 400px;
+    max-height: 200px;
     overflow-y: auto;
     overflow-x: hidden;
 
@@ -41,4 +41,8 @@
 }
 .col-description{
     margin-top:10px;
+}
+
+.modal-header {
+    padding: .3rem !important;
 }

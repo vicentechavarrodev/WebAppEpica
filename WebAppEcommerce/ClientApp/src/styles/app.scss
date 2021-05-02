@@ -642,8 +642,8 @@ html {
     }
 }
 @media (max-width:571px) {
-    body {
-        font-size: .7rem;
+    body, .btn {
+        font-size: .6rem !important;
     }
 
     .modal-content, .MuiTypography-body1 {
@@ -662,7 +662,7 @@ html {
         padding-left:0 !important;
         padding-right:0!important;
     }
-
+ 
 
 }
 

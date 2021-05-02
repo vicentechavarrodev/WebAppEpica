@@ -114,18 +114,18 @@ class PideLinea extends Component {
                     </div>
                     </div>
                 </div>
-                <div className="album py-5 bg-light">
-                    <div className="container p-lg-4 p-sm-0 rounded nav-icon">
+                <div className="album py-3 bg-light">
+                    <div className="container p-lg-4  p-sm-0 rounded nav-icon">
                         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
                             {this.props.productos_categoria.map((item) =>
                                 <div className="col-lg-4 col-sm-6 col-md-6 justify-card" key={item.IdProducto}>
                                     <div className="card cards">
-                                        <div class="container container-movil">
-                                            <div class="row">
-                                                <div class="col image-movil">
-                                                    <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" width="100%" height="225" />
+                                        <div class=" container-movil">
+                                            <div class="row col-12">
+                                                <div class="col-4 image-movil">
+                                                    <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" />
                                                 </div>
-                                                <div className="col column-movil">
+                                                <div className="col-8 column-movil">
                                                    
                                                         <p className="card-text card-tittle">{item.Nombre}</p>
                                                         <p className="paragraph">{item.Descripcion}</p>
@@ -134,7 +134,7 @@ class PideLinea extends Component {
                                             </div>
                                         </div>
                                          <div className="container-web">
-                                        <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" width="100%" height="225" />
+                                        <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" width="100%"  />
                                            <div className="card-body card-style">
                                             <p className="card-text card-tittle">{item.Nombre}</p>
                                                         <p className="paragraph">{item.Descripcion}</p>
