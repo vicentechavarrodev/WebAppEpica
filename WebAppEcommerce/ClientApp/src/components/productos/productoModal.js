@@ -261,8 +261,7 @@ class ProductoModal extends Component {
         const Agregar = async (event) => {
 
             if (this.props.horario_rango === false) {
-                console.log('rango no establecido');
-                return
+               return
             }
                       
             if (this.state.opcionesObligatorias.length > 0) {
