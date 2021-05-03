@@ -102,12 +102,18 @@ class Header extends Component {
                 const hour = obtencion.getHours();
                 const minutes = obtencion.getMinutes();
                 const hora_actual = hour + ":" + minutes;
+                const time = element.HoraInicial.slice(11, -6);
+                const time2 = element.HoraFinal.slice(11, -6);
+                const h = time % 12 || 12;
+                const h2 = time2 % 12 || 12;
+                const zona_horaria1 = (h < 12 || h === 24) ? "AM" : "PM";
+                const zona_horaria2 = (h2 < 12 || h2 === 24) ? "AM" : "PM";
                 this.setState({
                     verificar: {
                         ...verificar,
                         dia: dia_semana.dia,
-                        hora_inicio: element.HoraInicial.slice(11, -3),
-                        hora_final: element.HoraFinal.slice(11, -3)
+                        hora_inicio: element.HoraInicial.slice(11, -3) + zona_horaria1,
+                        hora_final: element.HoraFinal.slice(11, -3) + zona_horaria2
                     }
                 })
                if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
