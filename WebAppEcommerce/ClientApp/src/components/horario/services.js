@@ -66,16 +66,14 @@ function init_editar_horario(id) {
 }
 
 
-async function editar_horario(horario,id) {
+async function editar_horario(horario) {
     const requestOptions = {
         method: 'POST',
-        headers: {
-            "Accept": "application/json"
-        },
-        body: horario
+        headers: authHeader(),
+        body: JSON.stringify(horario)
     };
 
-    return await fetch(`${process.env.REACT_APP_API_URL}api/Horarios/Editar`, requestOptions)
+    return await fetch(`${process.env.REACT_APP_API_URL}api/Horarios/Editar/${horario.IdHorario}`, requestOptions)
         .then(handleResponse)
         .then(response => {
             return response;

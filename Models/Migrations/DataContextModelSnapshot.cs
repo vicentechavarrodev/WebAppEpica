@@ -92,12 +92,10 @@ namespace Models.Migrations
                         .HasMaxLength(20);
 
                     b.Property<DateTime>("HoraFinal")
-                        .HasColumnType("datetime2")
-                        .HasMaxLength(100);
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("HoraInicials")
-                        .HasColumnType("datetime2")
-                        .HasMaxLength(100);
+                    b.Property<DateTime>("HoraInicial")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("IdHorario");
 

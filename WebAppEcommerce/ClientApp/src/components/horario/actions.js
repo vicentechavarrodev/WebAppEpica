@@ -14,7 +14,8 @@ export const horarioActions = {
     cargar_editar,
     ver_editar,
     editar_horario,
-    horario_seleccionado
+    horario_seleccionado,
+    ver_rango
     
 
 
@@ -137,6 +138,11 @@ function ver_crear(mostrar_crear) {
     return { type: horarioConstants.MOSTRAR_CREATE_HORARIO, mostrar_crear };
 
 }
+function ver_rango(horario_rango) {
+
+    return { type: horarioConstants.HORARIO_RANGO, horario_rango };
+
+}
 
 
 
@@ -169,20 +175,20 @@ function crear_horario(horario, context) {
                         } else {
                             loader.hide();
                             dispatch(success(false));
-                            dispatch(alertActions.showMessage(response.Message, true, 'Ups aqui es'));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
                         }
 
 
                     } else {
                         loader.hide();
                         dispatch(success(false));
-                        dispatch(alertActions.showMessage(response.Message, true, 'Ups loca'));
+                        dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
                     }
                 },
                 error => {
                     loader.hide();
                     dispatch(success(false));
-                    dispatch(alertActions.showMessage(error.toString(), true, 'Ups no era'));
+                    dispatch(alertActions.showMessage(error.toString(), true, 'Ups'));
                 }
             );
     };
@@ -193,11 +199,11 @@ function crear_horario(horario, context) {
 }
 
 
-function editar_horario(horario,id, context) {
+function editar_horario(horario, context) {
     return dispatch => {
 
 
-        ServicesHelper.editar_horario(horario,id)
+        ServicesHelper.editar_horario(horario)
             .then(
                 response => {
                    if (response.IsSuccess) {
@@ -209,7 +215,7 @@ function editar_horario(horario,id, context) {
                             context.props.obtener_horarios();
                             context.props.ver_editar(false);
                             context.props.horario_seleccionado(0);
-                           
+                                                  
 
 
                         } else {

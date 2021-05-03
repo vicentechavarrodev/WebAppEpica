@@ -8,7 +8,8 @@ const horarios_initial_state = {
         mostrar_editar: false,
         horario_creado: false,
         horario_actualizado: false,
-        id_horario_seleccionado: 0
+        id_horario_seleccionado: 0,
+        horario_rango:false
     }
 };
 
