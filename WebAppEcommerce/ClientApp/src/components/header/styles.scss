@@ -25,22 +25,24 @@ $primary-color: #b3191f;
     height: 100%;
     line-height: 3.5em;
     font-size: 0.7em;
+   
 }
 .marquee p {
     font-weight: bold;
-    font-size: 1em;
+    font-size: .8em;
+    margin: .3em
 }
 .navbar-header p img {
     width:20px;
 }
 .marquee {
-    position: absolute;
     top: 70px;
-    color: white;
-    background-color: $primary-color;
-    display: flex;
     width: 100%;
-    justify-content: center;
+    color: white;
+    background-color: #211f1f;
+    width: 100%;
+    position: fixed;
+    text-align: center;
 }
 
 

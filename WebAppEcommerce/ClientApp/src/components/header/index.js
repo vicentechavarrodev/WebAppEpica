@@ -193,7 +193,7 @@ class Header extends Component {
                 </div>
                 {this.props.visiblePagina === 'true' ?
                     this.props.horario_rango === false ?
-                        <div className="marquee">
+                        <div className="marquee nav-icon">
                             <p>El Horario del {verificar.dia} es desde las {verificar.hora_inicio} hasta las {verificar.hora_final}</p>
                         </div>
                         :
