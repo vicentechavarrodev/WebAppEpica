@@ -48,6 +48,11 @@ export function horarioReducer(state = initialState.horarios_state, action) {
 
                 ...state, id_horario_seleccionado: action.id_horario_seleccionado
             };
+        case horarioConstants.HORARIO_RANGO:
+            return {
+                ...state, horario_rango: action.horario_rango
+
+            };
 
       
 

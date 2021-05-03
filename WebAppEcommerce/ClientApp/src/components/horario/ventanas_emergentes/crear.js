@@ -19,8 +19,9 @@ class CrearHorario extends Component {
         super(props);
 
     
-
+ 
         this.state = {
+           
             horario: {
                 IdHorario: 0,
                 Dia: '',
@@ -28,13 +29,13 @@ class CrearHorario extends Component {
                 HoraFinal: new Date()
             },
             dias: [
-                'domingo',
-                'lunes',
-                'martes',
-                'miercoles',
-                'jueves',
-                'viernes',
-                'sabado'
+                'Domingo',
+                'Lunes',
+                'Martes',
+                'Miercoles',
+                'Jueves',
+                'Viernes',
+                'Sabado'
                   ]
         };
 
@@ -42,7 +43,6 @@ class CrearHorario extends Component {
 
         this.InputChange = this.InputChange.bind(this);
         this.CreateSubmit = this.CreateSubmit.bind(this);
-
         this.InputChangeDia = this.InputChangeDia.bind(this);
 
   
@@ -57,22 +57,12 @@ class CrearHorario extends Component {
     
         const { name, value } = e.target;
         const { horario } = this.state;
-        if (name === "HoraInicial") {
-            const obtencion = value;
-            const Hours = parseInt(obtencion);
-            const Minutes = obtencion.slice(3);
-            this.setState({
-                HoraInicial: horario.HoraInicial.setHours(Hours, Minutes, '00'),
-            });
-        }
-        else if (name === "HoraFinal") {
-            const obtencion = value;
-            const Hours = parseInt(obtencion);
-            const Minutes = obtencion.slice(3);
-            this.setState({
-                HoraFinal: horario.HoraFinal.setHours(Hours, Minutes, '00'),
-            });
-        }
+        this.setState({
+            horario: {
+                ...horario,
+                [name]: value
+            }
+        });
 
 
         
@@ -116,8 +106,7 @@ class CrearHorario extends Component {
 
  
         loader.show();
-        console.log(horario);
-       this.props.crear_horario(horario, this);
+        this.props.crear_horario(horario, this);
 
 
     }
@@ -127,7 +116,7 @@ class CrearHorario extends Component {
 
     render() {
     
-        const { horario,dias} = this.state;
+        const { dias} = this.state;
       
         return (
            

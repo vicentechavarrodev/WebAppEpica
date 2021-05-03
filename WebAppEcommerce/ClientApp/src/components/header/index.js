@@ -4,19 +4,64 @@ import { connect } from 'react-redux';
 import { LateralBarActions } from '.././lateral_bar/actions';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
+import { horarioActions } from '../horario/actions';
 import { withRouter } from "react-router-dom";
 import Logo from '../../imagenes/pagina/logoEpica.png';
 import iconMenu from '../../imagenes/pagina/pizza-box-menu.png';
 import { Link } from "react-router-dom";
+import { loader } from '../helpers/loader';
 import LocalPizzaIcon from '@material-ui/icons/LocalPizza';
 
 class Header extends Component {
 
     constructor() {
-        super();
+        const fecha_actual = new Date();
+         super();
+        this.state = {
+
+
+            dias: [
+                {
+                    id: 0,
+                    dia: 'Domingo'
+                },
+                 {
+                    id: 1,
+                    dia: 'Lunes'
+                },
+                  {
+                    id: 2,
+                    dia: 'Martes'
+                },
+                   {
+                    id: 3,
+                    dia: 'Miercoles'
+                },
+                    {
+                    id: 4,
+                    dia: 'Jueves'
+                },
+                     {
+                    id: 5,
+                    dia: 'Viernes'
+                },
+                 {
+                    id: 6,
+                    dia: 'Sabado'
+                }
+                       
+            ] ,
+            verificar: {
+                dia: fecha_actual.getDay(),
+                hora_inicio: '',
+                hora_final:'',
+           }
+            
+        };
+
         this.MostrarMenu = this.MostrarMenu.bind(this);
         this.AbrirLogin = this.AbrirLogin.bind(this);
-
+        this.validarRango = this.validarRango.bind(this);
         this.menuVisible = this.menuVisible.bind(this);
     }
 
@@ -46,17 +91,53 @@ class Header extends Component {
         if (ocult.style.display = 'none') {
             ocult.style.display = 'inline';
         } 
-      
-      
 
+    }
+    validarRango() {
+        const obtencion = new Date();
+        const { verificar } = this.state;
+        const dia_semana = this.state.dias.find(element => element.id === this.state.verificar.dia);
+        this.props.horarios.forEach(element => {
+            if (dia_semana.dia === element.Dia) {
+                const hour = obtencion.getHours();
+                const minutes = obtencion.getMinutes();
+                const hora_actual = hour + ":" + minutes;
+                this.setState({
+                    verificar: {
+                        ...verificar,
+                        dia: dia_semana.dia,
+                        hora_inicio: element.HoraInicial.slice(11, -3),
+                        hora_final: element.HoraFinal.slice(11, -3)
+                    }
+                })
+               if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
+                    this.props.ver_rango(true);
+
+                } else {
+                    this.props.ver_rango(false);
+                }
+            }
+        },this
+
+        );
+        
+    }
+
+    async componentDidMount() {
+
+        loader.hide();
+        await this.props.obtener_horarios();
+        this.validarRango();
+       
 
     }
 
 
     //---------------------------------------------------------------
     render() {
-        let user = JSON.parse(localStorage.getItem('usuario'));
-
+        const {
+            verificar,
+        } = this.state;
      
         return (
 
@@ -75,6 +156,8 @@ class Header extends Component {
                                   <i className="fa fa-bars" aria-hidden="true"></i>
                              </button>
                             </div>
+
+
                             :
                             <button type="button" id="sidebarCollapse" value="collapse" className="btn btn-default" onClick={this.MostrarMenu}>
                                 <MenuIcon id="btncollapse" visibility={this.props.iconMenuVisible}/>
@@ -85,8 +168,9 @@ class Header extends Component {
                         <div className="ocult-menu" id="ocult-menu" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         </div>
                         {this.props.visiblePagina === 'true' ?
-                        
-                            <ul className="navbar-nav ml-auto">
+
+                          
+                           <ul className="navbar-nav ml-auto">
                                 <li className="nav-item" id="novedades">
                                     <Link to="/novedades" className="nav-link">Novedades</Link>
                                 </li>
@@ -98,14 +182,25 @@ class Header extends Component {
                                  </li>
                               
                             </ul>
-                             :
+                           :
                            ""
                             }
                    
                 
-                   </div>
+                    </div>
+                  
           
                 </div>
+                {this.props.visiblePagina === 'true' ?
+                    this.props.horario_rango === false ?
+                        <div className="marquee">
+                            <p>El Horario del {verificar.dia} es desde las {verificar.hora_inicio} hasta las {verificar.hora_final}</p>
+                        </div>
+                        :
+                        ""
+                    :
+                    ""
+                }
             </nav>
 
         )
@@ -118,16 +213,21 @@ class Header extends Component {
 const mapStateToProps = (state) => {
 
     const { menuLateralVisible } = state.lateralBarReducer;
+    const { horarios, horario_rango} = state.horarioReducer;
 
     return {
-        menuLateralVisible
+        menuLateralVisible,
+        horarios,
+        horario_rango,
     };
 
 
 };
 
 const mapDispatchToProps = {
-    lateral_bar_visible: LateralBarActions.lateral_bar_visible
+    lateral_bar_visible: LateralBarActions.lateral_bar_visible,
+    obtener_horarios: horarioActions.obtener_horarios,
+    ver_rango: horarioActions.ver_rango,
 };
 
 

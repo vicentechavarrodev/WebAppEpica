@@ -19,17 +19,17 @@ class EditarHorario extends Component {
             horario: {
                 IdHorario: 0,
                 Dia: '',
-                HoraInicial: '',
-                HoraFinal: ''
+                HoraInicial: new Date(),
+                HoraFinal: new Date()
             },
             dias: [
-                'domingo',
-                'lunes',
-                'martes',
-                'miercoles',
-                'jueves',
-                'viernes',
-                'sabado'
+                'Domingo',
+                'Lunes',
+                'Martes',
+                'Miercoles',
+                'Jueves',
+                'Viernes',
+                'Sabado'
             ]
         };
 
@@ -37,42 +37,44 @@ class EditarHorario extends Component {
 
         this.InputChange = this.InputChange.bind(this);
         this.EditSubmit = this.EditSubmit.bind(this);
+        this.InputChangeDia = this.InputChangeDia.bind(this);
  
 
     }
 
     InputChange(e) {
-
         const { name, value } = e.target;
         const { horario } = this.state;
         this.setState({
             horario: {
                 ...horario,
                 [name]: value
-    
             }
         });
     }
+    InputChangeDia(e) {
+        const {
+            horario,
 
-
-
-
-    componentDidMount() {
-        loader.show();
-        this.props.cargar_editar(this.props.id_horario_seleccionado, this);
-        
-      
-  
-
+        } = this.state;
+        horario.Dia = e.itemData.value;
     }
+
+
+
+
+
+   async componentDidMount() {
+       loader.show();
+       await this.props.cargar_editar(this.props.id_horario_seleccionado, this);
+   }
 
 
     EditSubmit(e) {
         e.preventDefault();
         const {
             horario,
-            file
-        } = this.state;
+         } = this.state;
 
         if (!horario.Dia) {
             this.props.showMessage('Debes ingresar un Dia.', true, 'Información');
@@ -87,12 +89,7 @@ class EditarHorario extends Component {
 
 
         loader.show();
-
-        file.append('IdHorario', horario.IdHorario);
-        file.append('Dia', horario.Dia);
-        file.append('HoraInicial', horario.HoraInicial);
-        file.append('HoraFinal', horario.HoraFinal);
-        this.props.editar_horario(file, horario.IdHorario, this);
+        this.props.editar_horario(horario, this);
 
     }
 
@@ -100,6 +97,8 @@ class EditarHorario extends Component {
 
 
     render() {
+
+        const { dias } = this.state;
         return (
 
             <Modal
@@ -118,18 +117,18 @@ class EditarHorario extends Component {
                         <Form.Row sm={10}>
 
                             <Form.Group as={Col} >
-                                <ComboBoxComponent name="Dia" showClearButton={false} value={this.state.horario.Dia} allowCustom={false} fields={this.fields} allowFiltering={true} placeholder="Selecciona el Dia" className="pz-input" />
+                                <ComboBoxComponent name="Dia" showClearButton={false} change={this.InputChangeDia} value={this.state.horario.Dia} dataSource={dias} allowCustom={false} fields={this.fields} allowFiltering={true} placeholder="Selecciona el Dia" className="pz-input" />
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="time" name="HoraInicial" value={this.state.horario.HoraInicial} className="pz-input" onChange={this.InputChange} placeholder="Hora Inicial" />
+                                <Form.Control type="time" name="HoraInicial"  className="pz-input" onChange={this.InputChange} placeholder="Hora Inicial" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="time" name="HoraFinal" value={this.state.horario.HoraFinal} className="pz-input" onChange={this.InputChange} placeholder="Hora Final" />
+                                <Form.Control type="time" name="HoraFinal" className="pz-input" onChange={this.InputChange} placeholder="Hora Final" />
                             </Form.Group>
                         </Form.Row>
 

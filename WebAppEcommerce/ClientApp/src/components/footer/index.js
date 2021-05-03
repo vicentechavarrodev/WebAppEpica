@@ -44,7 +44,7 @@ class Footer extends Component {
                     <div className="row ml-lg-5 mr-0">
                         <div className="col-lg-4 footer-section col-md pl-4 border-right">
                         <h5>Epica Pizzeria Artesanal</h5>
-                            <p className="d-block mb-3 ml-3"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate distinctio velit deleniti earum ullam temporibus! Incidunt cupiditate, consectetur ipsam repellat rem similique assumenda corporis accusantium, soluta, aspernatur ex exercitationem quasi!</p>
+                            <p className="d-block mb-2 ml-2"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate distinctio velit deleniti earum ullam temporibus! Incidunt cupiditate, consectetur ipsam repellat rem similique assumenda corporis accusantium, soluta, aspernatur ex exercitationem quasi!</p>
                     </div>
                         <div className="col-lg-4 footer-categorias col-sm-6 col-md col-xs-12 border-right">
                             <ul className="list-unstyled text-small">

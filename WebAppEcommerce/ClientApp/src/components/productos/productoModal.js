@@ -5,6 +5,7 @@ import { alertActions } from '../alerts_message/actions';
 import { withRouter } from "react-router-dom";
 import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
+import { HorarioActions } from '../horario/actions';
 import { Modal, ListGroup} from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
@@ -259,6 +260,11 @@ class ProductoModal extends Component {
 
         const Agregar = async (event) => {
 
+            if (this.props.horario_rango === false) {
+                console.log('rango no establecido');
+                return
+            }
+                      
             if (this.state.opcionesObligatorias.length > 0) {
 
                  this.state.opcionesObligatorias.sort((a, b) => (a.Orden - b.Orden));
@@ -552,7 +558,8 @@ function mapStateToProps(state) {
     const { categorias } = state.categoriaReducer;
     const { opciones_producto, id_producto_seleccionado, productos_pedido, total_pedido, cantidad_pedidos } = state.productoReducer;
     const { mostrar_opciones } = state.opcionesReducer;
-    return { productos_pedido, loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, mostrar_opciones, total_pedido, cantidad_pedidos};
+    const {horario_rango } = state.horarioReducer;
+    return { productos_pedido, loggingIn, user, categorias, opciones_producto, id_producto_seleccionado,horario_rango, mostrar_opciones, total_pedido, cantidad_pedidos};
 };
 
 

@@ -43,6 +43,10 @@ class PideLinea extends Component {
             }
           
         }
+        if (this.props.horario_rango === false) {
+            document.getElementById('album').style.marginTop = "180px";
+            document.getElementById('contenido-menu').style.marginTop = "120px";
+        }
         
        
     }
@@ -98,7 +102,7 @@ class PideLinea extends Component {
                 <Header visiblePagina="true" />
                 <div className="horizontal-menu bg-light">
                  <div className="container container-horizontal fixed-top">
-                    <div className="content">
+                    <div className="content" id="contenido-menu">
                        
                         <ScrollMenu
                          
@@ -114,7 +118,7 @@ class PideLinea extends Component {
                     </div>
                     </div>
                 </div>
-                <div className="album py-3 bg-light">
+                <div className="album py-3 bg-light" id="album">
                     <div className="container p-lg-4  p-sm-0 rounded nav-icon">
                         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
                             {this.props.productos_categoria.map((item) =>
@@ -209,8 +213,9 @@ class PideLinea extends Component {
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
     const { categorias } = state.categoriaReducer;
+    const { horario_rango } = state.horarioReducer;
     const { productos_categoria, id_producto_seleccionado, opciones_producto, mostrar_crear } = state.productoReducer;
-    return { loggingIn, user, categorias, productos_categoria, id_producto_seleccionado, opciones_producto,mostrar_crear };
+    return { loggingIn, user, categorias, productos_categoria, id_producto_seleccionado, opciones_producto,mostrar_crear,horario_rango };
 };
 
 

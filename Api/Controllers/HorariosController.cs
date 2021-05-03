@@ -50,6 +50,8 @@ namespace Api.Controllers
         public async Task<Response> Crear([FromBody] Horarios horarios)
         {
 
+           
+           
             try
             {
                 db.Add(horarios);
@@ -84,48 +86,48 @@ namespace Api.Controllers
 
             return new Response { IsSuccess = true, Message = "", Result = horarios };
         }
-
         [HttpPost]
-        [Route("Editar")]
-        public async Task<Response> Edit()
+        [Route("Editar/{id}")]
+        public async Task<Response> Editar(int id, [FromBody] Horarios horarios)
         {
-
-
-            var form = Request.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
-            var n = form["Dia"];
-
-            using (var transacction = db.Database.BeginTransaction())
+            if (id != horarios.IdHorario)
             {
-                try
+                return new Response { IsSuccess = false, Message = "Debes enviar un id", Result = null };
+            }
+
+
+            try
+            {
+                db.Update(horarios);
+                await db.SaveChangesAsync();
+                return new Response { IsSuccess = true, Message = "Horario actualizado correctamente", Result = horarios };
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                if (!HorariosExists(horarios.IdHorario))
                 {
-                   
-
-                    var IdHorario = int.Parse(form["IdHorario"]);
-                    var horarios = await db.Horarios.FindAsync(IdHorario);
-                   
-                        horarios.Dia = form["Dia"];
-                        horarios.HoraInicial = DateTime.Parse(form["HoraInicial"]);
-                        horarios.HoraFinal = DateTime.Parse(form["HoraFinal"]);
-
-
-                        db.Update(horarios);
-                        await db.SaveChangesAsync();
-                        transacction.Commit();
-                        return new Response { IsSuccess = true, Message = "Horario actualizado correctamente", Result = horarios };
-                  
-
-                      
-
-
-                }
-                catch (Exception ex)
-                {
-                    transacction.Rollback();
                     return new Response { IsSuccess = false, Message = ex.Message, Result = null };
                 }
-
+                else
+                {
+                    throw;
+                }
             }
+
+
+
         }
+        private bool HorariosExists(int id)
+        {
+            return db.Horarios.Any(e => e.IdHorario == id);
+        }
+        private bool HorariosRepeat(string dia)
+        {
+            return db.Horarios.Any(e => e.Dia == dia);
+            
+        }
+
+
 
 
     }
