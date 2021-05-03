@@ -117,7 +117,7 @@ class CrearHorario extends Component {
  
         loader.show();
         console.log(horario);
-       //this.props.crear_horario(horario, this);
+       this.props.crear_horario(horario, this);
 
 
     }

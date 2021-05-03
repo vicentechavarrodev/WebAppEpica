@@ -30,8 +30,9 @@ async function crear_horario(horario) {
     const requestOptions = {
         method: 'POST',
         headers: authHeader(),
-        body: horario
+        body: JSON.stringify(horario)
     };
+
 
     return await fetch(`${process.env.REACT_APP_API_URL}api/Horarios/Crear`, requestOptions)
         .then(handleResponse)
@@ -72,6 +73,7 @@ async function editar_horario(horario,id) {
         headers: {
             "Accept": "application/json"
         },
+
         body: horario
     };
 
