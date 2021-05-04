@@ -93,7 +93,13 @@ class Header extends Component {
         } 
 
     }
+
+   
     validarRango() {
+        function zonaHoraria(time) {
+            const zona_horaria = (time < 12 || time === 24) ? "AM" : "PM";
+            return zona_horaria;
+        }
         const obtencion = new Date();
         const { verificar } = this.state;
         const dia_semana = this.state.dias.find(element => element.id === this.state.verificar.dia);
@@ -102,25 +108,22 @@ class Header extends Component {
                 const hour = obtencion.getHours();
                 const minutes = obtencion.getMinutes();
                 const hora_actual = hour + ":" + minutes;
-                const time = element.HoraInicial.slice(11, -6);
-                const time2 = element.HoraFinal.slice(11, -6);
-                const h = time % 12 || 12;
-                const h2 = time2 % 12 || 12;
-                const zona_horaria1 = (h < 12 || h === 24) ? "AM" : "PM";
-                const zona_horaria2 = (h2 < 12 || h2 === 24) ? "AM" : "PM";
+                const time = zonaHoraria(element.HoraInicial.slice(11, -6));
+                const time2 = zonaHoraria(element.HoraFinal.slice(11, -6));
                 this.setState({
                     verificar: {
                         ...verificar,
                         dia: dia_semana.dia,
-                        hora_inicio: element.HoraInicial.slice(11, -3) + zona_horaria1,
-                        hora_final: element.HoraFinal.slice(11, -3) + zona_horaria2
+                        hora_inicio: element.HoraInicial.slice(11, -3) + time,
+                        hora_final: element.HoraFinal.slice(11, -3) + time2
                     }
                 })
                if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
-                    this.props.ver_rango(true);
+                   this.props.ver_rango('true');
+                  
 
                 } else {
-                    this.props.ver_rango(false);
+                    this.props.ver_rango('false');
                 }
             }
         },this
@@ -135,6 +138,7 @@ class Header extends Component {
         await this.props.obtener_horarios();
         this.validarRango();
        
+        
 
     }
 
@@ -198,7 +202,7 @@ class Header extends Component {
           
                 </div>
                 {this.props.visiblePagina === 'true' ?
-                    this.props.horario_rango === false ?
+                    this.props.horario_rango === 'false' ?
                         <div className="marquee">
                             <p>El Horario del {verificar.dia} es desde las {verificar.hora_inicio} hasta las {verificar.hora_final}</p>
                         </div>
