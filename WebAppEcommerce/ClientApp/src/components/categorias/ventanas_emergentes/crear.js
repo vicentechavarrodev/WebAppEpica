@@ -77,7 +77,7 @@ class CrearCategoria extends Component {
                     <Form onSubmit={this.CreateSubmit} >
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="text" name="Nombre" value={categoria.Nombre} maxLength={15} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
+                                <Form.Control type="text" name="Nombre" value={categoria.Nombre}  className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row sm={10}>
