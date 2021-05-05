@@ -94,14 +94,18 @@ class Header extends Component {
 
     }
 
+  
+
+    ConvertirFormato12h(time) {
+        let minutos = time.slice(14, -3);
+        let hora = time.slice(11, -6);
+        let horaFormat = (hora % 12) || 12 ;
+        return horaFormat + ":" + minutos + ((hora < 12 || hora === 24) ? " AM" : " PM") ;
+    }
+
    
     validarRango() {
-        function zonaHoraria(time,minutes) {
-            const zona_horaria = (time < 12 || time === 24) ? " AM" : " PM";
-            const hour = (time > 12 && time < 24) ? time - 12 : time;
-            return hour + minutes + zona_horaria;
-        }
-      
+       
         const obtencion = new Date();
         const { verificar } = this.state;
         const dia_semana = this.state.dias.find(element => element.id === this.state.verificar.dia);
@@ -110,12 +114,14 @@ class Header extends Component {
                 const hour = obtencion.getHours();
                 const minutes = obtencion.getMinutes();
                 const hora_actual = hour + ":" + minutes;
+                const hi = this.ConvertirFormato12h(element.HoraInicial);
+                const hf = this.ConvertirFormato12h(element.HoraFinal);
                 this.setState({
                     verificar: {
                         ...verificar,
                         dia: dia_semana.dia,
-                        hora_inicio: zonaHoraria(parseInt(element.HoraInicial.slice(11, -1)), element.HoraInicial.slice(13, -3)),
-                        hora_final: zonaHoraria(parseInt(element.HoraFinal.slice(11, -1)), element.HoraFinal.slice(13, -3))
+                        hora_inicio: hi,
+                        hora_final: hf
                     }
                 })
                if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {

@@ -35,7 +35,32 @@ class Detalle extends Component {
 
         if (this.props.pedido.IdEstado !== 0 && this.props.pedido.IdEstado !== this.state.pedido.IdEstado) {
 
-            this.props.cambiar_estado(this.props.pedido.IdPedido, this.state.pedido.IdEstado, this.props.IdEstado,this)
+            this.props.cambiar_estado(this.props.pedido.IdPedido, this.state.pedido.IdEstado, this.props.IdEstado, this)
+
+            this.enviarMensaje()
+        }
+    }
+
+    enviarMensaje() {
+        const urlDesktop = 'https://web.whatsapp.com/';
+        let pedidoCompleto = "";
+
+        this.props.pedido.PedidoDetalles.map((item, index) => {
+            pedidoCompleto = pedidoCompleto + item.Cantidad + "  " + item.Descripcion + "= $" + item.Subtotal + (index !== (this.props.pedido.PedidoDetalles.length - 1) ? "%0A" : ("%0A y su estado es " +  this.obtenerEstado(this.props.pedido.IdEstado) ))
+        },this)
+
+
+        let mensaje = `send?phone=${"57" + this.props.pedido.Telefono}&text=Hola, ${this.props.pedido.Solicitante}%0A 🚚 Te contamos que tu pedido de: %0A${pedidoCompleto}%0A Total: $ ${this.props.pedido.TotalPedido}%0A Gracias por confiar en nosotros 😀`
+        window.open(urlDesktop + mensaje, '_blank')
+    }
+
+    obtenerEstado(idEstado) {
+        if (idEstado === 1) {
+            return "PENDIENTE"
+        } else if (idEstado === 2) {
+            return "RECIBIDO"
+        } else if (idEstado === 3) {
+            return "ENVIADO"
         }
     }
 
