@@ -34,8 +34,6 @@ class Horario extends Component {
         this.MenuOptionClick = this.MenuOptionClick.bind(this);
 
 
-
-
     }
 
 
@@ -76,7 +74,6 @@ class Horario extends Component {
     rowSelected(e) {
         if (this.grid) {
             let horarios = this.grid.current.getSelectedRecords();
-            console.log(horarios);
             this.props.horario_seleccionado(horarios[0].IdHorario);
         }
     }
@@ -145,7 +142,8 @@ class Horario extends Component {
                     <GridComponent dataSource={horarios} ref={this.grid} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
                         <ColumnsDirective>
                             <ColumnDirective field='Dia' width='200' headerText='Dias' />
-
+                            <ColumnDirective field='HoraInicial' type="datetime" format='HH:mm:ss' width='200' headerText='Hora Inicial' />
+                            <ColumnDirective field='HoraFinal' type="datetime" format='HH:mm:ss' width='200' headerText='Hora Inicial' />
                         </ColumnsDirective>
                         <Inject services={[Search, Toolbar]} />
                     </GridComponent>
