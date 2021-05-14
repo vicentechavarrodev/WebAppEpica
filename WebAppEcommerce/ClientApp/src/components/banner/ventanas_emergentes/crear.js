@@ -146,7 +146,7 @@ class CrearBanner extends Component {
 
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="text" name="Nombre" value={banner.Nombre} maxLength={15} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
+                                <Form.Control type="text" name="Nombre" value={banner.Nombre} maxLength={200} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row sm={10}>

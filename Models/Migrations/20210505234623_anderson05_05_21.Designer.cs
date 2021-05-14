@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Models.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210505234623_anderson05_05_21")]
+    partial class anderson05_05_21
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,31 +235,20 @@ namespace Models.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("CambiaPrecio")
-                        .HasColumnType("bit");
-
                     b.Property<int>("IdOpcion")
                         .HasColumnType("int");
 
                     b.Property<int>("IdProducto")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IdProductoTipoOpcion")
-                        .HasColumnType("int");
-
                     b.Property<bool>("MuestraSecundario")
                         .HasColumnType("bit");
-
-                    b.Property<decimal>("Precio")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("IdProductoOpciones");
 
                     b.HasIndex("IdOpcion");
 
                     b.HasIndex("IdProducto");
-
-                    b.HasIndex("IdProductoTipoOpcion");
 
                     b.ToTable("ProductoOpciones");
                 });
@@ -511,10 +502,6 @@ namespace Models.Migrations
                         .HasForeignKey("IdProducto")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Models.ProductoTipoOpciones", "ProductoTipoOpciones")
-                        .WithMany("ProductoOpciones")
-                        .HasForeignKey("IdProductoTipoOpcion");
                 });
 
             modelBuilder.Entity("Models.ProductoTipoOpciones", b =>

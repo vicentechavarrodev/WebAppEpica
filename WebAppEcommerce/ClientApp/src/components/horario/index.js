@@ -143,7 +143,7 @@ class Horario extends Component {
                         <ColumnsDirective>
                             <ColumnDirective field='Dia' width='200' headerText='Dias' />
                             <ColumnDirective field='HoraInicial' type="datetime" format='HH:mm:ss' width='200' headerText='Hora Inicial' />
-                            <ColumnDirective field='HoraFinal' type="datetime" format='HH:mm:ss' width='200' headerText='Hora Inicial' />
+                            <ColumnDirective field='HoraFinal' type="datetime" format='HH:mm:ss' width='200' headerText='Hora Final' />
                         </ColumnsDirective>
                         <Inject services={[Search, Toolbar]} />
                     </GridComponent>
