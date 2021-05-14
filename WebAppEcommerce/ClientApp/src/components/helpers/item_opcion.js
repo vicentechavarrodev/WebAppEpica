@@ -60,6 +60,7 @@ const StyledRadio = (props) => {
 
     return (
         <Radio
+            id={props.id}
             className={classes.root}
             color="default"
             checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
@@ -77,8 +78,9 @@ const OptionItemRdio = ({ opcion, index, CambioSeleccion, Deseleccionar }) => {
     return (<div className="row-size" key={index}>
         <div className="col-8 col-radio ml-0">
             <FormControlLabel key={index} value={op}  checked={CambioSeleccion(opcion)}
-                onClick={(e) => Deseleccionar(e,opcion)}
-                control={<StyledRadio />} label={opcion.Opcion.NombreAlias} />
+                onClick={(e) => Deseleccionar(e, opcion)}
+                
+                control={<StyledRadio id={opcion.IdOpcion} />} label={opcion.Opcion.NombreAlias} />
         </div>
         <div className="col-4 col-price-modal p-0">
               {opcion.Opcion.Precio === 0 ?

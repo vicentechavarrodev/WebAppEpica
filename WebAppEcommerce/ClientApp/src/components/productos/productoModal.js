@@ -110,7 +110,42 @@ class ProductoModal extends Component {
            
           await  ProcesarSeleccion(option)
             
-          GenerarPrecio();
+          await GenerarPrecio();
+
+            if (option.CambiaPrecio) {
+
+                let optionSelected = this.state.opcionesSeleccionadas.find(item => item.idTipoOpcion === option.ProductoTipoOpcionCambio.IdTipoOpcion);
+
+                var e = document.getElementById(`${option.ProductoTipoOpcionCambio.IdTipoOpcion}-item-op`);
+                var elementsPrecio = e.getElementsByClassName('col-price-modal');
+
+                var elementsRdio = e.getElementsByTagName('input');
+
+            
+
+                if (elementsPrecio !== undefined && elementsPrecio.length > 0) {
+
+                    let objeto = JSON.parse(elementsRdio[0].value);
+                    let total = (parseFloat(this.state.total) - parseFloat(objeto.Opcion.Precio)) + parseFloat(option.Precio)  ;
+                        if (optionSelected !== undefined) {
+                          await  this.setState({
+                              total: total
+                            });
+                        }
+
+                        for (let i = 0; i < elementsPrecio.length; i++) {
+                            elementsPrecio[i].innerHTML = "$ " + option.Precio
+                        }
+
+                        for (let i = 0; i < elementsRdio.length; i++) {
+                       
+                            let objeto = JSON.parse(elementsRdio[i].value);
+                            objeto.Opcion.Precio = option.Precio
+                            let value = JSON.stringify(objeto);
+                            elementsRdio[i].value = value
+                        }
+                }
+            }
         }
 
         const ProcesarSeleccion = (option) => {
@@ -125,8 +160,6 @@ class ProductoModal extends Component {
                 var element = document.getElementById(`${id}-item-op`);
                 element.classList.add("enable");
                 IdsubOpcion = id;
-              
-
             } else {
 
                 let op = this.state.opcionesSeleccionadas.filter(item => item.idTipoOpcion === option.Opcion.IdTipoOpcion);
@@ -196,6 +229,7 @@ class ProductoModal extends Component {
 
         const RdbtnSelec = async (opciones) => {
 
+          
             if (opciones.length > 0) {
                 if (opciones[0].ProductoTipoOpcion.EsObligatoria) {
                     let TipoOpcion = opciones[0].ProductoTipoOpcion.TipoOpcion;
@@ -412,7 +446,7 @@ class ProductoModal extends Component {
             GenerarPrecio();
         }
 
-        const GenerarPrecio =  () => {
+        const GenerarPrecio = async () => {
             let total = 0;
 
          
@@ -432,13 +466,13 @@ class ProductoModal extends Component {
                        
                     }
 
-                    this.setState({
+                  await  this.setState({
                         total: (total * this.state.cantidad + (this.props.opciones_producto.EsVariable ? 0 : (this.props.opciones_producto.Precio * this.state.cantidad)) )
                     });
                 } else {
 
 
-                    this.setState({ total: 0 + (this.props.opciones_producto.EsVariable ? 0 : (this.props.opciones_producto.Precio * this.state.cantidad))});
+                    await  this.setState({ total: 0 + (this.props.opciones_producto.EsVariable ? 0 : (this.props.opciones_producto.Precio * this.state.cantidad))});
                 }
 
            
@@ -518,7 +552,7 @@ class ProductoModal extends Component {
                                         </a>
                                     </div>
                                     <div className="col-4 d-flex align-items-center mt-2 mb-2 justify-content-center ">
-                                        <p> {this.state.cantidad}</p>
+                                        <h2> {this.state.cantidad}</h2>
                                     </div>
                                     <div className="col-4 col-cantidad">
                                         <a className="btn btn-default btn-3d-style  btn-block"  name="cant-mas" onClick={(e) => CantidadChange(e)} >

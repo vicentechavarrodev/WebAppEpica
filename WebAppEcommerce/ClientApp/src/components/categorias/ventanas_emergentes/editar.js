@@ -79,7 +79,7 @@ class EditarUsuario extends Component {
             >
                 <Modal.Header >
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Editar Usuario
+                        Editar Categoría
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -87,7 +87,7 @@ class EditarUsuario extends Component {
                        
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="text" name="Nombre" value={this.state.categoria.Nombre} maxLength={15} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
+                                <Form.Control type="text" name="Nombre" value={this.state.categoria.Nombre}  className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
                         </Form.Row>
                        

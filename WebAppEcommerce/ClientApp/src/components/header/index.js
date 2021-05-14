@@ -210,7 +210,7 @@ class Header extends Component {
                 {this.props.visiblePagina === 'true' ?
                     this.props.horario_rango === 'false' ?
                         <div className="marquee">
-                            <p>El Horario del {verificar.dia} es desde las {verificar.hora_inicio} hasta las {verificar.hora_final}</p>
+                            <p>El Horario de hoy {verificar.dia} es desde las {verificar.hora_inicio} hasta las {verificar.hora_final}</p>
                         </div>
                         :
                         ""

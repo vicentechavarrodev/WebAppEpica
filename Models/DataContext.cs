@@ -9,8 +9,8 @@ namespace Models
 {
     public class DataContext : DbContext
     {
-        //const string connectionString = "Data Source=45.169.100.66;Initial Catalog=epicapiz_db;Integrated Security=False;User Id=epicapiz_sa; Password=PazziSoftware123*;";
-        const string connectionString = "Data Source=.;Initial Catalog=Ecommerce1;Integrated Security=False;User Id=sa; Password=dosantos62333;";
+        const string connectionString = "Data Source=45.169.100.66;Initial Catalog=epicapiz_db;Integrated Security=False;User Id=epicapiz_sa; Password=PazziSoftware123*;";
+        //const string connectionString = "Data Source=.;Initial Catalog=Ecommerce1;Integrated Security=False;User Id=sa; Password=PazziSoftware*;";
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
@@ -19,6 +19,7 @@ namespace Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.EnableSensitiveDataLogging();
             optionsBuilder.UseSqlServer(connectionString);
             base.OnConfiguring(optionsBuilder);
         }

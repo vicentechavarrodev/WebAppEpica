@@ -70,10 +70,15 @@ namespace Api.Controllers
 
                     var grouping = (from p in productosOpciones
                                     join pot in db.ProductoTipoOpciones on p.Opcion.IdTipoOpcion equals pot.IdTipoOpcion
+                                  
                                     where pot.IdProducto == Id
                                     select new VistaProductoOpciones
                                     {
                                         ProductoTipoOpcion= pot,
+                                        CambiaPrecio=p.CambiaPrecio,
+                                        ProductoTipoOpcionCambio= p.ProductoTipoOpciones,
+                                        Precio=p.Precio,
+                                        IdProductoTipoOpcion= p.IdProductoTipoOpcion,
                                         IdProductoOpciones = p.IdProductoOpciones,
                                         IdOpcion = p.IdOpcion,
                                         Opcion = p.Opcion,
@@ -105,6 +110,9 @@ namespace Api.Controllers
                                                    //orderby pot.Orden descending
                                                    select new VistaProductoOpciones
                                                    {
+                                                       CambiaPrecio = p.CambiaPrecio,
+                                                       Precio = p.Precio,
+                                                       IdProductoTipoOpcion = p.IdProductoTipoOpcion,
                                                        IdProductoOpciones = p.IdProductoOpciones,
                                                        IdOpcion = p.IdOpcion,
                                                        Opcion = p.Opcion,
@@ -239,18 +247,17 @@ namespace Api.Controllers
 
                 var tipoOpcionesProducto = await db.ProductoTipoOpciones.Where(p => p.IdTipoOpcion != opcion.Opcion.IdTipoOpcion && p.IdProducto == opcion.IdProducto).Include(p => p.TipoOpcion).OrderBy(u => u).ToListAsync();
 
-            
-
-             
               
                 var opcionSecundaria = new VistaOpcionSecundaria();
-                 if ( opcion.ProductoOpcionTipoOpciones.Count > 0)
+                if ( opcion.ProductoOpcionTipoOpciones.Count > 0)
                 {
                     opcionSecundaria.IdProductoOpciones = opcion.ProductoOpcionTipoOpciones.First().IdProductoOpciones;
-                    opcionSecundaria.IdProductoTipoOpcion = opcion.ProductoOpcionTipoOpciones.First().IdProductoTipoOpcion;
+                    opcionSecundaria.IdProductoTipoOpcionSecundaria = opcion.ProductoOpcionTipoOpciones.First().IdProductoTipoOpcion;
 
                 }
-
+                opcionSecundaria.IdProductoTipoOpcion = opcion.IdProductoTipoOpcion == null ? 0 : (int)opcion.IdProductoTipoOpcion;
+                opcionSecundaria.CambiaPrecio = opcion.CambiaPrecio;
+                opcionSecundaria.Precio = opcion.Precio;
                 opcionSecundaria.ProductoTipoOpciones = tipoOpcionesProducto;
                 opcionSecundaria.MuestraSecundario = opcion.MuestraSecundario;
 
@@ -274,6 +281,7 @@ namespace Api.Controllers
                 try
                 {
                     var opcionSecundaria = await db.ProductoOpcionTipoOpciones.Where(po => po.IdProductoOpciones== vista.IdProductoOpciones).ToListAsync();
+                    //var opcionCambio = await db.ProductoOpcionTipoOpciones.Where(po => po.IdProductoOpciones == vista.IdProductoTipoOpcion).ToListAsync();
                     var productoOpcion = await db.ProductoOpciones.FindAsync(vista.IdProductoOpciones);
 
 
@@ -282,27 +290,40 @@ namespace Api.Controllers
 
                         if (opcionSecundaria.Count > 0 )
                         {
-                            opcionSecundaria.First().IdProductoTipoOpcion = vista.IdProductoTipoOpcion;
+                            opcionSecundaria.First().IdProductoTipoOpcion = vista.IdProductoTipoOpcionSecundaria;
                             db.Update(opcionSecundaria.First());
                         }
                         else
                         {
                             db.Add(new ProductoOpcionTipoOpciones { 
                               IdProductoOpciones= vista.IdProductoOpciones,
-                              IdProductoTipoOpcion= vista.IdProductoTipoOpcion
+                              IdProductoTipoOpcion= vista.IdProductoTipoOpcionSecundaria
                             });
                         }
                       
                     }
                     else
                     {
-                        if(opcionSecundaria != null)
+                        if(opcionSecundaria != null && opcionSecundaria.Count > 0 )
                         {
                             db.Remove(opcionSecundaria.First());
                         }
                     }
 
 
+                    if (vista.CambiaPrecio)
+                    {
+
+                        productoOpcion.IdProductoTipoOpcion = vista.IdProductoTipoOpcion;
+                        productoOpcion.Precio = vista.Precio;
+                    }
+                    else
+                    {
+                        productoOpcion.IdProductoTipoOpcion = null;
+                        productoOpcion.Precio = 0;
+                    }
+
+                    productoOpcion.CambiaPrecio = vista.CambiaPrecio;
                     productoOpcion.MuestraSecundario = vista.MuestraSecundario;
                     db.Update(productoOpcion);
                     await db.SaveChangesAsync();
@@ -559,8 +580,11 @@ namespace Api.Controllers
                     var productoOpcion = await  db.ProductoOpciones.Include( p=> p.ProductoOpcionTipoOpciones).FirstAsync(p => p.IdProductoOpciones == id);
                     if (productoOpcion.ProductoOpcionTipoOpciones.Count > 0)
                     {
-                        
-                        db.ProductoOpcionTipoOpciones.Remove(productoOpcion.ProductoOpcionTipoOpciones.First());
+                        foreach (var item in productoOpcion.ProductoOpcionTipoOpciones)
+                        {
+                            db.ProductoOpcionTipoOpciones.Remove(item);
+                        }
+                      
                     }
 
                     db.ProductoOpciones.Remove(productoOpcion);

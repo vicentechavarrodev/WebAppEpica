@@ -19,8 +19,17 @@ namespace Api.ViewModels
         [JsonProperty(PropertyName = "MuestraSecundario")]
         public bool MuestraSecundario { get; set; }
 
+        [JsonProperty(PropertyName = "CambiaPrecio")]
+        public bool CambiaPrecio { get; set; }
+
         [JsonProperty(PropertyName = "ProductoTipoOpciones")]
         public List<ProductoTipoOpciones> ProductoTipoOpciones { get; set; }
+
+        [JsonProperty(PropertyName = "IdProductoTipoOpcionSecundaria")]
+        public int IdProductoTipoOpcionSecundaria { get; set; }
+
+        [JsonProperty(PropertyName = "Precio")]
+        public decimal Precio { get; set; }
 
 
     }
