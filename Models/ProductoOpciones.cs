@@ -23,6 +23,21 @@ namespace Models
         [Display(Name = "MuestraSecundario")]
         [JsonProperty(PropertyName = "MuestraSecundario")]
         public bool MuestraSecundario { get; set; }
+        [Display(Name = "CambiaPrecio")]
+        [JsonProperty(PropertyName = "CambiaPrecio")]
+        public bool CambiaPrecio { get; set; }
+        [Display(Name = "IdProductoTipoOpcion")]
+        [JsonProperty(PropertyName = "IdProductoTipoOpcion")]
+        public int? IdProductoTipoOpcion { get; set; }
+        [Display(Name = "Precio")]
+        [DisplayFormat(DataFormatString = "{0:F0}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "El dato {0} es necesario")]
+        [JsonProperty(PropertyName = "Precio")]
+        public decimal Precio { get; set; }
+
+        [ForeignKey("IdProductoTipoOpcion")]
+        [JsonProperty(PropertyName = "ProductoTipoOpciones")]
+        public virtual ProductoTipoOpciones ProductoTipoOpciones { get; set; }
 
         [ForeignKey("IdOpcion")]
         [JsonProperty(PropertyName = "Opcion")]
@@ -31,6 +46,7 @@ namespace Models
         [ForeignKey("IdProducto")]
         [JsonProperty(PropertyName = "Producto")]
         public virtual Productos Producto { get; set; }
+
 
      
         [JsonProperty(PropertyName = "ProductoOpcionTipoOpciones")]

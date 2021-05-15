@@ -17,21 +17,21 @@ class CrearOpcionSecundaria extends Component {
     constructor(props) {
         super(props);
 
-       
-
         this.state = {
             vista: {
                 IdProductoOpciones: 0 ,
-                IdProductoTipoOpcion: 0,
+                IdProductoTipoOpcionSecundaria: 0,
                 MuestraSecundario: false,
-                ProductoTipoOpciones:[]
+                CambiaPrecio: false,
+                IdProductoTipoOpcion:0,
+                ProductoTipoOpciones: [],
+                Precio:0
             }
         };
 
         this.fields = { text: 'TipoOpcion.Nombre', value: 'IdProductoTipoOpcion' };
         this.InputChange = this.InputChange.bind(this);
         this.CrearSubmit = this.CrearSubmit.bind(this);
-
     }
 
     InputChange(e) {
@@ -55,13 +55,9 @@ class CrearOpcionSecundaria extends Component {
 
     async componentDidMount() {
         loader.show();
-      
         await this.props.init_crear_opcion_secundaria(this.props.IdProductoOpcion, this);
         const { vista } = this.state;
         this.setState({vista: {...vista, IdProductoOpciones: this.props.IdProductoOpcion}});
-
-
-
     }
 
 
@@ -85,6 +81,8 @@ class CrearOpcionSecundaria extends Component {
             this.props.showMessage('Debes seleccionar una opción.', true, 'Información');
         }
 
+        console.log(this.state.vista);
+
         this.props.crear_opcion_secundaria(vista, this.props.IdProducto, this);
 
 
@@ -95,7 +93,9 @@ class CrearOpcionSecundaria extends Component {
 
 
     render() {
-        console.log(this.state.vista.ProductoTipoOpciones);
+
+
+
         return (
 
 
@@ -114,12 +114,14 @@ class CrearOpcionSecundaria extends Component {
                 <Modal.Body>
                     <Form onSubmit={this.CrearSubmit} >
 
-                   
-
                         <Form.Row sm={12}>
 
                             <Form.Group as={Col}   >
-                                <CheckBoxComponent label='MuestraSecundario' checked={this.state.vista.MuestraSecundario} change={(val) => { this.InputChange({ target: { name: 'MuestraSecundario', value: val.checked } }); }} />
+                                <CheckBoxComponent label='Mostrar grupo de opciones secundario' checked={this.state.vista.MuestraSecundario} change={(val) => { this.InputChange({ target: { name: 'MuestraSecundario', value: val.checked } }); }} />
+                            </Form.Group>
+
+                            <Form.Group as={Col}   >
+                                <CheckBoxComponent label='Cambiar el precio de otro grupo de opciones ' checked={this.state.vista.CambiaPrecio} change={(val) => { this.InputChange({ target: { name: 'CambiaPrecio', value: val.checked } }); }} />
                             </Form.Group>
 
                         </Form.Row>
@@ -128,9 +130,31 @@ class CrearOpcionSecundaria extends Component {
                             this.state.vista.MuestraSecundario &&  this.state.vista.ProductoTipoOpciones.length > 0 ?
                                 <Form.Row sm={10}>
                                     <Form.Group as={Col} >
-                                        <ComboBoxComponent name="IdProductoTipoOpcion" showClearButton={false} value={this.state.vista.IdProductoTipoOpcion} allowCustom={false} fields={this.fields} change={(val) => { this.InputChange({ target: { name: 'IdProductoTipoOpcion', value: val.value } }); }} allowFiltering={true} placeholder="Opción secundaría" className="pz-input" dataSource={this.state.vista.ProductoTipoOpciones} />
+                                        <ComboBoxComponent name="IdProductoTipoOpcion" showClearButton={false} value={this.state.vista.IdProductoTipoOpcionSecundaria} allowCustom={false} fields={this.fields} change={(val) => { this.InputChange({ target: { name: 'IdProductoTipoOpcionSecundaria', value: val.value } }); }} allowFiltering={true} placeholder="Opción secundaría" className="pz-input" dataSource={this.state.vista.ProductoTipoOpciones} />
                                     </Form.Group>
                                 </Form.Row>
+                                : ""
+                        }
+
+                        {
+                            this.state.vista.CambiaPrecio && this.state.vista.ProductoTipoOpciones.length > 0 ?
+                                <Form.Row sm={10}>
+                                    <Form.Group as={Col} >
+                                        <ComboBoxComponent name="IdProductoTipoOpcion" showClearButton={false} value={this.state.vista.IdProductoTipoOpcion} allowCustom={false} fields={this.fields} change={(val) => { this.InputChange({ target: { name: 'IdProductoTipoOpcion', value: val.value } }); }} allowFiltering={true} placeholder="Grupo de opciones" className="pz-input" dataSource={this.state.vista.ProductoTipoOpciones.filter(e => e.IdTipoSeleccion === 1)} />
+                                    </Form.Group>
+                                    <Form.Group as={Col} >
+
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text">$</span>
+                                            <Form.Control type="number" name="Precio" value={this.state.vista.Precio}
+                                                onChange={this.InputChange}
+                                                className="pz-input" placeholder="Nuevo Precio" />
+                                        </div>
+
+                                    </Form.Group>
+                                </Form.Row>
+
+
                                 : ""
                         }
 

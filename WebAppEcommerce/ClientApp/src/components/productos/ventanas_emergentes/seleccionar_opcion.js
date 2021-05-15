@@ -121,7 +121,7 @@ class SeleccionarOpcion extends Component {
                 <Modal.Body>
                     <div className='wrap-form table-responsive container-fluid'>
 
-                        <GridComponent dataSource={this.props.opciones_seleccion} ref={this.grid} rowSelected={this.rowSelected} rowDeselected={this.rowDeselected} allowGrouping={true} groupSettings={this.groupOptions} toolbar={this.toolbarOptions} searchSettings={this.searchOptions}  created={this.created.bind(this)} >
+                        <GridComponent dataSource={this.props.opciones_seleccion} ref={this.grid} rowSelected={this.rowSelected} rowDeselected={this.rowDeselected} allowGrouping={true} groupSettings={this.groupOptions} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} dataBound={this.dataBound} created={this.created.bind(this)} >
                             <ColumnsDirective>
                                 <ColumnDirective type='checkbox' width='50' />
                                 <ColumnDirective field='NombreAlias' width='200' headerText='Nombre' />

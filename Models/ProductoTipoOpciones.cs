@@ -56,5 +56,9 @@ namespace Models
         [JsonProperty(PropertyName = "ProductoOpcionTipoOpciones")]
         [JsonIgnore]
         public virtual ICollection<ProductoOpcionTipoOpciones> ProductoOpcionTipoOpciones { get; set; }
+
+        [JsonProperty(PropertyName = "ProductoOpciones")]
+        [JsonIgnore]
+        public virtual ICollection<ProductoOpciones> ProductoOpciones { get; set; }
     }
 }

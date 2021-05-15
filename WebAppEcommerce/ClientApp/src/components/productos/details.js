@@ -52,6 +52,7 @@ class DetalleProducto extends Component {
         this.ItemOpcion = this.ItemOpcion.bind(this);
         this.templateOpcion = this.gridTemplateOpcion.bind(this);  
         this.templateSecundaria = this.gridTemplateSecundaria.bind(this);   
+        this.dataBound = this.dataBound.bind(this);
         
     }
 
@@ -103,6 +104,12 @@ class DetalleProducto extends Component {
     filterTemplate() {
 
         return (<ButtonComponent onClick={this.clearFilter.bind(this)} ></ButtonComponent>);
+    }
+
+    dataBound(e) {
+
+        this.grid.current.groupModule.collapseAll();
+
     }
 
     gridTemplateSecundaria(props) {
@@ -252,7 +259,7 @@ class DetalleProducto extends Component {
                     <Form.Row sm={10}>
 
                         <div className=' table-responsive container-fluid'>
-                                <GridComponent dataSource={this.props.productos_tipo_opciones_agregadas}     >
+                            <GridComponent dataSource={this.props.productos_tipo_opciones_agregadas} dataBound={this.dataBound}    >
                                     <ColumnsDirective>
                                         <ColumnDirective field='TipoOpcion.Nombre' width='200' headerText='Tipo' />
                                         <ColumnDirective field='Encabezado' width='200' headerText='Encabezado' />
@@ -264,11 +271,11 @@ class DetalleProducto extends Component {
                         </div>
                     </Form.Row>
                     <Form.Row sm={10} className="p-1 m-2 align-items-center justify-content-center font-weight-bold">
-                        <h4 className="font-weight-bold">Items por opción</h4>
+                        <h4 className="font-weight-bold">Grupo de opciones</h4>
                     </Form.Row>
                     <Form.Row sm={10}>
                         <div className=' table-responsive container-fluid'>
-                        <GridComponent dataSource={opciones_producto.VistaProductoOpciones} ref={this.grid} allowGrouping={true} groupSettings={this.groupOptions} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
+                            <GridComponent dataSource={opciones_producto.VistaProductoOpciones} dataBound={this.dataBound} ref={this.grid} allowGrouping={true} groupSettings={this.groupOptions} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
                             <ColumnsDirective>
                                 <ColumnDirective field='Opcion.NombreAlias' width='200' headerText='Nombre' />
                                 <ColumnDirective field='Opcion.TipoOpcion.Nombre' width='200' headerText='Tipo' />
