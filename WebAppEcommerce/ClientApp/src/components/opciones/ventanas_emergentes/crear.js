@@ -136,7 +136,7 @@ class CrearOpcion extends Component {
 
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="text" name="Nombre" value={opcion.Nombre} maxLength={15} ref={this.NombreRef} onBlur={this.GenerarNombreAlias} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
+                                <Form.Control type="text" name="Nombre" value={opcion.Nombre} maxLength={100} ref={this.NombreRef} onBlur={this.GenerarNombreAlias} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row sm={10}>
