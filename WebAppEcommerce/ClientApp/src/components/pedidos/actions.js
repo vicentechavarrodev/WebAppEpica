@@ -28,8 +28,6 @@ function obtener_pedidos(id,context) {
                     let pedidos;
                     if (response.IsSuccess) {
                         pedidos = response.Result;
-
-                        //console.log(id)
                      
                         let recibidos =  pedidos.filter(e => e.IdEstado === 1);
                         let pendientes = pedidos.filter(e => e.IdEstado === 2);
@@ -52,13 +50,9 @@ function obtener_pedidos(id,context) {
 
                         }
 
-                        console.log(context)
                         context.props.cambiar_estado_recibido(recibidos.length)
                         context.props.cambiar_estado_enviado(enviados.length)
                         context.props.cambiar_estado_pendiente(pendientes.length)
-                        
-                        
-                     
 
                         if (pedidos !== null) {
                             dispatch(success(pedidos));
@@ -120,9 +114,9 @@ function obtener_pedido(id, context) {
 
 
 function cambiar_estado(id,idEstado,idestadoActual, context) {
-    return dispatch => {
+    return async  dispatch => {
 
-        ServicesHelper.cambiar_estado(id, idEstado)
+        await ServicesHelper.cambiar_estado(id, idEstado)
             .then(
                 response => {
                     loader.hide();
@@ -135,6 +129,9 @@ function cambiar_estado(id,idEstado,idestadoActual, context) {
                             dispatch(success(pedido));
                             context.props.mostrar_detalle_pedido(false);
                             context.props.obtener_pedidos(idestadoActual, context);
+
+                            context.enviarMensaje(context.state.pedido.IdEstado)
+
                         } else {
                             dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
                         }

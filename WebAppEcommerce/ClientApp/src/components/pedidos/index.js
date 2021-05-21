@@ -36,7 +36,6 @@ class Pedidos extends Component {
         }
         this.toolbarOptions = ['Search'];
         this.rowSelected = this.rowSelected.bind(this);
-        this.rowDeselected = this.rowDeselected.bind(this);
         this.filterTemplate = this.filterTemplate.bind(this);
         this.change = this.change.bind(this);
 
@@ -100,8 +99,6 @@ class Pedidos extends Component {
 
     created(args) {
         document.getElementsByClassName("e-search")[0].getElementsByClassName("e-input")[0].setAttribute("placeholder", "Buscar por  Nombre ");
-     
-
     }
 
     clearFilter(e) {
@@ -131,11 +128,7 @@ class Pedidos extends Component {
     }
 
 
-    rowDeselected(e) {
-        if (this.grid) {
-           
-        }
-    }
+ 
 
     filterTemplate() {
         return (<ButtonComponent onClick={this.clearFilter.bind(this)} ></ButtonComponent>);
@@ -177,13 +170,8 @@ class Pedidos extends Component {
     }
 
     async change(e) {
-      
-   
         this.setState({ idEstado: e });
-        await this.props.obtener_pedidos(e, this);
-           
-
-       
+        await this.props.obtener_pedidos(e, this);  
     }
 
 

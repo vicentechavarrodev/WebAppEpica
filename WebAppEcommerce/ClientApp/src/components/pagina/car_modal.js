@@ -47,7 +47,7 @@ class Car_modal extends Component {
             pedido
         } = this.state;
 
-        console.log(pedido)
+ 
         if (pedido.PedidoDetalles.length ===0 ) {
             this.props.showMessage('Debes agregar al menos un producto.', true, 'Información');
             return;
@@ -61,18 +61,12 @@ class Car_modal extends Component {
             this.props.showMessage('Debes ingresar un numero de teléfono.', true, 'Información');
             return;
         }
-        
-
 
         await this.props.enviar_pedido(pedido,this);
-       
-
-
     }
 
 
     InputChange(e) {
-
         const { name, value } = e.target;
         const { pedido } = this.state;
         this.setState({
@@ -88,9 +82,6 @@ class Car_modal extends Component {
     EliminarPedido(e) {
       
         let pedidos = this.props.productos_pedido.filter(item => e.target.value + item.Descripcion !== e.target.value + e.target.name)
-
-
-        console.log(e.target.value)
 
         let cantidad=0, subtotal = 0;
 
@@ -133,6 +124,9 @@ class Car_modal extends Component {
                   
                     <div className="tittle-car">
                         <h2>Tu pedido</h2>
+                        <button type="button" className="btn button-movil" onClick={this.CloseCar}>
+                            <i className="fa fa-times"></i>
+                        </button>
                     </div>
                     <div class="container content-pedido">
                         {
@@ -168,10 +162,10 @@ class Car_modal extends Component {
                             <input type="text" className="form-control" name="Direccion" value={pedido.Direccion} id="Dirección" onChange={this.InputChange} placeholder="Digita tu dirección" />
                         </div>
                         <div className="mb-2">
-                            <input type="number" className="form-control" name="Telefono" value={pedido.Telefono} id="Telefono" onChange={this.InputChange} placeholder="Telefono de contacto" />
+                            <input type="number" className="form-control" name="Telefono" value={pedido.Telefono} id="Telefono" onChange={this.InputChange} placeholder="Numero de whatsapp" />
                         </div>
                         <div className="mb-2">
-                            <textarea type="text-area" rows="1" className="form-control text-area" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Anexa un comentario" />
+                            <textarea type="text-area" rows="1" className="form-control text-area" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Comentarios" />
                         </div>
                         <div className="date-total">
                         </div>
@@ -195,9 +189,7 @@ class Car_modal extends Component {
                 <button type="button" className="btn btn-link" onClick={this.CloseCar}>
                     <i className="fa fa-cart-plus"></i>
                 </button>
-                <button type="button" className="btn button-movil" onClick={this.CloseCar}>
-                    <i className="fa fa-times"></i>
-                </button>
+               
               
             </section> 
 
@@ -207,6 +199,7 @@ class Car_modal extends Component {
 
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
+
     const { categorias } = state.categoriaReducer;
     const { opciones_producto, id_producto_seleccionado, productos_pedido, total_pedido, total_domicilio, cantidad_pedidos } = state.productoReducer;
     return { loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, productos_pedido, total_pedido, total_domicilio, cantidad_pedidos };

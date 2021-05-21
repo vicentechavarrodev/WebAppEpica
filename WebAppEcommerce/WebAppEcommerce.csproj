@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetCoreOpen.PrerenderMiddleware" Version="1.0.2" />
+    <PackageReference Include="Galamai.AspNetCore.Rendertron" Version="1.0.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.1">
       <PrivateAssets>all</PrivateAssets>

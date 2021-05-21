@@ -40,11 +40,7 @@ class EditarOpcion extends Component {
         const mostrarPrecio = (name, TienePrecio) => (name === 'IdTipoOpcion') ? (TienePrecio ? 'element-show' : 'element-hide') : this.state.esVisibleOpcion1;
 
         const { name, value, TienePrecio } = e.target;
-        let precio;
-        if ((name === 'IdTipoOpcion') && !TienePrecio) {
-            precio = 0;
-        }
-
+       
        
 
         const { opcion } = this.state;
@@ -52,8 +48,6 @@ class EditarOpcion extends Component {
             opcion: {
                 ...opcion,
                 [name]: value,
-                //Precio: name === 'Precio' ? value : precio
-
             },
 
             esVisibleOpcion1: mostrarPrecio(name, TienePrecio)
@@ -100,7 +94,7 @@ class EditarOpcion extends Component {
 
     render() {
 
-        console.log(this.state.opcion)
+        
         return (
             <Modal
                 show={this.props.show}
@@ -110,7 +104,7 @@ class EditarOpcion extends Component {
             >
                 <Modal.Header >
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Editar Usuario
+                        Editar Opción
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -118,13 +112,13 @@ class EditarOpcion extends Component {
                        
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="text" name="Nombre" value={this.state.opcion.Nombre} maxLength={15} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
+                                <Form.Control type="text" name="Nombre" value={this.state.opcion.Nombre}  className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="text" name="NombreAlias" value={this.state.opcion.NombreAlias} maxLength={15} className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
+                                <Form.Control type="text" name="NombreAlias" value={this.state.opcion.NombreAlias}  className="pz-input" onChange={this.InputChange} placeholder="Nombre" />
                             </Form.Group>
                         </Form.Row>
 

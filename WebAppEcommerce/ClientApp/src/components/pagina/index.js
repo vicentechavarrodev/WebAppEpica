@@ -14,16 +14,15 @@ import { Link } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
 import { bannerActions } from '../banner/actions';
 import Carrito from '../carrito/index';
-
+import { Helmet } from 'react-helmet';
+import Metatags from '../helpers/metatags';
 
 
 class Pagina extends Component {
   
 
 
-    constructor(props) {
-        super(props);  
-    }
+
 
     async componentDidMount() {
 
@@ -40,7 +39,8 @@ class Pagina extends Component {
     render() {
        
          return (
-            <div data-spy="scroll" data-target="#navbar" data-offset="57">
+             <div data-spy="scroll" data-target="#navbar" data-offset="57">
+                 <Metatags title="Épica - Pizza Artesanal" description="La mejor y mas deliciosa pizza en Neiva ,y a domicilio ,artesanal hecha en horno de barro ,con variedad y tradición  italiana. Pide aquí y disfruta en casa!" />
             <Header visiblePagina="true" />
             
                   <section id="main">

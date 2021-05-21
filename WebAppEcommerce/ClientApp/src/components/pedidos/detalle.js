@@ -1,22 +1,18 @@
-﻿import React, { Component, createRef } from 'react';
+﻿import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { connect } from 'react-redux';
 import { loader } from '../helpers/loader';
 import { alertActions } from '../alerts_message/actions';
-import { Modal, Form, Col, Row, ListGroup, Card } from 'react-bootstrap';
+import { Modal, Form, Col, Row, ListGroup } from 'react-bootstrap';
 import { ComboBoxComponent } from '@syncfusion/ej2-react-dropdowns';
 import { pedidosActions } from './actions';
 
-import { ColumnDirective, ColumnsDirective, GridComponent, Toolbar, Inject, Search, Page } from '@syncfusion/ej2-react-grids';
 
 class Detalle extends Component {
 
     constructor(props) {
         super(props);
-
-
-
         this.state = {
             pedido: {
                 IdEstado: 0
@@ -30,28 +26,33 @@ class Detalle extends Component {
 
     }
 
-    CreateSubmit(e) {
+    async CreateSubmit(e) {
         e.preventDefault();
-
+        loader.show();
         if (this.props.pedido.IdEstado !== 0 && this.props.pedido.IdEstado !== this.state.pedido.IdEstado) {
-
-            this.props.cambiar_estado(this.props.pedido.IdPedido, this.state.pedido.IdEstado, this.props.IdEstado, this)
-
-            this.enviarMensaje()
+            await this.props.cambiar_estado(this.props.pedido.IdPedido, this.state.pedido.IdEstado, this.state.pedido.IdEstado, this)
+            
         }
     }
 
-    enviarMensaje() {
+    enviarMensaje(idEstado) {
         const urlDesktop = 'https://web.whatsapp.com/';
         let pedidoCompleto = "";
 
         this.props.pedido.PedidoDetalles.map((item, index) => {
-            pedidoCompleto = pedidoCompleto + item.Cantidad + "  " + item.Descripcion + "= $" + item.Subtotal + (index !== (this.props.pedido.PedidoDetalles.length - 1) ? "%0A" : ("%0A y su estado es " +  this.obtenerEstado(this.props.pedido.IdEstado) ))
+            pedidoCompleto = pedidoCompleto + item.Cantidad + "  " + item.Descripcion + "= $" + item.Subtotal + (index !== (this.props.pedido.PedidoDetalles.length - 1) ? "%0A" : ("%0A y su estado es " + this.obtenerEstado(idEstado) ))
         },this)
 
+        let mensaje = `send?phone=${"57" + this.props.pedido.Telefono}&text=Hola, ${this.props.pedido.Solicitante}%0ASomos Epica 🍕, te contamos que tu pedido de: %0A${pedidoCompleto}%0ADomicilio: $ ${this.props.total_domicilio}%0ATotal: $ ${this.props.pedido.TotalPedido}%0A🚚 Gracias por confiar en nosotros 😀`
 
-        let mensaje = `send?phone=${"57" + this.props.pedido.Telefono}&text=Hola, ${this.props.pedido.Solicitante}%0A 🚚 Te contamos que tu pedido de: %0A${pedidoCompleto}%0A Total: $ ${this.props.pedido.TotalPedido}%0A Gracias por confiar en nosotros 😀`
-        window.open(urlDesktop + mensaje, '_blank')
+        let w = 900;
+        let h = 600;
+        var left = (window.innerWidth / 2) - (w / 2);
+        var top = (window.innerHeight / 2) - (h / 2);
+
+        window.open(urlDesktop + mensaje, "Mensajeria", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+    
+      
     }
 
     obtenerEstado(idEstado) {
@@ -214,8 +215,9 @@ class Detalle extends Component {
 
 
 function mapStateToProps(state) {
+    const { total_domicilio } = state.productoReducer;
     const { mostrar_detalle, pedido, id_pedido_seleccionado, pendientes, recibidos, enviados } = state.pedidosReducer;
-    return { mostrar_detalle, pedido, id_pedido_seleccionado, pendientes, recibidos, enviados };
+    return { mostrar_detalle, pedido, id_pedido_seleccionado, pendientes, recibidos, enviados, total_domicilio };
 };
 
 

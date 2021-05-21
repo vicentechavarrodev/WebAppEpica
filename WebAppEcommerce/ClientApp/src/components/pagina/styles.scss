@@ -698,7 +698,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
     top: 0px;
     color: white;
     font-size: 20px;
-    height: 55px;
+    height: inherit;
+    padding:0;
     width: 60px;
 }
 .button-movil:hover{

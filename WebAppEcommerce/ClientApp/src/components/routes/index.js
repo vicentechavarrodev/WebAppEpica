@@ -8,7 +8,7 @@ import App from '../../App';
 import React from 'react';
 import Login from '../usuario/login';
 import Ventana from '../ventana_principal/index';
-import { Switch } from 'react-router-dom';
+import { Switch, BrowserRouter } from 'react-router-dom';
 import PrivateRoute from '../helpers/private_route';
 import { MemoryRouter } from 'react-router';
 import PublicRoute from '../helpers/public_route';
@@ -22,7 +22,7 @@ import Horarios from '../horario/index';
 
 const AppRoutes = () =>
   
-    <MemoryRouter>
+    <BrowserRouter>
             <App>
             <Switch>
                 <PublicRoute restricted={true} component={Login} path="/login" exact />
@@ -45,7 +45,7 @@ const AppRoutes = () =>
                        
                </Switch>
           </App>
-    </MemoryRouter>;
+    </BrowserRouter>;
         
 
 export default AppRoutes;

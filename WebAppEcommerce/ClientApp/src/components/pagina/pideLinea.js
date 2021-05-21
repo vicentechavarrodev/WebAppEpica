@@ -12,6 +12,10 @@ import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
 import ModalOpciones from '../productos/productoModal';
 import Carrito from '../carrito/index';
+import { Helmet } from 'react-helmet';
+
+import Metatags from '../helpers/metatags';
+
 
 class PideLinea extends Component {
     
@@ -99,6 +103,10 @@ class PideLinea extends Component {
    
         return (
             <div data-spy="scroll" data-target="#navbar" data-offset="57">
+
+                <Metatags title="Pide en Linea" description="Pide  ahora  disfruta en tu casa" />
+
+
                 <Header visiblePagina="true" />
                 <div className="horizontal-menu bg-light">
                  <div className="container container-horizontal fixed-top">

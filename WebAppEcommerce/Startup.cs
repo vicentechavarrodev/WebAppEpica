@@ -18,6 +18,7 @@ namespace WebAppEcommerce
     {
         public Startup(IConfiguration configuration)
         {
+
             Configuration = configuration;
         }
 
@@ -53,11 +54,23 @@ namespace WebAppEcommerce
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
             services.AddControllersWithViews();
+            // Add rendertron services
+            // Add rendertron services
+            services.AddRendertron(options =>
+            {
+                // use http compression
+                options.AcceptCompression = true;
+            });
+
+            // Add response caching
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -79,6 +92,7 @@ namespace WebAppEcommerce
             });
 
             app.UseCors("cors");
+           // app.UseRendertron(proxyUrl: "http://rendertron:8080/render/");
             app.UseStaticFiles();
            
             app.UseSpaStaticFiles();
@@ -92,6 +106,7 @@ namespace WebAppEcommerce
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+          
         }
     }
 }
