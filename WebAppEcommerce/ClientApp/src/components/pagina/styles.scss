@@ -3,7 +3,7 @@ $primary-color: #b3191f;
 $shade-color: rgba(0, 0, 0, 0.24);
 
 #main .carousel-inner img {
-    max-height: 550px;
+    max-height: 490px;
     object-fit: cover;
     filter: grayscale(10%);
 }
@@ -185,7 +185,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .carousel-caption p {
     margin-bottom: 0px;
     font-size: 25px;
-    text-shadow: 3px 3px 3px black;
+    text-shadow: 1px 2px 2px black;
+    font-weight: 600;
 }
 
   
@@ -784,10 +785,17 @@ $shade-color: rgba(0, 0, 0, 0.24);
         margin: 0px 10px 0px 10px
     }
 
-    .col-button  {
-        
-        height: auto;
+    .carousel-caption p {
+        margin-bottom: 0px;
+        font-size: 12px;
+        text-shadow: 1px 2px 2px black;
+       
+    }
+
    
+
+    .col-button {
+        height: auto;
     }
 
     .col-button button {

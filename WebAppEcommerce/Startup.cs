@@ -28,9 +28,14 @@ namespace WebAppEcommerce
         public void ConfigureServices(IServiceCollection services)
         {
 
-            // adding the MultiPartBodyLength Configuration
+            // Add rendertron services
+            services.AddRendertron(options =>
+            {
+                // use http compression
+                options.AcceptCompression = true;
+                options.RendertronUrl = "http://rendertron:8080/render/";
 
-            // ends here
+            });
 
             // services.AddControllers();
             // The cors policy definition
@@ -54,13 +59,7 @@ namespace WebAppEcommerce
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
             services.AddControllersWithViews();
-            // Add rendertron services
-            // Add rendertron services
-            services.AddRendertron(options =>
-            {
-                // use http compression
-                options.AcceptCompression = true;
-            });
+           
 
             // Add response caching
             services.AddResponseCaching();
@@ -69,7 +68,7 @@ namespace WebAppEcommerce
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
+            app.UseRendertron();
 
             if (env.IsDevelopment())
             {
@@ -92,7 +91,7 @@ namespace WebAppEcommerce
             });
 
             app.UseCors("cors");
-           // app.UseRendertron(proxyUrl: "http://rendertron:8080/render/");
+          
             app.UseStaticFiles();
            
             app.UseSpaStaticFiles();
