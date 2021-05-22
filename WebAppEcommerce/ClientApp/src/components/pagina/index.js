@@ -16,7 +16,10 @@ import { bannerActions } from '../banner/actions';
 import Carrito from '../carrito/index';
 import { Helmet } from 'react-helmet';
 import Metatags from '../helpers/metatags';
-
+import slide1 from '../../imagenes/pagina/pizzas_neiva01.gif';
+import slide2 from '../../imagenes/pagina/pizzas_neiva02.gif';
+import slide3 from '../../imagenes/pagina/pizzas_neiva03.gif';
+import slide from '../../imagenes/pagina/slide1.gif';
 
 class Pagina extends Component {
   
@@ -51,14 +54,14 @@ class Pagina extends Component {
                                               
                                  <div className="carousel-item active">
                                      <img className="d-block" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt={item.Nombre} />
-                                     <div className="carousel-caption d-none d-md-block">
+                                     <div className="carousel-caption  d-md-block">
                                          <p>{item.Descripcion}</p>
                                      </div>
                                  </div>
                                      :
                                      <div className="carousel-item">
                                          <img className="d-block" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt={item.Nombre} />
-                                         <div className="carousel-caption d-none d-md-block">
+                                         <div className="carousel-caption  d-md-block">
                                              <p>{item.Descripcion}</p>
                                          </div>
                                      </div>                                         
@@ -91,7 +94,7 @@ class Pagina extends Component {
                             <div className="icons-pedido">
                                 <Link to="/pideLinea" className="btn btn-default btn-3d-style  btn-block" >
                                     <span className="element-hide"><AddIcon/></span>
-                                    <span className="hidde-element"> Entrega a domicilio</span>
+                                    <span className="hidde-element"> Pedir ahora</span>
                                    
                                 </Link>
                              
@@ -102,28 +105,28 @@ class Pagina extends Component {
                     <div className="row p-lg-4  p-sm-0 ">
                         <div className="col-12 col-md-6 col-lg-4 mb-4">
                             <div className="card ">
-                                <img className="card-img-top" src={imageHeader1} alt="Foto de Pizza 1" />
+                                 <img className="card-img-top" src={slide2} alt="Pizzas en Huila" />
                                 <div className="card-body">
-                                    <h5 className="card-title">Pizza 1</h5>
-                                    <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
+                                     <h5 className="card-title text-center">Cambia de ambiente y tomate un descanso  &#128522;</h5>
+                                    <p className="card-text">Hay un lugar ambientado , tradicional y fresco esperando por ti , para que tu y ese perfil social se nutran de momentos</p>
                                     </div>
                              </div>
                             </div>
                         <div className="col-12 col-md-6 col-lg-4 mb-4">
                             <div className="card ">
-                                <img className="card-img-top" src={imageHeader2} alt="Foto de Pizza 2"/>
+                                 <img className="card-img-top" src={slide3} alt="Pizza en Neiva"/>
                                 <div className="card-body">
-                                    <h5 className="card-title">Pizza 2</h5>
-                                    <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
+                                     <h5 className="card-title text-center">Pide ahora y prueba nuestro  servicio &#x23f0;</h5>
+                                    <p className="card-text">Si estas comodo en tu casa y existe un ambiente pizzero, pide ahora y, deja que  nuestros productos te acompañen .</p>
                                         </div>
                                    </div>
                                 </div>
                         <div className="col-12 col-md-6 col-lg-4 mb-4">
                             <div className="card ">
-                                <img className="card-img-top" src={imageHeader3} alt="Foto de Pizza 3"/>
+                                 <img className="card-img-top" src={slide1} alt="Pizza a domicilio"/>
                                 <div className="card-body">
-                                    <h5 className="card-title">Pizza 3</h5>
-                                    <p className="card-text">Vivamus quam mi, egestas eu metus id, mollis suscipit ipsum. In vel mollis mauris. Nunc id sem a lacus tincidunt pretium in in urna. Nam mi nisi, tincidunt ac tincidunt id, fermentum at metus.</p>
+                                     <h5 className="card-title text-center">Somos lo que comemos, dicen por ahi &#128147;</h5>
+                                    <p className="card-text">Nosotros preparamos nuestros productos con amor, asi que imagina lo feliz que te vas a ver despues de probarlos.</p>
                                             </div>
                                       </div>
                         </div>
