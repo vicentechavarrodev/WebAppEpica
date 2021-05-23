@@ -292,6 +292,24 @@ $shade-color: rgba(0, 0, 0, 0.24);
     .text-center h1{
        font-weight:bold;
     }
+.column-name-profile, .column-image-profile{
+    display:flex;
+    justify-content:center;
+}
+.image-profile {
+    width: 80px;
+    border-radius: 50px;
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+col-profile,.col-name{
+    padding:0px;
+
+}
+.text-center h6 {
+    font-weight: 900;
+    font-size: 1.2rem;
+}
 .container-compañia {
     display: flex;
     justify-content: center;
@@ -672,7 +690,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
         height: 2px;
         background-color: #dcdcdc;
         margin-top: 22px;
-        margin-top: 1.375rem;
+        margin-top: 2.0rem;
     }
 .smart-order-novedades{
     display:flex;
@@ -686,8 +704,28 @@ $shade-color: rgba(0, 0, 0, 0.24);
     height: 2px;
     background-color: #dcdcdc;
     margin-top: 22px;
-    margin-top: 1.375rem;
+    margin-top:2.0rem;
 }
+.icon-left{
+    margin-right:20px;
+    color:rgba(119, 119, 119, 0.76);
+}
+.icon-right {
+    margin-left: 20px;
+    color: rgba(119, 119, 119, 0.76);
+}
+.icon-left .MuiSvgIcon-root, .icon-right .MuiSvgIcon-root {
+    font-size: 35px;
+}
+.btn-comment{
+    background-color:$primary-color;
+    color:white;
+}
+.btn-comment:hover{
+    color:white;
+    background-color:rgba(160, 14, 14, 0.85);
+}
+
 
 
 .button-movil {
@@ -700,7 +738,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
     color: white;
     font-size: 20px;
     height: inherit;
-    padding:0;
+    padding: 0;
     width: 60px;
 }
 .button-movil:hover{
@@ -791,8 +829,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
         text-shadow: 1px 2px 2px black;
        
     }
-
-   
+    
 
     .col-button {
         height: auto;

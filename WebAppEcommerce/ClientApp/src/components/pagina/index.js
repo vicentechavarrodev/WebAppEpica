@@ -12,6 +12,8 @@ import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 import { productoActions } from '../productos/actions';
 import { Link } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
+import CardMembershipIcon from '@material-ui/icons/CardMembership';
+import ReceiptIcon from '@material-ui/icons/Receipt';
 import { bannerActions } from '../banner/actions';
 import Carrito from '../carrito/index';
 import { Helmet } from 'react-helmet';
@@ -23,7 +25,10 @@ import slide from '../../imagenes/pagina/slide1.gif';
 
 class Pagina extends Component {
   
-
+    constructor() {
+        super();
+       
+    }
 
 
 
@@ -37,6 +42,7 @@ class Pagina extends Component {
         
      
     }
+  
         
 
     render() {
@@ -132,27 +138,66 @@ class Pagina extends Component {
                         </div>
                       
                      </div>
-                     <div class="row">
-                         <div class="col-sm-6">
-                             <div class="card">
-                                 <div class="card-body">
-                                     <h5 class="card-title">La mejor pizza de Neiva</h5>
-                                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                     <a href="#" class="btn btn-primary">Go somewhere</a>
+                     <div className="row smart-order">
+                         <div className="col  text-center text-uppercase pt-2 pb-4">
+                             <h6>
+                                 <span className="icon-left"><ReceiptIcon /></span>
+                                 Opiniones
+                              <span className="icon-right"><CardMembershipIcon /></span>
+                             </h6>
+
+                            
+                         </div>
+
+                     </div>
+                     <div className="row">
+                         <div className="col-sm-6">
+                             <div className="card">
+                                 <div className="card-body">
+                                     <h5 className="card-title">La mejor pizza de Neiva</h5>
+                                     <div className="container">
+                                         <div className="row align-items-start">
+                                             <div className="col-lg-3 col-profile">
+                                                 <div className="column-image-profile">
+                                                 <img className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/15/ab/fb/57/jaantodesign.jpg"></img>
+                                                 </div>
+                                                 <p className="column-name-profile">Jaantodesign</p>
+                                             </div>
+                                             <div className="col-lg-9 col-name">
+                                                 <p className="card-text">Deliciosa la pizza, excelente la atención, la música y el ambiente es toda una experiencia, muy recomendado</p>
+                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" class="btn btn-comment">Ver Comentario</a>
+                                             </div>
+                                         </div>
+                                     </div>
+                                    
                                  </div>
                              </div>
                          </div>
-                         <div class="col-sm-6">
-                             <div class="card">
-                                 <div class="card-body">
-                                     <h5 class="card-title">Special title treatment</h5>
-                                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                     <a href="#" class="btn btn-primary">Go somewhere</a>
+                         <div className="col-sm-6">
+                             <div className="card">
+                                 <div className="card-body">
+                                     <h5 className="card-title">Gran variedad y buen sabor</h5>
+                                     <div className="container">
+                                         <div className="row align-items-start">
+                                             <div className="col-lg-3 col-profile">
+                                                 <div className="column-image-profile">
+                                                     <img className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/f3/7c/default-avatar-2020-29.jpg"></img>
+                                                 </div>
+                                                 <p className="column-name-profile">Valentina M</p>
+                                             </div>
+                                             <div className="col-lg-9 col-name">
+                                                 <p className="card-text">Sabores deliciosos y gran variedad. El lugar es pequeño pero agradable. Vale la pena conocer y degustar</p>
+                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" class="btn btn-comment">Ver Comentario</a>
+                                             </div>
+                                         </div>
+                                     </div>
+                                                              
                                  </div>
                              </div>
                          </div>
                      </div>
-                   <Carrito/>     
+                     <Carrito />
+                    
            
                 </section>
               

@@ -12,6 +12,7 @@ class Carrito extends Component {
     constructor() {
         super();
         this.openCar = this.openCar.bind(this);
+        this.back = this.back.bind(this);
     }
 
     //-------------------------------Eventos------------------------
@@ -26,6 +27,10 @@ class Carrito extends Component {
         this.props.ver_car(true);
 
 
+    }
+     back() {
+         window.history.go(-1);
+         return;
     }
 
 
@@ -52,6 +57,11 @@ class Carrito extends Component {
                     :
                     ""
             }
+            <div className="contain-atras">
+                <a onClick={this.back}>
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            </div>
         </section>
 
 
