@@ -124,9 +124,9 @@ class Car_modal extends Component {
                   
                     <div className="tittle-car">
                         <h2>Tu pedido</h2>
-                        <button type="button" className="btn button-movil" onClick={this.CloseCar}>
+                        <a href="#"  className="btn button-movil" onClick={this.CloseCar}>
                             <i className="fa fa-times"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class="container content-pedido">
                         {
