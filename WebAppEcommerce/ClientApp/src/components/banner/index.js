@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 import Crear from './ventanas_emergentes/crear';
 import Editar from './ventanas_emergentes/editar';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 
@@ -68,6 +69,11 @@ class Banners extends Component {
             loader.show();
             this.props.obtener_banners();
         }
+        else if (e.currentTarget.id === "btnEliminar") {
+            loader.show();
+            this.props.eliminar_banner(this.props.id_banner_seleccionado, this);
+            this.props.obtener_banners();
+        }
     }
 
     clearFilter(e) {
@@ -123,6 +129,7 @@ class Banners extends Component {
                                         </div>
                                     </button>
                                 </li>
+
                                 <li>
                                     <button id="btnActualizar" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
 
@@ -130,6 +137,14 @@ class Banners extends Component {
                                             <UpdateIcon />
                                         </div>
 
+                                    </button>
+                                </li>
+                                <li >
+                                    <button id="btnEliminar" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
+
+                                        <div>
+                                            <DeleteIcon />
+                                        </div>
                                     </button>
                                 </li>
 
@@ -145,7 +160,7 @@ class Banners extends Component {
                     <GridComponent dataSource={banners} ref={this.grid} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
                         <ColumnsDirective>
                             <ColumnDirective field='Nombre' width='200' headerText='Nombres' />
-
+                                                    
                         </ColumnsDirective>
                         <Inject services={[Search, Toolbar]} />
                     </GridComponent>
@@ -172,8 +187,8 @@ class Banners extends Component {
 
 
 function mapStateToProps(state) {
-    const { banners, mostrar_crear, mostrar_editar, id_banner_seleccionado } = state.bannerReducer;
-    return { banners, mostrar_crear, mostrar_editar, id_banner_seleccionado };
+    const { banners, mostrar_crear, mostrar_editar, id_banner_seleccionado, banner_eliminado } = state.bannerReducer;
+    return { banners, mostrar_crear, mostrar_editar, id_banner_seleccionado, banner_eliminado };
 }
 
 
@@ -182,7 +197,8 @@ const mapDispatchToProps = {
     obtener_banners: bannerActions.obtener_banners,
     ver_crear: bannerActions.ver_crear,
     ver_editar: bannerActions.ver_editar,
-    banner_seleccionado: bannerActions.banner_seleccionado
+    banner_seleccionado: bannerActions.banner_seleccionado,
+    eliminar_banner: bannerActions.eliminar_banner
 }
 
 

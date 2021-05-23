@@ -7,6 +7,7 @@ import { alertActions } from '../alerts_message/actions';
 import { withRouter } from "react-router-dom";
 import Carrito from '../carrito/index';
 import imageHeader1 from '../../imagenes/pagina/header1.jpg';
+import Atras from '../atras/index';
 
 
 
@@ -53,7 +54,8 @@ class Compania extends Component {
                     </div>
               
          
-                <Carrito/>
+                <Carrito />
+                <Atras/>
 
 
 

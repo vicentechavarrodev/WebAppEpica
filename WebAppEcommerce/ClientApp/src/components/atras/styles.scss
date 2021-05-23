@@ -1,0 +1,42 @@
+﻿$primary-color: #b3191f;
+$shade-color: rgba(0, 0, 0, 0.24);
+.contain-atras {
+    background-color: $primary-color;
+    width: 56px;
+    position: fixed;
+    height: 42px;
+    right: 0px;
+    top: 60%;
+    border-radius: 5px;
+    z-index: 1029;
+    cursor: pointer;
+}
+
+.contain-atras i {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 25px;
+    height: 100%;
+}
+
+
+
+    @media (max-width:760px) {
+        .contain-atras {
+            width: 50px;
+            height: 40px;
+
+        }
+    }
+    @media (max-width:580px){
+        .contain-atras {
+            width: 60px;
+            height: 60px;
+            right: 167px;
+            top: 90vh;
+            border-radius: 30px;
+        }
+    }

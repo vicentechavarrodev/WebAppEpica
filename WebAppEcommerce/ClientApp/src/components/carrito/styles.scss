@@ -58,21 +58,48 @@ $shade-color: rgba(0, 0, 0, 0.24);
 #cart-background .fa-cart-plus {
     color: white;
     font-size: 30px;
+    display: flex;
 }
-@media (max-width:600px) {
-    .contain-atras {
+.contain-arriba{
+    display:none;
+}
+@media (max-width:760px) {
+   .btn-link {
+        width: 50px;
+        height: 40px;
+    }
+    .btn-link i{
+        width: 100%;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media (max-width:580px){
+    .car-lateral button {
+        position: absolute;
+        right: 87px;
+        top: 90vh;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        
+        
+    }
+    .contain-arriba {
         background-color: $primary-color;
-        width: 70px;
+        display:inline;
         position: fixed;
-        height: 50px;
-        right: 0px;
-        top: 60%;
-        border-radius: 5px;
-        z-index: 1032;
-        cursor:pointer;
+        right: 3vw;
+        top: 90vh;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        z-index:1029;
     }
 
-    .contain-atras i {
+    .contain-arriba i {
         color: white;
         display: flex;
         justify-content: center;
@@ -81,6 +108,7 @@ $shade-color: rgba(0, 0, 0, 0.24);
         font-size: 25px;
         height: 100%;
     }
+  
 }
     @media (max-width:500px) {
 

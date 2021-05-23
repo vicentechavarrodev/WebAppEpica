@@ -22,6 +22,11 @@ export function bannerReducer(state = initialState.banners_state, action) {
                 ...state, init_editar: action.init_editar
 
             };
+        case bannerConstants.ELIMINAR_BANNER:
+            return {
+
+                ...state, banner_eliminado: action.banner_eliminado
+            };
 
         case bannerConstants.MOSTRAR_CREATE_BANNER:
             return {

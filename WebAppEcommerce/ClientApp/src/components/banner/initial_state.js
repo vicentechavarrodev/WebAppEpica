@@ -8,6 +8,7 @@ const banners_initial_state = {
         mostrar_editar: false,
         banner_creado: false,
         banner_actualizado: false,
+        banner_eliminado: false,
         id_banner_seleccionado: 0
     }
 };

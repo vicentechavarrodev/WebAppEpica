@@ -95,7 +95,6 @@ class ProductoModal extends Component {
             event.stopPropagation();
 
             let option = JSON.parse(event.target.value);
-
             let optioncheck = this.state.opcionesSeleccionadas.find(item => item.idTipoOpcion === option.Opcion.IdTipoOpcion);
 
             this.setState({ [option.IdProductoOpciones]: false });
@@ -108,7 +107,7 @@ class ProductoModal extends Component {
             }
           
            
-          await  ProcesarSeleccion(option)
+          await ProcesarSeleccion(option);
             
           await GenerarPrecio();
 
@@ -153,6 +152,7 @@ class ProductoModal extends Component {
             
 
             const { opcionesSeleccionadas } = this.state;
+            console.log(opcionesSeleccionadas);
             let IdsubOpcion = 0;
 
             if (option.MuestraSecundario) {

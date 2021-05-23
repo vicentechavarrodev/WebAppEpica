@@ -18,6 +18,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .row-novedades {
     margin: 60px 20px 0px 20px;
 }
+.logo-tripadvisor{
+    width:45px;
+   }
 .row-novedades h5{
     font-size:1.3rem;
     font-weight:bold;
@@ -706,24 +709,22 @@ col-profile,.col-name{
     margin-top: 22px;
     margin-top:2.0rem;
 }
-.icon-left{
-    margin-right:20px;
+.icon-left,.icon-right{
     color:rgba(119, 119, 119, 0.76);
-}
-.icon-right {
-    margin-left: 20px;
-    color: rgba(119, 119, 119, 0.76);
 }
 .icon-left .MuiSvgIcon-root, .icon-right .MuiSvgIcon-root {
     font-size: 35px;
 }
-.btn-comment{
-    background-color:$primary-color;
-    color:white;
+.btn-comment {
+    background-color: #1ce49c;
+    color: black;
+    padding-left: 2px;
+    
 }
-.btn-comment:hover{
-    color:white;
-    background-color:rgba(160, 14, 14, 0.85);
+
+.btn-comment:hover {
+    color: black;
+  
 }
 
 
@@ -778,9 +779,16 @@ col-profile,.col-name{
     .container-movil{
         display:none;
     }
+    .col-name a{
+        font-weight:bold;
+    }
 
 
-
+@media (max-width:990px) {
+    .btn-comment{
+        width:100%;
+    }
+}
 
 
     @media (max-width:765px) {

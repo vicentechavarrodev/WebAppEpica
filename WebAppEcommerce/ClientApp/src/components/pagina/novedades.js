@@ -9,6 +9,7 @@ import Carrito from '../carrito/index';
 import imageHeader1 from '../../imagenes/pagina/header1.jpg';
 import imageHeader2 from '../../imagenes/pagina/header2.jpg';
 import imageHeader3 from '../../imagenes/pagina/header3.jpg';
+import Atras from '../atras/index';
 
 
 
@@ -95,7 +96,8 @@ class Novedades extends Component {
                         
 
                
-                <Carrito/>
+                <Carrito />
+                <Atras />
 
                 <Footer />
             </body>
