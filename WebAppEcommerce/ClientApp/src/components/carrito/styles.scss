@@ -59,14 +59,37 @@ $shade-color: rgba(0, 0, 0, 0.24);
     color: white;
     font-size: 30px;
 }
-@media (max-width:500px) {
-
-
-    #cart-background .btn-link {
-        display: none;
+@media (max-width:600px) {
+    .contain-atras {
+        background-color: $primary-color;
+        width: 70px;
+        position: fixed;
+        height: 50px;
+        right: 0px;
+        top: 60%;
+        border-radius: 5px;
+        z-index: 1032;
+        cursor:pointer;
     }
 
-    #cart-fixed {
+    .contain-atras i {
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
+        font-size: 25px;
+        height: 100%;
     }
 }
+    @media (max-width:500px) {
+
+
+        #cart-background .btn-link {
+            display: none;
+        }
+
+        #cart-fixed {
+            width: 100%;
+        }
+    }
