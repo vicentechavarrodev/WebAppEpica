@@ -10,7 +10,7 @@ import Logo from '../../imagenes/pagina/logoEpica.png';
 import iconMenu from '../../imagenes/pagina/pizza-box-menu.png';
 import { Link } from "react-router-dom";
 import { loader } from '../helpers/loader';
-import LocalPizzaIcon from '@material-ui/icons/LocalPizza';
+
 
 class Header extends Component {
 
@@ -162,7 +162,7 @@ class Header extends Component {
 
                     {
                         this.props.visiblePagina === "true" ?
-                            <div className="nav-sm nav-icon">
+                            <div className="nav-sm ml-lg-5">
                                 <Link to="/pagina" className="navbar-brand">
                                     <img src={Logo} alt="Epica Logo"  />
                                 </Link>
