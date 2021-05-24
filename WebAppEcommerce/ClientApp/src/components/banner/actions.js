@@ -14,6 +14,7 @@ export const bannerActions = {
     cargar_editar,
     ver_editar,
     editar_banner,
+    eliminar_banner,
     banner_seleccionado
     
 
@@ -231,8 +232,51 @@ function editar_banner(banner,id, context) {
                 }
             );
     };
-
+ 
     function success(banner_actualizado) { return { type: bannerConstants.EDITAR_BANNER, banner_actualizado }; }
+
+
+}
+
+function eliminar_banner(id,context) {
+    return dispatch => {
+
+
+        ServicesHelper.eliminar_banner(id)
+            .then(
+                response => {
+
+                    if (response.IsSuccess) {
+                        loader.hide();
+                        if (response.Result !== null) {
+
+                            dispatch(success(true));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Hecho'));
+                            context.props.obtener_banners();
+                        
+
+                        } else {
+                            loader.hide();
+                            dispatch(success(false));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                        }
+
+
+                    } else {
+                        loader.hide();
+                        dispatch(success(false));
+                        dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                    }
+                },
+                error => {
+                    loader.hide();
+                    dispatch(success(false));
+                    dispatch(alertActions.showMessage(error.toString(), true, 'Ups'));
+                }
+            );
+    };
+
+    function success(banner_eliminado) { return { type: bannerConstants.ELIMINAR_BANNER, banner_eliminado }; }
 
 
 }

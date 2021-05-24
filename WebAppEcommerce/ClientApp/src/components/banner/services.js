@@ -6,6 +6,7 @@ export const ServicesHelper = {
     crear_banner,
     init_crear_banner,
     init_editar_banner,
+    eliminar_banner,
     editar_banner
 };
 
@@ -80,6 +81,20 @@ async function editar_banner(banner,id) {
     };
 
     return await fetch(`${process.env.REACT_APP_API_URL}api/Banners/Editar`, requestOptions)
+        .then(handleResponse)
+        .then(response => {
+            return response;
+        });
+}
+async function eliminar_banner(id) {
+
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader()
+    };
+
+
+    return await fetch(`${process.env.REACT_APP_API_URL}api/Banners/Eliminar/${id}`, requestOptions)
         .then(handleResponse)
         .then(response => {
             return response;

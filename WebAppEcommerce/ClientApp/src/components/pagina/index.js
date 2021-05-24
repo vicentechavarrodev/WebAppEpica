@@ -20,6 +20,7 @@ import slide2 from '../../imagenes/pagina/pizzas_neiva02.gif';
 import slide3 from '../../imagenes/pagina/pizzas_neiva03.gif';
 
 
+
 class Pagina extends Component {
   
     
@@ -30,7 +31,7 @@ class Pagina extends Component {
        loader.hide();
        window.scroll(100, 0);
        await this.props.obtenerBanners(this);
-      
+   
      
         
      
@@ -133,11 +134,20 @@ class Pagina extends Component {
                      </div>
                      <div className="row smart-order">
                          <div className="col  text-center text-uppercase pt-2 pb-4">
-                             <h6>
-                                 <span className="icon-left"><ReceiptIcon /></span>
-                                 Opiniones
-                              <span className="icon-right"><CardMembershipIcon /></span>
-                             </h6>
+                             <div class="container">
+                                 <div class="row align-items-start">
+                                     <div class="col-lg-4 col-md-12">
+                                         <span className="icon-left"><ReceiptIcon /></span>
+                                     </div>
+                                     <div class="col-lg-4 col-md-12">
+                                         <h6>Opiniones</h6>
+                                     </div>
+                                     <div class="col-lg-4 col-md-12">
+                                         <span className="icon-right"><CardMembershipIcon /></span>
+                                     </div>
+                                   </div>
+                             </div>
+                         
 
                             
                          </div>
@@ -157,8 +167,10 @@ class Pagina extends Component {
                                                  <p className="column-name-profile">Jaantodesign</p>
                                              </div>
                                              <div className="col-lg-9 col-name">
-                                                 <p className="card-text">Deliciosa la pizza, excelente la atención, la música y el ambiente es toda una experiencia, muy recomendado</p>
-                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" class="btn btn-comment">Ver Comentario</a>
+                                                 <p className="card-text">"Deliciosa la pizza, excelente la atención, la música y el ambiente es toda una experiencia, muy recomendado"</p>
+                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" class="btn btn-comment">
+                                                     <img className="logo-tripadvisor" src={tripadvisor} alt="Logo de tripadvisor" />
+                                                     Ver Mas</a>
                                              </div>
                                          </div>
                                      </div>
@@ -179,8 +191,11 @@ class Pagina extends Component {
                                                  <p className="column-name-profile">Valentina M</p>
                                              </div>
                                              <div className="col-lg-9 col-name">
-                                                 <p className="card-text">Sabores deliciosos y gran variedad. El lugar es pequeño pero agradable. Vale la pena conocer y degustar</p>
-                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" class="btn btn-comment">Ver Comentario</a>
+                                                 <p className="card-text">"Sabores deliciosos y gran variedad. El lugar es pequeño pero agradable. Vale la pena conocer y degustar"</p>
+                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" class="btn btn-comment">
+                                                     <img className="logo-tripadvisor" src={tripadvisor} alt="Logo de tripadvisor" />
+                                                      Ver Mas
+                                                 </a>
                                              </div>
                                          </div>
                                      </div>

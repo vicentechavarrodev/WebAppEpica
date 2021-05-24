@@ -67,6 +67,7 @@ $primary-color: #b3191f;
 .navbar-nav {
     display: flex;
     align-items: center;
+  
 }
 .navbar-nav li:active {
     background-color: rgba(0, 0, 0, 0.24);
@@ -136,6 +137,10 @@ $primary-color: #b3191f;
         width: 100vw;
        /* bottom: 0px;
         height: 305px;*/
+    }
+    .navbar-nav {
+ 
+        margin-top: 20px;
     }
 
     .nav-sm {

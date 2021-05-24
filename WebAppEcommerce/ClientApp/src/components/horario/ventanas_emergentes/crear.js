@@ -33,10 +33,10 @@ class CrearHorario extends Component {
                 'Domingo',
                 'Lunes',
                 'Martes',
-                'Miercoles',
+                'Miércoles',
                 'Jueves',
                 'Viernes',
-                'Sabado'
+                'Sábado'
                   ]
         };
 
