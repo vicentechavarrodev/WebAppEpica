@@ -162,7 +162,7 @@ class Pagina extends Component {
                                          <div className="row align-items-start">
                                              <div className="col-lg-3 col-profile">
                                                  <div className="column-image-profile">
-                                                     <img alt="image-profile" className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/15/ab/fb/57/jaantodesign.jpg"></img>
+                                                     <img alt="Imagen de perfil" className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/15/ab/fb/57/jaantodesign.jpg"></img>
                                                  </div>
                                                  <p className="column-name-profile">Jaantodesign</p>
                                              </div>
@@ -186,7 +186,7 @@ class Pagina extends Component {
                                          <div className="row align-items-start">
                                              <div className="col-lg-3 col-profile">
                                                  <div className="column-image-profile">
-                                                     <img alt="image-profile" className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/f3/7c/default-avatar-2020-29.jpg"></img>
+                                                     <img alt="Imagen de perfil" className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/f3/7c/default-avatar-2020-29.jpg"></img>
                                                  </div>
                                                  <p className="column-name-profile">Valentina M</p>
                                              </div>
