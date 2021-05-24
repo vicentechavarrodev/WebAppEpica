@@ -306,10 +306,7 @@ col-profile,.col-name{
     padding:0px;
 
 }
-.text-center h6 {
-    font-weight: 900;
-    font-size: 1.2rem;
-}
+
 .container-compañia {
     display: flex;
     justify-content: center;
@@ -740,6 +737,9 @@ col-profile,.col-name{
     height: inherit;
     padding: 0;
     width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .button-movil:hover{
     color:rgba(155, 9, 9, 0.78);

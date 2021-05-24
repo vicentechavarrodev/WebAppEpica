@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 import { alertActions } from '../alerts_message/actions';
 import { withRouter } from "react-router-dom";
 import { loader } from '../helpers/loader';
-import imageHeader1 from '../../imagenes/pagina/header1.jpg';
-import imageHeader2 from '../../imagenes/pagina/header2.jpg';
-import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 import { productoActions } from '../productos/actions';
 import { Link } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
@@ -21,15 +18,11 @@ import Metatags from '../helpers/metatags';
 import slide1 from '../../imagenes/pagina/pizzas_neiva01.gif';
 import slide2 from '../../imagenes/pagina/pizzas_neiva02.gif';
 import slide3 from '../../imagenes/pagina/pizzas_neiva03.gif';
-import slide from '../../imagenes/pagina/slide1.gif';
+
 
 class Pagina extends Component {
   
-    constructor() {
-        super();
-       
-    }
-
+    
 
 
     async componentDidMount() {
@@ -123,7 +116,7 @@ class Pagina extends Component {
                                  <img className="card-img-top" src={slide3} alt="Pizza en Neiva"/>
                                 <div className="card-body">
                                      <h5 className="card-title text-center">Pide ahora y prueba nuestro  servicio &#x23f0;</h5>
-                                     <p className="card-text">Si estas c&oacute;modo en tu casa y existe un ambiente "pizzero", pide ahora y, deja que  nuestros productos te acompañen .</p>
+                                     <p className="card-text">Si estas c&oacute;modo en tu casa y existe un ambiente de pizza, pide ahora y, deja que  nuestros productos te acompañen .</p>
                                         </div>
                                    </div>
                                 </div>
@@ -159,7 +152,7 @@ class Pagina extends Component {
                                          <div className="row align-items-start">
                                              <div className="col-lg-3 col-profile">
                                                  <div className="column-image-profile">
-                                                 <img className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/15/ab/fb/57/jaantodesign.jpg"></img>
+                                                     <img alt className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/15/ab/fb/57/jaantodesign.jpg"></img>
                                                  </div>
                                                  <p className="column-name-profile">Jaantodesign</p>
                                              </div>
@@ -213,10 +206,11 @@ class Pagina extends Component {
 }
 
 function mapStateToProps(state) {
+   
     const { loggingIn, user } = state.authentication;
     const { mostrar_crear } = state.productoReducer;
     const { banners } = state.bannerReducer;
-    return { loggingIn, user,mostrar_crear,banners};
+    return { loggingIn, user, mostrar_crear, banners};
 };
 
 

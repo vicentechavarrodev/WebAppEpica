@@ -31,5 +31,11 @@ namespace Models
         [JsonProperty(PropertyName = "HoraFinal")]
         public DateTime HoraFinal { get; set; }
 
+        [Required(ErrorMessage = "El dato {0} es necesario")]
+        [JsonProperty(PropertyName = "FraseDia")]
+        [Display(Name = "FraseDia")]
+        public string FraseDia { get; set; }
+
+
     }
 }

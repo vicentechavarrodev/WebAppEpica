@@ -594,6 +594,11 @@ html {
     display: none !important;
 }
 
+.sweet-alert  {
+    font-size: .8em !important;
+}
+
+
 @media (max-width: 760px) {
 
     html {
@@ -638,6 +643,7 @@ html {
 }
 
 
+
 @media (max-width: 960px) {
 
 
@@ -648,7 +654,7 @@ html {
 }
 @media (max-width:571px) {
     body, .btn {
-        font-size: .6rem !important;
+        font-size: .7rem !important;
     }
 
     .modal-content, .MuiTypography-body1 {

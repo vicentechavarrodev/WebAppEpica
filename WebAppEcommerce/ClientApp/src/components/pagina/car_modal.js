@@ -24,7 +24,39 @@ class Car_modal extends Component {
                 Comentario: localStorage.getItem('Comentario') !== null ? localStorage.getItem('Comentario') : "",
                 TotalPedido: (this.props.total_domicilio + this.props.total_pedido),
                 PedidoDetalles: this.props.productos_pedido
-            }
+            },
+            dias: [
+                {
+                    id: 0,
+                    dia: 'Domingo'
+                },
+                {
+                    id: 1,
+                    dia: 'Lunes'
+                },
+                {
+                    id: 2,
+                    dia: 'Martes'
+                },
+                {
+                    id: 3,
+                    dia: 'Miercoles'
+                },
+                {
+                    id: 4,
+                    dia: 'Jueves'
+                },
+                {
+                    id: 5,
+                    dia: 'Viernes'
+                },
+                {
+                    id: 6,
+                    dia: 'Sabado'
+                }
+
+            ],
+
         };
 
 
@@ -62,7 +94,21 @@ class Car_modal extends Component {
             return;
         }
 
-        await this.props.enviar_pedido(pedido,this);
+        let dia_actual =   new Date().getDay();
+        let dia  ;
+        const dia_semana = this.state.dias.find(element => element.id === dia_actual);
+        
+        this.props.horarios.forEach(element => {
+            if (dia_semana.dia === element.Dia) {
+                dia = element;
+            }
+        }, this
+
+        );
+
+        console.log(dia)
+
+        await this.props.enviar_pedido(pedido, dia.FraseDia, pedido.Solicitante,this);
     }
 
 
@@ -165,7 +211,7 @@ class Car_modal extends Component {
                             <input type="number" className="form-control" name="Telefono" value={pedido.Telefono} id="Telefono" onChange={this.InputChange} placeholder="Numero de whatsapp" />
                         </div>
                         <div className="mb-2">
-                            <textarea type="text-area" rows="1" className="form-control text-area" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Comentarios" />
+                            <textarea type="text-area" rows="2" className="form-control text-area" name="Comentario" value={pedido.Comentario} id="Comentario" onChange={this.InputChange} placeholder="Comentarios" />
                         </div>
                         <div className="date-total">
                         </div>
@@ -199,10 +245,10 @@ class Car_modal extends Component {
 
 function mapStateToProps(state) {
     const { loggingIn, user } = state.authentication;
-
+    const { horarios } = state.horarioReducer;
     const { categorias } = state.categoriaReducer;
     const { opciones_producto, id_producto_seleccionado, productos_pedido, total_pedido, total_domicilio, cantidad_pedidos } = state.productoReducer;
-    return { loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, productos_pedido, total_pedido, total_domicilio, cantidad_pedidos };
+    return { loggingIn, user, categorias, opciones_producto, id_producto_seleccionado, productos_pedido, total_pedido, total_domicilio, cantidad_pedidos, horarios };
 };
 
 
@@ -215,6 +261,7 @@ const mapDispatchToProps = {
     asignar_total_pedido: productoActions.asignar_total_pedido,
     limpiar_pedidos: productoActions.limpiar_pedidos,
     enviar_pedido: pedidosActions.enviar_pedido, 
+   
 
 };
 

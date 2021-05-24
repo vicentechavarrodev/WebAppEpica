@@ -20,7 +20,8 @@ class EditarHorario extends Component {
                 IdHorario: 0,
                 Dia: '',
                 HoraInicial: '',
-                HoraFinal: ''
+                HoraFinal: '',
+                FraseDia: ''
             },
             dias: [
                 'Domingo',
@@ -90,13 +91,16 @@ class EditarHorario extends Component {
          } = this.state;
 
         if (!horario.Dia) {
-            this.props.showMessage('Debes ingresar un Dia.', true, 'Información');
+            this.props.showMessage('Debes ingresar un nombre del día.', true, 'Información');
             return;
         } else if (!horario.HoraInicial) {
             this.props.showMessage('Debes ingresar una Hora Inicial.', true, 'Información');
             return;
         } else if (!horario.HoraFinal) {
             this.props.showMessage('Debes ingresar una Hora Final.', true, 'Información');
+            return;
+        } else if (!horario.FraseDia) {
+            this.props.showMessage('Debes ingresar una frase para el día.', true, 'Información');
             return;
         }
 
@@ -142,6 +146,11 @@ class EditarHorario extends Component {
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
                                 <Form.Control type="time" name="HoraFinal" value={this.state.horario.HoraFinal} className="pz-input" onChange={this.InputChange} placeholder="Hora Final" />
+                            </Form.Group>
+                        </Form.Row>
+                        <Form.Row sm={10}>
+                            <Form.Group as={Col} >
+                                <Form.Control as="textarea" rows="3" name="FraseDia" value={this.state.horario.FraseDia} className="pz-input" onChange={this.InputChange} placeholder="Frase" />
                             </Form.Group>
                         </Form.Row>
 

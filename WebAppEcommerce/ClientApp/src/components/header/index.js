@@ -3,11 +3,9 @@ import './styles.scss';
 import { connect } from 'react-redux';
 import { LateralBarActions } from '.././lateral_bar/actions';
 import MenuIcon from '@material-ui/icons/Menu';
-import PersonIcon from '@material-ui/icons/Person';
 import { horarioActions } from '../horario/actions';
 import { withRouter } from "react-router-dom";
 import Logo from '../../imagenes/pagina/logoEpica.png';
-import iconMenu from '../../imagenes/pagina/pizza-box-menu.png';
 import { Link } from "react-router-dom";
 import { loader } from '../helpers/loader';
 
@@ -211,7 +209,7 @@ class Header extends Component {
                     this.props.horario_rango === 'false' ?
                         !this.verificar?
                         <div className="marquee">
-                            <p>El Horario de hoy {verificar.dia} es desde las {verificar.hora_inicio} hasta las {verificar.hora_final}</p>
+                            <p>El Horario de hoy {verificar.dia} es de {verificar.hora_inicio} a {verificar.hora_final}</p>
                             </div>
                             :
                             ""

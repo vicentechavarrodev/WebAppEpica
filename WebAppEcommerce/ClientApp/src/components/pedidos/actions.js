@@ -166,7 +166,7 @@ function seleccionar_pedido(id_pedido_seleccionado) {
 
 }
 
-function enviar_pedido(pedido,context) {
+function enviar_pedido(pedido,frase,nombre,context) {
 
     return async dispatch => {
         await ServicesHelper.enviar_pedido(pedido)
@@ -178,7 +178,7 @@ function enviar_pedido(pedido,context) {
                         if (response.Result !== null) {
 
                             dispatch(success(true));
-                            dispatch(alertActions.showMessage(response.Message, true, 'Gracias'));
+                            dispatch(alertActions.showMessage(`Hola ${nombre} 😊,`  + frase, true, '¡Gracias por preferirnos!'));
                             context.props.ver_car(false);
                           
                             context.props.limpiar_pedidos([])

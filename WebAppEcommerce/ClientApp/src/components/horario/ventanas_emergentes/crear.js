@@ -26,7 +26,8 @@ class CrearHorario extends Component {
                 IdHorario: 0,
                 Dia: '',
                 HoraInicial: new Date(),
-                HoraFinal: new Date()
+                HoraFinal: new Date(),
+                FraseDia:''
             },
             dias: [
                 'Domingo',
@@ -94,7 +95,7 @@ class CrearHorario extends Component {
         } = this.state;
       
         if (!horario.Dia) {
-            this.props.showMessage('Debes ingresar un Dia.', true, 'Información');
+            this.props.showMessage('Debes ingresar un nombre del día.', true, 'Información');
             return;
         } else if (!horario.HoraInicial) {
             this.props.showMessage('Debes ingresar una Hora Inicial.', true, 'Información');
@@ -102,7 +103,10 @@ class CrearHorario extends Component {
         } else if (!horario.HoraFinal) {
             this.props.showMessage('Debes ingresar una Hora Final.', true, 'Información');
             return;
-        } 
+        } else if (!horario.FraseDia) {
+            this.props.showMessage('Debes ingresar una frase para el día.', true, 'Información');
+            return;
+        }
 
  
         loader.show();
@@ -151,6 +155,13 @@ class CrearHorario extends Component {
                                 <Form.Control type="time" name="HoraFinal"  className="pz-input" onChange={this.InputChange} placeholder="Hora Final" />
                             </Form.Group>
                         </Form.Row>
+                        <Form.Row sm={10}>
+                            <Form.Group as={Col} >
+                                <Form.Control as="textarea" rows="3" name="FraseDia" className="pz-input" onChange={this.InputChange} placeholder="Frase" />
+                            </Form.Group>
+                        </Form.Row>
+
+            
 
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
