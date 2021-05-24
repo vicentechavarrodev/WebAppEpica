@@ -162,13 +162,13 @@ class Pagina extends Component {
                                          <div className="row align-items-start">
                                              <div className="col-lg-3 col-profile">
                                                  <div className="column-image-profile">
-                                                     <img alt className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/15/ab/fb/57/jaantodesign.jpg"></img>
+                                                     <img alt="image-profile" className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/15/ab/fb/57/jaantodesign.jpg"></img>
                                                  </div>
                                                  <p className="column-name-profile">Jaantodesign</p>
                                              </div>
                                              <div className="col-lg-9 col-name">
                                                  <p className="card-text">"Deliciosa la pizza, excelente la atención, la música y el ambiente es toda una experiencia, muy recomendado"</p>
-                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" class="btn btn-comment">
+                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" className="btn btn-comment">
                                                      <img className="logo-tripadvisor" src={tripadvisor} alt="Logo de tripadvisor" />
                                                      Ver Mas</a>
                                              </div>
@@ -186,13 +186,13 @@ class Pagina extends Component {
                                          <div className="row align-items-start">
                                              <div className="col-lg-3 col-profile">
                                                  <div className="column-image-profile">
-                                                     <img className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/f3/7c/default-avatar-2020-29.jpg"></img>
+                                                     <img alt="image-profile" className="image-profile" src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/f3/7c/default-avatar-2020-29.jpg"></img>
                                                  </div>
                                                  <p className="column-name-profile">Valentina M</p>
                                              </div>
                                              <div className="col-lg-9 col-name">
                                                  <p className="card-text">"Sabores deliciosos y gran variedad. El lugar es pequeño pero agradable. Vale la pena conocer y degustar"</p>
-                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" class="btn btn-comment">
+                                                 <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" className="btn btn-comment">
                                                      <img className="logo-tripadvisor" src={tripadvisor} alt="Logo de tripadvisor" />
                                                       Ver Mas
                                                  </a>
