@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { LateralBarActions } from '.././lateral_bar/actions';
 import { productoActions } from '../productos/actions';
 import { withRouter } from "react-router-dom";
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
 class Atras extends Component {
@@ -32,7 +33,7 @@ class Atras extends Component {
           
                 <div className="contain-atras" id="contain-atras">
                     <a onClick={this.back}>
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    <i><ChevronLeftIcon/></i>
                     </a>
                 </div>
          

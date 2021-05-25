@@ -21,16 +21,18 @@ $shade-color: rgba(0, 0, 0, 0.24);
     font-size: 25px;
     height: 100%;
 }
+.contain-atras .MuiSvgIcon-root{
+    font-size:40px;
+}
 
 
 
-    @media (max-width:760px) {
-        .contain-atras {
-            width: 50px;
-            height: 40px;
-
-        }
+@media (max-width:760px) {
+    .contain-atras {
+        width: 50px;
+        height: 40px;
     }
+}
     @media (max-width:580px){
         .contain-atras {
             width: 60px;

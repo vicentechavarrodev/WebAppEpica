@@ -294,7 +294,7 @@ class ProductoModal extends Component {
 
         const Agregar = async (event) => {
 
-            if (this.props.horario_rango === 'false') {
+            if (this.props.horario_rango === 'false' || this.props.horario_rango === 'dia') {
                return
             }
                       

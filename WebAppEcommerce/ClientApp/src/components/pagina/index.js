@@ -18,6 +18,7 @@ import Metatags from '../helpers/metatags';
 import slide1 from '../../imagenes/pagina/pizzas_neiva01.gif';
 import slide2 from '../../imagenes/pagina/pizzas_neiva02.gif';
 import slide3 from '../../imagenes/pagina/pizzas_neiva03.gif';
+import tripadvisor from '../../imagenes/generales/logo_tripadvisor.png';
 
 
 

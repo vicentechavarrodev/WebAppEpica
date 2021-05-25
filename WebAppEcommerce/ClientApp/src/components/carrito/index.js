@@ -6,6 +6,7 @@ import CarModal from '../pagina/car_modal';
 import { productoActions } from '../productos/actions';
 import { withRouter } from "react-router-dom";
 import { sliceElements } from '@syncfusion/ej2-react-grids';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 class Carrito extends Component {
 
@@ -59,7 +60,7 @@ class Carrito extends Component {
             }
             <div className="contain-arriba" id="contain-arriba">
                 <a onClick={this.arriba}>
-                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    <i><ExpandLessIcon/></i>
                 </a>
             </div>
       

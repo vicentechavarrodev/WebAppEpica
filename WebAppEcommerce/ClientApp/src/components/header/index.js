@@ -122,14 +122,17 @@ class Header extends Component {
                         hora_final: hf
                     }
                 })
-               if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
-                   this.props.ver_rango('true');
-                  
+                if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
+                    this.props.ver_rango('true');
+
 
                 } else {
                     this.props.ver_rango('false');
                 }
+            } else {
+                this.props.ver_rango('dia');
             }
+
         },this
 
         );
@@ -141,7 +144,7 @@ class Header extends Component {
         loader.hide();
         await this.props.obtener_horarios();
         this.validarRango();
-       
+        console.log(this.props.horario_rango);
         
 
     }
@@ -208,13 +211,19 @@ class Header extends Component {
                 {this.props.visiblePagina === 'true' ?
                     this.props.horario_rango === 'false' ?
                         !this.verificar?
-                        <div className="marquee">
+                            <div className="marquee">
+
                             <p>El Horario de hoy {verificar.dia} es de {verificar.hora_inicio} a {verificar.hora_final}</p>
-                            </div>
+                        </div>
                             :
                             ""
                         :
-                        ""
+                        this.props.horario_rango === 'dia' ?
+                            <div className="marquee">
+                                <p>No tenemos servicio el dia de hoy, te esperamos pronto!</p>
+                            </div>
+                            :
+                            ""
                     :
                     ""
                 }
