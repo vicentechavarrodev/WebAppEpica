@@ -18,6 +18,7 @@ import Novedades from '../pagina/novedades';
 import Compania from '../pagina/compania';
 import Pedidos from '../pedidos/index';
 import Horarios from '../horario/index';
+import Cards from '../card/index';
 
 
 const AppRoutes = () =>
@@ -40,6 +41,7 @@ const AppRoutes = () =>
                     <PrivateRoute component={Pedidos} path="/pedidos" exact />
                     <PrivateRoute component={Banners} path="/banners" exact />
                     <PrivateRoute component={Horarios} path="/horarios" exact />
+                    <PrivateRoute component={Cards} path="/cards" exact />
                 </Ventana>
 
                        

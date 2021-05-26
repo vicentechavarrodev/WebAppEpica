@@ -54,7 +54,7 @@ class Banners extends Component {
         document.getElementsByClassName("e-search")[0].getElementsByClassName("e-input")[0].setAttribute("placeholder", "Buscar por  Nombre ")
     }
 
-    MenuOptionClick(e) {
+   async MenuOptionClick(e) {
         if (e.currentTarget.id === "btnNuevo") {
 
             this.props.ver_crear(true);
@@ -72,7 +72,7 @@ class Banners extends Component {
         else if (e.currentTarget.id === "btnEliminar") {
             loader.show();
             this.props.eliminar_banner(this.props.id_banner_seleccionado, this);
-            this.props.obtener_banners();
+            await this.props.obtener_banners();
         }
     }
 

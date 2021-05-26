@@ -15,6 +15,7 @@ export const horarioActions = {
     ver_editar,
     editar_horario,
     horario_seleccionado,
+    eliminar_horario,
     ver_rango
     
 
@@ -240,6 +241,47 @@ function editar_horario(horario, context) {
     };
 
     function success(horario_actualizado) { return { type: horarioConstants.EDITAR_HORARIO, horario_actualizado }; }
+}
+    function eliminar_horario(id, context) {
+        return dispatch => {
+
+
+            ServicesHelper.eliminar_horario(id)
+                .then(
+                    response => {
+
+                        if (response.IsSuccess) {
+                            loader.hide();
+                            if (response.Result !== null) {
+
+                                dispatch(success(true));
+                                dispatch(alertActions.showMessage(response.Message, true, 'Hecho'));
+                                context.props.obtener_horarios();
+
+
+                            } else {
+                                loader.hide();
+                                dispatch(success(false));
+                                dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                            }
+
+
+                        } else {
+                            loader.hide();
+                            dispatch(success(false));
+                            dispatch(alertActions.showMessage(response.Message, true, 'Ups'));
+                        }
+                    },
+                    error => {
+                        loader.hide();
+                        dispatch(success(false));
+                        dispatch(alertActions.showMessage(error.toString(), true, 'Ups'));
+                    }
+                );
+        };
+
+
+    function success(horario_eliminado) { return { type: horarioConstants.ELIMINAR_HORARIO, horario_eliminado }; }
 
 
 }

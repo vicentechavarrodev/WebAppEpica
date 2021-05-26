@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
-import { horarioActions } from './actions';
+import { cardActions } from './actions';
 import { loader } from '../helpers/loader';
 import { alertActions } from '../alerts_message/actions';
 import { ColumnDirective, ColumnsDirective, GridComponent, Toolbar, Inject, Search } from '@syncfusion/ej2-react-grids';
@@ -16,17 +16,19 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 
 
-class Horario extends Component {
+class Cards extends Component {
 
-    grid = React.createRef();
+      grid = React.createRef();
 
     constructor(props) {
         super(props);
-
+        
         this.searchOptions = {
-            fields: ['Dia'],
+            fields: ['Titulo'],
             operator: 'contains'
         };
+
+       
 
         this.toolbarOptions = ['Search'];
         this.rowSelected = this.rowSelected.bind(this);
@@ -34,42 +36,45 @@ class Horario extends Component {
         this.filterTemplate = this.filterTemplate.bind(this);
         this.MenuOptionClick = this.MenuOptionClick.bind(this);
 
+        
 
+        
     }
 
+ 
 
-
-    componentDidMount() {
+    async componentDidMount() {
 
         loader.hide();
-        this.props.obtener_horarios();
-     
+        await this.props.obtener_cards();
+        console.log(this.props.obtener_cards());
 
+                  
     }
 
     created(args) {
         document.getElementsByClassName("e-search")[0].getElementsByClassName("e-input")[0].setAttribute("placeholder", "Buscar por  Nombre ")
-    }
+    } 
 
-    async MenuOptionClick(e) {
+    MenuOptionClick(e) {
         if (e.currentTarget.id === "btnNuevo") {
 
             this.props.ver_crear(true);
 
         } else if (e.currentTarget.id === "btnEditar") {
-            if (this.props.id_horario_seleccionado !== 0) {
-               this.props.ver_editar(true);
+            if (this.props.id_card_seleccionada !== 0) {
+                this.props.ver_editar(true);
             } else {
                 this.props.showMessage('Debe seleccionar un item de la rejilla.', true, 'Información');
             }
         } else if (e.currentTarget.id === "btnActualizar") {
             loader.show();
-            this.props.obtener_horarios();
+            this.props.obtener_cards();
         }
         else if (e.currentTarget.id === "btnEliminar") {
             loader.show();
-            this.props.eliminar_horario(this.props.id_horario_seleccionado, this);
-            await this.props.obtener_horarios();
+            this.props.eliminar_card(this.props.id_card_seleccionada, this);
+            this.props.obtener_cards();
         }
     }
 
@@ -77,63 +82,63 @@ class Horario extends Component {
         this.grid.current.clearFiltering();
     }
 
-    rowSelected(e) {
+     rowSelected(e) {
         if (this.grid) {
-            let horarios = this.grid.current.getSelectedRecords();
-            this.props.horario_seleccionado(horarios[0].IdHorario);
+            let card = this.grid.current.getSelectedRecords();
+            this.props.card_seleccionada(card[0].IdCard);
         }
     }
 
     rowDeselected(e) {
         if (this.grid) {
-            this.props.horario_seleccionado(0);
+            this.props.card_seleccionada(0);
         }
     }
 
-    filterTemplate() {
+     filterTemplate() {
 
-        return (<ButtonComponent onClick={this.clearFilter.bind(this)} ></ButtonComponent>);
+         return (<ButtonComponent onClick={this.clearFilter.bind(this)} ></ButtonComponent>);
     }
-
+    
 
     render() {
-        const { horarios, mostrar_crear, mostrar_editar } = this.props;
-
-
+        const { cards, mostrar_crear, mostrar_editar} = this.props;
+       
+       
         return (
             <div>
                 <nav id="nav" className="nav-form navbar bg-light ">
-                    <div className="row col-12" >
-
+                        <div className="row col-12" >
+                           
                         <div className=" col-sm-12 col-md-5 col-lg-7 d-flex justify-content-center align-items-center" >
-                            <h3>Horarios</h3>
-                        </div>
+                            <h3>Cards</h3>
+                                </div>
 
                         <div className=" col-sm-12 col-md-7 col-lg-5 d-flex justify-content-end" >
-                            <ul >
+                                <ul >
                                 <li>
                                     <button id="btnNuevo" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
                                         <div>
-                                            <AddIcon />
+                                            <AddIcon  />
                                         </div>
-                                    </button>
-                                </li>
-                                <li >
+                                        </button>
+                                    </li>
+                                    <li >
                                     <button id="btnEditar" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
-
+                                      
                                         <div>
                                             <EditIcon />
                                         </div>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button id="btnActualizar" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
-
+                                        </button>
+                                    </li>
+                                    <li>
+                                    <button id="btnActualizar" onClick={this.MenuOptionClick}  className="btn btn-3d-style btn-metro-style-pz btn-block">
+                                       
                                         <div>
                                             <UpdateIcon />
                                         </div>
-
-                                    </button>
+                                           
+                                        </button>
                                 </li>
                                 <li >
                                     <button id="btnEliminar" onClick={this.MenuOptionClick} className="btn btn-3d-style btn-metro-style-pz btn-block">
@@ -144,33 +149,32 @@ class Horario extends Component {
                                     </button>
                                 </li>
 
-                            </ul>
-                        </div>
+                                </ul>
+                                </div>
 
-
+                           
                     </div>
-
-                </nav>
+              
+            </nav>
 
                 <div className='wrap-form table-responsive container-fluid'>
-                    <GridComponent dataSource={horarios} ref={this.grid} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
+                    <GridComponent dataSource={cards} ref={this.grid} rowDeselected={this.rowDeselected} rowSelected={this.rowSelected} toolbar={this.toolbarOptions} searchSettings={this.searchOptions} created={this.created.bind(this)} >
                         <ColumnsDirective>
-                            <ColumnDirective field='Dia' width='200' headerText='Dias' />
-                            <ColumnDirective field='HoraInicial' type="datetime" format='HH:mm:ss' width='200' headerText='Hora Inicial' />
-                            <ColumnDirective field='HoraFinal' type="datetime" format='HH:mm:ss' width='200' headerText='Hora Final' />
+                            <ColumnDirective field='Titulo' width='200' headerText='Titulos' />
+                     
                         </ColumnsDirective>
                         <Inject services={[Search, Toolbar]} />
                     </GridComponent>
                 </div>
-                {mostrar_crear ?
+                    {mostrar_crear ?
                     <Crear
                         show={mostrar_crear}
                         onHide={() => this.props.ver_crear(false)}
-                    /> : " "
-
+                    />: " "
+                        
                 }
 
-                {mostrar_editar ?
+                {mostrar_editar  ?
                     <Editar
                         show={mostrar_editar}
                         onHide={() => this.props.ver_editar(false)}
@@ -184,19 +188,19 @@ class Horario extends Component {
 
 
 function mapStateToProps(state) {
-    const { horarios, mostrar_crear, mostrar_editar, id_horario_seleccionado, horario_eliminado } = state.horarioReducer;
-    return { horarios, mostrar_crear, mostrar_editar, id_horario_seleccionado, horario_eliminado };
+    const { cards, mostrar_crear, mostrar_editar, id_card_seleccionada, card_eliminada } = state.cardReducer;
+    return { cards, mostrar_crear, mostrar_editar, id_card_seleccionada, card_eliminada };
 }
 
 
 const mapDispatchToProps = {
     showMessage: alertActions.showMessage,
-    obtener_horarios: horarioActions.obtener_horarios,
-    ver_crear: horarioActions.ver_crear,
-    ver_editar: horarioActions.ver_editar,
-    horario_seleccionado: horarioActions.horario_seleccionado,
-    eliminar_horario: horarioActions.eliminar_horario
+    obtener_cards: cardActions.obtener_cards,
+    ver_crear: cardActions.ver_crear,
+    ver_editar: cardActions.ver_editar,
+    card_seleccionada: cardActions.card_seleccionada,
+    eliminar_card: cardActions.eliminar_card
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Horario));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cards));
