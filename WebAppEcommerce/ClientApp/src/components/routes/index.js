@@ -26,10 +26,10 @@ const AppRoutes = () =>
             <App>
             <Switch>
                 <PublicRoute restricted={true} component={Login} path="/login" exact />
-                <PublicRoute component={Pagina} path="/pagina" exact />
-                <PublicRoute component={Novedades} path="/novedades" exact />
-                <PublicRoute component={Compania} path="/compania" exact />
-                <PublicRoute component={PideLinea} path="/pideLinea" exact />
+                <PublicRoute component={Pagina} path="/pizza-neiva-domicilio" exact />
+                <PublicRoute component={Novedades} path="/nove-pizza-italiana" exact />
+                <PublicRoute component={Compania} path="/pizza-de-hornos" exact />
+                <PublicRoute component={PideLinea} path="/pizza-artesanal-neiva" exact />
 
                 <Ventana>
                     <PrivateRoute component={Usuarios} path="/usuarios" exact />

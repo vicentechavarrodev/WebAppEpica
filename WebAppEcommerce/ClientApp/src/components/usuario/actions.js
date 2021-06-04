@@ -246,7 +246,7 @@ function login(codigo, contrasena, history) {
                         if (response.Result !== null) {
                            
                             dispatch(success(response.Result));
-                            history.push('/pagina');
+                            history.push('/pizza-neiva-domicilio');
 
                         } else {
                             loader.hide();
@@ -275,7 +275,7 @@ function login(codigo, contrasena, history) {
 function logout(history) {
     return dispatch => {
         localStorage.removeItem('usuario');
-        history.push('/pagina');
+        history.push('/pizza-neiva-domicilio');
         success();
     };
 

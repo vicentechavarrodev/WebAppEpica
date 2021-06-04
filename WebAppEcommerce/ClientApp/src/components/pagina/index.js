@@ -18,7 +18,7 @@ import Metatags from '../helpers/metatags';
 import slide1 from '../../imagenes/pagina/pizzas_neiva01.gif';
 import slide2 from '../../imagenes/pagina/pizzas_neiva02.gif';
 import slide3 from '../../imagenes/pagina/pizzas_neiva03.gif';
-
+import tripadvisor from '../../imagenes/generales/logo_tripadvisor.png';
 
 
 class Pagina extends Component {
@@ -43,7 +43,7 @@ class Pagina extends Component {
        
          return (
              <div data-spy="scroll" data-target="#navbar" data-offset="57">
-                 <Metatags title="Épica - Pizza Artesanal" description="La mejor y mas deliciosa pizza en Neiva ,y a domicilio ,artesanal hecha en horno de barro ,con variedad y tradición  italiana. Pide aquí y disfruta en casa!" />
+                 <Metatags title="⭐ Épica - Pizza Artesanal 【 Pide Aquí ☎】" description="¡✓ La mejor y más deliciosa pizza en Neiva, y a domicilio, hecha en horno de barro, con variedad y tradición italiana!" />
             <Header visiblePagina="true" />
             
                   <section id="main">
@@ -92,7 +92,7 @@ class Pagina extends Component {
                         <div className="col  text-center text-uppercase pt-2 pb-4">
                             <h6>EMPIEZA TU PEDIDO</h6>
                             <div className="icons-pedido">
-                                <Link to="/pideLinea" className="btn btn-default btn-3d-style  btn-block" >
+                                 <Link to="/pizza-artesanal-neiva" className="btn btn-default btn-3d-style  btn-block" >
                                     <span className="element-hide"><AddIcon/></span>
                                      <span className="hidde-element font-weight-bold"> Pedir ahora</span>
                                    
@@ -107,7 +107,7 @@ class Pagina extends Component {
                             <div className="card ">
                                  <img className="card-img-top" src={slide2} alt="Pizzas en Huila" />
                                 <div className="card-body">
-                                     <h5 className="card-title text-center">Cambia de ambiente y tomate un descanso  &#128522;</h5>
+                                     <h5 className="card-title text-center">Cambia de ambiente y tomate un descanso </h5>
                                      <p className="card-text">Hay un lugar ambientado , tradicional y fresco esperando por ti , para que t&uacute; y ese perfil social se nutran de momentos</p>
                                     </div>
                              </div>
@@ -116,7 +116,7 @@ class Pagina extends Component {
                             <div className="card ">
                                  <img className="card-img-top" src={slide3} alt="Pizza en Neiva"/>
                                 <div className="card-body">
-                                     <h5 className="card-title text-center">Pide ahora y prueba nuestro  servicio &#x23f0;</h5>
+                                     <h5 className="card-title text-center">Pide ahora y prueba nuestro  servicio </h5>
                                      <p className="card-text">Si estas c&oacute;modo en tu casa y existe un ambiente de pizza, pide ahora y, deja que  nuestros productos te acompañen .</p>
                                         </div>
                                    </div>
@@ -125,7 +125,7 @@ class Pagina extends Component {
                             <div className="card ">
                                  <img className="card-img-top" src={slide1} alt="Pizza a domicilio"/>
                                 <div className="card-body">
-                                     <h5 className="card-title text-center">Somos lo que comemos, dicen por ah&iacute; &#128147;</h5>
+                                     <h5 className="card-title text-center">Somos lo que comemos, dicen por ah&iacute</h5>
                                      <p className="card-text">Nosotros preparamos nuestros productos con amor, as&iacute; que imagina lo feliz que te vas a ver despu&eacute;s de probarlos.</p>
                                             </div>
                                       </div>

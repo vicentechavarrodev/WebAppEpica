@@ -375,7 +375,7 @@ namespace Api.Controllers
             {
                 try
                 {
-                    string FileName = Guid.NewGuid().ToString() + ".png";
+                    string FileName = Guid.NewGuid().ToString() + ".webp";
                     var imagenGuardada = await FilesHelper.UploadPhotoAsync(ruta, files, FileName);
                     if (imagenGuardada)
                     {
@@ -468,7 +468,7 @@ namespace Api.Controllers
             {
                 try
                 {
-                    string FileName = Guid.NewGuid().ToString() + ".png";
+                    string FileName = Guid.NewGuid().ToString() + ".webp";
 
                     var imagenGuardada = await FilesHelper.UploadPhotoAsync(ruta, files, FileName);
                     var IdProducto = int.Parse(form["IdProducto"]);

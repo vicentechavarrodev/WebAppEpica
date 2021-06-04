@@ -5,7 +5,7 @@ import { LateralBarActions } from '.././lateral_bar/actions';
 import MenuIcon from '@material-ui/icons/Menu';
 import { horarioActions } from '../horario/actions';
 import { withRouter } from "react-router-dom";
-import Logo from '../../imagenes/pagina/logoEpica.png';
+import Logo from '../../imagenes/pagina/logoEpica.webp';
 import { Link } from "react-router-dom";
 import { loader } from '../helpers/loader';
 
@@ -162,7 +162,7 @@ class Header extends Component {
                         this.props.visiblePagina === "true" ?
                             <div className="nav-sm ml-lg-5">
                                 <Link to="/pagina" className="navbar-brand">
-                                    <img src={Logo} alt="Epica Logo"  />
+                                    <img src={Logo} alt="Epica Logo" width="100%" height="100%" />
                                 </Link>
 
                                 <button className="navbar-toggler" type="button" data-toggle="collapse" onClick={this.menuVisible} data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,13 +186,13 @@ class Header extends Component {
                           
                            <ul className="navbar-nav ml-auto">
                                 <li className="nav-item" id="novedades">
-                                    <Link to="/novedades" className="nav-link">Novedades</Link>
+                                    <Link to="/pizzerias-abiertas-hoy" className="nav-link">Novedades</Link>
                                 </li>
                                 <li className="nav-item" id='compania'>
-                                    <Link to="/compania" className="nav-link">Compañia</Link>
+                                    <Link to="/pizza-de-hornos" className="nav-link">Compañia</Link>
                                 </li>
                                 <li className="nav-item" id='pideLinea'>
-                                    <Link to="/pideLinea" className="nav-link last-link">Pide en Linea</Link>
+                                    <Link to="/pizza-artesanal-neiva" className="nav-link last-link">Pide en Linea</Link>
                                  </li>
                               
                             </ul>

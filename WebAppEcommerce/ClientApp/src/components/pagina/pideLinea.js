@@ -104,7 +104,7 @@ class PideLinea extends Component {
         return (
             <div data-spy="scroll" data-target="#navbar" data-offset="57">
 
-                <Metatags title="Pide en Linea" description="Pide  ahora  disfruta en tu casa" />
+                <Metatags title="Pide a Domicilio 👉" description="La mejor pizza italiana caliente y a domicilio en Neiva" />
 
 
                 <Header visiblePagina="true" />
@@ -131,11 +131,11 @@ class PideLinea extends Component {
                         <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
                             {this.props.productos_categoria.map((item) =>
                                 <div className="col-lg-4 col-sm-6 col-md-6 justify-card" key={item.IdProducto}>
-                                    <div className="card cards">
+                                    <div itemscope itemtype="http://schema.org/Product" className="card cards">
                                         <div class=" container-movil">
                                             <div class="row col-12">
                                                 <div class="col-4 image-movil">
-                                                    <img className="image-pizzas" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt="producto" />
+                                                    <img className="image-pizzas" itemprop="image" src={`${process.env.REACT_APP_API_URL}app-images/${item.UrlImagen}`} alt={item.Nombre} />
                                                 </div>
                                                 <div className="col-8 column-movil">
                                                    
@@ -154,7 +154,8 @@ class PideLinea extends Component {
                                         </div>
                                             <div className="container">
                                                 <div className="row">
-                                                    <div className="col-lg-6 col-price">
+                                                <div className="col-lg-6 col-price" itemprop="offers" itemscope
+                                                    itemtype="http://schema.org/Offer">
                                                         {!item.PrecioVariable ?
                                                             <p className="text-price">${item.Precio}</p>
                                                             :""
@@ -162,9 +163,10 @@ class PideLinea extends Component {
                                                     </div>
                                                   
                                                             {item.PrecioVariable ?
-                                                                <div className="col-lg-6 col-button">
-                                                                    <button type="button" className="btn btn-pidelinea" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
-                                                                <span>
+                                                    <div className="col-lg-6 col-button" >
+                                                        <button type="button" itemprop="offers" itemscope
+                                                            itemtype="http://schema.org/Offer" className="btn btn-pidelinea" id={item.IdProducto} onClick={this.AbrirModal} data-toggle="modal" data-target="#añadirModal">
+                                                            <span itemprop="price">
                                                                     <i className="fa fa-th-list mr-2"></i>
                                                                         Personalizar
                                                                  </span>

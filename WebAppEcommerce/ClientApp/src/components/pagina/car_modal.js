@@ -170,7 +170,7 @@ class Car_modal extends Component {
                   
                     <div className="tittle-car">
                         <h2>Tu pedido</h2>
-                        <a href="#"  className="btn button-movil" onClick={this.CloseCar}>
+                        <a  className="btn button-movil" onClick={this.CloseCar}>
                             <i className="fa fa-times"></i>
                         </a>
                     </div>

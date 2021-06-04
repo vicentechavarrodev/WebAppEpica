@@ -11,7 +11,7 @@ class VentanaPrincipal extends Component {
 
     componentDidMount() {
         if (localStorage.getItem("usuario") === null) {
-            this.props.history.push("/pagina");
+            this.props.history.push("/pizza-neiva-domicilio");
         }
        
        

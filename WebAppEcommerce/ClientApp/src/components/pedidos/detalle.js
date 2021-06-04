@@ -57,11 +57,11 @@ class Detalle extends Component {
 
     obtenerEstado(idEstado) {
         if (idEstado === 1) {
-            return "PENDIENTE"
+            return "*PENDIENTE*"
         } else if (idEstado === 2) {
-            return "RECIBIDO"
+            return "*RECIBIDO*"
         } else if (idEstado === 3) {
-            return "ENVIADO"
+            return "*ENVIADO*"
         }
     }
 

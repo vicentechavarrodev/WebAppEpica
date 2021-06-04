@@ -178,7 +178,7 @@ function enviar_pedido(pedido,frase,nombre,context) {
                         if (response.Result !== null) {
 
                             dispatch(success(true));
-                            dispatch(alertActions.showMessage(`Hola ${nombre} 😊,`  + frase, true, '¡Gracias por preferirnos!'));
+                            dispatch(alertActions.showMessage(`Hola ${nombre} 🤗, ` + frase, true, '¡Gracias por preferirnos👊!'));
                             context.props.ver_car(false);
                           
                             context.props.limpiar_pedidos([])

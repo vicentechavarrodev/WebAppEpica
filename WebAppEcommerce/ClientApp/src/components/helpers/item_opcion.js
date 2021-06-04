@@ -76,7 +76,7 @@ const OptionItemRdio = ({ opcion, index, CambioSeleccion, Deseleccionar }) => {
     var op = JSON.stringify(opcion)
    
     return (<div className="row-size" key={index}>
-        <div className="col-8 col-radio ml-0">
+        <div className={` ${opcion.Opcion.Precio === 0  ? "col-12" :"col-8"} col-radio ml-0  `}>
             <FormControlLabel key={index} value={op}  checked={CambioSeleccion(opcion)}
                 onClick={(e) => Deseleccionar(e, opcion)}
                 

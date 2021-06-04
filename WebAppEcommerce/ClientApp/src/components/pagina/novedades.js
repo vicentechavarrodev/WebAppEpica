@@ -10,7 +10,7 @@ import imageHeader1 from '../../imagenes/pagina/header1.jpg';
 import imageHeader2 from '../../imagenes/pagina/header2.jpg';
 import imageHeader3 from '../../imagenes/pagina/header3.jpg';
 import Atras from '../atras/index';
-
+import Metatags from '../helpers/metatags';
 
 
 
@@ -27,7 +27,9 @@ class Novedades extends Component {
     render() {
 
         return (
-            <body data-spy="scroll" data-target="#navbar" data-offset="57">
+            <div>
+                <Metatags title="Promociones 🤑🧐" description="Descubre nuestras ofertas y contenido interesante del mundo de las pizzas" />
+
                 <Header visiblePagina="true" />
                 <div className="row smart-order-novedades">
                     <div className="col   text-center text-uppercase pt-2 pb-4">
@@ -100,7 +102,7 @@ class Novedades extends Component {
                 <Atras />
 
                 <Footer />
-            </body>
+            </div>
 
 
         );

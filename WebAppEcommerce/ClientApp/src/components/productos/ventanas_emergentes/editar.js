@@ -110,7 +110,7 @@ class EditarProducto extends Component {
         let form = new FormData();
 
         const options = {
-            maxSizeMB: 1,
+            maxSizeMB: 0.33,
             maxWidthOrHeight: 1920,
             useWebWorker: true
         }

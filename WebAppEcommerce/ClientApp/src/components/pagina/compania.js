@@ -8,7 +8,7 @@ import { withRouter } from "react-router-dom";
 import Carrito from '../carrito/index';
 import imageHeader1 from '../../imagenes/pagina/header1.jpg';
 import Atras from '../atras/index';
-
+import Metatags from '../helpers/metatags';
 
 
 
@@ -23,7 +23,8 @@ class Compania extends Component {
 
     render() {
         return (
-            <body data-spy="scroll" data-target="#navbar" data-offset="57">
+            <div>
+                <Metatags title="Pizza Artesanal 🔥🤤" description="Ya abrimos hoy, deléitate con nuestros productos artesanales" />
                 <Header visiblePagina="true" />
                 <div className="row smart-order-novedades">
                     <div className="col   text-center text-uppercase pt-2 pb-4">
@@ -60,7 +61,7 @@ class Compania extends Component {
 
 
                 <Footer />
-            </body>
+            </div>
 
 
         );

@@ -6,7 +6,8 @@ import './styles.scss';
 import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
 import { Link } from "react-router-dom";
-import { loader } from '../helpers/loader';
+
+
 
 class Footer extends Component {
 
@@ -29,7 +30,7 @@ class Footer extends Component {
        
        await this.props.history.push({
             
-            pathname: '/pideLinea',
+           pathname: '/pizza-artesanal-neiva',
             Id_categoria_seleccionada: e.currentTarget.id,
         });
     
@@ -41,11 +42,12 @@ class Footer extends Component {
          
             <section id="footer" className="pt-md-5 border-top">
          
-                    <div className="row ml-lg-5 mr-0">
+                <div className="row ml-lg-5 mr-0">
+                  
                         <div className="col-lg-4 footer-section col-md pl-4 border-right">
                             <h5>Epica Pizzeria Artesanal</h5>
-                        <script async data-uid="ffad11d822" src="https://deft-inventor-1145.ck.page/ffad11d822/index.js"></script>
-                          
+                        <p>Pizza artesanal elaborada en horno de piedra, en un ambiente acogedor, con la mejor música y las mas frescas bebidas.</p>
+                       
                     </div>
                         <div className="col-lg-4 footer-categorias col-sm-6 col-md col-xs-12 border-right">
                             <ul className="list-unstyled text-small">
@@ -54,8 +56,8 @@ class Footer extends Component {
                                     <li className="li-footer" key={item.IdCategoria}>
                                         <button className="btn btn-link link-secondary" type="button" id={item.IdCategoria} onClick={this.abrirPideLinea}>{item.Nombre}</button></li>
                                  )}
-                              
-                                <li className="li-footer" id="login">
+
+                            <li className="li-footer" style={{ visibility: "hidden" }} id="login">
                                     <Link to="/login" className="btn btn-link link-secondary">Cuenta</Link>
                                 </li>
                             </ul>
@@ -66,13 +68,13 @@ class Footer extends Component {
                             <div className="container">
                                 <h5 className="text">Encuentranos</h5>
                                 <div className="row fo-icons pt-3">
-                                    <a className="link-secondary icons-social" href="#">
+                                <a target='_blank' className="link-secondary icons-social" href="https://www.facebook.com/epicapizza">
                                         <span className="fa fa-facebook"></span>
                                 </a>
-                                    <a className="link-secondary icons-social" href="#">
+                                <a target='_blank' className="link-secondary icons-social" href="https://www.instagram.com/epica_pizza_artesanal/">
                                         <span className="fa fa-instagram"></span>
                                 </a>
-                                    <a className="link-secondary icons-social" href="#">
+                                <a target='_blank' className="link-secondary icons-social" href="http://bit.ly/WhatsApp%C3%89picaPizzaArtesanal">
                                         <span className="fa fa-whatsapp"></span>
                                 </a>
                                     <div className="col-sm-12">
@@ -83,15 +85,18 @@ class Footer extends Component {
                                                 
                           </div>
                                         </div>
-                            </div>
+                                </div>
+                          
 
                         </div>
                     </div>
                        
                     </div>
+                  
+                </div>
 
-                    </div>
-</section>
+             
+            </section>
 
         );
     }
