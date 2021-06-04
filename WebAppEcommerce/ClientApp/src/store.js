@@ -7,6 +7,7 @@ import { categoriaReducer } from './components/categorias/reducers';
 import { pedidosReducer } from './components/pedidos/reducers';
 import { bannerReducer } from './components/banner/reducers';
 import { horarioReducer } from './components/horario/reducers';
+import { cardReducer } from './components/card/reducers';
 import { ventanaPrincipalReducer } from './components/ventana_principal/reducers';
 import { alerts } from './components/alerts_message/reducers';
 import thunkMiddleware from 'redux-thunk';
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     productoReducer,
     pedidosReducer,
     bannerReducer,
-    horarioReducer
+    horarioReducer,
+    cardReducer
 });
 
 

@@ -43,6 +43,11 @@ export function horarioReducer(state = initialState.horarios_state, action) {
                 ...state, horario_actualizado: action.horario_actualizado
 
             };
+        case horarioConstants.ELIMINAR_HORARIO:
+            return {
+
+                ...state, horario_eliminado: action.horario_eliminado
+            };
         case horarioConstants.HORARIO_SELECCIONADO:
             return {
 

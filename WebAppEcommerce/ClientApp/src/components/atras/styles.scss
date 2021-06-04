@@ -21,22 +21,24 @@ $shade-color: rgba(0, 0, 0, 0.24);
     font-size: 25px;
     height: 100%;
 }
+.contain-atras .MuiSvgIcon-root{
+    font-size:40px;
+}
 
 
 
-    @media (max-width:760px) {
-        .contain-atras {
-            width: 50px;
-            height: 40px;
-
-        }
+@media (max-width:760px) {
+    .contain-atras {
+        width: 50px;
+        height: 40px;
     }
+}
     @media (max-width:580px){
         .contain-atras {
             width: 60px;
             height: 60px;
             right: 167px;
-            top: 90vh;
+            top: 83vh;
             border-radius: 30px;
         }
     }

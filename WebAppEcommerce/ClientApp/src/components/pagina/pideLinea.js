@@ -48,7 +48,7 @@ class PideLinea extends Component {
             }
           
         }
-        if (this.props.horario_rango === 'false') {
+        if (this.props.horario_rango === 'false' || this.props.horario_rango === 'dia' ) {
             document.getElementById('album').style.marginTop = "180px";
             document.getElementById('contenido-menu').style.marginTop = "120px";
         }

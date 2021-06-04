@@ -70,7 +70,7 @@ namespace Models
 
         public DbSet<Banners> Banners { get; set; }
 
-
+        public DbSet<Cards> Cards { get; set; }
         public DbSet<Horarios> Horarios { get; set; }
     }
 }

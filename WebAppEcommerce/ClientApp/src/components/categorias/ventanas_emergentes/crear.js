@@ -70,7 +70,7 @@ class CrearCategoria extends Component {
                 >
                 <Modal.Header >
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Crear Usuario
+                        Crear Categoria
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

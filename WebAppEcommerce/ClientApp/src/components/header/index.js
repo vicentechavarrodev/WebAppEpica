@@ -98,7 +98,7 @@ class Header extends Component {
         let minutos = time.slice(14, -3);
         let hora = time.slice(11, -6);
         let horaFormat = (hora % 12) || 12 ;
-        return horaFormat + ":" + minutos + ((hora < 12 || hora === 24) ? " AM" : " PM") ;
+        return horaFormat + ":" + minutos + ((hora < 12 || hora === 24) ? "AM" : " PM") ;
     }
 
    
@@ -107,32 +107,50 @@ class Header extends Component {
         const obtencion = new Date();
         const { verificar } = this.state;
         const dia_semana = this.state.dias.find(element => element.id === this.state.verificar.dia);
-        this.props.horarios.forEach(element => {
-            if (dia_semana.dia === element.Dia) {
-                const hour = obtencion.getHours();
-                const minutes = obtencion.getMinutes();
-                const hora_actual = hour + ":" + minutes;
-                const hi = this.ConvertirFormato12h(element.HoraInicial);
-                const hf = this.ConvertirFormato12h(element.HoraFinal);
-                this.setState({
-                    verificar: {
-                        ...verificar,
-                        dia: dia_semana.dia,
-                        hora_inicio: hi,
-                        hora_final: hf
+        const verificar_dia = this.props.horarios.find(element => element.Dia === dia_semana.dia);
+        if (verificar_dia == undefined) {
+            this.props.ver_rango('dia');
+        } else {
+            this.props.horarios.forEach(element => {
+
+                if (dia_semana.dia === element.Dia) {
+                    const hour = obtencion.getHours();
+                    const minutes = obtencion.getMinutes();
+                    const hora_actual = hour + ":" + minutes;
+                    const hi = this.ConvertirFormato12h(element.HoraInicial);
+                    const hf = this.ConvertirFormato12h(element.HoraFinal);
+                    this.setState({
+                        verificar: {
+                            ...verificar,
+                            dia: dia_semana.dia,
+                            hora_inicio: hi,
+                            hora_final: hf
+                        }
+                    })
+                    if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
+                        this.props.ver_rango('true');
+                        return;
+
+                    } else {
+                        this.props.ver_rango('false');
+
                     }
-                })
-               if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
-                   this.props.ver_rango('true');
-                  
-
-                } else {
-                    this.props.ver_rango('false');
                 }
-            }
-        },this
 
-        );
+
+
+
+            }, this
+
+            );
+
+        }
+    
+     
+     
+        
+      
+      
         
     }
 
@@ -141,8 +159,8 @@ class Header extends Component {
         loader.hide();
         await this.props.obtener_horarios();
         this.validarRango();
-       
-        
+    
+            
 
     }
 
@@ -206,15 +224,25 @@ class Header extends Component {
           
                 </div>
                 {this.props.visiblePagina === 'true' ?
-                    this.props.horario_rango === 'false' ?
-                        !this.verificar?
-                        <div className="marquee">
+
+                   this.props.horario_rango === 'false' ?
+
+                        !this.verificar ?
+                            <div className="marquee">
+
                             <p>El Horario de hoy {verificar.dia} es de {verificar.hora_inicio} a {verificar.hora_final}</p>
                             </div>
                             :
                             ""
+
                         :
-                        ""
+                        this.props.horario_rango === 'dia' ?
+                            <div className="marquee">
+                                <p>No tenemos servicio el dia de hoy, te esperamos pronto!</p>
+                            </div>
+                            :
+                            ""
+                      
                     :
                     ""
                 }
