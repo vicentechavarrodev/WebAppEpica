@@ -14,7 +14,7 @@ import ModalOpciones from '../productos/productoModal';
 import Carrito from '../carrito/index';
 import Atras from '../atras/index';
 import { Helmet } from 'react-helmet';
-
+import { loader } from '../helpers/loader';
 import Metatags from '../helpers/metatags';
 
 
@@ -63,7 +63,8 @@ class PideLinea extends Component {
         this.props.productos_por_categoria(key);
         
     }
-   async AbrirModal(e) {
+    async AbrirModal(e) {
+        loader.show();
         await this.props.producto_seleccionado(e.currentTarget.id);
         this.props.ver_crear(true);
     }

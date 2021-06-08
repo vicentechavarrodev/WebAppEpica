@@ -56,17 +56,14 @@ $shade-color: rgba(0, 0, 0, 0.24);
     color: rgba(178, 14, 14, 0.89);
 }
 #cart-fixed {
-    position: absolute;
-    height: 100vh;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1031;
+    height: 100%;
     width: 400px;
     background-color: white;
     animation-name: slidein;
     animation-duration: 100s;
     font-size: 14px;
+    overflow: auto;
+  
 }
 .album{
     margin-top:120px;
@@ -75,11 +72,9 @@ $shade-color: rgba(0, 0, 0, 0.24);
 .content-pedido-static .form-control{
     font-size:1em;
 }
-.content-pedido-static{
-    position:absolute;
-    bottom:0;
-    background-color:white;
-}
+
+
+
 .col-car-pedido {
     display: flex;
     justify-content: center;
@@ -98,16 +93,17 @@ $shade-color: rgba(0, 0, 0, 0.24);
     height: 55px;
     font-weight: bold;
     margin-bottom: 10px;
-}
-.content-pedido{
     position:relative;
-    overflow-y:scroll;
-    height:41%;
+}
+.content-pedido {
+    position: relative;
+    overflow-y: scroll;
+    min-height: 200px;
 }
 .content-pedido-detalle {
     position: relative;
     overflow-y: scroll;
-    height: 200px;
+    height: 250px;
 }
 .col-amount-pedido, .col-description-pedido, .col-price-pedido {
     padding-right: 0px;
@@ -713,15 +709,14 @@ col-profile,.col-name{
     font-size: 35px;
 }
 .btn-comment {
-    background-color: #1ce49c;
-    color: black;
-    
-    
+    background-color: $primary-color;
+    color: #fff;
+    font-size:1.1rem
 }
 
 .btn-comment:hover {
-    color: black;
-  
+    color: #fff;
+    opacity:0.9;
 }
 
 

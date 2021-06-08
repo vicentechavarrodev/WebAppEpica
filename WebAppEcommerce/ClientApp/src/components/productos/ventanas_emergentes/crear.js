@@ -111,6 +111,7 @@ class CrearProducto extends Component {
     async FileSelectChange(e) {
         e.preventDefault();
         let form = new FormData();
+        loader.show();
 
         const options = {
             maxSizeMB: 0.33,
@@ -129,7 +130,8 @@ class CrearProducto extends Component {
                
           }
          reader.readAsDataURL(compressedFile);
-         form.append('Imagen', compressedFile);
+        form.append('Imagen', compressedFile);
+        loader.hide();
          this.setState({ file: form });
     }
 

@@ -502,182 +502,189 @@ html {
 
 
 
+.list-group-item  .btn {
+    background: #b3191f !important;
+    width: 100% !important;
+    text-decoration: none !important;
+    color: #ffffff !important;
+}
 
-/* ---------------------------------------------------
+.list-group-item .btn:hover {
+        opacity: 0.7
+    }
+    /* ---------------------------------------------------
      Customize Handle and Bar Switch 
 ----------------------------------------------------- */
+    .custom-switch {
+        width: 50px;
+        height: 24px;
+    }
+
+    .custom-switch .e-switch-handle {
+        width: 20px;
+        height: 16px;
+        margin-left: 5px;
+    }
+
+    .custom-switch .e-switch-inner,
+    .custom-switch .e-switch-handle {
+        border-radius: 0;
+    }
 
 
-.custom-switch {
-    width: 50px;
-    height: 24px;
-}
+    .e-switch-wrapper.handle-text {
+        width: 58px;
+        height: 24px;
+    }
 
-.custom-switch .e-switch-handle {
-    width: 20px;
-    height: 16px;
-    margin-left: 5px;
-}
+    .e-switch-wrapper.handle-text .e-switch-handle {
+        width: 26px;
+        height: 20px;
+        left: 2px;
+        background-color: #fff;
+    }
 
-.custom-switch .e-switch-inner,
-.custom-switch .e-switch-handle {
-    border-radius: 0;
-}
+    .e-switch-wrapper.handle-text .e-switch-inner,
+    .e-switch-wrapper.handle-text .e-switch-handle {
+        border-radius: 0;
+    }
 
+    .e-switch-wrapper.handle-text .e-switch-handle.e-switch-active {
+        left: 46px;
+    }
 
-.e-switch-wrapper.handle-text {
-    width: 58px;
-    height: 24px;
-}
+    .handle-text .e-switch-inner.e-switch-active,
+    .handle-text:hover .e-switch-inner.e-switch-active .e-switch-on {
+        background-color: $primary-color !important;
+        border-color: $primary-color !important;
+    }
 
-.e-switch-wrapper.handle-text .e-switch-handle {
-    width: 26px;
-    height: 20px;
-    left: 2px;
-    background-color: #fff;
-}
+    .handle-text .e-switch-inner,
+    .handle-text .e-switch-off {
+        background-color: $primary-color !important;
+        border-color: $primary-color !important;
+    }
 
-.e-switch-wrapper.handle-text .e-switch-inner,
-.e-switch-wrapper.handle-text .e-switch-handle {
-    border-radius: 0;
-}
+    .custom-switch .e-switch-handle .e-switch-active {
+        left: 42px;
+    }
 
-.e-switch-wrapper.handle-text .e-switch-handle.e-switch-active {
-    left: 46px;
-}
+    .e-switch-wrapper:hover .e-switch-handle.e-switch-active {
+        background-color: $primary-color !important;
+    }
 
-.handle-text .e-switch-inner.e-switch-active,
-.handle-text:hover .e-switch-inner.e-switch-active .e-switch-on {
-    background-color: $primary-color !important;
-    border-color: $primary-color !important;
-}
+    .e-switch-wrapper .e-switch-handle.e-switch-active {
+        background-color: $primary-color !important;
+        left: 100%;
+        margin-left: -24px;
+    }
 
-.handle-text .e-switch-inner,
-.handle-text .e-switch-off {
-    background-color: $primary-color !important;
-    border-color: $primary-color !important;
-}
+    .e-switch-wrapper .e-switch-on {
+        background-color: $primary-color !important;
+    }
 
-.custom-switch .e-switch-handle .e-switch-active {
-    left: 42px;
-}
-
-.e-switch-wrapper:hover .e-switch-handle.e-switch-active {
-    background-color: $primary-color !important;
-}
-
-.e-switch-wrapper .e-switch-handle.e-switch-active {
-    background-color: $primary-color !important;
-    left: 100%;
-    margin-left: -24px;
-}
-
-.e-switch-wrapper .e-switch-on {
-    background-color: $primary-color !important;
-}
-
-.switch-control > label {
-    padding-right: 10px;
-}
-
-
-/* ---------------------------------------------------
+    .switch-control > label {
+        padding-right: 10px;
+    }
+    /* ---------------------------------------------------
      show/hide elements
 ----------------------------------------------------- */
-
-.element-show{
-    display:block;
-}
-
-
-.element-hide {
-    display: none !important;
-}
-
-.sweet-alert  {
-    font-size: .8em !important;
-}
-
-
-@media (max-width: 760px) {
-
-    html {
-        font-size: 1.2rem;
+    .element-show {
+        display: block;
     }
 
-    .modal-content{
-        padding:5px;
-    }
-    #content {
-        margin-left: 0;
-    }
-
-    #content.active {
-        margin-left: 0;
-    }
-
-    #sidebarCollapse span {
-        display: none;
-    }
-
-    .btn-metro-style-pz {
-        width: 3em;
-        height: 3em;
-    }
-
-    .hidde-element {
-        display: none;
-    }
 
     .element-hide {
-        display: block !important;
+        display: none !important;
     }
 
-    .center-element {
-        justify-content: center;
-    }
-}
-#footer {
-    background-color:$black-color;
-    color: white;
-}
-
-
-
-@media (max-width: 960px) {
-
-
-    .btn-metro-style-pz {
-        width: 3em;
-        height: 3em;
-    }
-}
-@media (max-width:571px) {
-    body, .btn {
-        font-size: .7rem !important;
+    .sweet-alert {
+        font-size: .8em !important;
     }
 
-    .modal-content, .MuiTypography-body1 {
-        font-size: .62rem !important;
+
+    @media (max-width: 760px) {
+
+        html {
+            font-size: 1.2rem;
+        }
+
+        .modal-content {
+            padding: 5px;
+        }
+
+        #content {
+            margin-left: 0;
+        }
+
+        #content.active {
+            margin-left: 0;
+        }
+
+        #sidebarCollapse span {
+            display: none;
+        }
+
+        .btn-metro-style-pz {
+            width: 3em;
+            height: 3em;
+        }
+
+        .hidde-element {
+            display: none;
+        }
+
+        .element-hide {
+            display: block !important;
+        }
+
+        .center-element {
+            justify-content: center;
+        }
     }
 
-    .modal-content .MuiSvgIcon-root {
-        font-size: .7rem !important;
+    #footer {
+        background-color: $black-color;
+        color: white;
     }
 
-    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-        font-size: .6rem;
+
+
+    @media (max-width: 960px) {
+
+
+        .btn-metro-style-pz {
+            width: 3em;
+            height: 3em;
+        }
     }
 
-    .padding-modal-producto{
-        padding-left:0 !important;
-        padding-right:0!important;
-    }
-    .modal-dialog {
-        margin: 0rem;
-    }
+    @media (max-width:571px) {
+        body, .btn {
+            font-size: .7rem !important;
+        }
 
-}
+        .modal-content, .MuiTypography-body1 {
+            font-size: .62rem !important;
+        }
+
+        .modal-content .MuiSvgIcon-root {
+            font-size: .7rem !important;
+        }
+
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            font-size: .6rem;
+        }
+
+        .padding-modal-producto {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .modal-dialog {
+            margin: 0rem;
+        }
+    }
 
 
 

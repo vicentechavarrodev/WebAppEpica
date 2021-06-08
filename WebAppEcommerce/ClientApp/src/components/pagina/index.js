@@ -169,7 +169,7 @@ class Pagina extends Component {
                                              <div className="col-lg-9 col-name">
                                                  <p className="card-text">"Deliciosa la pizza, excelente la atención, la música y el ambiente es toda una experiencia, muy recomendado"</p>
                                                  <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" className="btn btn-comment">
-                                                     <img className="logo-tripadvisor" src={tripadvisor} alt="Logo de tripadvisor" />
+                                                     <i class="fa fa-tripadvisor p-1" aria-hidden="true"></i>
                                                      Ver Mas</a>
                                              </div>
                                          </div>
@@ -193,7 +193,7 @@ class Pagina extends Component {
                                              <div className="col-lg-9 col-name">
                                                  <p className="card-text">"Sabores deliciosos y gran variedad. El lugar es pequeño pero agradable. Vale la pena conocer y degustar"</p>
                                                  <a href="https://www.tripadvisor.co/ShowUserReviews-g1220269-d12996142-r659158311-Epica_Pizza_Artesanal-Neiva_Huila_Department.html" target="_blank" className="btn btn-comment">
-                                                     <img className="logo-tripadvisor" src={tripadvisor} alt="Logo de tripadvisor" />
+                                                     <i class="fa fa-tripadvisor p-1" aria-hidden="true"></i>
                                                       Ver Mas
                                                  </a>
                                              </div>

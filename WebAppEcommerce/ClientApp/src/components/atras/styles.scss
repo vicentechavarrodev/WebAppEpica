@@ -38,7 +38,8 @@ $shade-color: rgba(0, 0, 0, 0.24);
             width: 60px;
             height: 60px;
             right: 167px;
-            top: 83vh;
+            top: auto;
+            bottom:0;
             border-radius: 30px;
         }
     }

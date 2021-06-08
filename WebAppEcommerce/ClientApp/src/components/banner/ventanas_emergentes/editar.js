@@ -7,6 +7,7 @@ import { alertActions } from '../../alerts_message/actions';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import imageCompression from 'browser-image-compression';
 
+
 class EditarBanner extends Component {
 
     constructor(props) {
@@ -92,7 +93,7 @@ class EditarBanner extends Component {
     async FileSelectChange(e) {
         e.preventDefault();
         let form = new FormData();
-
+        loader.show();
         const options = {
             maxSizeMB: 1,
             maxWidthOrHeight: 1920,
@@ -111,6 +112,7 @@ class EditarBanner extends Component {
         }
         reader.readAsDataURL(compressedFile);
         form.append('Imagen', compressedFile);
+        loader.hide();
         this.setState({ file: form });
     }
 

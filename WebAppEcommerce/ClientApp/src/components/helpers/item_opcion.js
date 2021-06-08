@@ -2,7 +2,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Radio from '@material-ui/core/Radio';
-import { ListGroup, Col,Row } from 'react-bootstrap';
+import { ListGroup, Col, Row, Accordion, Button } from 'react-bootstrap';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import AddIcon from '@material-ui/icons/Add';
@@ -93,17 +93,24 @@ const OptionItemRdio = ({ opcion, index, CambioSeleccion, Deseleccionar }) => {
 }
 
 
-const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Deseleccionar, HandleIncreChange, cantidad, AgregarAdicion,defaultValue }) => {
+const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Deseleccionar, HandleIncreChange, cantidad, AgregarAdicion, defaultValue }) => {
 
 
- 
-
+    console.log(index)
+     index = index + 1;
     return (
+
         <ListGroup.Item id={`${opciones[0].ProductoTipoOpcion.IdTipoOpcion}-item-op`} key={opciones[0].ProductoTipoOpcion.IdTipoOpcion} className={`${opciones[0].ProductoTipoOpcion.MostrarInicio ? "" : "option-show"} padding-modal-producto `}>
+         
+          
             <div>
                 {opciones[0].ProductoTipoOpcion.IdTipoSeleccion === 1 ?
+                   
                     <div>
-                       <p>{opciones[0].ProductoTipoOpcion.Encabezado}</p>
+                        <Accordion.Toggle as={Button}  eventKey={index}>
+                            <p>  {opciones[0].ProductoTipoOpcion.Encabezado}</p> 
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey={index}>
                          <RadioGroup name={opciones[0].ProductoTipoOpcion.IdTipoOpcion} onChange={HandleRadioChange} >
                         {
                             opciones.map((opcion, i) => {
@@ -112,14 +119,17 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
                             })
                         }
                         </RadioGroup> 
-                        
+                        </Accordion.Collapse>
                         </div>: ""
                 }
 
                 {opciones[0].ProductoTipoOpcion.IdTipoSeleccion === 2 ?
                     
-                    <div className="p-1">
-                        <p className="m-3">{opciones[0].ProductoTipoOpcion.Encabezado}</p>
+                    <div >
+                        <Accordion.Toggle as={Button}  eventKey={index} >
+                            <p>  {opciones[0].ProductoTipoOpcion.Encabezado}</p> 
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey={index}>
                         <div name={opciones[0].ProductoTipoOpcion.IdTipoOpcion} >
                             {
                                 opciones.map((opcion, i) => {
@@ -173,7 +183,7 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
                                 })
                             }
                         </div>
-
+                        </Accordion.Collapse>
                     </div> : ""
                 }
 
@@ -187,7 +197,9 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
                     
 
                     
-        </ListGroup.Item>
+            </ListGroup.Item>
+
+
             
             )
 

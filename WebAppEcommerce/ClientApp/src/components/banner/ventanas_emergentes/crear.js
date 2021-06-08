@@ -95,8 +95,9 @@ class CrearBanner extends Component {
         e.preventDefault();
         let form = new FormData();
 
+        loader.show();
         const options = {
-            maxSizeMB: 1,
+            maxSizeMB: 0.33,
             maxWidthOrHeight: 1920,
             useWebWorker: true
         }
@@ -113,6 +114,7 @@ class CrearBanner extends Component {
         }
         reader.readAsDataURL(compressedFile);
         form.append('Imagen', compressedFile);
+        loader.hide();
         this.setState({ file: form });
     }
 

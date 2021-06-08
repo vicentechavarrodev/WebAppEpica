@@ -68,7 +68,8 @@ class Car_modal extends Component {
               
     }
 
-    CloseCar() {
+    CloseCar(e) {
+        console.log(e.currentTarget)
         const btn = document.getElementById('btn-car');
         btn.style.display = 'inline';
         this.props.ver_car(false);
@@ -106,7 +107,7 @@ class Car_modal extends Component {
 
         );
 
-        console.log(dia)
+     
 
         await this.props.enviar_pedido(pedido, dia.FraseDia, pedido.Solicitante,this);
     }
@@ -163,9 +164,8 @@ class Car_modal extends Component {
 
         return (
 
-            <section id="cart-background">
-                <div className="font" onClick={this.CloseCar} >
-                </div>
+            <section id="cart-background" >
+                <div class="font" onClick={this.CloseCar}></div>
                 <div id="cart-fixed">
                   
                     <div className="tittle-car">

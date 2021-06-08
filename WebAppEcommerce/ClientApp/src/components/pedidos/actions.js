@@ -43,11 +43,14 @@ function obtener_pedidos(id,context) {
 
                        
 
-                        if (context.props.recibidos !== 0 && context.props.recibidos != null) {
+                        if (context.props.recibidos === 0 && recibidos.length > 0) {
+
+                            context.audioNotification()
+
+                        } else {
                             if (recibidos.length > context.props.recibidos) {
                                 context.audioNotification()
                             }
-
                         }
 
                         context.props.cambiar_estado_recibido(recibidos.length)
@@ -179,7 +182,7 @@ function enviar_pedido(pedido,frase,nombre,context) {
 
                             dispatch(success(true));
                             dispatch(alertActions.showMessage(`Hola ${nombre} 🤗, ` + frase, true, '¡Gracias por preferirnos👊!'));
-                            context.props.ver_car(false);
+                            context.CloseCar(false);
                           
                             context.props.limpiar_pedidos([])
                             context.props.asignar_cantidad_pedido(0);

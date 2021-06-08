@@ -6,12 +6,12 @@ import { withRouter } from "react-router-dom";
 import { categoriaActions } from '../categorias/actions';
 import { productoActions } from '../productos/actions';
 import { HorarioActions } from '../horario/actions';
-import { Modal, ListGroup} from 'react-bootstrap';
+import { Modal, ListGroup, Accordion} from 'react-bootstrap';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { opcionActions } from '../opciones/actions';
 import { Options } from '../helpers/item_opcion';
-
+import { loader } from '../helpers/loader';
 
 class ProductoModal extends Component {
 
@@ -32,6 +32,7 @@ class ProductoModal extends Component {
     }
 
     async componentDidMount() {
+        loader.show();
         await this.props.obtener_opciones_producto(this.props.id_producto_seleccionado, true, this);
        if (!this.props.opciones_producto.EsVariable) {
             this.setState({ total: this.props.opciones_producto.Precio})
@@ -516,12 +517,14 @@ class ProductoModal extends Component {
                             </div>
                             <div className="col-12 col-size  p-0 p-sm-0  scroll-content">
                                 {this.props.opciones_producto.VistaProductoOpcionesGroup != null && this.props.opciones_producto.VistaProductoOpcionesGroup.length > 0 ?
+
+                                    <Accordion defaultActiveKey="2">
                                     <ListGroup variant="flush" >
                                         {
                                          
                                             this.props.opciones_producto.VistaProductoOpcionesGroup.map(function (opciones, index, array) {                                             
                                                 RdbtnSelec(opciones);
-                                                return <Options.OptionItems opciones={opciones} AgregarAdicion={AgregarAdicion} HandleIncreChange={HandleIncreChange} index={index}  HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} Deseleccionar={Deseleccionar} />
+                                                return <Options.OptionItems opciones={opciones} index={index} AgregarAdicion={AgregarAdicion} HandleIncreChange={HandleIncreChange}   HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} Deseleccionar={Deseleccionar} />
 
                                             })
                                         
@@ -529,7 +532,8 @@ class ProductoModal extends Component {
 
 
 
-                                    </ListGroup>
+                                        </ListGroup>
+                                    </Accordion>
                                     : ""
 
                                 }

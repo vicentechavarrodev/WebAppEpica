@@ -27,7 +27,7 @@ class Pedidos extends Component {
             tabs: [
                 { name: 'Todos', id: 0 },
                 { name: 'Recibidos', id: 1 },
-                { name: 'Pendientes', id: 2 },
+                { name: 'Preparación', id: 2 },
                 { name: 'Enviados', id: 3},
             ],
            
