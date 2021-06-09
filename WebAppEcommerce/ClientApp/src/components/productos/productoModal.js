@@ -296,7 +296,8 @@ class ProductoModal extends Component {
         const Agregar = async (event) => {
 
             if (this.props.horario_rango === 'false' || this.props.horario_rango === 'dia') {
-               return
+               this.props.showMessage('Nuestro negocio esta cerrado en este momento', true, 'Información');
+                return;
             }
                       
             if (this.state.opcionesObligatorias.length > 0) {

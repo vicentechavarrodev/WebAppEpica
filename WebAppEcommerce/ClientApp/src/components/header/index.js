@@ -117,7 +117,7 @@ class Header extends Component {
                     const hour = obtencion.getHours();
                     const minutes = obtencion.getMinutes();
                     const hora_actual = hour + ":" + minutes;
-                    const hi = this.ConvertirFormato12h(element.HoraInicial);
+                    const hi =this.ConvertirFormato12h(element.HoraInicial);
                     const hf = this.ConvertirFormato12h(element.HoraFinal);
                     this.setState({
                         verificar: {
@@ -127,6 +127,9 @@ class Header extends Component {
                             hora_final: hf
                         }
                     })
+                    if (element.HoraFinal.slice(11, -6) == '00') {
+                         element.HoraFinal = "2021-06-08T24:00:00";
+                    }
                     if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
                         this.props.ver_rango('true');
                         return;

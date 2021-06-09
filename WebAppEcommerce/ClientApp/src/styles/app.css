@@ -101,7 +101,12 @@ a:focus {
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important; }
-
+input[type=time]::-webkit-datetime-edit-ampm-field {
+    display: none;
+}
+input::-webkit-datetime-edit-ampm-field[disabled] {
+   display:none;
+} 
 /* ---------------------------------------------------
     LOADER STYLE
 ----------------------------------------------------- */

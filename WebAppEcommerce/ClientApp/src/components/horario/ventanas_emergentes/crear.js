@@ -147,12 +147,12 @@ class CrearHorario extends Component {
 
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="time" id="HoraInicial" name="HoraInicial"  className="pz-input" onChange={this.InputChange} placeholder="Hora Inicial" />
+                                <Form.Control type="time" id="HoraInicial" pattern="[0-9]{2}:[0-9]{2}" name="HoraInicial"  onChange={this.InputChange} placeholder="Hora Inicial" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row sm={10}>
                             <Form.Group as={Col} >
-                                <Form.Control type="time" name="HoraFinal"  className="pz-input" onChange={this.InputChange} placeholder="Hora Final" />
+                                <Form.Control type="time" name="HoraFinal" pattern="[0-9]{2}:[0-9]{2}" onChange={this.InputChange} placeholder="Hora Final" />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row sm={10}>
