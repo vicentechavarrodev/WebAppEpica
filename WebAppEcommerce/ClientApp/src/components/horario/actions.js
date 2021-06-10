@@ -162,7 +162,7 @@ function crear_horario(horario, context) {
 
             .then(
                 response => {
-                    console.log(response);
+                   
                     if (response.IsSuccess) {
 
                         if (response.Result !== null) {

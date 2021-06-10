@@ -175,7 +175,7 @@ class DetalleProducto extends Component {
     ItemTipoOpcion(e) {
 
 
-        console.log(e.currentTarget.id);
+      
         if (e.currentTarget.name === "btnEditar") {
 
             this.props.ver_editar_tipo_opcion(true);
@@ -193,7 +193,7 @@ class DetalleProducto extends Component {
 
     ItemOpcion(e) {
 
-        console.log(e.currentTarget.id)
+      
       
         if (e.currentTarget.name === "btnEditar") {
             this.setState({ IdProductoOpcion: e.currentTarget.id })

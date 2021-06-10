@@ -47,7 +47,7 @@ class Cards extends Component {
 
         loader.hide();
         await this.props.obtener_cards();
-        console.log(this.props.obtener_cards());
+      
 
                   
     }

@@ -150,7 +150,7 @@ function crear_usuario(usuario, context) {
         ServicesHelper.crear_usuario(usuario)
             .then(
                 response => {
-                    console.log(response);
+                  
                     if (response.IsSuccess) {
 
                         if (response.Result !== null) {

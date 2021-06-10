@@ -65,6 +65,7 @@ const StyledRadio = (props) => {
             color="default"
             checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
             icon={<span className={classes.icon} />}
+
             {...props}
         />
     );
@@ -73,16 +74,20 @@ const StyledRadio = (props) => {
 
 
 const OptionItemRdio = ({ opcion, index, CambioSeleccion, Deseleccionar }) => {
+
+  
     var op = JSON.stringify(opcion)
-   
+
+    
+  
     return (<div className="row-size" key={index}>
         <div className={` ${opcion.Opcion.Precio === 0  ? "col-12" :"col-8"} col-radio ml-0  `}>
             <FormControlLabel key={index} value={op}  checked={CambioSeleccion(opcion)}
                 onClick={(e) => Deseleccionar(e, opcion)}
-                
                 control={<StyledRadio id={opcion.IdOpcion} />} label={opcion.Opcion.NombreAlias} />
         </div>
-        <div className="col-4 col-price-modal p-0">
+        <div  className="col-4 col-price-modal p-0">
+         
               {opcion.Opcion.Precio === 0 ?
                 "" : `$ ${opcion.Opcion.Precio}`
 
@@ -93,10 +98,8 @@ const OptionItemRdio = ({ opcion, index, CambioSeleccion, Deseleccionar }) => {
 }
 
 
-const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Deseleccionar, HandleIncreChange, cantidad, AgregarAdicion, defaultValue }) => {
-
-
-    console.log(index)
+const OptionItems = ({ opciones, context, index, HandleRadioChange, CambioSeleccion, Deseleccionar, HandleIncreChange, cantidad, AgregarAdicion, defaultValue }) => {
+  
      index = index + 1;
     return (
 
@@ -112,8 +115,16 @@ const OptionItems = ({ opciones, index, HandleRadioChange, CambioSeleccion, Dese
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={index}>
                          <RadioGroup name={opciones[0].ProductoTipoOpcion.IdTipoOpcion} onChange={HandleRadioChange} >
-                        {
-                            opciones.map((opcion, i) => {
+                                {
+                                 
+
+                                    opciones.map((opcion, i) => {
+                                        let op = context.state[opcion.IdOpcion];
+
+                                        if (op !== undefined && op !== false && op !== true) {
+                                           let objeto = JSON.parse(op);
+                                           return <OptionItemRdio opcion={objeto} CambioSeleccion={CambioSeleccion} index={i} key={i} Deseleccionar={Deseleccionar} />;
+                                        }
                                
                                 return <OptionItemRdio opcion={opcion}  CambioSeleccion={CambioSeleccion} index={i} key={i} Deseleccionar={Deseleccionar} />;
                             })

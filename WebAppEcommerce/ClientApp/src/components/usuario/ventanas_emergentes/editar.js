@@ -58,7 +58,7 @@ class EditarUsuario extends Component {
 
     InputChange(e) {
 
-        console.log(e.target);
+       
         const { name, value } = e.target;
         const { usuario } = this.state;
         this.setState({
@@ -70,11 +70,7 @@ class EditarUsuario extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //if (this.props.init_editar_usuario != nextProps.init_editar_usuario) {
-
-        //    this.setState({ usuario: nextProps.init_editar_usuario });
-        //    console.log(nextProps.init_editar_usuario);
-        //}
+       
 
     }
    

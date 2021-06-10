@@ -38,7 +38,7 @@ function enviar_pedido(pedido) {
         body: JSON.stringify(pedido)
     };
 
-    console.log(requestOptions.body)
+  
     return fetch(`${process.env.REACT_APP_API_URL}api/Pedidos/GrabarPedido`, requestOptions).then(handleResponse);
 
 }

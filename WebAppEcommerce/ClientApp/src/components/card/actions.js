@@ -118,7 +118,7 @@ function crear_card(card, context) {
         ServicesHelper.crear_card(card)
             .then(
                 response => {
-                    console.log(response);
+                   
                     if (response.IsSuccess) {
 
                         if (response.Result !== null) {
