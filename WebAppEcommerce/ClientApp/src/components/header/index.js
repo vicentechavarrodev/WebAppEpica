@@ -33,7 +33,7 @@ class Header extends Component {
                 },
                    {
                     id: 3,
-                    dia: 'Miercoles'
+                       dia: 'Miércoles'
                 },
                     {
                     id: 4,
@@ -108,6 +108,7 @@ class Header extends Component {
         const { verificar } = this.state;
         const dia_semana = this.state.dias.find(element => element.id === this.state.verificar.dia);
         const verificar_dia = this.props.horarios.find(element => element.Dia === dia_semana.dia);
+        console.log(this.props.horarios, dia_semana);
         if (verificar_dia == undefined) {
             this.props.ver_rango('dia');
         } else {
@@ -127,6 +128,7 @@ class Header extends Component {
                             hora_final: hf
                         }
                     })
+                                  
                     if (element.HoraFinal.slice(11, -6) == '00') {
                          element.HoraFinal = "2021-06-08T24:00:00";
                     }
@@ -146,8 +148,11 @@ class Header extends Component {
             }, this
 
             );
+           
+            
 
         }
+        console.log(this.props.horario_rango);
     
      
      
@@ -228,26 +233,34 @@ class Header extends Component {
                 </div>
                 {this.props.visiblePagina === 'true' ?
 
-                   this.props.horario_rango === 'false' ?
+                    this.props.horario_rango === 'false' ?
+            
+                        <div className="marquee">
+                            {typeof verificar.dia === 'string'?
 
-                        !this.verificar ?
-                            <div className="marquee">
-
-                            <p>El Horario de hoy {verificar.dia} es de {verificar.hora_inicio} a {verificar.hora_final}</p>
-                            </div>
+                                <p>El Horario de hoy {verificar.dia} es de {verificar.hora_inicio} a {verificar.hora_final}</p>
+                                :
+                                ""
+                             }
+                   </div>
                             :
-                            ""
+                            
 
-                        :
-                        this.props.horario_rango === 'dia' ?
-                            <div className="marquee">
-                                <p>No tenemos servicio el dia de hoy, te esperamos pronto!</p>
-                            </div>
-                            :
-                            ""
-                      
+                    this.props.horario_rango === 'dia' ?
+                       <div className="marquee">
+                         <p>No tenemos servicio el dia de hoy, te esperamos pronto!</p>
+                       </div>
                     :
+                    this.props.horario_rango === 'true' ?""
+                   :
                     ""
+                    :
+                        ""
+                
+                
+                 
+            
+       
                 }
             </nav>
 
