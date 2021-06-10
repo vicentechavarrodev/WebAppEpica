@@ -155,7 +155,7 @@ function crear_banner(banner, context) {
         ServicesHelper.crear_banner(banner)
             .then(
                 response => {
-                    console.log(response);
+                  
                     if (response.IsSuccess) {
 
                         if (response.Result !== null) {

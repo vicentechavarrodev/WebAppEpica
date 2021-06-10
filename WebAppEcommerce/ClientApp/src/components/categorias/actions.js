@@ -117,7 +117,7 @@ function crear_categoria(categoria, context) {
         ServicesHelper.crear_categoria(categoria)
             .then(
                 response => {
-                    console.log(response);
+                  
                     if (response.IsSuccess) {
 
                         if (response.Result !== null) {

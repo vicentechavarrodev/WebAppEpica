@@ -95,7 +95,7 @@ function cargar_editar(id, context) {
                     loader.hide();
 
                     if (response.IsSuccess) {
-                        console.log(response.Result);
+                      
 
                         if (response.Result !== null) {
                             dispatch(success(response.Result));

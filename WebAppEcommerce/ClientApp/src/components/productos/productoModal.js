@@ -23,12 +23,17 @@ class ProductoModal extends Component {
             total: 0,
             cantidad: 1,
             opcionesSeleccionadas: [],
-            opcionesObligatorias: []
+            opcionesObligatorias: [],
+            opcionesDinamicas:[]
           
         }
 
         this.baseState = this.state
 
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
     }
 
     async componentDidMount() {
@@ -95,10 +100,15 @@ class ProductoModal extends Component {
         const HandleRadioChange = async (event) => {
             event.stopPropagation();
 
+           
+
             let option = JSON.parse(event.target.value);
+
+            
             let optioncheck = this.state.opcionesSeleccionadas.find(item => item.idTipoOpcion === option.Opcion.IdTipoOpcion);
 
             this.setState({ [option.IdProductoOpciones]: false });
+
 
 
             if (optioncheck === undefined) {
@@ -118,9 +128,10 @@ class ProductoModal extends Component {
 
                 var e = document.getElementById(`${option.ProductoTipoOpcionCambio.IdTipoOpcion}-item-op`);
                 var elementsPrecio = e.getElementsByClassName('col-price-modal');
-
                 var elementsRdio = e.getElementsByTagName('input');
 
+
+             
             
 
                 if (elementsPrecio !== undefined && elementsPrecio.length > 0) {
@@ -143,6 +154,8 @@ class ProductoModal extends Component {
                             objeto.Opcion.Precio = option.Precio
                             let value = JSON.stringify(objeto);
                             elementsRdio[i].value = value
+
+                            this.setState({ [objeto.IdOpcion]: value });
                         }
                 }
             }
@@ -153,7 +166,7 @@ class ProductoModal extends Component {
             
 
             const { opcionesSeleccionadas } = this.state;
-            console.log(opcionesSeleccionadas);
+           
             let IdsubOpcion = 0;
 
             if (option.MuestraSecundario) {
@@ -256,6 +269,8 @@ class ProductoModal extends Component {
                     var ids = this.state[id]
                     if (ids == null) {
                         this.setState({ [id]: false });
+
+                       
                     }
                 }
             
@@ -525,9 +540,10 @@ class ProductoModal extends Component {
                                          
                                             this.props.opciones_producto.VistaProductoOpcionesGroup.map(function (opciones, index, array) {                                             
                                                 RdbtnSelec(opciones);
-                                                return <Options.OptionItems opciones={opciones} index={index} AgregarAdicion={AgregarAdicion} HandleIncreChange={HandleIncreChange}   HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} Deseleccionar={Deseleccionar} />
+                                               // console.log(this)
+                                                return <Options.OptionItems opciones={opciones} context={this} index={index} AgregarAdicion={AgregarAdicion} HandleIncreChange={HandleIncreChange}   HandleRadioChange={HandleRadioChange} CambioSeleccion={CambioSeleccion} Deseleccionar={Deseleccionar} />
 
-                                            })
+                                            }, this)
                                         
                                         }
 

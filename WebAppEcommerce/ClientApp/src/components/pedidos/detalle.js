@@ -43,7 +43,7 @@ class Detalle extends Component {
             pedidoCompleto = pedidoCompleto + item.Cantidad + "  " + item.Descripcion + "= $" + item.Subtotal + (index !== (this.props.pedido.PedidoDetalles.length - 1) ? "%0A" : ("%0A y su estado es " + this.obtenerEstado(idEstado) ))
         },this)
 
-        let mensaje = `send?phone=${"57" + this.props.pedido.Telefono}&text=Hola, ${this.props.pedido.Solicitante}%0ASomos Epica 🍕, te contamos que tu pedido de: %0A${pedidoCompleto}%0ADomicilio: $ ${this.props.total_domicilio}%0ATotal: $ ${this.props.pedido.TotalPedido}%0A🚚 Gracias por confiar en nosotros 😀`
+        let mensaje = `send?phone=${"57" + this.props.pedido.Telefono}&text=Hola, ${this.props.pedido.Solicitante}%0ASomos *Epica* 🍕, te contamos que tu pedido de: %0A${pedidoCompleto}%0ADomicilio: $ ${this.props.total_domicilio}%0ATotal: $ ${"*"+this.props.pedido.TotalPedido+"*"}%0A🚚 Gracias por confiar en nosotros 😀`
 
         let w = 900;
         let h = 600;
@@ -57,9 +57,9 @@ class Detalle extends Component {
 
     obtenerEstado(idEstado) {
         if (idEstado === 1) {
-            return "*PENDIENTE*"
-        } else if (idEstado === 2) {
             return "*RECIBIDO*"
+        } else if (idEstado === 2) {
+            return "*PREPARACION*"
         } else if (idEstado === 3) {
             return "*ENVIADO*"
         }

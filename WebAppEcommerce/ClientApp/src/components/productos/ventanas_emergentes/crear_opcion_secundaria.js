@@ -45,7 +45,7 @@ class CrearOpcionSecundaria extends Component {
             }
         });
 
-        console.log(e)
+       
 
         
        
@@ -81,7 +81,7 @@ class CrearOpcionSecundaria extends Component {
             this.props.showMessage('Debes seleccionar una opción.', true, 'Información');
         }
 
-        console.log(this.state.vista);
+       
 
         this.props.crear_opcion_secundaria(vista, this.props.IdProducto, this);
 

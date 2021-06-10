@@ -69,7 +69,7 @@ class Car_modal extends Component {
     }
 
     CloseCar(e) {
-        console.log(e.currentTarget)
+       
         const btn = document.getElementById('btn-car');
         btn.style.display = 'inline';
         this.props.ver_car(false);

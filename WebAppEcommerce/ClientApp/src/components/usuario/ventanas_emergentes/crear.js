@@ -47,7 +47,7 @@ class CrearUsuario extends Component {
     }
 
     InputChange(e) {
-        console.log(e);
+        
         const { name, value } = e.target;
         const { usuario } = this.state;
         this.setState({
