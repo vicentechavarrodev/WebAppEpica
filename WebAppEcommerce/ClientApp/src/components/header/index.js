@@ -45,7 +45,7 @@ class Header extends Component {
                 },
                  {
                     id: 6,
-                    dia: 'Sabado'
+                    dia: 'Sábado'
                 }
                        
             ] ,
