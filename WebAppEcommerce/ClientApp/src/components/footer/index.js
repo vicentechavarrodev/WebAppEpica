@@ -56,10 +56,6 @@ class Footer extends Component {
                                     <li className="li-footer" key={item.IdCategoria}>
                                         <button className="btn btn-link link-secondary" type="button" id={item.IdCategoria} onClick={this.abrirPideLinea}>{item.Nombre}</button></li>
                                  )}
-
-                            <li>
-                                <Link to="/login" className="nav-link">Cuenta</Link>
-                            </li>
                             </ul>
                            
 
