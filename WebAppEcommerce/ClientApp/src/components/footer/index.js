@@ -57,7 +57,9 @@ class Footer extends Component {
                                         <button className="btn btn-link link-secondary" type="button" id={item.IdCategoria} onClick={this.abrirPideLinea}>{item.Nombre}</button></li>
                                  )}
 
-                        
+                            <li>
+                                <Link to="/login" className="nav-link">Cuenta</Link>
+                            </li>
                             </ul>
                            
 
@@ -79,7 +81,7 @@ class Footer extends Component {
                                         <div className="container col-copy">
                                             <div className="row">
 
-                                                &copy; {this.state.año_actual} Línea de Código
+                                            &copy; Derechos reservados {this.state.año_actual}
                                                 
                           </div>
                                         </div>

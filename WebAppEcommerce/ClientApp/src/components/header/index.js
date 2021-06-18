@@ -108,7 +108,6 @@ class Header extends Component {
         const { verificar } = this.state;
         const dia_semana = this.state.dias.find(element => element.id === this.state.verificar.dia);
         const verificar_dia = this.props.horarios.find(element => element.Dia === dia_semana.dia);
-        console.log(this.props.horarios, dia_semana);
         if (verificar_dia == undefined) {
             this.props.ver_rango('dia');
         } else {
@@ -133,6 +132,7 @@ class Header extends Component {
                          element.HoraFinal = "2021-06-08T24:00:00";
                     }
                     if (hora_actual >= element.HoraInicial.slice(11, -3) && hora_actual <= element.HoraFinal.slice(11, -3)) {
+                        console.log('entra')
                         this.props.ver_rango('true');
                         return;
 
